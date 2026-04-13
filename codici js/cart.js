@@ -38,8 +38,15 @@ const Cart = {
     container.innerHTML = "";
 
     if(this.items.length === 0){
-      container.innerHTML = `<div class="empty">Cart is empty</div>`;
-    } else {
+      container.innerHTML = 
+      `<div class="empty-cart">
+      <h2>Il carrello è vuoto</h2>
+      <p>Non hai ancora comprato nulla? D'haiun occhiata allo shop</p>
+      <a href="index.html">Vai allo Shop</a>
+       </div>`;
+    } 
+    
+    else {
       this.items.forEach((item, index) => {
         const div = document.createElement("div");
         div.className = "cart-item";
