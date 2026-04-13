@@ -640,22 +640,25 @@ body::before{
 <body>
 
 <div class="home-wrapper">
-  <a href="index.html" class="home-icon">
+  <a href="../index.html" class="home-icon">
     <span>Homepage</span>
   </a>
 </div>
 
 <!-- CART -->
+ <section>
 <div class="cart-wrapper">
   <div class="cart-icon">
     🛒 Cart <span class="cart-badge" id="cartCount">0</span>
   </div>
-
+  
   <div class="cart-dropdown">
     <div class="cart-items" id="cartItems"></div>
     <a href="cart.html" class="go-cart">Go to Cart</a>
   </div>
 </div>
+</section>
+
 
 <div class="header">
   <a href="../index.html" class="logo">
@@ -664,20 +667,27 @@ body::before{
   <div class="title">Zero Joy-Con 2</div>
 </div>
 
+<!--joycon2 rosso e blu -->
+
+<section>
+
 <div class="section">
-
-  <div class="buy-box bottom-left">
-    <img class="card-img" src="images/joycon2rb.jpg">
-
+  
+  <div class="buybtn joycon2 R&B">
+      <img class="card-img" src="images/joycon2rb.jpg">
     <div class="buy-title"> Zero Joy-Con 2 Red&Blue</div>
     <div class="buy-desc">The boring classic ones</div>
     <div class="price">€55.99</div>
-
-    <button class="buy-btn" onclick="addToCart(event,'Zero Joy-Con 2 Red&Blue',55.99,'images/joycon2rb.jpg')">
+     <button class="buy-btn" onclick="addToCart(event,'Zero Joy-Con 2 Red&Blue',55.99,'images/joycon2rb.jpg')">
       Add to cart
     </button>
   </div>
+ 
+</section>
 
+
+<!--joycon2 verde e viola  -->
+<section>
   <div class="buy-box top-right">
     <img class="card-img" src="images/joycon2pg.jpg">
 
@@ -689,21 +699,24 @@ body::before{
       Add to cart
     </button>
   </div>
+
+  </section>
+ 
+  <!--menù html-->
+  <nav>
    <a href="cart.html">carrello</a>
 
   <a href="../index.html">homepage  </a>
+  </nav>
   
   
 
-  <div class="center-info">
+  <div class= "center-info">
     <div class="disclaimer-title">DISCLAIMER: No mouse function</div>
     <div class="disclaimer-text">
       All products sold on this page DO NOT include mouse functionality.
     </div>
-  </div>
-
-</div>
-
+  
 <script>
 function updateCart(){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
