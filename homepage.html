@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriftZero</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #0a0a0a;
+  --card: #111;
+  --accent1: #00ffff;
+  --accent2: #703fff;
+  --text: rgba(255,255,255,0.9);
+}
+
+*{
+  box-sizing: border-box;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:700;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.cart{
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.hero h1{
+  font-size:48px;
+  margin-bottom:20px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  opacity:0.7;
+}
+
+/* PRODUCTS */
+.products{
+  display:flex;
+  gap:30px;
+  justify-content:center;
+  padding:40px;
+  flex-wrap:wrap;
+}
+
+.card{
+  background: var(--card);
+  padding:20px;
+  width:280px;
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform: translateY(-5px);
+  border-color: var(--accent1);
+}
+
+.card img{
+  width:100%;
+}
+
+.card h3{
+  margin:15px 0;
+}
+
+.price{
+  margin-bottom:10px;
+  opacity:0.7;
+}
+
+/* BUTTON */
+.btn{
+  padding:10px;
+  border:none;
+  cursor:pointer;
+  width:100%;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  color:black;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">DriftZero</div>
+  <div class="cart">🛒</div>
+</div>
+
+<div class="hero">
+  <h1>Zero Drift. Zero Limits.</h1>
+  <p>Upgrade your controller. Play without compromise.</p>
+</div>
+
+<div class="products">
+
+  <div class="card">
+    <img src="images/lite.jpg">
+    <h3>Zero Joy-Con Lite</h3>
+    <div class="price">€39.99</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="images/plus.jpg">
+    <h3>Zero Joy-Con Plus</h3>
+    <div class="price">€59.99</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="images/pro.jpg">
+    <h3>Zero Controller Pro</h3>
+    <div class="price">€79.99</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+</div>
+
+<script>
+console.log("Homepage loaded");
+</script>
+
+</body>
+</html>
