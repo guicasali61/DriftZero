@@ -39,12 +39,17 @@ const Cart = {
 
     if(this.items.length === 0){
       container.innerHTML = 
-      `<div class="empty-cart">
+      `<div class="carrello"">
       <h2>Il carrello è vuoto</h2>
       <p>Non hai ancora comprato nulla? D'haiun occhiata allo shop</p>
       <a href="index.html">Vai allo Shop</a>
        </div>`;
+       return
+
+
     } 
+
+    
     
     else {
       this.items.forEach((item, index) => {
