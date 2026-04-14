@@ -78,3 +78,4 @@ console.log("cart item iniziali:", Cart.items);
 document.addEventListener("DOMContentLoaded", () => {
   Cart.render();
 });
+
