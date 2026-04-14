@@ -638,12 +638,23 @@ body::before{
 </head>
 
 <body>
-
-<div class="home-wrapper">
-  <a href="../index.html" class="home-icon">
-    <span>Homepage</span>
+<!--link redirect+titolo-->
+   <header class="header">
+  <a href="../index.html" class="logo">
+    <img src="images/logo.png">
   </a>
-</div>
+  <div class="title">Zero Joy-Con 2</div>
+  <nav>
+   <a href="cart.html">Carrello</a>
+    <a href="../index.html">Homepage</a>
+   
+  
+
+  </nav>
+  
+</header>
+
+
 
 <!-- CART -->
  <section>
@@ -660,22 +671,17 @@ body::before{
 </section>
 
 
-<div class="header">
-  <a href="../index.html" class="logo">
-    <img src="images/logo.png">
-  </a>
-  <div class="title">Zero Joy-Con 2</div>
-</div>
 
-<!--joycon2 rosso e blu -->
 
+<!--prodotti -->
 <section>
 
 <div class="section">
   
-  <div class="buybtn joycon2 R&B">
+  
+  <div class="buy-box joycon-rb">
       <img class="card-img" src="images/joycon2rb.jpg">
-    <div class="buy-title"> Zero Joy-Con 2 Red&Blue</div>
+    <div class="buy-title">Zero Joy-Con 2 Red&Blue</div>
     <div class="buy-desc">The boring classic ones</div>
     <div class="price">€55.99</div>
      <button class="buy-btn" onclick="addToCart(event,'Zero Joy-Con 2 Red&Blue',55.99,'images/joycon2rb.jpg')">
@@ -683,39 +689,42 @@ body::before{
     </button>
   </div>
  
-</section>
 
 
-<!--joycon2 verde e viola  -->
-<section>
-  <div class="buy-box top-right">
+
+
+
+  <div class="buy-box joycon-pg">
     <img class="card-img" src="images/joycon2pg.jpg">
 
     <div class="buy-title">Zero Joy-Con 2 Purple&Green</div>
     <div class="buy-desc">The cool new ones</div>
     <div class="price">€65.99</div>
 
-    <button class="buy-btn" onclick="addToCart(event,' Zero Joy-Con 2 Purple&Green',65.99,'images/joycon2pg.jpg')">
+    <button class="buy-btn" onclick="addToCart(event,'Zero Joy-Con 2 Purple&Green',65.99,'images/joycon2pg.jpg')">
       Add to cart
     </button>
   </div>
-
-  </section>
+  </div>
+ </section>
  
-  <!--menù html-->
-  <nav>
-   <a href="cart.html">carrello</a>
-
-  <a href="../index.html">homepage  </a>
-  </nav>
+  
+ 
+ 
   
   
-
+ 
+  <!--card centrale-->
+<section>
   <div class= "center-info">
     <div class="disclaimer-title">DISCLAIMER: No mouse function</div>
     <div class="disclaimer-text">
       All products sold on this page DO NOT include mouse functionality.
     </div>
+    </div>
+
+    
+    </section>
   
 <script>
 function updateCart(){
