@@ -50,10 +50,38 @@ body{
 
 /* HERO */
 .hero{
-  text-align:center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding:80px 20px;
+
 }
 
+.hero-color-btn{
+width:120px;
+height:40px;
+color :black;
+background: linear-gradient(90deg, var(--accent1), var(--accent2));
+border-radius:10px;
+border:3px,black;
+font-size:16px;
+
+}
+
+.hero-text {
+max-width:500px;
+
+
+  
+ } 
+
+.hero-img img{
+max-width: 100%;
+
+
+
+
+ } 
 .hero h1{
   font-size:48px;
   margin-bottom:20px;
@@ -120,11 +148,21 @@ body{
   <div class="logo">DriftZero</div>
   <div class="cart">🛒</div>
 </div>
+<!--hero-->
 
-<div class="hero">
-  <h1>Zero Drift. Zero Limits.</h1>
-  <p>Upgrade your controller. Play without compromise.</p>
+<section class="hero">
+  
+<div class="hero-text">
+<h1>Zero Drift. Zero Problem.</h1>
+
+<h2> 20+ Colors, 3 Model , Choose yours</h2>
 </div>
+<button class="hero-color-btn">Explore Colors</button>
+<div class="hero-img">
+<img src ="../images/hero-joycon.jpg">
+</div>
+
+</section>
 
 <div class="products">
 
