@@ -20,7 +20,7 @@ body::before{
   position:fixed;
   inset:0;
   z-index:-2;
-  background-image: url("images/background.jpg");
+  background-image: url("../images/background.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -182,8 +182,8 @@ body::before{
   box-shadow: 0 0 25px rgba(3, 4, 94, 0.35);
 }
 
-.bottom-left{ bottom:20px; left:40px; }
-.top-right{ top:10px; right:40px; }
+.buy-box.joycon2-rb{ bottom:20px; left:40px; }
+.buy-box.joycon2-pg{ top:10px; right:40px; }
 
 .card-img{
   position:absolute;
@@ -197,8 +197,8 @@ body::before{
   border:4px solid rgba(144, 224, 239, 1);
 }
 
-.bottom-left .card-img{ top:-275px; }
-.top-right .card-img{ bottom:-275px; }
+.joycon2-rb-img{ top:-275px; }
+.joycon2-pg-img{ bottom:-275px; }
 
 .buy-title{
   font-weight:bold;
@@ -679,8 +679,8 @@ body::before{
 <div class="section">
   
   
-  <div class="buy-box joycon-rb">
-      <img class="card-img" src="images/joycon2rb.jpg">
+  <div class="buy-box joycon2-rb">
+      <img class="joycon2-rb-img" src="../images/joycon2rb.jpg">
     <div class="buy-title">Zero Joy-Con 2 Red&Blue</div>
     <div class="buy-desc">The boring classic ones</div>
     <div class="price">€55.99</div>
@@ -694,8 +694,8 @@ body::before{
 
 
 
-  <div class="buy-box joycon-pg">
-    <img class="card-img" src="images/joycon2pg.jpg">
+  <div class="buy-box joycon2-pg">
+    <img class="joycon2-pg-img" src="../images/joycon2pg.jpg">
 
     <div class="buy-title">Zero Joy-Con 2 Purple&Green</div>
     <div class="buy-desc">The cool new ones</div>
