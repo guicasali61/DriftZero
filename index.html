@@ -59,7 +59,22 @@ body{
   justify-content: space-between;
   align-items: flex-start;
   padding: 35px 20px 80px 20px;
+
+   position: relative;
+  background: #0a0a0a;
+  overflow: hidden;
   
+}
+
+.hero::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("images/bg-hero.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  pointer-events: none;
 }
 
 .hero-color-btn{
