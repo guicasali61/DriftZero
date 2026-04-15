@@ -31,16 +31,35 @@ body{
 .header{
   display:flex;
   justify-content:space-between;
-  
+  align-items: center;
   padding:20px 40px;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-
+  background: #0a0a0a;
+  border-bottom:2px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
 }
 
 .nav{
   display:flex;
-  gap:30px;
-  width:50px;
+  gap:40px;
+  
+  
+}
+
+.nav a{
+  
+  text-decoration: none;
+  color:white;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.nav a:hover{
+ 
+  opacity: 0.7;
+  
 }
 
 .logo{
@@ -49,13 +68,35 @@ body{
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-left:-20px;
+  transition: 0.2s ease;
+  text-decoration: none;
+
+}
+
+.logo:hover{
+  transform: scale(1.1);
+  
 }
 
 .cart{
   cursor:pointer;
+  transition:0.2s ease;
+  text-decoration:none;
+  color:#0a0a0a;
+  font-weight:700;
+  font-size:20px;
+  padding:10px 18px;
+  border-radius:10px;
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
 }
 
+.cart:hover{
+  transform:scale(1.05);
+  opacity:0.95;
+}
 /* =========================
    HERO SECTION
 ========================= */
@@ -249,12 +290,12 @@ body{
    <a href="index.html" class="logo">DriftZero</a>
  
   <nav class="nav">
-  <a href="pagine/joycon.html">Joy-Con Lite</a>
+  <a href="pagine/joycon.html">Zero Joy-Con Lite</a>
   <a href="pagine/joycon2.html">Zero Joy-Con Plus</a>
   <a href="pagine/procon.html">Zero Controller Pro</a>
  </nav>
  
- <div class="cart">🛒</div>
+ <a href="pagine/cart.html" class="cart"> Cart</a>
 </header>
 
 
@@ -280,11 +321,13 @@ body{
 
 </section>
 
+
+
 <div class="products">
 
   <div class="card">
     <img src="images/lite.jpg">
-    <h3>Zero Joy-Con Lite</h3>
+    <h3> Zero Joy-Con Lite</h3>
     <div class="price">€39.99</div>
     <button class="btn">Add to Cart</button>
   </div>
@@ -304,6 +347,7 @@ body{
   </div>
 
 </div>
+
 
 <script>
 const heroImage = document.getElementById('hero-main-img');
