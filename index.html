@@ -31,9 +31,16 @@ body{
 .header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  
   padding:20px 40px;
   border-bottom:1px solid rgba(255,255,255,0.1);
+
+}
+
+.nav{
+  display:flex;
+  gap:30px;
+  width:50px;
 }
 
 .logo{
@@ -59,8 +66,7 @@ body{
   justify-content: space-between;
   align-items: flex-start;
   padding: 35px 20px 80px 20px;
-
-   position: relative;
+  position: relative;
   background: #0a0a0a;
   overflow: hidden;
   
@@ -239,11 +245,18 @@ body{
 
 <body>
 
-<div class="header">
-  <div class="logo">DriftZero</div>
-  <div class="cart">🛒</div>
-</div>
-<!--hero-->
+<header class="header">
+   <a href="index.html" class="logo">DriftZero</a>
+ 
+  <nav class="nav">
+  <a href="pagine/joycon.html">Joy-Con Lite</a>
+  <a href="pagine/joycon2.html">Zero Joy-Con Plus</a>
+  <a href="pagine/procon.html">Zero Controller Pro</a>
+ </nav>
+ 
+ <div class="cart">🛒</div>
+</header>
+
 
 <section class="hero">
   
