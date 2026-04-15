@@ -146,7 +146,7 @@ body{
 }
 
 .hero-text{
-  max-width: 500px;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -241,6 +241,107 @@ body{
   margin:0 0 18px 0;
 
 }
+.why-us{
+  padding: 110px 8%;
+  
+  position: relative;
+  z-index: 1;
+}
+
+.why-us-intro{
+  max-width: 700px;
+  margin: -40px -70px ;
+  
+  
+}
+
+.section-tag{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  
+  margin-bottom: 12px;
+}
+
+.why-us h2{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 0.95;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-subtext{
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.68);
+  max-width: 560px;
+}
+
+.why-us-grid{
+  position:relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin:100px;
+}
+
+.why-card{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 28px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.why-card:hover{
+  transform: translateY(-6px);
+  border-color: var(--accent-dim);
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.why-number{
+  display: inline-block;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+}
+
+.why-card h3{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.45rem;
+  margin: 0 0 12px;
+  color: rgba(255,255,255,0.95);
+  text-transform: uppercase;
+}
+
+.why-card p{
+  margin: 0;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 900px){
+  .why-us-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .why-us{
+    padding: 85px 6%;
+  }
+}
 
 /* PRODUCTS */
 .products{
@@ -308,9 +409,13 @@ body{
 <section class="hero">
   
 <div class="hero-text">
-<h1>Zero Drift. Zero Problem.</h1>
-<h2> 20+ Colors, 3 Model , Choose yours</h2>
-<button class="hero-color-btn">Explore Colors</button>
+<h1>Shouldn’t Be This Easy.<br> 
+  We Made It.</h1>
+<h2>
+  You know these don’t come like this.<br>
+  No console. Just the controllers. For way less.
+</h2>
+<button class="hero-color-btn">Take One</button>
 </div>
 
 <div class="hero-img">
@@ -327,6 +432,36 @@ body{
 
 </section>
 
+<section class="why-us">
+  <div class="why-us-intro">
+    <p class="section-tag">WHY DRIFTZERO</p>
+    <h2>Not random plastic.<br>Actual reasons to care.</h2>
+    <p class="section-subtext">
+      Clean design, real color options, lower price. 
+      That’s the point.
+    </p>
+  </div>
+
+  <div class="why-us-grid">
+    <div class="why-card">
+      <span class="why-number">01</span>
+      <h3>Better Price</h3>
+      <p>No console. No useless extras. Just the controllers, for way less.</p>
+    </div>
+
+    <div class="why-card">
+      <span class="why-number">02</span>
+      <h3>More Colorways</h3>
+      <p>Standard is boring. DriftZero comes in color combos worth showing off.</p>
+    </div>
+
+    <div class="why-card">
+      <span class="why-number">03</span>
+      <h3>Built for Players</h3>
+      <p>For people who notice feel, look, grip and details. Not just “it works”.</p>
+    </div>
+  </div>
+</section>
 
 
 <div class="products">
