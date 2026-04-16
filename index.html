@@ -102,7 +102,7 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 35px 20px 80px 20px;
+  padding: 60px 40px 100px;
   position: relative;
   background: #0a0a0a;
   overflow: hidden;
@@ -132,34 +132,43 @@ body{
   z-index: 0;
 }
 
-.hero-color-btn{
-  padding: 14px 24px;
-  color: black;
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  border-radius: 10px;
-  border: 3px solid black;
-  font-size: 20px;
-  cursor: pointer;
-  font-weight:700;
-}
-
 .hero-text{
-  max-width: 700px;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 20px;
-  margin-top:35px;
+  gap: 14px;
+  margin-left: 10px;
+  margin-top: 35px;
   z-index: 1;
+}
+
+.hero h1{
+  font-size: 64px;
+  line-height: 1.05;
+  margin: 0;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero h2{
+  font-size: 24px;
+  opacity: 0.82;
+  margin: 0;
+  line-height: 1.35;
+  max-width: 580px;
 }
 
 .hero-img{
   position: absolute;
   right: 40px;
-  width: 460px;
-  height: 350px;
-  z-index: 1;
   bottom: 120px;
+  width: 520px;
+  height: 390px;
+  z-index: 1;
 }
 
 .hero-img img{
@@ -167,7 +176,7 @@ body{
   height: 100%;
   position: relative;
   object-fit: contain;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-img::before{
@@ -176,17 +185,75 @@ body{
   inset: 20px;
   background: radial-gradient(
     circle at center,
-    rgba(0,255,255,0.45) 0%,
-    rgba(112,63,255,0.25) 35%,
-    transparent 75%
+    var(--accent1) 0%,
+    transparent 60%
   );
+  opacity: 0.5;
   filter: blur(60px);
   z-index: 0;
 }
 
-/* HERO PRODUCT BLOCK */
+.hero-img::after{
+  content: "";
+  position: absolute;
+  inset: 20px;
+  background: radial-gradient(
+    circle at center,
+    var(--accent2) 0%,
+    transparent 65%
+  );
+  opacity: 0.35;
+  filter: blur(80px);
+  z-index: 0;
+}
+.hero-mini-note{
+  
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 8px;
+}
+
+.hero-color-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:6px;
+  padding: 18px 36px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #0a0a0a;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(
+    120deg,
+    var(--accent1),
+    var(--accent2),
+    var(--accent1)
+  );
+  background-size: 200% 200%;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.35),
+    0 0 18px rgba(0,255,255,0.16);
+
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+  animation: gradientMove 4s ease infinite;
+}
 
 
+.hero-color-btn:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,0.42),
+    0 0 24px rgba(0,255,255,0.24);
+  filter: brightness(1.04);
+}
 
 .hero-colors{
   position: absolute;
@@ -199,7 +266,7 @@ body{
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 10px;
   backdrop-filter: blur(8px);
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-dot{
@@ -213,6 +280,7 @@ body{
   appearance: none;
   -webkit-appearance: none;
   opacity: 0.7;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .hero-dot:hover{
@@ -225,24 +293,6 @@ body{
   opacity: 1;
   transform: scale(1.15);
 }
-
-.hero h1{
-  font-size: 64px;
-  line-height: 1.1;
-  margin:0 0 4px 0;
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero h2{
-  font-size: 24px;
-  opacity: 0.8;
-  margin:0 0 18px 0;
-}
-
 /* WHY US */
 .why-us{
   padding: 85px 6%;
@@ -338,86 +388,176 @@ body{
 }
 
 /* PRODUCTS */
-.products{
-  display:flex;
-  gap:30px;
-  justify-content:center;
-  padding:40px;
-  flex-wrap:wrap;
-}
-
-.card{
-  background: var(--card);
-  padding:20px;
-  width:280px;
-  border:1px solid rgba(255,255,255,0.1);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform: translateY(-5px);
-  border-color: var(--accent1);
-}
-
-.card-img{
+/* PRODUCTS SECTION */
+.products-section{
   position: relative;
-  margin-bottom: 15px;
+  padding: 110px 6% 120px;
+  z-index: 1;
 }
 
-.card-img img{
-  width:100%;
-  display:block;
+.products-intro{
+  max-width: 760px;
+  margin-bottom: 60px;
 }
 
-.product-name{
-  position: absolute;
-  bottom: 12px;
-  left: 14px;
-  z-index: 2;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+.products-section h2{
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 0.95;
+  margin: 0 0 16px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.95);
-}
-
-.card-title{
-  position: absolute;
-  top: 14px;
-  left: 80px;
-  padding: 6px 12px;
-  border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.22)
-  );
-  backdrop-filter: blur(8px);
-  box-shadow:
-    0 6px 18px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.05);
-}
-
-.card-title span{
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #ffffff, var(--accent1), var(--accent2));
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
 }
 
-.price{
-  margin-bottom:10px;
-  opacity:0.7;
+.products-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
+.product-card{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.045),
+    rgba(255,255,255,0.018)
+  );
+  display:flex;
+  flex-direction:column;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 26px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.product-card:hover{
+  transform: translateY(-8px);
+  border-color: rgba(255,255,255,0.16);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.35),
+    0 0 22px rgba(255,255,255,0.04);
+}
+ 
+.product-badge{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+
+  color: rgba(255,255,255,0.9);
+}
+.product-card.featured{
+  border-color: rgba(255,255,255,0.18);
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.35),
+    0 0 25px rgba(255,255,255,0.04);
+}
+.product-image-wrap{
+  position: relative;
+  padding: 22px 22px 0;
+  min-height: 320px;
+}
+
+.product-image-wrap img{
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.product-overlay{
+  position: absolute;
+  inset: 20px 20px auto 20px;
+  height: 240px;
+  border-radius: 22px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.10),
+    rgba(255,255,255,0.02),
+    transparent 75%
+  );
+  z-index: 1;
+}
+
+.product-topline{
+  position: absolute;
+  left: 24px;
+  bottom: 18px;
+  z-index: 3;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.94);
+}
+
+
+
+.product-info{
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-description{
+  margin: 0 0 22px;
+  color: rgba(255,255,255,0.66);
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+.product-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.product-price{
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.95);
+}
+
+.product-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0a0a0a;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.product-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.42);
+  filter: brightness(1.03);
+}
 /* BUTTON */
 .btn{
   padding:10px;
@@ -427,6 +567,218 @@ body{
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   color:black;
   font-weight:600;
+}
+
+
+.final-cta{
+  padding: 70px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  background: transparent;
+
+
+  background:  transparent;
+}
+
+/* glow dietro */
+.final-cta::before{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: -20px;
+  bottom: -40px;
+  pointer-events: none;
+  z-index: 0;
+
+  background: radial-gradient(
+    circle at center 58%,
+    var(--accent1) 0%,
+    var(--accent2) 24%,
+    transparent 68%
+  );
+
+  opacity: 0.04;
+  filter: blur(100px);
+}
+
+
+/* contenuto */
+.final-cta-content{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 700px;
+  padding: 42px 36px;
+  border-radius: 24px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.01)
+  );
+  border: 1px solid rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+}
+
+/* titolo */
+.final-cta h2{
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* sottotitolo */
+.final-cta p{
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 32px;
+}
+
+/* bottone */
+.final-cta-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 42px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: #0a0a0a;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+   box-shadow:
+    0 10px 24px rgba(0,0,0,0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.final-cta-btn:hover{
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+   0 10px 24px rgba(0,0,0,0.45);
+  filter: brightness(1.06);
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  position: relative;
+  margin-top: 20px;
+  padding: 60px 6% 30px;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* leggero depth, NON glow */
+.footer::before{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: -70px;
+  height: 90px;
+  pointer-events:none;
+  z-index: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(10,10,10,0),
+    rgba(10,10,10,1)
+  );
+}
+
+/* layout principale */
+.footer-main{
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+/* ===== BRAND ===== */
+.footer-brand{
+  max-width: 300px;
+}
+
+.footer-logo{
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-decoration: none;
+
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-desc{
+  margin: 0;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ===== NAV ===== */
+.footer-nav{
+  display: flex;
+  gap: 70px;
+}
+
+.footer-col{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col h4{
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
+/* link più controllati */
+.footer-col a{
+  text-decoration: none;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-col a:hover{
+  color: rgba(255,255,255,0.95);
+  transform: translateX(2px);
+}
+
+/* ===== BOTTOM ===== */
+.footer-bottom{
+  margin-top: 45px;
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+}
+
+.footer-bottom p{
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
 }
 </style>
 </head>
@@ -452,34 +804,36 @@ body{
       You know these don’t come like this.<br>
       No console. Just the controllers. For way less.
     </h2>
-    <button class="hero-color-btn">Take One</button>
+    <p class="hero-mini-note">Pick your model. Pick your color.</p>
+
+    <a class="hero-color-btn">Shop the Lineup </a>
   </div>
 
   <div class="hero-img">
-    <div class="hero-product-name">
-     >
-    </div>
+    
 
     <img id="hero-main-img" src="images/hero-joycon-blue.jpg" alt="Zero Joy-Con">
+
+   
 
     <div class="hero-colors">
       <button class="hero-dot blue active"
               data-image="images/hero-joycon-blue.jpg"
               data-accent1="#00ffff"
               data-accent2="#703fff"
-              data-name="FROST TALON"></button>
+             ></button>
 
       <button class="hero-dot red"
               data-image="images/hero-joycon-red.jpg"
               data-accent1="#ff8c42"
-              data-accent2="#9e1b32"
-              data-name="INFERNO PULSE"></button>
+              data-accent2="#9e1b32">
+             </button>
 
       <button class="hero-dot gold"
               data-image="images/hero-joycon-gold.jpg"
               data-accent1="#ffe27a"
-              data-accent2="#b7791f"
-              data-name="DESERT PRIME"></button>
+              data-accent2="#b7791f"></button>
+              
     </div>
   </div>
 </section>
@@ -517,43 +871,133 @@ body{
   </div>
 </section>
 
-<section class="products">
-  <div class="card">
-    <div class="card-img">
-      <div class="product-name">Zero Joy-Con Lite</div>
-      <h3 class="card-title"><span>FROST TALON</span></h3>
-      <img src="images/lite.jpg" alt="Frost Talon Joy-Con">
-    </div>
-    <div class="price">€39.99</div>
-    <button class="btn">Add to Cart</button>
+<section class="products-section">
+  <div class="products-intro">
+    <p class="section-tag">THE LINEUP</p>
+    <h2>THREE PICKS.<br>ONE STANDARD.</h2>
+    <p class="section-subtext">
+       Built with the same design language.
+  Shaped for different ways to play.
+    </p>
   </div>
 
-  <div class="card">
-    <div class="card-img">
-      <div class="product-name">Zero Joy-Con Plus</div>
-      <h3 class="card-title"><span>INFERNO PULSE</span></h3>
-      <img src="images/plus.jpg" alt="Inferno Pulse Joy-Con">
-    </div>
-    <div class="price">€59.99</div>
-    <button class="btn">Add to Cart</button>
-  </div>
+  <div class="products-grid">
+    <article class="product-card featured">
+      <div class="product-image-wrap">
+        <div class="product-badge">Most Popular</div>
+        <img src="images/lite.jpg" alt="Zero Joy-Con Lite">
+        <div class="product-overlay"></div>
+        <div class="product-topline">Zero Joy-Con Lite</div>
+      </div>
 
-  <div class="card">
-    <div class="card-img">
-      <div class="product-name">Zero Controller Pro</div>
-      <h3 class="card-title"><span>DESERT PRIME</span></h3>
-      <img src="images/pro.jpg" alt="Desert Prime Controller">
-    </div>
-    <div class="price">€79.99</div>
-    <button class="btn">Add to Cart</button>
+      <div class="product-info">
+        <p class="product-description">
+         Our take on the classic Joy-Con format. Compact, sharp, and ready for everyday play.
+        </p>
+        <div class="product-bottom">
+          <span class="product-price">€39.99</span>
+          <a href="pagine/joycon.html" class="product-btn">View Product </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-image-wrap">
+        <img src="images/plus.jpg" alt="Zero Joy-Con Plus">
+        <div class="product-overlay"></div>
+        <div class="product-topline">Zero Joy-Con Plus</div>
+      </div>
+
+      <div class="product-info">
+        <p class="product-description">
+         The newer Joy-Con format, reworked by DriftZero. Same design logic, stronger presence in hand.
+        </p>
+        <div class="product-bottom">
+          <span class="product-price">€59.99</span>
+          <a href="pagine/joycon2.html" class="product-btn">View Product </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-image-wrap">
+        <img src="images/pro.jpg" alt="Zero Controller Pro">
+        <div class="product-overlay"></div>
+        <div class="product-topline">Zero Controller Pro</div>
+      </div>
+
+      <div class="product-info">
+        <p class="product-description">
+         A full-size controller built on the Pro format. Same ergonomics, more control, less cost.
+        </p>
+        <div class="product-bottom">
+          <span class="product-price">€79.99</span>
+          <a href="pagine/procon.html" class="product-btn">View Product </a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
+<section class="final-cta">
+  <div class="final-cta-content">
+    <h2>Zero drift. Zero nonsense.</h2>
+    <p>Pick your model. Pick your color. Done.</p>
+
+    <a href="pagine/joycon.html" class="final-cta-btn">
+      Shop Now 
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+
+  <div class="footer-main">
+
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo">DriftZero</a>
+      <p class="footer-desc">
+        Built to look sharper.<br>
+        Priced to make sense.
+      </p>
+    </div>
+
+    <div class="footer-nav">
+
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="pagine/joycon.html">Joy-Con Lite</a>
+        <a href="pagine/joycon2.html">Joy-Con Plus</a>
+        <a href="pagine/procon.html">Controller Pro</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="pagine/cart.html">Cart</a>
+        <a href="#">Contact</a>
+        <a href="#">Shipping</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 DriftZero</p>
+  </div>
+
+</footer>
 <script>
 const root = document.documentElement;
 const heroImage = document.getElementById('hero-main-img');
 const heroDots = document.querySelectorAll('.hero-dot');
-const heroProductName = document.getElementById('hero-product-name-text');
+
 
 function applyHeroTheme(dot) {
   heroImage.src = dot.dataset.image;
@@ -561,9 +1005,7 @@ function applyHeroTheme(dot) {
   root.style.setProperty('--accent1', dot.dataset.accent1);
   root.style.setProperty('--accent2', dot.dataset.accent2);
 
-  if (dot.dataset.name) {
-    heroProductName.textContent = dot.dataset.name;
-  }
+ 
 
   heroDots.forEach(d => d.classList.remove('active'));
   dot.classList.add('active');
