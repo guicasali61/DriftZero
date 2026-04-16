@@ -534,6 +534,8 @@ body{
   z-index: 1;
 }
 
+
+
 .product-img{
   position: relative;
   z-index: 2;
@@ -714,6 +716,26 @@ body{
   box-shadow: 0 16px 36px rgba(0,0,0,0.22);
 }
 
+.coming-card{
+  opacity: 0.5;
+  filter: grayscale(30%);
+  border-style: dashed;
+}
+
+/* niente glow → meno "prodotto vivo" */
+.coming-card .product-image-wrap::before{
+  display: none;
+}
+
+/* bottone non cliccabile e visivamente spento */
+.disabled-btn{
+  pointer-events: none;
+  opacity: 0.6;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+  box-shadow: none;
+}
+
 /* titolo */
 .final-cta h2{
   font-size: clamp(2rem, 3.2vw, 2.9rem);
@@ -876,11 +898,11 @@ body{
 <header class="header">
   <a href="index.html" class="logo">DriftZero</a>
 
-  <nav class="nav">
-    <a href="pagine/joycon.html">Zero Joy-Con Lite</a>
-    <a href="pagine/joycon2.html">Zero Joy-Con Plus</a>
-    <a href="pagine/procon.html">Zero Controller Pro</a>
-  </nav>
+ <nav class="nav">
+  <a href="pagine/shop.html">Shop</a>
+  <a href="pagine/joycon.html">Joy-Con</a>
+  <a href="pagine/procon.html">Pro Controller</a>
+</nav>
 
   <a href="pagine/cart.html" class="cart">Cart</a>
 </header>
@@ -894,7 +916,7 @@ body{
     </h2>
     <p class="hero-mini-note">Pick your model. Pick your color.</p>
 
-    <a class="hero-color-btn">Shop the Lineup </a>
+    <a href=pagine/shop.html class="hero-color-btn">Shop the Lineup </a>
   </div>
 
   <div class="hero-img">
@@ -962,7 +984,7 @@ body{
 <section class="products-section">
   <div class="products-intro">
     <p class="section-tag">THE LINEUP</p>
-    <h2>THREE PICKS.<br>ONE STANDARD.</h2>
+   <h2> ONE STANDARD.<br>DIFFERENT DIRECTIONS.</h2>
     <p class="section-subtext">
       Built with the same design language.
       Shaped for different ways to play.
@@ -982,28 +1004,13 @@ body{
           Our take on the classic Joy-Con format. Compact, sharp, and ready for everyday play.
         </p>
         <div class="product-bottom">
-          <span class="product-price">€39.99</span>
+          <span class="product-price">€19.99</span>
           <a href="pagine/joycon.html" class="product-btn">View Product</a>
         </div>
       </div>
     </article>
 
-    <article class="product-card">
-      <div class="product-image-wrap">
-        <img src="images/plus.png" alt="Zero Joy-Con Plus" class="product-img product-img-plus">
-        <div class="product-topline">Zero Joy-Con Plus</div>
-      </div>
-
-      <div class="product-info">
-        <p class="product-description">
-          The newer Joy-Con format, reworked by DriftZero. Same design logic, stronger presence in hand.
-        </p>
-        <div class="product-bottom">
-          <span class="product-price">€59.99</span>
-          <a href="pagine/joycon2.html" class="product-btn">View Product</a>
-        </div>
-      </div>
-    </article>
+ 
 
     <article class="product-card">
       <div class="product-image-wrap">
@@ -1016,11 +1023,31 @@ body{
           A full-size controller built on the Pro format. Same ergonomics, more control, less cost.
         </p>
         <div class="product-bottom">
-          <span class="product-price">€79.99</span>
+          <span class="product-price">€59.99</span>
           <a href="pagine/procon.html" class="product-btn">View Product</a>
         </div>
       </div>
     </article>
+
+     <article class="product-card coming-card">
+  <div class="product-image-wrap">
+    <div class="product-badge">NEXT DROP</div>
+    <img src="images/ps.png" alt="PlayStation Controllers" class="product-img product-img-pro">
+    <div class="product-topline">Zero DualSense</div>
+  </div>
+
+  <div class="product-info">
+    <p class="product-description">
+      The next step for DriftZero. A future line built for PlayStation players and full-size controller fans.
+    </p>
+
+    <div class="product-bottom">
+      <span class="product-price">Soon</span>
+      <a href="#" class="product-btn disabled-btn">Preview</a>
+    </div>
+  </div>
+</article>
+
   </div>
 </section>
 
@@ -1029,7 +1056,7 @@ body{
     <h2>Zero drift. Zero nonsense.</h2>
     <p>Pick your model. Pick your color. Done.</p>
 
-    <a href="pagine/joycon.html" class="final-cta-btn">
+    <a href="pagine/shop.html" class="final-cta-btn">
       Shop Now 
     </a>
   </div>
@@ -1052,7 +1079,7 @@ body{
       <div class="footer-col">
         <h4>Products</h4>
         <a href="pagine/joycon.html">Joy-Con Lite</a>
-        <a href="pagine/joycon2.html">Joy-Con Plus</a>
+        <a href="pagine/shop.html">Shop</a>
         <a href="pagine/procon.html">Controller Pro</a>
       </div>
 
