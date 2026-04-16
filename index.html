@@ -6,7 +6,7 @@
 <title>DriftZero</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg: #0a0a0a;
@@ -35,11 +35,10 @@ body{
   padding:20px 40px;
   grid-template-columns: 1fr auto 1fr;
   background: #0a0a0a;
-  border-bottom:2px solid rgba(255,255,255,0.1);
+  border-bottom:0.5px solid rgba(255,255,255,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
-  
 }
 
 .logo{
@@ -48,40 +47,34 @@ body{
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  background-clip: text;
+  color: transparent;
   transition: 0.2s ease;
   text-decoration: none;
   justify-self: start;
-
 }
 
 .logo:hover{
   transform: scale(1.1);
-  
 }
-
 
 .nav{
   display:flex;
   gap:40px;
-   justify-self: center;
-  
+  justify-self: center;
 }
 
 .nav a{
-  
   text-decoration: none;
   color:white;
   font-weight: 500;
   transition: 0.2s ease;
- 
 }
 
 .nav a:hover{
   color: var(--accent2);
   opacity:1;
-
 }
-
 
 .cart{
   cursor:pointer;
@@ -103,11 +96,8 @@ body{
   transform:scale(1.05);
   opacity:0.95;
 }
-/* =========================
-   HERO SECTION
-========================= */
 
-
+/* HERO */
 .hero{
   display: flex;
   justify-content: space-between;
@@ -117,24 +107,30 @@ body{
   background: #0a0a0a;
   overflow: hidden;
   min-height: 100vh;
-  
-  
-  
 }
 
 .hero::before{
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("images/bg-hero.png");
+  background-image: 
+    linear-gradient(
+      to top,
+      rgba(10,10,10,1) 0%,
+      rgba(10,10,10,0) 120px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(10,10,10,1) 0%,
+      rgba(10,10,10,0) 120px
+    ),
+    url("images/bg-hero.png");
   background-size: cover;
   background-position: center;
-  opacity:0.8;
+  opacity: 0.8;
   pointer-events: none;
   z-index: 0;
 }
-
-
 
 .hero-color-btn{
   padding: 14px 24px;
@@ -145,7 +141,6 @@ body{
   font-size: 20px;
   cursor: pointer;
   font-weight:700;
-  
 }
 
 .hero-text{
@@ -154,27 +149,24 @@ body{
   flex-direction: column;
   align-items: flex-start;
   margin-left: 20px;
-  margin-top:-20px;
+  margin-top:35px;
   z-index: 1;
 }
 
 .hero-img{
   position: absolute;
   right: 40px;
-  bottom: 60px;
   width: 460px;
   height: 350px;
   z-index: 1;
   bottom: 120px;
 }
 
-
 .hero-img img{
   width: 100%;
   height: 100%;
   position: relative;
   object-fit: contain;
-  
   z-index: 1;
 }
 
@@ -192,23 +184,9 @@ body{
   z-index: 0;
 }
 
-.hero::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:120px;
+/* HERO PRODUCT BLOCK */
 
-  background: linear-gradient(
-    to bottom,
-    rgba(10,10,10,0) 0%,
-    rgba(10,10,10,1) 100%
-  );
 
-  z-index:1;
-  pointer-events:none;
-}
 
 .hero-colors{
   position: absolute;
@@ -225,7 +203,6 @@ body{
 }
 
 .hero-dot{
-  
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -256,26 +233,25 @@ body{
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero h2{
   font-size: 24px;
   opacity: 0.8;
   margin:0 0 18px 0;
-
 }
+
+/* WHY US */
 .why-us{
-  padding: 110px 8%;
-  
+  padding: 85px 6%;
   position: relative;
   z-index: 1;
 }
 
 .why-us-intro{
   max-width: 700px;
-  
-  
-  
 }
 
 .section-tag{
@@ -284,7 +260,6 @@ body{
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  
   margin-bottom: 12px;
 }
 
@@ -294,18 +269,19 @@ body{
   line-height: 0.95;
   margin: 0 0 16px;
   text-transform: uppercase;
-
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
+
 .section-subtext{
- font-family: 'Rajdhani', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  
   margin-bottom: 12px;
 }
 
@@ -328,8 +304,8 @@ body{
 
 .why-card:hover{
   transform: translateY(-6px);
-  border-color: var(--accent-dim);
-  box-shadow: 0 0 30px var(--accent-glow);
+  border-color: var(--accent2);
+  box-shadow: 0 0 20px rgba(255,255,255,0.08);
 }
 
 .why-number{
@@ -341,6 +317,8 @@ body{
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   margin-bottom: 18px;
 }
 
@@ -358,15 +336,6 @@ body{
   line-height: 1.7;
   font-size: 0.98rem;
 }
-
-  .why-us-grid{
-    grid-template-columns: 1fr;
-  }
-
-  .why-us{
-    padding: 85px 6%;
-  }
-
 
 /* PRODUCTS */
 .products{
@@ -390,12 +359,58 @@ body{
   border-color: var(--accent1);
 }
 
-.card img{
-  width:100%;
+.card-img{
+  position: relative;
+  margin-bottom: 15px;
 }
 
-.card h3{
-  margin:15px 0;
+.card-img img{
+  width:100%;
+  display:block;
+}
+
+.product-name{
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  z-index: 2;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.95);
+}
+
+.card-title{
+  position: absolute;
+  top: 14px;
+  left: 80px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.22)
+  );
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.card-title span{
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffffff, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .price{
@@ -413,65 +428,71 @@ body{
   color:black;
   font-weight:600;
 }
-
-
 </style>
 </head>
 
 <body>
 
 <header class="header">
-   <a href="index.html" class="logo">DriftZero</a>
- 
+  <a href="index.html" class="logo">DriftZero</a>
+
   <nav class="nav">
-  <a href="pagine/joycon.html">Zero Joy-Con Lite</a>
-  <a href="pagine/joycon2.html">Zero Joy-Con Plus</a>
-  <a href="pagine/procon.html">Zero Controller Pro</a>
- </nav>
- 
- <a href="pagine/cart.html" class="cart"> Cart</a>
+    <a href="pagine/joycon.html">Zero Joy-Con Lite</a>
+    <a href="pagine/joycon2.html">Zero Joy-Con Plus</a>
+    <a href="pagine/procon.html">Zero Controller Pro</a>
+  </nav>
+
+  <a href="pagine/cart.html" class="cart">Cart</a>
 </header>
 
-
 <section class="hero">
-  
-<div class="hero-text">
-<h1>Shouldn’t Be This Easy.<br> 
-  We Made It.</h1>
-<h2>
-  You know these don’t come like this.<br>
-  No console. Just the controllers. For way less.
-</h2>
-<button class="hero-color-btn">Take One</button>
-</div>
+  <div class="hero-text">
+    <h1>Shouldn’t Be This Easy.<br>We Made It.</h1>
+    <h2>
+      You know these don’t come like this.<br>
+      No console. Just the controllers. For way less.
+    </h2>
+    <button class="hero-color-btn">Take One</button>
+  </div>
 
-<div class="hero-img">
-<img id=hero-main-img src ="../images/hero-joycon-blue.jpg" alt="Zero Joy-Con">
+  <div class="hero-img">
+    <div class="hero-product-name">
+     >
+    </div>
 
+    <img id="hero-main-img" src="images/hero-joycon-blue.jpg" alt="Zero Joy-Con">
 
-<div class="hero-colors">
-  <button class="hero-dot blue active" data-image="../images/hero-joycon-blue.jpg"></button>
-  <button class="hero-dot red" data-image="../images/hero-joycon-red.jpg"></button>
-  <button class="hero-dot gold" data-image="../images/hero-joycon-gold.jpg"></button>
-  <button class="hero-dot purple" data-image="../images/hero-joycon-purple.jpg"></button>
-</div>
-</div>
+    <div class="hero-colors">
+      <button class="hero-dot blue active"
+              data-image="images/hero-joycon-blue.jpg"
+              data-accent1="#00ffff"
+              data-accent2="#703fff"
+              data-name="FROST TALON"></button>
 
+      <button class="hero-dot red"
+              data-image="images/hero-joycon-red.jpg"
+              data-accent1="#ff8c42"
+              data-accent2="#9e1b32"
+              data-name="INFERNO PULSE"></button>
+
+      <button class="hero-dot gold"
+              data-image="images/hero-joycon-gold.jpg"
+              data-accent1="#ffe27a"
+              data-accent2="#b7791f"
+              data-name="DESERT PRIME"></button>
+    </div>
+  </div>
 </section>
 
 <section class="why-us">
   <div class="why-us-intro">
     <p class="section-tag">WHY DRIFTZERO</p>
-    <h2>YOU’RE OVERPAYING.<br>
-        WE FIX IT.</h2>
+    <h2>YOU’RE OVERPAYING.<br>WE FIX IT.</h2>
     <p class="section-subtext">
-  
-   Looks like a special edition.
-   Feels like one.
-   Costs way less.
-   That’s the point.
-
-      
+      Looks like a special edition.
+      Feels like one.
+      Costs way less.
+      That’s the point.
     </p>
   </div>
 
@@ -496,21 +517,73 @@ body{
   </div>
 </section>
 
+<section class="products">
+  <div class="card">
+    <div class="card-img">
+      <div class="product-name">Zero Joy-Con Lite</div>
+      <h3 class="card-title"><span>FROST TALON</span></h3>
+      <img src="images/lite.jpg" alt="Frost Talon Joy-Con">
+    </div>
+    <div class="price">€39.99</div>
+    <button class="btn">Add to Cart</button>
+  </div>
 
+  <div class="card">
+    <div class="card-img">
+      <div class="product-name">Zero Joy-Con Plus</div>
+      <h3 class="card-title"><span>INFERNO PULSE</span></h3>
+      <img src="images/plus.jpg" alt="Inferno Pulse Joy-Con">
+    </div>
+    <div class="price">€59.99</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <div class="card-img">
+      <div class="product-name">Zero Controller Pro</div>
+      <h3 class="card-title"><span>DESERT PRIME</span></h3>
+      <img src="images/pro.jpg" alt="Desert Prime Controller">
+    </div>
+    <div class="price">€79.99</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+</section>
 
 <script>
+const root = document.documentElement;
 const heroImage = document.getElementById('hero-main-img');
 const heroDots = document.querySelectorAll('.hero-dot');
+const heroProductName = document.getElementById('hero-product-name-text');
+
+function applyHeroTheme(dot) {
+  heroImage.src = dot.dataset.image;
+
+  root.style.setProperty('--accent1', dot.dataset.accent1);
+  root.style.setProperty('--accent2', dot.dataset.accent2);
+
+  if (dot.dataset.name) {
+    heroProductName.textContent = dot.dataset.name;
+  }
+
+  heroDots.forEach(d => d.classList.remove('active'));
+  dot.classList.add('active');
+}
+
 heroDots.forEach(dot => {
   dot.addEventListener('mouseenter', () => {
-    // Update main image
-    const newImage = dot.dataset.image;
-    heroImage.src = newImage;
-
-    // Update active state
-    heroDots.forEach(d => d.classList.remove('active'));
-    dot.classList.add('active');
+    applyHeroTheme(dot);
   });
+
+  dot.addEventListener('click', () => {
+    applyHeroTheme(dot);
+  });
+});
+
+window.addEventListener('load', () => {
+  const activeDot = document.querySelector('.hero-dot.active') || heroDots[0];
+  if (activeDot) {
+    applyHeroTheme(activeDot);
+  }
 });
 </script>
 
