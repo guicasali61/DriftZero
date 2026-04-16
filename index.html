@@ -412,26 +412,9 @@ body{
   color: transparent;
 }
 
-.products-grid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
 
-.product-card{
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.045),
-    rgba(255,255,255,0.018)
-  );
-  display:flex;
-  flex-direction:column;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 26px;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
-}
+
+
 
 .product-card:hover{
   transform: translateY(-8px);
@@ -467,47 +450,152 @@ body{
     0 20px 45px rgba(0,0,0,0.35),
     0 0 25px rgba(255,255,255,0.04);
 }
-.product-image-wrap{
-  position: relative;
-  padding: 22px 22px 0;
-  min-height: 320px;
+.products-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
 }
 
-.product-image-wrap img{
-  width: 100%;
-  height: 280px;
-  object-fit: contain;
-  display: block;
+.product-card{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 26px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+  backdrop-filter: blur(10px);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.product-card:hover{
+  transform: translateY(-8px);
+  border-color: rgba(255,255,255,0.16);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.35),
+    0 0 22px rgba(255,255,255,0.04);
+}
+
+.product-card.featured{
+  border-color: rgba(255,255,255,0.18);
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.35),
+    0 0 25px rgba(255,255,255,0.04);
+}
+
+.product-image-wrap{
+  position: relative;
+  height: 340px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.01)
+    ),
+    url("images/card-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.product-image-wrap::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.22),
+    rgba(0,0,0,0.38)
+  );
+  z-index: 0;
+}
+
+.product-image-wrap::after{
+  content: "";
+  position: absolute;
+  width: 62%;
+  height: 58%;
+  left: 50%;
+  top: 56%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.045) 0%,
+    rgba(255,255,255,0.015) 38%,
+    transparent 72%
+  );
+  filter: blur(26px);
+  z-index: 1;
+}
+
+.product-img{
   position: relative;
   z-index: 2;
+  display: block;
+  max-width: 100%;
+  max-height: 235px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0.96) contrast(1.04);
+  transform-origin: center;
+}
+
+.product-img-lite{
+  max-height: 210px;
+}
+
+.product-img-plus{
+  max-height: 220px;
+}
+
+.product-img-pro{
+  max-height: 235px;
 }
 
 .product-overlay{
-  position: absolute;
-  inset: 20px 20px auto 20px;
-  height: 240px;
-  border-radius: 22px;
-  background: radial-gradient(
-    circle at center,
-    rgba(255,255,255,0.10),
-    rgba(255,255,255,0.02),
-    transparent 75%
-  );
-  z-index: 1;
+  display: none;
 }
 
 .product-topline{
   position: absolute;
-  left: 24px;
+  left: 22px;
   bottom: 18px;
   z-index: 3;
-  font-size: 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.38);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+}
+
+.product-badge{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.94);
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+  color: rgba(255,255,255,0.9);
 }
-
 
 
 .product-info{
@@ -563,7 +651,7 @@ body{
   padding:10px;
   border:none;
   cursor:pointer;
-  width:100%;
+  width:100%; 
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   color:black;
   font-weight:600;
@@ -876,8 +964,8 @@ body{
     <p class="section-tag">THE LINEUP</p>
     <h2>THREE PICKS.<br>ONE STANDARD.</h2>
     <p class="section-subtext">
-       Built with the same design language.
-  Shaped for different ways to play.
+      Built with the same design language.
+      Shaped for different ways to play.
     </p>
   </div>
 
@@ -885,54 +973,51 @@ body{
     <article class="product-card featured">
       <div class="product-image-wrap">
         <div class="product-badge">Most Popular</div>
-        <img src="images/lite.jpg" alt="Zero Joy-Con Lite">
-        <div class="product-overlay"></div>
+        <img src="images/lite.png" alt="Zero Joy-Con Lite" class="product-img product-img-lite">
         <div class="product-topline">Zero Joy-Con Lite</div>
       </div>
 
       <div class="product-info">
         <p class="product-description">
-         Our take on the classic Joy-Con format. Compact, sharp, and ready for everyday play.
+          Our take on the classic Joy-Con format. Compact, sharp, and ready for everyday play.
         </p>
         <div class="product-bottom">
           <span class="product-price">€39.99</span>
-          <a href="pagine/joycon.html" class="product-btn">View Product </a>
+          <a href="pagine/joycon.html" class="product-btn">View Product</a>
         </div>
       </div>
     </article>
 
     <article class="product-card">
       <div class="product-image-wrap">
-        <img src="images/plus.jpg" alt="Zero Joy-Con Plus">
-        <div class="product-overlay"></div>
+        <img src="images/plus.png" alt="Zero Joy-Con Plus" class="product-img product-img-plus">
         <div class="product-topline">Zero Joy-Con Plus</div>
       </div>
 
       <div class="product-info">
         <p class="product-description">
-         The newer Joy-Con format, reworked by DriftZero. Same design logic, stronger presence in hand.
+          The newer Joy-Con format, reworked by DriftZero. Same design logic, stronger presence in hand.
         </p>
         <div class="product-bottom">
           <span class="product-price">€59.99</span>
-          <a href="pagine/joycon2.html" class="product-btn">View Product </a>
+          <a href="pagine/joycon2.html" class="product-btn">View Product</a>
         </div>
       </div>
     </article>
 
     <article class="product-card">
       <div class="product-image-wrap">
-        <img src="images/pro.jpg" alt="Zero Controller Pro">
-        <div class="product-overlay"></div>
+        <img src="images/pro.png" alt="Zero Controller Pro" class="product-img product-img-pro">
         <div class="product-topline">Zero Controller Pro</div>
       </div>
 
       <div class="product-info">
         <p class="product-description">
-         A full-size controller built on the Pro format. Same ergonomics, more control, less cost.
+          A full-size controller built on the Pro format. Same ergonomics, more control, less cost.
         </p>
         <div class="product-bottom">
           <span class="product-price">€79.99</span>
-          <a href="pagine/procon.html" class="product-btn">View Product </a>
+          <a href="pagine/procon.html" class="product-btn">View Product</a>
         </div>
       </div>
     </article>
