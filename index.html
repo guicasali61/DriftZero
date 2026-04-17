@@ -109,6 +109,8 @@ body{
   min-height: 100vh;
 }
 
+
+
 .hero::before{
   content: "";
   position: absolute;
@@ -125,6 +127,7 @@ body{
       rgba(10,10,10,0) 120px
     ),
     url("images/bg-hero.png");
+   
   background-size: cover;
   background-position: center;
   opacity: 0.8;
@@ -169,6 +172,21 @@ body{
   width: 520px;
   height: 390px;
   z-index: 1;
+}
+
+.hero-colors{
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.32);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  z-index: 3;
 }
 
 .hero-img img{
@@ -255,43 +273,27 @@ body{
   filter: brightness(1.04);
 }
 
-.hero-colors{
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  display: flex;
-  gap: 10px;
-  padding: 12px 10px;
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-  z-index: 3;
-}
 
 .hero-dot{
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.6);
-  background: transparent;
+  border: 1px white;
   cursor: pointer;
-  padding: 0;
-  appearance: none;
-  -webkit-appearance: none;
-  opacity: 0.7;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  background: rgba(255,255,255,0.3);
+  transition: all 0.25s ease;
+}
+
+.hero-dot.active{
+  background: white ;
+  
+  transform: scale(1.2);
 }
 
 .hero-dot:hover{
   opacity: 1;
   transform: scale(1.1);
-}
-
-.hero-dot.active{
-  background: white;
-  opacity: 1;
-  transform: scale(1.15);
 }
 /* WHY US */
 .why-us{
@@ -890,7 +892,7 @@ body{
   font-size: 0.85rem;
   color: rgba(255,255,255,0.4);
 }
-</style>
+</style> 
 </head>
 
 <body>
@@ -898,54 +900,82 @@ body{
 <header class="header">
   <a href="index.html" class="logo">DriftZero</a>
 
- <nav class="nav">
-  <a href="pagine/shop.html">Shop</a>
-  <a href="pagine/joycon.html">Joy-Con</a>
-  <a href="pagine/procon.html">Pro Controller</a>
-</nav>
+  <nav class="nav">
+    <a href="pagine/shop.html">Shop</a>
+    <a href="pagine/joycon.html">Joy-Con</a>
+    <a href="pagine/procon.html">Pro Controller</a>
+  </nav>
 
   <a href="pagine/cart.html" class="cart">Cart</a>
 </header>
 
 <section class="hero">
-  <div class="hero-text">
-    <h1>Shouldn’t Be This Easy.<br>We Made It.</h1>
-    <h2>
-      You know these don’t come like this.<br>
-      No console. Just the controllers. For way less.
-    </h2>
-    <p class="hero-mini-note">Pick your model. Pick your color.</p>
 
-    <a href=pagine/shop.html class="hero-color-btn">Shop the Lineup </a>
+  <div class="hero-text">
+    <h1>
+      It shouldn’t Be This Easy.<br>
+      We Made It.
+    </h1>
+
+    <h2>
+      Stop paying more for used controllers.
+      Get it new, here.
+    </h2>
+
+    <a href="pagine/shop.html" class="hero-color-btn">View Collection</a>
   </div>
 
-  <div class="hero-img">
-    
+ <div class="hero-img">
+  <img id="hero-main-img" src="images/pro2.png" alt="Zero Controller Pro">
 
-    <img id="hero-main-img" src="images/hero-joycon-blue.jpg" alt="Zero Joy-Con">
+  <div class="hero-colors">
+   <button
+      class="hero-dot smash active"
+      data-image="images/pro1.png"
+      data-accent1="#fff8ef"
+data-accent2="#8f959c"
+      data-glow1="rgba(242, 242, 242, 0.12)"
+      data-glow2="rgba(127, 127, 127, 0.08)"
+      aria-label="Smash Bros Edition">
+    </button>
+  
+  
+    <button
+      class="hero-dot splatoon2 "
+      data-image="images/pro2.png"
+      data-accent1="#ff6fa3"
+      data-accent2="#c23d7a"
+      data-glow1="rgba(255, 111, 163, 0.18)"
+      data-glow2="rgba(194, 61, 122, 0.14)"
+      aria-label="Splatoon 2 Edition">
+    </button>
+
+    <button
+      class="hero-dot splatoon3"
+      data-image="images/pro3.png"
+  data-accent1="#e3f7ff"
+data-accent2="#006fd6"
+
+data-glow1="rgba(255, 42, 42, 0.30)"
+data-glow2="rgba(139, 0, 0, 0.25)"
+      aria-label="Splatoon 3 Edition">
+    </button>
+
+    <button
+      class="hero-dot monster"
+      data-image="images/pro4.png"
+      data-accent1="#f2c94c"
+      data-accent2="#8c4a1f"
+      data-glow1="rgba(255, 184, 92, 0.14)"
+      data-glow2="rgba(127, 59, 46, 0.10)"
+      aria-label="Monster Hunter Edition">
+    </button>
 
    
-
-    <div class="hero-colors">
-      <button class="hero-dot blue active"
-              data-image="images/hero-joycon-blue.jpg"
-              data-accent1="#00ffff"
-              data-accent2="#703fff"
-             ></button>
-
-      <button class="hero-dot red"
-              data-image="images/hero-joycon-red.jpg"
-              data-accent1="#ff8c42"
-              data-accent2="#9e1b32">
-             </button>
-
-      <button class="hero-dot gold"
-              data-image="images/hero-joycon-gold.jpg"
-              data-accent1="#ffe27a"
-              data-accent2="#b7791f"></button>
-              
-    </div>
   </div>
+</div>
+  </div>
+
 </section>
 
 <section class="why-us">
@@ -984,7 +1014,7 @@ body{
 <section class="products-section">
   <div class="products-intro">
     <p class="section-tag">THE LINEUP</p>
-   <h2> ONE STANDARD.<br>DIFFERENT DIRECTIONS.</h2>
+    <h2>ONE STANDARD.<br>DIFFERENT DIRECTIONS.</h2>
     <p class="section-subtext">
       Built with the same design language.
       Shaped for different ways to play.
@@ -1010,8 +1040,6 @@ body{
       </div>
     </article>
 
- 
-
     <article class="product-card">
       <div class="product-image-wrap">
         <img src="images/pro.png" alt="Zero Controller Pro" class="product-img product-img-pro">
@@ -1029,25 +1057,24 @@ body{
       </div>
     </article>
 
-     <article class="product-card coming-card">
-  <div class="product-image-wrap">
-    <div class="product-badge">NEXT DROP</div>
-    <img src="images/ps.png" alt="PlayStation Controllers" class="product-img product-img-pro">
-    <div class="product-topline">Zero DualSense</div>
-  </div>
+    <article class="product-card coming-card">
+      <div class="product-image-wrap">
+        <div class="product-badge">NEXT DROP</div>
+        <img src="images/gc.png" alt="PlayStation Controllers" class="product-img product-img-pro">
+        <div class="product-topline">Zero GameCube</div>
+      </div>
 
-  <div class="product-info">
-    <p class="product-description">
-      The next step for DriftZero. A future line built for PlayStation players and full-size controller fans.
-    </p>
+      <div class="product-info">
+        <p class="product-description">
+          Classic shape. DriftZero redesign. Coming soon.
+        </p>
 
-    <div class="product-bottom">
-      <span class="product-price">Soon</span>
-      <a href="#" class="product-btn disabled-btn">Preview</a>
-    </div>
-  </div>
-</article>
-
+        <div class="product-bottom">
+          <span class="product-price">Soon</span>
+          <a href="#" class="product-btn disabled-btn">Preview</a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -1057,15 +1084,13 @@ body{
     <p>Pick your model. Pick your color. Done.</p>
 
     <a href="pagine/shop.html" class="final-cta-btn">
-      Shop Now 
+      Shop Now
     </a>
   </div>
 </section>
 
 <footer class="footer">
-
   <div class="footer-main">
-
     <div class="footer-brand">
       <a href="index.html" class="footer-logo">DriftZero</a>
       <p class="footer-desc">
@@ -1075,10 +1100,9 @@ body{
     </div>
 
     <div class="footer-nav">
-
       <div class="footer-col">
         <h4>Products</h4>
-        <a href="pagine/joycon.html">Joy-Con </a>
+        <a href="pagine/joycon.html">Joy-Con</a>
         <a href="pagine/shop.html">Shop</a>
         <a href="pagine/procon.html">Controller Pro</a>
       </div>
@@ -1095,51 +1119,42 @@ body{
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
       </div>
-
     </div>
-
   </div>
 
   <div class="footer-bottom">
     <p>© 2026 DriftZero</p>
   </div>
-
 </footer>
-<script>
+
+<script id="f6lq2x">
 const root = document.documentElement;
 const heroImage = document.getElementById('hero-main-img');
 const heroDots = document.querySelectorAll('.hero-dot');
-
 
 function applyHeroTheme(dot) {
   heroImage.src = dot.dataset.image;
 
   root.style.setProperty('--accent1', dot.dataset.accent1);
   root.style.setProperty('--accent2', dot.dataset.accent2);
-
- 
+  root.style.setProperty('--glow1', dot.dataset.glow1);
+  root.style.setProperty('--glow2', dot.dataset.glow2);
 
   heroDots.forEach(d => d.classList.remove('active'));
   dot.classList.add('active');
 }
 
 heroDots.forEach(dot => {
-  dot.addEventListener('mouseenter', () => {
-    applyHeroTheme(dot);
-  });
-
-  dot.addEventListener('click', () => {
-    applyHeroTheme(dot);
-  });
+  dot.addEventListener('mouseenter', () => applyHeroTheme(dot));
+  dot.addEventListener('click', () => applyHeroTheme(dot));
 });
 
 window.addEventListener('load', () => {
-  const activeDot = document.querySelector('.hero-dot.active') || heroDots[0];
+  const activeDot = document.querySelector('.hero-dot.active');
   if (activeDot) {
     applyHeroTheme(activeDot);
   }
 });
 </script>
-
 </body>
 </html>
