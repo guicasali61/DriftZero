@@ -1,694 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop | DriftZero</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #0a0a0a;
-      --bg2: #111111;
-      --card: rgba(255,255,255,0.05);
-      --border: rgba(255,255,255,0.12);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
-      --accent1: #00f0ff;
-      --accent2: #6f3cff;
-      --glow: 0 0 25px rgba(0,240,255,0.15);
+      --bg:#0a0a0a;
+      --card:#111;
+      --accent1:#00ffff;
+      --accent2:#703fff;
+      --text:rgba(255,255,255,0.9);
+      --muted:rgba(255,255,255,0.65);
+      --border:rgba(255,255,255,0.08);
     }
 
     *{
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Rajdhani', sans-serif;
-    }
-
-    html{
-      scroll-behavior: smooth;
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:'Rajdhani', sans-serif;
     }
 
     body{
-      background:
-        radial-gradient(circle at top, rgba(0,240,255,0.08), transparent 35%),
-        linear-gradient(180deg, #050505 0%, #0a0a0a 40%, #090909 100%);
-      color: var(--text);
+      background:var(--bg);
+      color:var(--text);
     }
 
     a{
-      text-decoration: none;
-      color: inherit;
+      text-decoration:none;
+      color:inherit;
     }
 
-    .container{
-      width: min(1200px, 92%);
-      margin: 0 auto;
+    /* HEADER */
+    .header{
+      display:grid;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 40px;
+      grid-template-columns:1fr auto 1fr;
+      background:#0a0a0a;
+      border-bottom:0.5px solid rgba(255,255,255,0.1);
+      position:sticky;
+      top:0;
+      z-index:1000;
     }
 
-   /* HEADER */
-.header{
-  display:grid;
-  justify-content:space-between;
-  align-items: center;
-  padding:20px 40px;
-  grid-template-columns: 1fr auto 1fr;
-  background: #0a0a0a;
-  border-bottom:0.5px solid rgba(255,255,255,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo{
-  font-size:28px;
-  font-weight:700;
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip: text;
-  color: transparent;
-  transition: 0.2s ease;
-  text-decoration: none;
-  justify-self: start;
-}
-
-.logo:hover{
-  transform: scale(1.1);
-}
-
-.nav{
-  display:flex;
-  gap:40px;
-  justify-self: center;
-}
-
-.nav a{
-  text-decoration: none;
-  color:white;
-  font-weight: 500;
-  transition: 0.2s ease;
-}
-
-.nav a:hover{
-  color: var(--accent2);
-  opacity:1;
-}
-
-.cart{
-  cursor:pointer;
-  transition:0.2s ease;
-  text-decoration:none;
-  color:#0a0a0a;
-  font-weight:700;
-  font-size:20px;
-  padding:10px 18px;
-  border-radius:10px;
-  background:linear-gradient(90deg, var(--accent1), var(--accent2));
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  justify-self: end;
-}
-
-.cart:hover{
-  transform:scale(1.05);
-  opacity:0.95;
-}
-
-    /* HERO */
-    .shop-hero{
-      padding: 90px 0 55px;
-      text-align: center;
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-decoration:none;
+      justify-self:start;
     }
 
-    .shop-kicker{
-      color: var(--accent1);
-      letter-spacing: 3px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      text-transform: uppercase;
+    .nav{
+      display:flex;
+      gap:40px;
+      justify-self:center;
     }
 
-    .shop-hero h1{
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      line-height: 0.95;
-      text-transform: uppercase;
-      margin-bottom: 18px;
+    .nav a{
+      color:white;
+      font-weight:500;
+      transition:0.2s ease;
     }
 
-    .shop-hero p{
-      width: min(760px, 100%);
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 1.15rem;
-      line-height: 1.6;
+    .nav a:hover,
+    .nav a.active{
+      color:var(--accent2);
     }
 
-    /* CARDS */
+    .cart{
+      text-decoration:none;
+      color:#0a0a0a;
+      font-weight:700;
+      font-size:20px;
+      padding:10px 18px;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      justify-self:end;
+    }
+
+    /* TOP */
+    .shop-top{
+      padding:70px 6% 40px;
+    }
+
+    .shop-tag{
+      font-size:0.95rem;
+      font-weight:700;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+
+    .shop-top h1{
+      font-size:clamp(2.4rem,5vw,4.5rem);
+      line-height:0.95;
+      text-transform:uppercase;
+      margin-bottom:16px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .shop-top p{
+      max-width:720px;
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.6;
+    }
+
+    /* FILTER BAR */
+    .shop-bar{
+      padding:0 6% 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .shop-count{
+      color:var(--muted);
+      font-size:0.95rem;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+    }
+
+    .shop-pills{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .shop-pill{
+      padding:10px 16px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:0.95rem;
+      background:rgba(255,255,255,0.03);
+    }
+
+    .shop-pill.active{
+      color:#0a0a0a;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      border:none;
+      font-weight:700;
+    }
+
+    /* PRODUCTS */
     .products{
-      padding: 20px 0 70px;
+      padding:0 6% 100px;
     }
 
-    .product-grid{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:26px;
     }
 
     .product-card{
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      display:flex;
+      flex-direction:column;
+      transition:0.25s ease;
     }
 
     .product-card:hover{
-      transform: translateY(-6px);
-      border-color: rgba(0,240,255,0.35);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.45), var(--glow);
+      transform:translateY(-6px);
+      border-color:rgba(255,255,255,0.16);
+      box-shadow:0 16px 36px rgba(0,0,0,0.35);
     }
 
-    .badge{
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: #fff;
-      z-index: 2;
+    .product-image{
+      position:relative;
+      height:300px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        url("../images/card-bg.jpg");
+      background-size:cover;
+      background-position:center;
+      border-bottom:1px solid rgba(255,255,255,0.06);
     }
 
-    .card-image{
-      height: 270px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 28px 20px 10px;
-      position: relative;
+    .product-image::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
     }
 
-    .card-image::before{
-      content: "";
-      position: absolute;
-      width: 65%;
-      height: 65%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,240,255,0.14), transparent 70%);
-      filter: blur(28px);
-      z-index: 0;
+    .product-image img{
+      position:relative;
+      z-index:1;
+      max-width:100%;
+      max-height:220px;
+      object-fit:contain;
     }
 
-    .card-image img{
-      max-width: 100%;
-      max-height: 220px;
-      object-fit: contain;
-      position: relative;
-      z-index: 1;
+    .product-badge{
+      position:absolute;
+      top:16px;
+      right:16px;
+      z-index:2;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:0.72rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.1);
     }
 
-    .card-content{
-      padding: 8px 24px 26px;
+    .product-info{
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
     }
 
-    .card-content h2{
-      font-size: 1.9rem;
-      margin-bottom: 10px;
-      line-height: 1;
+    .product-name{
+      font-size:1.5rem;
+      text-transform:uppercase;
+      margin-bottom:10px;
     }
 
-    .card-desc{
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.55;
-      margin-bottom: 18px;
-      min-height: 75px;
+    .product-desc{
+      color:var(--muted);
+      line-height:1.6;
+      margin-bottom:18px;
+      font-size:0.98rem;
     }
 
-    .price{
-      font-size: 1.55rem;
-      font-weight: 700;
-      margin-bottom: 18px;
+    .product-meta{
+      margin-bottom:22px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      color:rgba(255,255,255,0.78);
+      font-size:0.95rem;
     }
 
-    .features{
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      margin-bottom: 24px;
+    .product-bottom{
+      margin-top:auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
     }
 
-    .features li{
-      color: rgba(255,255,255,0.82);
-      font-size: 1rem;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .product-price{
+      font-size:1.25rem;
+      font-weight:700;
     }
 
-    .card-btn{
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      color: #050505;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    .product-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      color:#0a0a0a;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
     }
 
-    .card-btn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(0,240,255,0.22);
+    .coming-card{
+      opacity:0.68;
+      border-style:dashed;
+      filter:grayscale(28%);
     }
 
-    /* COMPARISON */
-    .compare{
-      padding: 10px 0 90px;
+    .coming-card .product-btn{
+      pointer-events:none;
+      background:rgba(255,255,255,0.08);
+      color:rgba(255,255,255,0.6);
     }
 
-    .section-title{
-      text-align: center;
-      margin-bottom: 26px;
-    }
-
-    .section-title h3{
-      font-size: clamp(1.8rem, 3vw, 3rem);
-      text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .section-title p{
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .table-wrap{
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(10px);
-    }
-
-    table{
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 720px;
-    }
-
-    th, td{
-      padding: 18px 20px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    th{
-      color: #fff;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.04);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    td{
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    tr:last-child td{
-      border-bottom: none;
-    }
-
-    /* CTA */
-    .bottom-cta{
-      padding: 0 0 100px;
-    }
-
-    .cta-box{
-      text-align: center;
-      padding: 42px 26px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      backdrop-filter: blur(10px);
-    }
-
-    .cta-box h3{
-      font-size: clamp(1.8rem, 3vw, 3.2rem);
-      text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-
-    .cta-box p{
-      color: var(--muted);
-      margin-bottom: 22px;
-      font-size: 1.05rem;
-    }
-
-    .cta-btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      transition: 0.25s ease;
-    }
-
-    .cta-btn:hover{
-      border-color: rgba(255,255,255,0.22);
-      box-shadow: var(--glow);
-    }
-   
+    /* FOOTER */
     .footer{
-  position: relative;
-  margin-top: 20px;
-  padding: 60px 6% 30px;
-  background: #0a0a0a;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
+      margin-top:10px;
+      padding:55px 6% 30px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      background:#0a0a0a;
+    }
 
-/* leggero depth, NON glow */
-.footer::before{
-  content:"";
-  position:absolute;
-  left: 0;
-  right: 0;
-  top: -70px;
-  height: 90px;
-  pointer-events:none;
-  z-index: 0;
+    .footer-main{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:60px;
+      flex-wrap:wrap;
+    }
 
-  background: linear-gradient(
-    to bottom,
-    rgba(10,10,10,0),
-    rgba(10,10,10,1)
-  );
-}
+    .footer-logo{
+      display:inline-block;
+      font-size:28px;
+      font-weight:700;
+      margin-bottom:14px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-/* layout principale */
-.footer-main{
-  position: relative;
-  z-index: 1;
+    .footer-desc{
+      color:var(--muted);
+      line-height:1.6;
+      max-width:280px;
+    }
 
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 80px;
-  flex-wrap: wrap;
-}
+    .footer-nav{
+      display:flex;
+      gap:60px;
+      flex-wrap:wrap;
+    }
 
-/* ===== BRAND ===== */
-.footer-brand{
-  max-width: 300px;
-}
+    .footer-col{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
 
-.footer-logo{
-  display: inline-block;
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  text-decoration: none;
+    .footer-col h4{
+      font-size:0.8rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.85);
+      margin-bottom:8px;
+    }
 
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    .footer-col a{
+      color:rgba(255,255,255,0.55);
+      font-size:0.92rem;
+    }
 
-.footer-desc{
-  margin: 0;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
+    .footer-bottom{
+      margin-top:40px;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,0.06);
+      text-align:center;
+      color:rgba(255,255,255,0.4);
+      font-size:0.85rem;
+    }
 
-/* ===== NAV ===== */
-.footer-nav{
-  display: flex;
-  gap: 70px;
-}
+    @media (max-width: 1100px){
+      .products-grid{
+        grid-template-columns:1fr;
+      }
+    }
 
-.footer-col{
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    @media (max-width: 900px){
+      .header{
+        grid-template-columns:1fr;
+        gap:14px;
+        padding:18px 20px;
+      }
 
-.footer-col h4{
-  margin: 0 0 10px;
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
-}
+      .logo,.nav,.cart{
+        justify-self:center;
+      }
 
-/* link più controllati */
-.footer-col a{
-  text-decoration: none;
-  font-size: 0.92rem;
-  color: rgba(255,255,255,0.55);
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.footer-col a:hover{
-  color: rgba(255,255,255,0.95);
-  transform: translateX(2px);
-}
-
-/* ===== BOTTOM ===== */
-.footer-bottom{
-  margin-top: 45px;
-  padding-top: 20px;
-
-  border-top: 1px solid rgba(255,255,255,0.06);
-  text-align: center;
-}
-
-.footer-bottom p{
-  margin: 0;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.4);
-}
-  
+      .nav{
+        gap:20px;
+        flex-wrap:wrap;
+      }
+    }
   </style>
 </head>
 <body>
 
-<header class="header">
-  <a href="../index.html" class="logo">DriftZero</a>
+  <header class="header">
+    <a href="../index.html" class="logo">DriftZero</a>
 
- <nav class="nav">
-  <a href="shop.html">Shop</a>
-  <a href="joycon.html">Joy-Con</a>
-  <a href="procon.html">Pro Controller</a>
-</nav>
+    <nav class="nav">
+      <a href="shop.html" class="active">Shop</a>
+      <a href="joycon.html">Joy-Con</a>
+      <a href="procon.html">Pro Controller</a>
+    </nav>
 
-  <a href="/cart.html" class="cart">Cart</a>
-</header>
+    <a href="../cart.html" class="cart">Cart</a>
+  </header>
 
-  <main>
-    <section class="shop-hero">
-      <div class="container">
-        <div class="shop-kicker">The Lineup</div>
-        <h1>Pick Your<br>DriftZero</h1>
-        <p>
-          Three controller lines. Three different use cases. Same design logic,
-          same premium direction, same mission: less price, more presence.
-        </p>
-      </div>
-    </section>
+  <section class="shop-top">
+    <p class="shop-tag">Shop</p>
+    <h1>Choose your controller.</h1>
+    <p>
+      Start with the format. Explore the current DriftZero lineup, then go deeper
+      into the model that fits your setup best.
+    </p>
+  </section>
 
-    <section class="products">
-      <div class="container">
-        <div class="product-grid">
+  <section class="shop-bar">
+    <div class="shop-count">3 directions</div>
 
-          <article class="product-card">
-            <div class="badge">Entry Pick</div>
-            <div class="card-image">
-              <img src="../images/lite.jpg" alt="Zero Joy-Con Lite">
-            </div>
-            <div class="card-content">
-              <h2>Zero Joy-Con Lite</h2>
-              <p class="card-desc">
-                The essential DriftZero entry. Compact, clean, and made for players
-                who want the classic format without wasting money.
-              </p>
-              <div class="price">From €39.99</div>
-              <ul class="features">
-                <li>Classic Joy-Con format</li>
-                <li>Best entry price</li>
-                <li>Fastest way into the lineup</li>
-              </ul>
-              <a href="joycon.html" class="card-btn">View Product</a>
-            </div>
-          </article>
+    <div class="shop-pills">
+      <span class="shop-pill active">All</span>
+      <span class="shop-pill">Joy-Con</span>
+      <span class="shop-pill">Pro</span>
+      <span class="shop-pill">Future</span>
+    </div>
+  </section>
 
-          <article class="product-card">
-            <div class="badge">Most Popular</div>
-            <div class="card-image">
-              <img src="../images/plus.jpg" alt="Zero Joy-Con Plus">
-            </div>
-            <div class="card-content">
-              <h2>Zero Joy-Con Plus</h2>
-              <p class="card-desc">
-                The sharper version of the Joy-Con idea. Better visual presence,
-                stronger identity, and more room to push colorways.
-              </p>
-              <div class="price">From €59.99</div>
-              <ul class="features">
-                <li>Upgraded look and feel</li>
-                <li>Stronger visual presence</li>
-                <li>Best balance of price and style</li>
-              </ul>
-              <a href="joycon2.html" class="card-btn">View Product</a>
-            </div>
-          </article>
+  <section class="products">
+    <div class="products-grid">
 
-          <article class="product-card">
-            <div class="badge">Full Size</div>
-            <div class="card-image">
-              <img src="../images/pro.jpg" alt="Zero Controller Pro">
-            </div>
-            <div class="card-content">
-              <h2>Zero Controller Pro</h2>
-              <p class="card-desc">
-                Built for people who want the biggest grip, the longest sessions,
-                and the most complete controller in the DriftZero lineup.
-              </p>
-              <div class="price">From €79.99</div>
-              <ul class="features">
-                <li>Full-size controller shape</li>
-                <li>Best comfort for long sessions</li>
-                <li>Top-tier option in the range</li>
-              </ul>
-              <a href="procon.html" class="card-btn">View Product</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="compare">
-      <div class="container">
-        <div class="section-title">
-          <h3>Quick Comparison</h3>
-          <p>Use this to choose fast instead of guessing.</p>
+      <article class="product-card">
+        <div class="product-image">
+          <div class="product-badge">Main Line</div>
+          <img src="../images/lite.png" alt="DriftZero Joy-Con">
         </div>
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Best For</th>
-                <th>Format</th>
-                <th>Starting Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Zero Joy-Con Lite</td>
-                <td>Budget entry / classic setup</td>
-                <td>Compact split controller</td>
-                <td>€39.99</td>
-              </tr>
-              <tr>
-                <td>Zero Joy-Con Plus</td>
-                <td>Best balance of style and value</td>
-                <td>Newer Joy-Con format</td>
-                <td>€59.99</td>
-              </tr>
-              <tr>
-                <td>Zero Controller Pro</td>
-                <td>Comfort / full-size control</td>
-                <td>Full controller</td>
-                <td>€79.99</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="bottom-cta">
-      <div class="container">
-        <div class="cta-box">
-          <h3>Not Sure? Start With Plus.</h3>
-          <p>
-            If you want the safest middle ground between price, look, and product presence,
-            Zero Joy-Con Plus is the least stupid choice.
+        <div class="product-info">
+          <h2 class="product-name">Joy-Con</h2>
+          <p class="product-desc">
+            Split-controller lineup with original and alternative options for different Switch generations.
           </p>
-          <a href="joycon2.html" class="cta-btn">Go to Zero Joy-Con Plus</a>
+
+          <div class="product-meta">
+            <span>Original + third-party options</span>
+            <span>Switch compatibility varies by version</span>
+          </div>
+
+          <div class="product-bottom">
+            <span class="product-price">From €19.99</span>
+            <a href="joycon.html" class="product-btn">Explore</a>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <div class="product-badge">Full Size</div>
+          <img src="../images/pro.png" alt="Zero Controller Pro">
+        </div>
+
+        <div class="product-info">
+          <h2 class="product-name">Pro Controller</h2>
+          <p class="product-desc">
+            Full-size controller built for longer sessions, stronger grip and a more classic setup.
+          </p>
+
+          <div class="product-meta">
+            <span>Best for full controller feel</span>
+            <span>More comfort, less compromise</span>
+          </div>
+
+          <div class="product-bottom">
+            <span class="product-price">€59.99</span>
+            <a href="procon.html" class="product-btn">View Product</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card coming-card">
+        <div class="product-image">
+          <div class="product-badge">Next Drop</div>
+          <img src="../images/ps-placeholder.jpg" alt="PlayStation Controllers">
+        </div>
+
+        <div class="product-info">
+          <h2 class="product-name">PlayStation</h2>
+          <p class="product-desc">
+            Next line in development. Built for PlayStation players, not released yet.
+          </p>
+
+          <div class="product-meta">
+            <span>Future DriftZero direction</span>
+            <span>Preview only for now</span>
+          </div>
+
+          <div class="product-bottom">
+            <span class="product-price">Soon</span>
+            <span class="product-btn">Preview</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
 
   <footer class="footer">
+    <div class="footer-main">
+      <div>
+        <a href="../index.html" class="footer-logo">DriftZero</a>
+        <p class="footer-desc">
+          Built to look sharper.<br>
+          Priced to make sense.
+        </p>
+      </div>
 
-  <div class="footer-main">
+      <div class="footer-nav">
+        <div class="footer-col">
+          <h4>Products</h4>
+          <a href="shop.html">Shop</a>
+          <a href="joycon.html">Joy-Con</a>
+          <a href="procon.html">Controller Pro</a>
+        </div>
 
-    <div class="footer-brand">
-      <a href="../index.html" class="footer-logo">DriftZero</a>
-      <p class="footer-desc">
-        Built to look sharper.<br>
-        Priced to make sense.
-      </p>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="../cart.html">Cart</a>
+          <a href="#">Contact</a>
+          <a href="#">Shipping</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
     </div>
 
-    <div class="footer-nav">
-
-      <div class="footer-col">
-        <h4>Products</h4>
-        <a href="joycon.html">Joy-Con Lite</a>
-        <a href="shop.html">Joy-Con Plus</a>
-        <a href="procon.html">Controller Pro</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Support</h4>
-        <a href="/cart.html">Cart</a>
-        <a href="#">Contact</a>
-        <a href="#">Shipping</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
-
+    <div class="footer-bottom">
+      <p>© 2026 DriftZero</p>
     </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 DriftZero</p>
-  </div>
-
-</footer>
+  </footer>
 
 </body>
 </html>
