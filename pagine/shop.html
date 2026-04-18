@@ -459,170 +459,223 @@
     overflow:visible;
   }
 
-  .stack-card{
-    position:absolute;
-    top:0;
-    left:50%;
-    width:min(420px, 88vw);
-    border-radius:28px;
-    overflow:hidden;
-    border:1px solid rgba(255,255,255,0.10);
-    background:linear-gradient(180deg, rgba(18,18,22,0.96), rgba(10,10,14,0.94));
-    box-shadow:0 18px 50px rgba(0,0,0,0.35);
-    transition:
-      transform 0.5s ease,
-      opacity 0.5s ease,
-      filter 0.5s ease,
-      box-shadow 0.5s ease,
-      border-color 0.5s ease,
-      background 0.5s ease;
-    transform-origin:center center;
-    opacity:0;
-    pointer-events:none;
-  }
+ .stack-card{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(420px, 88vw);
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(180deg, rgba(18,18,22,0.96), rgba(10,10,14,0.94));
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease,
+    filter 0.5s ease,
+    box-shadow 0.5s ease,
+    border-color 0.5s ease,
+    background 0.5s ease;
+  transform-origin: center center;
+  opacity: 0;
+  pointer-events: none;
+}
 
-  .stack-card.active{
-    transform:translateX(-50%) translateY(0) scale(1);
-    z-index:5;
-    opacity:1;
-    filter:none;
-    pointer-events:auto;
-    border-color:rgba(255,255,255,0.18);
-    background:linear-gradient(180deg, rgba(22,22,28,1), rgba(12,12,16,0.98));
-    box-shadow:
-      0 30px 70px rgba(0,0,0,0.48),
-      0 0 40px var(--accent-glow);
-  }
+.stack-card.active{
+  transform: translateX(-50%) translateY(0) scale(1);
+  z-index: 5;
+  opacity: 1;
+  filter: none;
+  pointer-events: auto;
+  border-color: rgba(255,255,255,0.18);
+  background: linear-gradient(180deg, rgba(22,22,28,1), rgba(12,12,16,0.98));
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.48),
+    0 0 40px var(--accent-glow);
+}
 
-  .stack-card.left{
-    transform:translateX(calc(-50% - 230px)) translateY(26px) scale(0.9);
-    z-index:4;
-    opacity:0.82;
-    filter:blur(0.3px);
-    pointer-events:auto;
-  }
+.stack-card.left{
+  transform: translateX(calc(-50% - 230px)) translateY(26px) scale(0.9);
+  z-index: 4;
+  opacity: 0.82;
+  filter: blur(0.3px);
+  pointer-events: auto;
+}
 
-  .stack-card.right{
-    transform:translateX(calc(-50% + 230px)) translateY(26px) scale(0.9);
-    z-index:4;
-    opacity:0.82;
-    filter:blur(0.3px);
-    pointer-events:auto;
-  }
+.stack-card.right{
+  transform: translateX(calc(-50% + 230px)) translateY(26px) scale(0.9);
+  z-index: 4;
+  opacity: 0.82;
+  filter: blur(0.3px);
+  pointer-events: auto;
+}
 
-  .stack-card.back{
-    transform:translateX(-50%) translateY(48px) scale(0.84);
-    z-index:3;
-    opacity:0.42;
-    filter:blur(1px);
-    pointer-events:none;
-  }
+.stack-card.back{
+  transform: translateX(-50%) translateY(48px) scale(0.84);
+  z-index: 3;
+  opacity: 0.42;
+  filter: blur(1px);
+  pointer-events: none;
+}
 
-  .line-top{
-    position:relative;
-    padding:18px;
-    min-height:270px;
-    display:flex;
-    align-items:flex-end;
-    background:
-      radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 62%),
-      linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-  }
+.line-top{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  padding: 24px;
+  border-radius: 22px 22px 0 0;
+  overflow: hidden;
+  background-image: url("../images/bg-card-shop.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
 
-  .stack-card.active .line-top{
-    background:
-      radial-gradient(circle at center, rgba(255,255,255,0.10), transparent 58%),
-      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
-  }
+.line-top::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.18) 0%,
+    rgba(0,0,0,0.05) 35%,
+    rgba(0,0,0,0.22) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
 
-  .line-top img{
-    max-width:100%;
-    max-height:210px;
-    object-fit:contain;
-    margin:0 auto;
-    filter:drop-shadow(0 24px 30px rgba(0,0,0,0.38));
-  }
+.line-top::after{
+  content: "";
+  position: absolute;
+  width: 72%;
+  height: 72%;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    var(--accent-glow) 0%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  z-index: 1;
+  pointer-events: none;
+}
 
-  .line-badge{
-    position:absolute;
-    top:16px;
-    left:16px;
-    padding:8px 12px;
-    border-radius:999px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.08);
-    font-size:13px;
-    font-weight:700;
-    color:rgba(255,255,255,0.84);
-  }
+.line-top img{
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,0.45));
+}
 
-  .stack-card.active .line-badge{
-    background:linear-gradient(90deg, var(--accent1), var(--accent2));
-    color:black;
-    border-color:transparent;
-  }
+.line-badge{
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: rgba(10,10,14,0.68);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.9);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 
-  .line-body{
-    padding:20px;
-  }
+.stack-card.active .line-badge{
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  color: black;
+  border-color: transparent;
+}
 
-  .stack-card.active .line-body{
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  }
+/* IMPORTANTE: qui NON sovrascriviamo più lo sfondo con background */
+/* aggiungiamo solo un leggero boost visivo quando la card è attiva */
+.stack-card.active .line-top::before{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.10) 0%,
+      rgba(255,255,255,0.03) 40%,
+      rgba(0,0,0,0.20) 100%
+    );
+}
 
-  .line-body h3{
-    font-size:28px;
-    line-height:1.05;
-    margin-bottom:12px;
-  }
+.line-body{
+  padding: 20px;
+}
 
-  .line-body p{
-    color:var(--muted);
-    font-size:18px;
-    line-height:1.45;
-    margin-bottom:18px;
-    min-height:78px;
-  }
+.stack-card.active .line-body{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
 
-  .line-price{
-    margin-bottom:18px;
-  }
+.line-body h3{
+  font-size: 28px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
 
-  .line-price small{
-    display:block;
-    color:rgba(255,255,255,0.52);
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    margin-bottom:4px;
-  }
+.line-body p{
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.45;
+  margin-bottom: 18px;
+  min-height: 78px;
+}
 
-  .line-price strong{
-    font-size:34px;
-    line-height:1;
-  }
+.line-price{
+  margin-bottom: 18px;
+}
 
-  .line-link{
-    display:inline-flex;
-    width:100%;
-    justify-content:center;
-    align-items:center;
-    padding:14px 18px;
-    border-radius:14px;
-    background:linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-    border:1px solid rgba(255,255,255,0.12);
-    color:white;
-    font-size:16px;
-    font-weight:700;
-    transition:0.25s ease;
-  }
+.line-price small{
+  display: block;
+  color: rgba(255,255,255,0.52);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
 
-  .stack-card.active .line-link,
-  .line-link:hover{
-    background:linear-gradient(90deg, var(--accent1), var(--accent2));
-    color:black;
-    border-color:transparent;
-  }
+.line-price strong{
+  font-size: 34px;
+  line-height: 1;
+}
+
+.line-link{
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.stack-card.active .line-link,
+.line-link:hover{
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  color: black;
+  border-color: transparent;
+}
 
   /* COMPARISON */
   .comparison-wrap{
@@ -894,13 +947,13 @@
   <a href="../index.html" class="logo">DriftZero</a>
 
   <nav class="nav">
-    <a href="pagine/joycon.html">Zero Joy-Con Lite</a>
-    <a href="pagine/joyconb.html">Zero Joy-Con Original</a>
-    <a href="pagine/joycon2.html">Zero Joy-Con 2</a>
-    <a href="pagine/procon.html">Zero Controller Pro</a>
+    <a href="joycon.html">Zero Joy-Con Lite</a>
+    <a href="joycon-or.html">Zero Joy-Con Original</a>
+    <a href="joycon2.html">Zero Joy-Con 2</a>
+    <a href="procon.html">Zero Controller Pro</a>
   </nav>
 
-  <a href="pagine/cart.html" class="cart">Cart</a>
+  <a href="cart.html" class="cart">Cart</a>
 </header>
 
 <main>
@@ -963,20 +1016,22 @@
         data-hero-floor2="rgba(255,255,255,0.10)"
       >
         <div class="line-top">
-          <span class="line-badge">Best Value</span>
+          <span class="line-badge">Custom Colors</span>
           <img src="../images/lite.jpg" alt="Zero Joy-Con Lite">
         </div>
 
         <div class="line-body">
           <h3>Zero Joy-Con Lite</h3>
-          <p>Same format. More choice. Built for those who want color freedom without official pricing.</p>
+         <p>
+Pick one color for the left Joy-Con and another for the right. Build your own pair at a lower price.
+</p>
 
           <div class="line-price">
             <small>From</small>
             <strong>€19.99</strong>
           </div>
 
-          <a href="pagine/joycon.html" class="line-link">Take One</a>
+          <a href="joycon.html" class="line-link">Build Your Pair</a>
         </div>
       </article>
 
@@ -994,8 +1049,8 @@
         data-hero-floor2="rgba(255,255,255,0.08)"
       >
         <div class="line-top">
-          <span class="line-badge">Official</span>
-          <img src="../images/hero-joycon.jpg" alt="Zero Joy-Con Original">
+          <span class="line-badge">Best Value</span>
+          <img src="../images/original.jpg" alt="Zero Joy-Con Original">
         </div>
 
         <div class="line-body">
@@ -1007,7 +1062,7 @@
             <strong>€35.99</strong>
           </div>
 
-          <a href="pagine/joyconb.html" class="line-link">Take One</a>
+          <a href="joycon-or.html" class="line-link">Take One</a>
         </div>
       </article>
 
@@ -1026,7 +1081,7 @@
       >
         <div class="line-top">
           <span class="line-badge">Next Gen</span>
-          <img src="../images/joycon2rb.jpg" alt="Zero Joy-Con 2">
+          <img src="../images/plus.jpg" alt="Zero Joy-Con 2">
         </div>
 
         <div class="line-body">
@@ -1038,7 +1093,7 @@
             <strong>€49.99</strong>
           </div>
 
-          <a href="pagine/joycon2.html" class="line-link">Take One</a>
+          <a href="joycon2.html" class="line-link">Take One</a>
         </div>
       </article>
 
@@ -1057,7 +1112,7 @@
       >
         <div class="line-top">
           <span class="line-badge">Premium</span>
-          <img src="../images/pro.jpg" alt="Zero Controller Pro">
+          <img src="../images/pro.png" alt="Zero Controller Pro">
         </div>
 
         <div class="line-body">
@@ -1069,7 +1124,7 @@
             <strong>€59.99</strong>
           </div>
 
-          <a href="pagine/procon.html" class="line-link">Take One</a>
+          <a href="procon.html" class="line-link">Take One</a>
         </div>
       </article>
 
@@ -1101,7 +1156,7 @@
           <span class="cross">-</span>
           <span class="check">✔</span>
           <span class="check">✔</span>
-          <span class="neutral">20 plus</span>
+          <span class="neutral">200 plus </span>
           <span>19.99€</span>
         </div>
 
