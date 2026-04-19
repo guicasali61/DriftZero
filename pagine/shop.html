@@ -819,6 +819,19 @@
     color:rgba(255,255,255,0.95);
     transform:translateX(2px);
   }
+  .footer-easter-link{
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  color:transparent;
+  text-decoration:none;
+  transition:opacity 0.2s ease;
+}
+
+.footer-easter-link:hover{
+  opacity:0.85;
+}
 
   .footer-bottom{
     margin-top:45px;
@@ -942,195 +955,204 @@
     }
   }
 </style>
-</head>
+<body>
+
 <header class="header">
   <a href="../index.html" class="logo">DriftZero</a>
 
   <nav class="nav">
-    <a href="joycon.html">Zero Joy-Con Lite</a>
-    <a href="joycon-or.html">Zero Joy-Con Original</a>
-    <a href="joycon2.html">Zero Joy-Con 2</a>
-    <a href="procon.html">Zero Controller Pro</a>
+    <a href="joycon.html">DriftZero Core Rail</a>
+    <a href="joycon2.html">DriftZero Pulse Flux</a>
+    <a href="procon.html">DriftZero Apex Pro</a>
+    <a href="joyconor.html">DriftZero Classic Rail</a>
   </nav>
 
   <a href="cart.html" class="cart">Cart</a>
 </header>
 
 <main>
- <section class="shop-hero">
-  <div class="hero-beam beam-left"></div>
-  <div class="hero-beam beam-right"></div>
+  <section class="shop-hero">
+    <div class="hero-beam beam-left"></div>
+    <div class="hero-beam beam-right"></div>
 
-  <div class="container">
-    <div class="hero-copy">
-      <div class="eyebrow">DRIFTZERO SHOP</div>
-      <h1>CHOOSE THE LINE THAT FITS YOU.</h1>
-      <p>
-        FOUR CONTROLLER FAMILIES.<br>
-        FOUR DIFFERENT ROLES.
-      </p>
+    <div class="container">
+      <div class="hero-copy">
+        <div class="eyebrow">DRIFTZERO SHOP</div>
+        <h1>CHOOSE THE LINE THAT FITS YOU.</h1>
+        <p>
+          FOUR CONTROLLER FAMILIES.<br>
+          FOUR DIFFERENT ROLES.
+        </p>
 
-      <div class="hero-actions">
-        <a href="#lineup" class="btn-primary">Browse Lineup</a>
-        <a href="#compare" class="btn-secondary">Compare Models</a>
+        <div class="hero-actions">
+          <a href="#lineup" class="btn-primary">Browse Lineup</a>
+          <a href="#compare" class="btn-secondary">Compare Models</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
   <section id="lineup" class="lineup-stack-section">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-title">
-        <span class="label">The Lineup</span>
-        <h2>Everything for Everyone.</h2>
-        <p>Pick the line that matches how you play.</p>
-      </div>
-    </div>
-
-    <div class="stack-controls">
-      <button class="stack-arrow prev" aria-label="Previous product">‹</button>
-
-      <div class="stack-dots">
-        <button class="stack-dot active" aria-label="Go to product 1"></button>
-        <button class="stack-dot" aria-label="Go to product 2"></button>
-        <button class="stack-dot" aria-label="Go to product 3"></button>
-        <button class="stack-dot" aria-label="Go to product 4"></button>
+    <div class="container">
+      <div class="section-head">
+        <div class="section-title">
+          <span class="label">The Lineup</span>
+          <h2>Everything for Everyone.</h2>
+          <p>Pick the line that matches how you play.</p>
+        </div>
       </div>
 
-      <button class="stack-arrow next" aria-label="Next product">›</button>
+      <div class="stack-controls">
+        <button class="stack-arrow prev" aria-label="Previous product">‹</button>
+
+        <div class="stack-dots">
+          <button class="stack-dot active" aria-label="Go to product 1"></button>
+          <button class="stack-dot" aria-label="Go to product 2"></button>
+          <button class="stack-dot" aria-label="Go to product 3"></button>
+          <button class="stack-dot" aria-label="Go to product 4"></button>
+        </div>
+
+        <button class="stack-arrow next" aria-label="Next product">›</button>
+      </div>
+
+      <div class="lineup-stack" id="lineupStack">
+
+        <article
+          class="stack-card active"
+          data-accent1="#00e5ff"
+          data-accent2="#6a5cff"
+          data-glow="rgba(0,229,255,0.18)"
+          data-hero-glow1="rgba(0,229,255,0.26)"
+          data-hero-glow2="rgba(106,92,255,0.18)"
+          data-hero-beam1="rgba(0,229,255,0.12)"
+          data-hero-beam2="rgba(255,255,255,0.08)"
+          data-hero-beam3="rgba(106,92,255,0.10)"
+          data-hero-floor1="rgba(180,210,255,0.18)"
+          data-hero-floor2="rgba(255,255,255,0.10)"
+        >
+          <div class="line-top">
+            <span class="line-badge">Custom Colors</span>
+            <img src="../images/lite.jpg" alt="DriftZero Core Rail">
+          </div>
+
+          <div class="line-body">
+            <h3>DriftZero Core Rail</h3>
+            <p>
+              Pick one color for the left side and another for the right.
+              Build your own pair at a lower price.
+            </p>
+
+            <div class="line-price">
+              <small>From</small>
+              <strong>€19.99</strong>
+            </div>
+
+            <a href="joycon.html" class="line-link">Build Your Pair</a>
+          </div>
+        </article>
+
+        <article
+          class="stack-card right"
+          data-accent1="#00f0c8"
+          data-accent2="#3aa7ff"
+          data-glow="rgba(140,255,230,0.18)"
+          data-hero-glow1="rgba(140,255,230,0.26)"
+          data-hero-glow2="rgba(255,255,255,0.18)"
+          data-hero-beam1="rgba(255,207,112,0.12)"
+          data-hero-beam2="rgba(255,244,210,0.08)"
+          data-hero-beam3="rgba(201,138,43,0.10)"
+          data-hero-floor1="rgba(255,224,160,0.16)"
+          data-hero-floor2="rgba(255,255,255,0.08)"
+        >
+          <div class="line-top">
+            <span class="line-badge">Official</span>
+            <img src="../images/original.jpg" alt="DriftZero Classic Rail">
+          </div>
+
+          <div class="line-body">
+            <h3>DriftZero Classic Rail</h3>
+            <p>
+              Official Nintendo hardware in the classic slide-rail format.
+              Clean, complete, and ready to play.
+            </p>
+
+            <div class="line-price">
+              <small>From</small>
+              <strong>€35.99</strong>
+            </div>
+
+            <a href="joyconor.html" class="line-link">Take One</a>
+          </div>
+        </article>
+
+        <article
+          class="stack-card back"
+          data-accent1="#a78bff"
+          data-accent2="#4c3cff"
+          data-glow="rgba(80,160,255,0.18)"
+          data-hero-glow1="rgba(170,150,255,0.20)"
+          data-hero-glow2="rgba(255,255,255,0.12)"
+          data-hero-beam1="rgba(111,231,255,0.13)"
+          data-hero-beam2="rgba(220,245,255,0.08)"
+          data-hero-beam3="rgba(47,123,255,0.10)"
+          data-hero-floor1="rgba(210,190,255,0.14)"
+          data-hero-floor2="rgba(255,255,255,0.09)"
+        >
+          <div class="line-top">
+            <span class="line-badge">Next Gen</span>
+            <img src="../images/plus.jpg" alt="DriftZero Pulse Flux">
+          </div>
+
+          <div class="line-body">
+            <h3>DriftZero Pulse Flux</h3>
+            <p>
+              Magnetic connection system with a sharper feel and a more modern split setup.
+            </p>
+
+            <div class="line-price">
+              <small>From</small>
+              <strong>€49.99</strong>
+            </div>
+
+            <a href="joycon2.html" class="line-link">Take One</a>
+          </div>
+        </article>
+
+        <article
+          class="stack-card left"
+          data-accent1="#ff2d55"
+          data-accent2="#c2183c"
+          data-glow="rgba(255,45,85,0.18)"
+          data-hero-glow1="rgba(255,80,120,0.22)"
+          data-hero-glow2="rgba(255,255,255,0.12)"
+          data-hero-beam1="rgba(255,90,130,0.13)"
+          data-hero-beam2="rgba(255,220,230,0.08)"
+          data-hero-beam3="rgba(194,24,60,0.10)"
+          data-hero-floor1="rgba(255,160,190,0.14)"
+          data-hero-floor2="rgba(255,255,255,0.09)"
+        >
+          <div class="line-top">
+            <span class="line-badge">Premium</span>
+            <img src="../images/pro.png" alt="DriftZero Apex Pro">
+          </div>
+
+          <div class="line-body">
+            <h3>DriftZero Apex Pro</h3>
+            <p>Full-size control, stronger grip, and precision built for long sessions.</p>
+
+            <div class="line-price">
+              <small>From</small>
+              <strong>€59.99</strong>
+            </div>
+
+            <a href="procon.html" class="line-link">Take One</a>
+          </div>
+        </article>
+
+      </div>
     </div>
+  </section>
 
-    <div class="lineup-stack" id="lineupStack">
-
-      <article
-        class="stack-card active"
-        data-accent1="#00e5ff"
-        data-accent2="#6a5cff"
-        data-glow="rgba(0,229,255,0.18)"
-        data-hero-glow1="rgba(0,229,255,0.26)"
-        data-hero-glow2="rgba(106,92,255,0.18)"
-        data-hero-beam1="rgba(0,229,255,0.12)"
-        data-hero-beam2="rgba(255,255,255,0.08)"
-        data-hero-beam3="rgba(106,92,255,0.10)"
-        data-hero-floor1="rgba(180,210,255,0.18)"
-        data-hero-floor2="rgba(255,255,255,0.10)"
-      >
-        <div class="line-top">
-          <span class="line-badge">Custom Colors</span>
-          <img src="../images/lite.jpg" alt="Zero Joy-Con Lite">
-        </div>
-
-        <div class="line-body">
-          <h3>Zero Joy-Con Lite</h3>
-         <p>
-Pick one color for the left Joy-Con and another for the right. Build your own pair at a lower price.
-</p>
-
-          <div class="line-price">
-            <small>From</small>
-            <strong>€19.99</strong>
-          </div>
-
-          <a href="joycon.html" class="line-link">Build Your Pair</a>
-        </div>
-      </article>
-
-      <article
-        class="stack-card right"
-        data-accent1="#00f0c8"
-        data-accent2="#3aa7ff"
-        data-glow="rgba(140,255,230,0.18)"
-        data-hero-glow1="rgba(140,255,230,0.26)"
-        data-hero-glow2="rgba(255,255,255,0.18)"
-        data-hero-beam1="rgba(255,207,112,0.12)"
-        data-hero-beam2="rgba(255,244,210,0.08)"
-        data-hero-beam3="rgba(201,138,43,0.10)"
-        data-hero-floor1="rgba(255,224,160,0.16)"
-        data-hero-floor2="rgba(255,255,255,0.08)"
-      >
-        <div class="line-top">
-          <span class="line-badge">Best Value</span>
-          <img src="../images/original.jpg" alt="Zero Joy-Con Original">
-        </div>
-
-        <div class="line-body">
-          <h3>Zero Joy-Con Original</h3>
-          <p>Official Nintendo hardware. No compromises. Boxed and complete.</p>
-
-          <div class="line-price">
-            <small>From</small>
-            <strong>€35.99</strong>
-          </div>
-
-          <a href="joycon-or.html" class="line-link">Take One</a>
-        </div>
-      </article>
-
-      <article
-        class="stack-card back"
-        data-accent1="#a78bff"
-        data-accent2="#4c3cff"
-        data-glow="rgba(80,160,255,0.18)"
-        data-hero-glow1="rgba(170,150,255,0.20)"
-        data-hero-glow2="rgba(255,255,255,0.12)"
-        data-hero-beam1="rgba(111,231,255,0.13)"
-        data-hero-beam2="rgba(220,245,255,0.08)"
-        data-hero-beam3="rgba(47,123,255,0.10)"
-        data-hero-floor1="rgba(210,190,255,0.14)"
-        data-hero-floor2="rgba(255,255,255,0.09)"
-      >
-        <div class="line-top">
-          <span class="line-badge">Next Gen</span>
-          <img src="../images/plus.jpg" alt="Zero Joy-Con 2">
-        </div>
-
-        <div class="line-body">
-          <h3>Zero Joy-Con 2</h3>
-          <p>Same Joy-Con experience. Compatible with Switch and Switch 2.</p>
-
-          <div class="line-price">
-            <small>From</small>
-            <strong>€49.99</strong>
-          </div>
-
-          <a href="joycon2.html" class="line-link">Take One</a>
-        </div>
-      </article>
-
-      <article
-        class="stack-card left"
-        data-accent1="#ff2d55"
-        data-accent2="#c2183c"
-        data-glow="rgba(255,45,85,0.18)"
-        data-hero-glow1="rgba(255,80,120,0.22)"
-        data-hero-glow2="rgba(255,255,255,0.12)"
-        data-hero-beam1="rgba(255,90,130,0.13)"
-        data-hero-beam2="rgba(255,220,230,0.08)"
-        data-hero-beam3="rgba(194,24,60,0.10)"
-        data-hero-floor1="rgba(255,160,190,0.14)"
-        data-hero-floor2="rgba(255,255,255,0.09)"
-      >
-        <div class="line-top">
-          <span class="line-badge">Premium</span>
-          <img src="../images/pro.png" alt="Zero Controller Pro">
-        </div>
-
-        <div class="line-body">
-          <h3>Zero Controller Pro</h3>
-          <p>Full-size control, stronger grip, and precision built for long sessions.</p>
-
-          <div class="line-price">
-            <small>From</small>
-            <strong>€59.99</strong>
-          </div>
-
-          <a href="procon.html" class="line-link">Take One</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
   <section id="compare">
     <div class="container">
       <div class="section-head">
@@ -1152,16 +1174,16 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
         </div>
 
         <div class="comparison-row">
-          <strong>Zero Joy-Con Lite</strong>
+          <strong>DriftZero Core Rail</strong>
           <span class="cross">-</span>
           <span class="check">✔</span>
           <span class="check">✔</span>
-          <span class="neutral">200 plus </span>
+          <span class="neutral">200 plus</span>
           <span>19.99€</span>
         </div>
 
         <div class="comparison-row">
-          <strong>Zero Joy-Con Original</strong>
+          <strong>DriftZero Classic Rail</strong>
           <span class="check">✔</span>
           <span class="check">✔</span>
           <span class="cross">-</span>
@@ -1170,7 +1192,7 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
         </div>
 
         <div class="comparison-row">
-          <strong>Zero Joy-Con 2</strong>
+          <strong>DriftZero Pulse Flux</strong>
           <span class="cross">-</span>
           <span class="check">✔</span>
           <span class="cross">-</span>
@@ -1179,7 +1201,7 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
         </div>
 
         <div class="comparison-row">
-          <strong>Zero Controller Pro</strong>
+          <strong>DriftZero Apex Pro</strong>
           <span class="check">✔</span>
           <span class="check">✔</span>
           <span class="check">✔</span>
@@ -1191,7 +1213,7 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
   </section>
 </main>
 
-<footer class="footer">
+ <footer class="footer">
   <div class="footer-main">
     <div class="footer-brand">
       <a href="../index.html" class="footer-logo">DriftZero</a>
@@ -1204,11 +1226,10 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
     <div class="footer-nav">
       <div class="footer-col">
         <h4>Products</h4>
-        <a href="joycon.html">Zero Joy-Con lite</a>
-        <a href="joyconb.html">Zero Joy-Con 2</a>
-        <a href="joycon2.html">ZeroJoy-Con Original</a>
-        
-        <a href="procon.html">Zero Controller Pro</a>
+        <a href="joycon.html">DriftZero Core Rail</a>
+        <a href="joycon2.html">DriftZero Pulse Flux</a>
+        <a href="procon.html">DriftZero Apex Pro</a>
+        <a href="joyconor.html">DriftZero Classic Rail</a>
       </div>
 
       <div class="footer-col">
@@ -1221,7 +1242,9 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
       <div class="footer-col">
         <h4>Legal</h4>
         <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="easter-egg.html" class="footer-easter-link">
+          Baroque Works™
+        </a>
       </div>
     </div>
   </div>
@@ -1230,7 +1253,6 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
     <p>© 2026 DriftZero</p>
   </div>
 </footer>
-
 
 <script>
 const root = document.documentElement;
@@ -1264,7 +1286,6 @@ function updateStack(){
   const activeIndex = current;
   const leftIndex = (current - 1 + total) % total;
   const rightIndex = (current + 1) % total;
-  const backIndex = (current + 2) % total;
 
   cards.forEach((card, index) => {
     card.classList.remove('active', 'left', 'right', 'back');
@@ -1317,4 +1338,5 @@ cards.forEach((card, index) => {
 
 updateStack();
 </script>
-</html>
+
+</body>

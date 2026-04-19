@@ -886,6 +886,19 @@ body{
   border-top: 1px solid rgba(255,255,255,0.06);
   text-align: center;
 }
+.footer-easter-link{
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  color:transparent;
+  text-decoration:none;
+  transition:opacity 0.2s ease;
+}
+
+.footer-easter-link:hover{
+  opacity:0.85;
+}
 
 .footer-bottom p{
   margin: 0;
@@ -901,13 +914,10 @@ body{
   <a href="index.html" class="logo">DriftZero</a>
 
   <nav class="nav">
-   
-    <a href="pagine/joycon.html">Zero Joy-Con lite</a>
-     <a href="pagine/joyconb.html">Zero Joy-Con Original</a>
-      <a href="pagine/joycon2.html">Zero Joy-Con 2</a>
-    <a href="pagine/procon.html">Zero Controller Pro</a>
-    
-   
+    <a href="pagine/joycon.html">DriftZero Core Rail</a>
+    <a href="pagine/joycon2.html">DriftZero Pulse Flux</a>
+    <a href="pagine/procon.html">DriftZero Apex Pro</a>
+    <a href="pagine/joyconor.html">DriftZero Classic Rail</a>
   </nav>
 
   <a href="pagine/cart.html" class="cart">Cart</a>
@@ -929,55 +939,50 @@ body{
     <a href="pagine/shop.html" class="hero-color-btn">View Collection</a>
   </div>
 
- <div class="hero-img">
-  <img id="hero-main-img" src="images/pro2.png" alt="Zero Controller Pro">
+  <div class="hero-img">
+    <img id="hero-main-img" src="images/pro2.png" alt="DriftZero Apex Pro">
 
-  <div class="hero-colors">
-   <button
-      class="hero-dot smash active"
-      data-image="images/pro1.png"
-      data-accent1="#fff8ef"
-data-accent2="#8f959c"
-      data-glow1="rgba(242, 242, 242, 0.12)"
-      data-glow2="rgba(127, 127, 127, 0.08)"
-      aria-label="Smash Bros Edition">
-    </button>
-  
-  
-    <button
-      class="hero-dot splatoon2 "
-      data-image="images/pro2.png"
-      data-accent1="#ff6fa3"
-      data-accent2="#c23d7a"
-      data-glow1="rgba(255, 111, 163, 0.18)"
-      data-glow2="rgba(194, 61, 122, 0.14)"
-      aria-label="Splatoon 2 Edition">
-    </button>
+    <div class="hero-colors">
+      <button
+        class="hero-dot smash active"
+        data-image="images/pro1.png"
+        data-accent1="#fff8ef"
+        data-accent2="#8f959c"
+        data-glow1="rgba(242, 242, 242, 0.12)"
+        data-glow2="rgba(127, 127, 127, 0.08)"
+        aria-label="Edition One">
+      </button>
 
-    <button
-      class="hero-dot splatoon3"
-      data-image="images/pro3.png"
-  data-accent1="#e3f7ff"
-data-accent2="#006fd6"
+      <button
+        class="hero-dot splatoon2"
+        data-image="images/pro2.png"
+        data-accent1="#ff6fa3"
+        data-accent2="#c23d7a"
+        data-glow1="rgba(255, 111, 163, 0.18)"
+        data-glow2="rgba(194, 61, 122, 0.14)"
+        aria-label="Edition Two">
+      </button>
 
-data-glow1="rgba(255, 42, 42, 0.30)"
-data-glow2="rgba(139, 0, 0, 0.25)"
-      aria-label="Splatoon 3 Edition">
-    </button>
+      <button
+        class="hero-dot splatoon3"
+        data-image="images/pro3.png"
+        data-accent1="#e3f7ff"
+        data-accent2="#006fd6"
+        data-glow1="rgba(255, 42, 42, 0.30)"
+        data-glow2="rgba(139, 0, 0, 0.25)"
+        aria-label="Edition Three">
+      </button>
 
-    <button
-      class="hero-dot monster"
-      data-image="images/pro4.png"
-      data-accent1="#f2c94c"
-      data-accent2="#8c4a1f"
-      data-glow1="rgba(255, 184, 92, 0.14)"
-      data-glow2="rgba(127, 59, 46, 0.10)"
-      aria-label="Monster Hunter Edition">
-    </button>
-
-   
-  </div>
-</div>
+      <button
+        class="hero-dot monster"
+        data-image="images/pro4.png"
+        data-accent1="#f2c94c"
+        data-accent2="#8c4a1f"
+        data-glow1="rgba(255, 184, 92, 0.14)"
+        data-glow2="rgba(127, 59, 46, 0.10)"
+        aria-label="Edition Four">
+      </button>
+    </div>
   </div>
 
 </section>
@@ -1003,8 +1008,8 @@ data-glow2="rgba(139, 0, 0, 0.25)"
 
     <div class="why-card">
       <span class="why-number">02</span>
-      <h3>More Than Joy-Con</h3>
-      <p>Every controller is built with the same design standards.</p>
+      <h3>More Than Split Controllers</h3>
+      <p>Every controller line is built with the same design standards.</p>
     </div>
 
     <div class="why-card">
@@ -1015,76 +1020,59 @@ data-glow2="rgba(139, 0, 0, 0.25)"
   </div>
 </section>
 
-<section class="products-section">
-  <div class="products-intro">
-    <p class="section-tag">THE LINEUP</p>
-    <h2>ONE STANDARD.<br>DIFFERENT DIRECTIONS.</h2>
-    <p class="section-subtext">
-      Built with the same design language.
-      Shaped for different ways to play.
-    </p>
-  </div>
+<div class="products-grid">
+  <article class="product-card featured">
+    <div class="product-image-wrap">
+      <div class="product-badge">Most Popular</div>
+      <img src="images/lite.png" alt="DriftZero Core Rail" class="product-img product-img-lite">
+      <div class="product-topline">DriftZero Core Rail</div>
+    </div>
 
-  <div class="products-grid">
-    <article class="product-card featured">
-      <div class="product-image-wrap">
-        <div class="product-badge">Most Popular</div>
-        <img src="images/lite.png" alt="Zero Joy-Con Lite" class="product-img product-img-lite">
-        <div class="product-topline">Zero Joy-Con Lite</div>
+    <div class="product-info">
+      <p class="product-description">
+        The slide-rail model. Pick one color for the left side and another for the right, then build your pair for less.
+      </p>
+      <div class="product-bottom">
+        <span class="product-price">€19.99</span>
+        <a href="pagine/joycon.html" class="product-btn">Build Your Pair</a>
       </div>
+    </div>
+  </article>
 
-      <div class="product-info">
-        <p class="product-description">
-         
-Pick one color for the left Joy-Con and another for the right. Build your own pair at a lower price.
-        </p>
-        <div class="product-bottom">
-          <span class="product-price">€19.99</span>
-          <a href="pagine/joycon.html" class="product-btn">Build Your Pair</a>
-        </div>
+  <article class="product-card">
+    <div class="product-image-wrap">
+      <img src="images/pro.png" alt="DriftZero Apex Pro" class="product-img product-img-pro">
+      <div class="product-topline">DriftZero Apex Pro</div>
+    </div>
+
+    <div class="product-info">
+      <p class="product-description">
+        A full-size controller built for longer sessions, cleaner grip, and more control without the premium price.
+      </p>
+      <div class="product-bottom">
+        <span class="product-price">€59.99</span>
+        <a href="pagine/procon.html" class="product-btn">View Product</a>
       </div>
-    </article>
+    </div>
+  </article>
 
-    <article class="product-card">
-      <div class="product-image-wrap">
-        <img src="images/pro.png" alt="Zero Controller Pro" class="product-img product-img-pro">
-        <div class="product-topline">Zero Controller Pro</div>
+  <article class="product-card">
+    <div class="product-image-wrap">
+      <img src="images/plus.jpg" alt="DriftZero Pulse Flux" class="product-img product-img-pro">
+      <div class="product-topline">DriftZero Pulse Flux</div>
+    </div>
+
+    <div class="product-info">
+      <p class="product-description">
+        The magnetic-fit model. Faster attachment, sharper feel, and a more modern split setup.
+      </p>
+      <div class="product-bottom">
+        <span class="product-price">€49.99</span>
+        <a href="pagine/joycon2.html" class="product-btn">View Product</a>
       </div>
-
-      <div class="product-info">
-        <p class="product-description">
-          A full-size controller built on the Pro format. Same ergonomics, more control, less cost.
-        </p>
-        <div class="product-bottom">
-          <span class="product-price">€59.99</span>
-          <a href="pagine/procon.html" class="product-btn">View Product</a>
-        </div>
-      </div>
-    </article>
-
-     <article class="product-card">
-      <div class="product-image-wrap">
-        <img src="images/plus.jpg" alt="Zero Controller Pro" class="product-img product-img-pro">
-        <div class="product-topline">Zero Joy-Con 2</div>
-      </div>
-
-      <div class="product-info">
-        <p class="product-description">
-         The newer model of Joy-Con Zero style
-        </p>
-        <div class="product-bottom">
-          <span class="product-price">€49.99</span>
-          <a href="pagine/joycon2.html" class="product-btn">View Product</a>
-        </div>
-      </div>
-    </article>
-
-   
-
-     
-    </article>
-  </div>
-</section>
+    </div>
+  </article>
+</div>
 
 <section class="final-cta">
   <div class="final-cta-content">
@@ -1097,10 +1085,10 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
   </div>
 </section>
 
-<footer class="footer">
+ <footer class="footer">
   <div class="footer-main">
     <div class="footer-brand">
-      <a href="index.html" class="footer-logo">DriftZero</a>
+      <a href="../index.html" class="footer-logo">DriftZero</a>
       <p class="footer-desc">
         Built to look sharper.<br>
         Priced to make sense.
@@ -1110,16 +1098,15 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
     <div class="footer-nav">
       <div class="footer-col">
         <h4>Products</h4>
-        <a href="pagine/joycon.html">Zero Joy-Con lite</a>
-        <a href="pagine/joyconb.html">Zero Joy-Con 2</a>
-        <a href="pagine/joycon2.html">ZeroJoy-Con Original</a>
-        
-        <a href="pagine/procon.html">Zero Controller Pro</a>
+        <a href="joycon.html">DriftZero Core Rail</a>
+        <a href="joycon2.html">DriftZero Pulse Flux</a>
+        <a href="procon.html">DriftZero Apex Pro</a>
+        <a href="joyconor.html">DriftZero Classic Rail</a>
       </div>
 
       <div class="footer-col">
         <h4>Support</h4>
-        <a href="pagine/cart.html">Cart</a>
+        <a href="cart.html">Cart</a>
         <a href="#">Contact</a>
         <a href="#">Shipping</a>
       </div>
@@ -1127,7 +1114,9 @@ Pick one color for the left Joy-Con and another for the right. Build your own pa
       <div class="footer-col">
         <h4>Legal</h4>
         <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="easter-egg.html" class="footer-easter-link">
+          Baroque Works™
+        </a>
       </div>
     </div>
   </div>
@@ -1166,5 +1155,6 @@ window.addEventListener('load', () => {
   }
 });
 </script>
+
 </body>
 </html>

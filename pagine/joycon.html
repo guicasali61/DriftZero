@@ -147,12 +147,12 @@
       place-items:center;
       padding:0 6px;
       border-radius:999px;
-      background:rgba(10,10,10,0.18);
-      color:#0a0a0a;
+      background:rgba(255,255,255,0.55);
+      color:#050507;
       font-size:14px;
       font-weight:700;
       line-height:1;
-      border:1px solid rgba(10,10,10,0.12);
+      border:1px solid rgba(255,255,255,0.18);
     }
 
     .page{
@@ -416,7 +416,9 @@
       border-radius:16px;
       color:#050507;
       background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow:0 10px 30px rgba(0,0,0,0.18), 0 0 28px rgba(0,219,255,0.14);
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.18),
+        0 0 28px var(--accent-soft);
       font-size:18px;
       border:none;
       cursor:pointer;
@@ -443,7 +445,9 @@
       color:#050507;
       font-weight:700;
       background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow:0 10px 30px rgba(0,0,0,0.18), 0 0 28px rgba(0,219,255,0.14);
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.18),
+        0 0 28px var(--accent-soft);
       font-size:23px;
       border:none;
       cursor:pointer;
@@ -554,7 +558,7 @@
     .swatch-btn.active{
       background:linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
       border-color:rgba(255,255,255,0.22);
-      box-shadow:0 0 24px rgba(0,219,255,0.08);
+      box-shadow:0 0 24px var(--accent-soft);
     }
 
     .swatch-dot{
@@ -653,6 +657,193 @@
       letter-spacing:0.2px;
     }
 
+    /* EASTER EGG OVERLAY */
+    .game-overlay{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(4,4,8,0.72);
+      backdrop-filter:blur(12px);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:0.25s ease;
+    }
+
+    .game-overlay.active{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    .game-modal{
+      width:min(980px, 100%);
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.1);
+      background:
+        radial-gradient(circle at 18% 20%, var(--accent-soft), transparent 24%),
+        radial-gradient(circle at 82% 24%, var(--accent-soft-2), transparent 24%),
+        linear-gradient(180deg, rgba(20,20,28,0.95), rgba(9,9,14,0.98));
+      box-shadow:0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    .game-modal-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+      padding:26px 28px 18px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .game-modal-head{
+      display:grid;
+      gap:10px;
+    }
+
+    .game-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      color:rgba(255,255,255,0.7);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+    }
+
+    .game-title{
+      font-size:clamp(32px, 5vw, 54px);
+      line-height:0.92;
+      text-transform:uppercase;
+    }
+
+    .game-sub{
+      color:rgba(255,255,255,0.68);
+      font-size:18px;
+      line-height:1.2;
+      max-width:560px;
+    }
+
+    .close-game{
+      width:52px;
+      height:52px;
+      border:none;
+      border-radius:16px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      color:#fff;
+      font-size:28px;
+      line-height:1;
+      cursor:pointer;
+      transition:0.2s ease;
+      flex-shrink:0;
+    }
+
+    .close-game:hover{
+      transform:scale(1.04);
+      background:rgba(255,255,255,0.1);
+    }
+
+    .game-modal-body{
+      padding:28px;
+      display:grid;
+      gap:22px;
+    }
+
+    .game-preview{
+      min-height:380px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:30px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .game-preview::before{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      background:radial-gradient(circle, var(--accent-soft), transparent 68%);
+      filter:blur(14px);
+      opacity:0.95;
+    }
+
+    .game-preview-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      gap:14px;
+      max-width:560px;
+    }
+
+    .game-preview-title{
+      font-size:clamp(34px, 4.6vw, 58px);
+      line-height:0.94;
+      text-transform:uppercase;
+    }
+
+    .game-preview-copy{
+      color:rgba(255,255,255,0.75);
+      font-size:19px;
+      line-height:1.25;
+    }
+
+    .game-mode-pill{
+      justify-self:center;
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      color:rgba(255,255,255,0.82);
+    }
+
+    .game-info-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+
+    .game-info-card{
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      display:grid;
+      gap:8px;
+    }
+
+    .game-info-card strong{
+      font-size:18px;
+      color:#fff;
+    }
+
+    .game-info-card span{
+      color:rgba(255,255,255,0.66);
+      font-size:15px;
+      line-height:1.25;
+    }
+
     /* FOOTER */
     .footer{
       position:relative;
@@ -696,6 +887,8 @@
       background:linear-gradient(90deg, var(--accent1), var(--accent2));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
     }
 
     .footer-desc{
@@ -736,6 +929,48 @@
       transform:translateX(2px);
     }
 
+    .footer-easter{
+      position:relative;
+      z-index:1;
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .footer-easter-btn{
+      padding:14px 20px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      color:rgba(255,255,255,0.7);
+      font-size:14px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:0.25s ease;
+      min-width:240px;
+    }
+
+    .footer-easter-btn:hover{
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      transform:translateY(-2px);
+    }
+
+    .footer-easter-link{
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+      text-decoration:none;
+      transition:opacity 0.2s ease;
+    }
+
+    .footer-easter-link:hover{
+      opacity:0.85;
+    }
+
     .footer-bottom{
       margin-top:45px;
       padding-top:20px;
@@ -768,6 +1003,10 @@
 
       .spec-grid{
         grid-template-columns:repeat(2, 1fr);
+      }
+
+      .game-info-grid{
+        grid-template-columns:1fr;
       }
 
       .header{
@@ -823,7 +1062,8 @@
 
       .swatch-head,
       .details-head,
-      .hero-topbar{
+      .hero-topbar,
+      .game-modal-top{
         flex-direction:column;
         align-items:flex-start;
       }
@@ -848,6 +1088,14 @@
 
       .ghost-btn{
         font-size:18px;
+      }
+
+      .game-modal-body{
+        padding:20px;
+      }
+
+      .game-modal-top{
+        padding:20px 20px 16px;
       }
     }
 
@@ -875,6 +1123,18 @@
       .cart{
         font-size:16px;
       }
+
+      .game-preview{
+        min-height:300px;
+      }
+
+      .game-preview-title{
+        font-size:34px;
+      }
+
+      .footer-easter-btn{
+        min-width:100%;
+      }
     }
   </style>
 </head>
@@ -884,10 +1144,10 @@
     <a href="../index.html" class="logo">DriftZero</a>
 
     <nav class="nav">
-      <a href="joycon.html">Zero Joy-Con Lite</a>
-      <a href="joycon-or.html">Zero Joy-Con Original</a>
-      <a href="joycon2.html">Zero Joy-Con 2</a>
-      <a href="procon.html">Zero Controller Pro</a>
+      <a href="joycon.html">DriftZero Core Rail</a>
+      <a href="joycon2.html">DriftZero Pulse Flux</a>
+      <a href="procon.html">DriftZero Apex Pro</a>
+      <a href="joyconor.html">DriftZero Classic Rail</a>
     </nav>
 
     <a href="cart.html" class="cart">
@@ -931,7 +1191,7 @@
 
           <div class="hero-copy">
             <div class="buy-top">
-              <h1 class="buy-title">Zero Joy-Con Lite</h1>
+              <h1 class="buy-title">DriftZero Core Rail</h1>
               <p class="buy-sub">Build your own left / right pair for less.</p>
             </div>
 
@@ -1082,6 +1342,51 @@
     </div>
   </main>
 
+  <div class="game-overlay" id="gameOverlay">
+    <div class="game-modal">
+      <div class="game-modal-top">
+        <div class="game-modal-head">
+          <div class="game-kicker">Hidden Variant Mode</div>
+          <h2 class="game-title" id="gameTitle">Swamp Clash</h2>
+          <p class="game-sub" id="gameSub">
+            Pattern pair detected. This variant unlocks a hidden mode preview.
+          </p>
+        </div>
+
+        <button class="close-game" id="closeGameBtn" aria-label="Close game overlay">×</button>
+      </div>
+
+      <div class="game-modal-body">
+        <div class="game-preview">
+          <div class="game-preview-inner">
+            <div class="game-mode-pill" id="gameModePill">Pattern Pair Active</div>
+            <h3 class="game-preview-title" id="gamePreviewTitle">Swamp Clash</h3>
+            <p class="game-preview-copy" id="gamePreviewCopy">
+              Ink spread mode. This slot is ready for the actual Swamp Clash micro-game.
+            </p>
+          </div>
+        </div>
+
+        <div class="game-info-grid">
+          <div class="game-info-card">
+            <strong>Trigger</strong>
+            <span>Unlocked when both sides are set to the same pattern variant.</span>
+          </div>
+
+          <div class="game-info-card">
+            <strong>State</strong>
+            <span>The hidden mode updates automatically from the currently selected pattern pair.</span>
+          </div>
+
+          <div class="game-info-card">
+            <strong>Next Step</strong>
+            <span>The actual mini-game logic can be mounted inside this fullscreen modal.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="footer-main">
       <div class="footer-brand">
@@ -1095,10 +1400,10 @@
       <div class="footer-nav">
         <div class="footer-col">
           <h4>Products</h4>
-          <a href="joycon.html">Zero Joy-Con Lite</a>
-          <a href="joycon-or.html">Zero Joy-Con Original</a>
-          <a href="joycon2.html">Zero Joy-Con 2</a>
-          <a href="procon.html">Zero Controller Pro</a>
+          <a href="joycon.html">DriftZero Core Rail</a>
+          <a href="joycon2.html">DriftZero Pulse Flux</a>
+          <a href="procon.html">DriftZero Apex Pro</a>
+          <a href="joyconor.html">DriftZero Classic Rail</a>
         </div>
 
         <div class="footer-col">
@@ -1111,9 +1416,13 @@
         <div class="footer-col">
           <h4>Legal</h4>
           <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <a href="easter-egg.html" class="footer-easter-link">Baroque Works™</a>
         </div>
       </div>
+    </div>
+
+    <div class="footer-easter">
+      <button class="footer-easter-btn" id="openGameBtn">Unlock Hidden Mode</button>
     </div>
 
     <div class="footer-bottom">
@@ -1126,6 +1435,7 @@
       { key:"blue", label:"Blue", category:"solid", image:"../images/joycon-lite/blue-left.png", accent:"#00dbff" },
       { key:"red", label:"Red", category:"solid", image:"../images/joycon-lite/red-left.png", accent:"#ff4d5f" },
       { key:"purple", label:"Purple", category:"solid", image:"../images/joycon-lite/purple-left.png", accent:"#8e6cff" },
+       { key:"Dark Blue", label:"Dark Blue", category:"solid", image:"../images/joycon-lite/dark-blue-left.png", accent:"#1e3a8a" },
       { key:"yellow", label:"Yellow", category:"solid", image:"../images/joycon-lite/yellow-left.png", accent:"#ffe45c" },
       { key:"gray", label:"Gray", category:"solid", image:"../images/joycon-lite/gray-left.png", accent:"#9aa0ab" },
       { key:"white", label:"White", category:"solid", image:"../images/joycon-lite/white-left.png", accent:"#f7f7f7" },
@@ -1135,12 +1445,12 @@
       { key:"green", label:"Green", category:"solid", image:"../images/joycon-lite/green-left.png", accent:"#59e28b" },
       { key:"brown", label:"Brown", category:"solid", image:"../images/joycon-lite/brown-left.png", accent:"#b07a45" },
 
-      { key:"splatoon-2", label:"Splatoon 2", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png", accent:"#2fe06d" },
-      { key:"monster-hunter", label:"Monster Hunter", category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", accent:"#111111" },
-      { key:"zelda-totk", label:"Zelda TOTK", category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png", accent:"#d4af37" },
-      { key:"zelda-skyward", label:"Zelda Skyward", category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", accent:"#5f8eff" },
-      { key:"pokemon", label:"Pokémon", category:"pattern", image:"../images/joycon-lite/pokemon-left.png", accent:"#ff4d4d" },
-      { key:"mario", label:"Mario", category:"pattern", image:"../images/joycon-lite/mario-left.png", accent:"#ff3b30" }
+      { key:"splatoon-2", label:"Swamp Clash", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png", accent:"#7f57ff" },
+      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", accent:"#7a7a7a" },
+      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png", accent:"#30df84" },
+      { key:"zelda-skyward", label:"Blue Horizons", category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", accent:"#5f8eff" },
+      { key:"pokemon", label:"Costa League", category:"pattern", image:"../images/joycon-lite/pokemon-left.png", accent:"#7a4dff" },
+      { key:"mario", label:"Little Kingdom", category:"pattern", image:"../images/joycon-lite/mario-left.png", accent:"#c1121f" }
     ];
 
     const rightSwatches = [
@@ -1157,14 +1467,15 @@
       { key:"ochre", label:"Ochre", category:"solid", image:"../images/joycon-lite/ochre-right.png", accent:"#c9972b" },
       { key:"pink", label:"Pink", category:"solid", image:"../images/joycon-lite/pink-right.png", accent:"#ff9cc7" },
 
-      { key:"splatoon-2", label:"Splatoon 2", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png", accent:"#7f57ff" },
-      { key:"monster-hunter", label:"Monster Hunter", category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", accent:"#7a7a7a" },
-      { key:"zelda-totk", label:"Zelda TOTK", category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png", accent:"#30df84" },
-      { key:"zelda-skyward", label:"Zelda Skyward", category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", accent:"#5f8eff" },
-      { key:"pokemon", label:"Pokémon", category:"pattern", image:"../images/joycon-lite/pokemon-right.png", accent:"#7a4dff" },
-      { key:"mario", label:"Mario", category:"pattern", image:"../images/joycon-lite/mario-right.png", accent:"#c1121f" }
+      { key:"splatoon-2", label:"Swamp Clash", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png", accent:"#7f57ff" },
+      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", accent:"#7a7a7a" },
+      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png", accent:"#30df84" },
+      { key:"zelda-skyward", label:"Blue Horizons", category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", accent:"#5f8eff" },
+      { key:"pokemon", label:"Costa League", category:"pattern", image:"../images/joycon-lite/pokemon-right.png", accent:"#7a4dff" },
+      { key:"mario", label:"Little Kingdom", category:"pattern", image:"../images/joycon-lite/mario-right.png", accent:"#c1121f" }
     ];
 
+  
     const root = document.documentElement;
     const leftHeroImage = document.getElementById("leftHeroImage");
     const rightHeroImage = document.getElementById("rightHeroImage");
@@ -1184,6 +1495,15 @@
     const rightSolidGrid = document.getElementById("rightSolidGrid");
     const rightPatternGrid = document.getElementById("rightPatternGrid");
 
+    const openGameBtn = document.getElementById("openGameBtn");
+    const gameOverlay = document.getElementById("gameOverlay");
+    const closeGameBtn = document.getElementById("closeGameBtn");
+    const gameTitle = document.getElementById("gameTitle");
+    const gameSub = document.getElementById("gameSub");
+    const gamePreviewTitle = document.getElementById("gamePreviewTitle");
+    const gamePreviewCopy = document.getElementById("gamePreviewCopy");
+    const gameModePill = document.getElementById("gameModePill");
+
     const defaultSolidPair = {
       left: "blue",
       right: "red"
@@ -1200,6 +1520,10 @@
 
     function findSwatch(side, key){
       return getSwatchList(side).find(v => v.key === key);
+    }
+
+    function isPatternPair(left, right){
+      return left && right && left.category === "pattern" && right.category === "pattern" && left.key === right.key;
     }
 
     function getPatternBackgrounds(){
@@ -1276,6 +1600,33 @@
       attachSwatchEvents();
     }
 
+    function updateFooterButton(left, right){
+      if (!openGameBtn) return;
+
+      if (isPatternPair(left, right)) {
+        openGameBtn.textContent = `Enter ${left.label}`;
+      } else {
+        openGameBtn.textContent = "Unlock Hidden Mode";
+      }
+    }
+
+    function updateGameContent(left, right){
+      if (!isPatternPair(left, right)) return;
+
+      const game = gameData[left.key] || {
+        title: left.label,
+        subtitle: "Pattern pair detected. Hidden mode unlocked.",
+        preview: "This pattern is ready for its micro-game.",
+        pill: "Pattern Mode"
+      };
+
+      gameTitle.textContent = game.title;
+      gameSub.textContent = game.subtitle;
+      gamePreviewTitle.textContent = game.title;
+      gamePreviewCopy.textContent = game.preview;
+      gameModePill.textContent = game.pill;
+    }
+
     function updateSelectedUI(){
       const left = findSwatch("left", currentPair.left);
       const right = findSwatch("right", currentPair.right);
@@ -1300,6 +1651,9 @@
       rightHeroImage.alt = `${right.label} right Joy-Con`;
 
       applyTheme(left.accent, right.accent);
+      updateFooterButton(left, right);
+      updateGameContent(left, right);
+
       addToCartBtn.disabled = false;
       addToCartBtn.textContent = "Add To Cart";
     }
@@ -1309,6 +1663,7 @@
       root.style.setProperty("--accent2", accent2);
       root.style.setProperty("--accent-soft", hexToRgba(accent1, 0.16));
       root.style.setProperty("--accent-soft-2", hexToRgba(accent2, 0.14));
+      root.style.setProperty("--shadow-glow", `0 0 40px ${hexToRgba(accent1, 0.18)}`);
     }
 
     function updateCartCount(){
@@ -1348,8 +1703,31 @@
       }, 1200);
     }
 
+    function openGameOverlay(){
+      const left = findSwatch("left", currentPair.left);
+      const right = findSwatch("right", currentPair.right);
+
+      if (!isPatternPair(left, right)) {
+        alert("Select a full pattern pair to unlock this mode.");
+        return;
+      }
+
+      gameOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeGameOverlay(){
+      gameOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
     function hexToRgba(hex, alpha){
-      const cleanHex = hex.replace("#", "");
+      let cleanHex = hex.replace("#", "");
+
+      if (cleanHex.length === 3) {
+        cleanHex = cleanHex.split("").map(char => char + char).join("");
+      }
+
       const bigint = parseInt(cleanHex, 16);
 
       const r = (bigint >> 16) & 255;
@@ -1359,7 +1737,27 @@
       return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
 
-    addToCartBtn.addEventListener("click", addCurrentToCart);
+    if (addToCartBtn) {
+      addToCartBtn.addEventListener("click", addCurrentToCart);
+    }
+
+    if (openGameBtn) {
+      openGameBtn.addEventListener("click", openGameOverlay);
+    }
+
+    if (closeGameBtn) {
+      closeGameBtn.addEventListener("click", closeGameOverlay);
+    }
+
+    if (gameOverlay) {
+      gameOverlay.addEventListener("click", (e) => {
+        if (e.target === gameOverlay) closeGameOverlay();
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeGameOverlay();
+    });
 
     updateCartCount();
     updateSelectedUI();
