@@ -209,7 +209,30 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:24px 0 18px;
+      padding:32px;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(180deg, rgba(14,15,18,0.88), rgba(8,9,12,0.94));
+      box-shadow:0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      overflow:hidden;
+    }
+
+    .hero-bg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      transform:scale(1.08);
+      filter:grayscale(100%) brightness(0.22) contrast(1.08) blur(1px);
     }
 
     .hero-visual::before{
@@ -220,11 +243,12 @@
       left:50%;
       top:50%;
       transform:translate(-50%, -50%);
+      z-index:1;
       background:
         radial-gradient(circle,
-          rgba(255,255,255,0.10) 0%,
+          rgba(255,255,255,0.08) 0%,
           var(--accent-soft) 22%,
-          rgba(255,255,255,0.02) 50%,
+          rgba(255,255,255,0.015) 52%,
           transparent 74%);
       filter:blur(26px);
       pointer-events:none;
@@ -238,6 +262,7 @@
       left:50%;
       bottom:12%;
       transform:translateX(-50%);
+      z-index:1;
       background:radial-gradient(circle, rgba(0,0,0,0.55) 0%, transparent 70%);
       filter:blur(20px);
       pointer-events:none;
@@ -249,7 +274,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:20px;
+      gap:-70px;
       width:min(92%, 620px);
     }
 
@@ -522,6 +547,7 @@
       text-align:left;
       cursor:pointer;
       font-weight:600;
+      transition:background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
     }
 
     .swatch-btn:hover{
@@ -599,6 +625,7 @@
       border:1px solid rgba(255,255,255,0.07);
       cursor:pointer;
       text-align:left;
+      transition:background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
     }
 
     .pattern-card:hover{
@@ -677,6 +704,7 @@
       display:grid;
       grid-template-columns:repeat(4, 1fr);
       gap:14px;
+      margin-top:26px;
     }
 
     .spec-card{
@@ -876,13 +904,11 @@
 
       .product-hero,
       .swatch-row,
-      .pattern-section,
-      .details-panel{
+      .pattern-section{
         padding:20px;
       }
 
-      .buy-sub,
-      .details-sub{
+      .buy-sub{
         font-size:16px;
       }
 
@@ -907,7 +933,6 @@
       }
 
       .swatch-head,
-      .details-head,
       .hero-topbar,
       .pattern-head{
         flex-direction:column;
@@ -974,534 +999,505 @@
   </style>
 </head>
 <body>
+<header class="header">
+  <a href="../index.html" class="logo">DriftZero</a>
 
-  <header class="header">
-    <a href="../index.html" class="logo">DriftZero</a>
+  <nav class="nav">
+    <a href="joycon.html" class="active">DriftZero Core Rail</a>
+    <a href="joycon2.html">DriftZero Pulse Flux</a>
+    <a href="procon.html">DriftZero Apex Pro</a>
+    <a href="joyconor.html">DriftZero Classic Rail</a>
+  </nav>
 
-    <nav class="nav">
-      <a href="joycon.html" class="active">DriftZero Core Rail</a>
-      <a href="joycon2.html">DriftZero Pulse Flux</a>
-      <a href="procon.html">DriftZero Apex Pro</a>
-      <a href="joyconor.html">DriftZero Classic Rail</a>
-    </nav>
+  <a href="cart.html" class="cart">Cart</a>
+</header>
 
-    <a href="cart.html" class="cart">Cart</a>
-  </header>
-
-  <main class="page">
-    <div class="container">
-
-      <section class="product-hero">
-        <div class="hero-topbar">
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            DriftZero Entry Line
-          </div>
-
-          <div class="gallery-badge" id="galleryBadge">
-            L: Blue<br>R: Red
-          </div>
+<main class="page">
+  <div class="container">
+    <section class="product-hero">
+      <div class="hero-topbar">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          DriftZero Core Line
         </div>
 
-        <div class="hero-main">
-          <div class="hero-visual">
-            <div class="hero-pair" id="heroPair">
-              <img
-                id="leftHeroImage"
-                class="hero-side-image"
-                src="../images/joycon-lite/blue-left.png"
-                alt="Blue left Joy-Con"
-              >
-              <img
-                id="rightHeroImage"
-                class="hero-side-image"
-                src="../images/joycon-lite/red-right.png"
-                alt="Red right Joy-Con"
-              >
-            </div>
-
-            <div class="hero-full-wrap is-hidden" id="heroFullWrap">
-              <img
-                id="fullHeroImage"
-                class="hero-full-image"
-                src="../images/joycon-lite/splatoon-2-pair.png"
-                alt="Full pair Joy-Con pattern"
-              >
-            </div>
-          </div>
-
-          <div class="hero-copy">
-            <div class="buy-top">
-              <h1 class="buy-title">DriftZero Core Rail</h1>
-              <p class="buy-sub">Custom left. Custom right. No overpriced bundle.</p>
-            </div>
-
-            <div class="price-line">
-              <div class="price-stack">
-                <span class="price-label">Price</span>
-                <span class="price" id="productPrice">€19.99</span>
-              </div>
-              <div class="price-note">VAT Included</div>
-            </div>
-
-            <div class="selection-summary">
-              <div class="selection-box">
-                <strong>Left</strong>
-                <span id="leftSelectionText">Blue</span>
-              </div>
-
-              <div class="selection-box">
-                <strong>Right</strong>
-                <span id="rightSelectionText">Red</span>
-              </div>
-            </div>
-
-            <div class="micro-points">
-              <div class="micro-item">
-                <div class="micro-mark">✓</div>
-                <span>Pick left and right separately</span>
-              </div>
-
-              <div class="micro-item">
-                <div class="micro-mark">✓</div>
-                <span>Solid colors mix freely. Patterned editions are prebuilt full pairs.</span>
-              </div>
-
-              <div class="micro-item">
-                <div class="micro-mark">✓</div>
-                <span>Your exact pair goes to cart</span>
-              </div>
-            </div>
-
-            <div class="buy-actions">
-              <button class="primary-btn" id="addToCartBtn">
-                Add To Cart
-              </button>
-
-              <button class="ghost-btn" id="customizeBtn">
-                Customize Pair
-              </button>
-            </div>
-
-            <div class="trust-line">
-              <span class="trust-pill" id="selectedPairName">Blue / Red</span>
-              <span class="trust-pill" id="selectedPairQty">Ready</span>
-              <span class="trust-pill">Custom setup</span>
-            </div>
-
-            <p class="color-disclaimer">
-              Colors may vary slightly from the original product due to lighting, screen settings, and post-processing.
-            </p>
-          </div>
-        </div>
-
-        <div class="simple-config">
-          <div class="swatch-row">
-            <div class="swatch-head">
-              <div>
-                <h2 class="swatch-title">Left Joy-Con</h2>
-              </div>
-              <div class="swatch-current">Selected: <span id="leftCurrentText">Blue</span></div>
-            </div>
-
-            <div class="swatch-groups">
-              <div class="swatch-group">
-                <div class="swatch-group-label">Solid Colors</div>
-                <div class="swatch-grid" id="leftSolidGrid"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swatch-row">
-            <div class="swatch-head">
-              <div>
-                <h2 class="swatch-title">Right Joy-Con</h2>
-              </div>
-              <div class="swatch-current">Selected: <span id="rightCurrentText">Red</span></div>
-            </div>
-
-            <div class="swatch-groups">
-              <div class="swatch-group">
-                <div class="swatch-group-label">Solid Colors</div>
-                <div class="swatch-grid" id="rightSolidGrid"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pattern-section">
-          <div class="pattern-head">
-            <div>
-              <h2 class="pattern-title">Signature Pattern Pairs</h2>
-              <p class="pattern-sub">Prebuilt full-pair editions with a stronger identity.</p>
-            </div>
-          </div>
-
-          <div class="pattern-grid" id="patternPairGrid"></div>
-        </div>
-      </section>
-
-      <section class="details-section">
-        <div class="details-panel">
-          <div class="details-head">
-            <div>
-              <h2 class="details-title">Quick Facts</h2>
-            </div>
-
-            <p class="details-sub">
-              Just the essentials.
-            </p>
-          </div>
-
-          <div class="spec-grid">
-            <div class="spec-card">
-              <div class="spec-num">01</div>
-              <strong>Custom Pair</strong>
-              <span>Choose left and right separately.</span>
-            </div>
-
-            <div class="spec-card">
-              <div class="spec-num">02</div>
-              <strong>Pattern Editions</strong>
-              <span>Special variants are available as prebuilt full pairs.</span>
-            </div>
-
-            <div class="spec-card">
-              <div class="spec-num">03</div>
-              <strong>Saved Together</strong>
-              <span>Your setup is added as one pair.</span>
-            </div>
-
-            <div class="spec-card">
-              <div class="spec-num">04</div>
-              <strong>Entry Price</strong>
-              <span>Low cost, more freedom.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a href="../index.html" class="footer-logo">DriftZero</a>
-        <p class="footer-desc">
-          Built to look sharper.<br>
-          Priced to make sense.
-        </p>
-      </div>
-
-      <div class="footer-nav">
-        <div class="footer-col">
-          <h4>Products</h4>
-          <a href="joycon.html">DriftZero Core Rail</a>
-          <a href="joycon2.html">DriftZero Pulse Flux</a>
-          <a href="procon.html">DriftZero Apex Pro</a>
-          <a href="joyconor.html">DriftZero Classic Rail</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a href="cart.html">Cart</a>
-          <a href="#">Contact</a>
-          <a href="#">Shipping</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="#">Privacy</a>
-          <a href="easter-egg/easter-egg.html" class="footer-easter-link">Baroque Works™</a>
+        <div class="gallery-badge" id="galleryBadge">
+          L: Red<br>R: Orange
         </div>
       </div>
+
+      <div class="hero-main">
+        <div class="hero-visual">
+          <div class="hero-bg">
+            <img src="../images/black-wood.jpg" alt="">
+          </div>
+
+          <div class="hero-pair" id="heroPair">
+            <img
+              id="leftHeroImage"
+              class="hero-side-image"
+              src="../images/joycon-lite/red-left.png"
+              alt="Red left Joy-Con"
+            >
+            <img
+              id="rightHeroImage"
+              class="hero-side-image"
+              src="../images/joycon-lite/orange-right.png"
+              alt="Orange right Joy-Con"
+            >
+          </div>
+
+          <div class="hero-full-wrap is-hidden" id="heroFullWrap">
+            <img
+              id="fullHeroImage"
+              class="hero-full-image"
+              src="../images/joycon-lite/splatoon-2-pair.png"
+              alt="Full pair Joy-Con pattern"
+            >
+          </div>
+        </div>
+
+        <div class="hero-copy">
+          <div class="buy-top">
+            <h1 class="buy-title">DriftZero Core Rail</h1>
+            <p class="buy-sub">More freedom. Less bundle waste. Build your pair side by side, exactly how you want it.</p>
+          </div>
+
+          <div class="price-line">
+            <div class="price-stack">
+              <span class="price-label">Starting Price</span>
+              <span class="price" id="productPrice">€19.99</span>
+            </div>
+            <div class="price-note">VAT included</div>
+          </div>
+
+          <div class="selection-summary">
+            <div class="selection-box">
+              <strong>Left Side</strong>
+              <span id="leftSelectionText">Red</span>
+            </div>
+
+            <div class="selection-box">
+              <strong>Right Side</strong>
+              <span id="rightSelectionText">Orange</span>
+            </div>
+          </div>
+
+          <div class="micro-points">
+            <div class="micro-item">
+              <div class="micro-mark">✓</div>
+              <span>Choose left and right independently</span>
+            </div>
+
+            <div class="micro-item">
+              <div class="micro-mark">✓</div>
+              <span>Mix solid colors freely or switch to a prebuilt signature pair</span>
+            </div>
+
+            <div class="micro-item">
+              <div class="micro-mark">✓</div>
+              <span>Your exact setup is saved as one complete pair</span>
+            </div>
+          </div>
+
+          <div class="buy-actions">
+            <button class="primary-btn" id="addToCartBtn">
+              Add To Cart
+            </button>
+
+            <button class="ghost-btn" id="customizeBtn">
+              Build Your Pair
+            </button>
+          </div>
+
+          <div class="trust-line">
+            <span class="trust-pill" id="selectedPairName">Red / Orange</span>
+            <span class="trust-pill">Custom pair</span>
+          </div>
+
+          <p class="color-disclaimer">
+            Final colors may appear slightly different depending on lighting, display settings, and image processing.
+          </p>
+        </div>
+      </div>
+
+      <div class="simple-config">
+        <div class="swatch-row">
+          <div class="swatch-head">
+            <div>
+              <h2 class="swatch-title">Left Joy-Con</h2>
+            </div>
+            <div class="swatch-current">Selected: <span id="leftCurrentText">Red</span></div>
+          </div>
+
+          <div class="swatch-groups">
+            <div class="swatch-group">
+              <div class="swatch-group-label">Solid Colors</div>
+              <div class="swatch-grid" id="leftSolidGrid"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-row">
+          <div class="swatch-head">
+            <div>
+              <h2 class="swatch-title">Right Joy-Con</h2>
+            </div>
+            <div class="swatch-current">Selected: <span id="rightCurrentText">Orange</span></div>
+          </div>
+
+          <div class="swatch-groups">
+            <div class="swatch-group">
+              <div class="swatch-group-label">Solid Colors</div>
+              <div class="swatch-grid" id="rightSolidGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-section">
+        <div class="pattern-head">
+          <div>
+            <h2 class="pattern-title">Signature Pair Editions</h2>
+            <p class="pattern-sub">Curated full-pair designs with a sharper visual identity.</p>
+          </div>
+        </div>
+
+        <div class="pattern-grid" id="patternPairGrid"></div>
+      </div>
+    </section>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="spec-num">01</div>
+        <strong>Responsive Bluetooth</strong>
+        <span>Stable wireless connection with low-latency input response.</span>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">02</div>
+        <strong>6-Axis Motion Control</strong>
+        <span>Integrated gyroscope for precise motion-based gameplay.</span>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">03</div>
+        <strong>No HD Rumble</strong>
+        <span>Built around the essentials, with standard vibration features.</span>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">04</div>
+        <strong>No Straps</strong>
+        <span>Side straps are not included with this configuration.</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">DriftZero</a>
+      <p class="footer-desc">
+        Sharper look.<br>
+        Smarter price.
+      </p>
     </div>
 
-    <div class="footer-bottom">
-      <p>© 2026 DriftZero</p>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="joycon.html">DriftZero Core Rail</a>
+        <a href="joycon2.html">DriftZero Pulse Flux</a>
+        <a href="procon.html">DriftZero Apex Pro</a>
+        <a href="joyconor.html">DriftZero Classic Rail</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="cart.html">Cart</a>
+        <a href="#">Contact</a>
+        <a href="#">Shipping</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="easter-egg/easter-egg.html" class="footer-easter-link">Baroque Works™</a>
+      </div>
     </div>
-  </footer>
+  </div>
 
-  <script>
-    const leftSwatches = [
-      { key:"blue", label:"Blue", category:"solid", image:"../images/joycon-lite/blue-left.png", accent:"#00dbff" },
-      { key:"red", label:"Red", category:"solid", image:"../images/joycon-lite/red-left.png", accent:"#ff4d5f" },
-      { key:"purple", label:"Purple", category:"solid", image:"../images/joycon-lite/purple-left.png", accent:"#8e6cff" },
-      { key:"dark-blue", label:"Dark Blue", category:"solid", image:"../images/joycon-lite/dark-blue-left.png", accent:"#1e3a8a" },
-      { key:"yellow", label:"Yellow", category:"solid", image:"../images/joycon-lite/yellow-left.png", accent:"#ffe45c" },
-      { key:"gray", label:"Gray", category:"solid", image:"../images/joycon-lite/gray-left.png", accent:"#9aa0ab" },
-      { key:"white", label:"White", category:"solid", image:"../images/joycon-lite/white-left.png", accent:"#f7f7f7" },
-      { key:"light-purple", label:"Light Purple", category:"solid", image:"../images/joycon-lite/light-purple-left.png", accent:"#c6a7ff" },
-      { key:"fuchsia", label:"Fuchsia", category:"solid", image:"../images/joycon-lite/fuchsia-left.png", accent:"#ff4fb3" },
-      { key:"pink", label:"Pink", category:"solid", image:"../images/joycon-lite/pink-left.png", accent:"#ff9cc7" },
-      { key:"green", label:"Green", category:"solid", image:"../images/joycon-lite/green-left.png", accent:"#59e28b" },
-      { key:"brown", label:"Brown", category:"solid", image:"../images/joycon-lite/brown-left.png", accent:"#b07a45" },
+  <div class="footer-bottom">
+    <p>© 2026 DriftZero</p>
+  </div>
+</footer>
 
-      { key:"splatoon-2", label:"Drip Crew—Urban", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png", pairImage:"../images/joycon-lite/splatoon-2-pair.png", accent:"#7f57ff" },
-      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
-      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png", pairImage:"../images/joycon-lite/zelda-totk-pair.png", accent:"#30df84" },
-      { key:"zelda-skyward", label:"Breeze Chaser", category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
-      { key:"pokemon", label:"Pocket Tales", category:"pattern", image:"../images/joycon-lite/pokemon-left.png", pairImage:"../images/joycon-lite/pokemon-pair.png", accent:"#7a4dff" },
-      { key:"mario", label:"Pipe Rider", category:"pattern", image:"../images/joycon-lite/mario-left.png", pairImage:"../images/joycon-lite/mario-pair.png", accent:"#c1121f" }
-    ];
+<script>
+  const leftSwatches = [
+    { key:"blue",         label:"Blue",         category:"solid",   image:"../images/joycon-lite/blue-left.png",         accent:"#00dbff" },
+    { key:"red",          label:"Red",          category:"solid",   image:"../images/joycon-lite/red-left.png",          accent:"#ff4d5f" },
+    { key:"purple",       label:"Purple",       category:"solid",   image:"../images/joycon-lite/purple-left.png",       accent:"#8e6cff" },
+    { key:"dark-blue",    label:"Dark Blue",    category:"solid",   image:"../images/joycon-lite/dark-blue-left.png",    accent:"#1e3a8a" },
+    { key:"yellow",       label:"Yellow",       category:"solid",   image:"../images/joycon-lite/yellow-left.png",       accent:"#ffe45c" },
+    { key:"gray",         label:"Gray",         category:"solid",   image:"../images/joycon-lite/gray-left.png",         accent:"#9aa0ab" },
+    { key:"white",        label:"White",        category:"solid",   image:"../images/joycon-lite/white-left.png",        accent:"#f7f7f7" },
+    { key:"light-purple", label:"Light Purple", category:"solid",   image:"../images/joycon-lite/light-purple-left.png", accent:"#c6a7ff" },
+    { key:"fuchsia",      label:"Fuchsia",      category:"solid",   image:"../images/joycon-lite/fuchsia-left.png",      accent:"#ff4fb3" },
+    { key:"pink",         label:"Pink",         category:"solid",   image:"../images/joycon-lite/pink-left.png",         accent:"#ff9cc7" },
+    { key:"green",        label:"Green",        category:"solid",   image:"../images/joycon-lite/green-left.png",        accent:"#59e28b" },
+    { key:"brown",        label:"Brown",        category:"solid",   image:"../images/joycon-lite/brown-left.png",        accent:"#b07a45" },
 
-    const rightSwatches = [
-      { key:"red", label:"Red", category:"solid", image:"../images/joycon-lite/red-right.png", accent:"#ff4d5f" },
-      { key:"blue", label:"Blue", category:"solid", image:"../images/joycon-lite/blue-right.png", accent:"#00dbff" },
-      { key:"orange", label:"Orange", category:"solid", image:"../images/joycon-lite/orange-right.png", accent:"#ff9a3d" },
-      { key:"yellow", label:"Yellow", category:"solid", image:"../images/joycon-lite/yellow-right.png", accent:"#ffe45c" },
-      { key:"gray", label:"Gray", category:"solid", image:"../images/joycon-lite/gray-right.png", accent:"#9aa0ab" },
-      { key:"white", label:"White", category:"solid", image:"../images/joycon-lite/white-right.png", accent:"#f7f7f7" },
-      { key:"light-green", label:"Light Green", category:"solid", image:"../images/joycon-lite/light-green-right.png", accent:"#a8f58c" },
-      { key:"green", label:"Green", category:"solid", image:"../images/joycon-lite/green-right.png", accent:"#59e28b" },
-      { key:"light-yellow", label:"Light Yellow", category:"solid", image:"../images/joycon-lite/light-yellow-right.png", accent:"#fff2a6" },
-      { key:"light-blue", label:"Light Blue", category:"solid", image:"../images/joycon-lite/light-blue-right.png", accent:"#8ddcff" },
-      { key:"ochre", label:"Ochre", category:"solid", image:"../images/joycon-lite/ochre-right.png", accent:"#c9972b" },
-      { key:"pink", label:"Pink", category:"solid", image:"../images/joycon-lite/pink-right.png", accent:"#ff9cc7" },
+    { key:"splatoon-2",    label:"Drip Crew—Urban", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png",    pairImage:"../images/joycon-lite/splatoon-2-pair.png",    accent:"#7f57ff" },
+    { key:"monster-hunter",label:"Obsidian Core",   category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png",pairImage:"../images/joycon-lite/monster-hunter-pair.png",accent:"#7a7a7a" },
+    { key:"zelda-totk",    label:"Elder Vale",       category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png",    pairImage:"../images/joycon-lite/zelda-totk-pair.png",    accent:"#30df84" },
+    { key:"zelda-skyward", label:"Breeze Chaser",    category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
+    { key:"pokemon",       label:"Pocket Tales",     category:"pattern", image:"../images/joycon-lite/pokemon-left.png",       pairImage:"../images/joycon-lite/pokemon-pair.png",       accent:"#7a4dff" },
+    { key:"mario",         label:"Pipe Rider",       category:"pattern", image:"../images/joycon-lite/mario-left.png",         pairImage:"../images/joycon-lite/mario-pair.png",         accent:"#c1121f" }
+  ];
 
-      { key:"splatoon-2", label:"Drip Crew—Urban", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png", pairImage:"../images/joycon-lite/splatoon-2-pair.png", accent:"#7f57ff" },
-      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
-      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png", pairImage:"../images/joycon-lite/zelda-totk-pair.png", accent:"#30df84" },
-      { key:"zelda-skyward", label:"Breeze Chaser", category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
-      { key:"pokemon", label:"Pocket Tales", category:"pattern", image:"../images/joycon-lite/pokemon-right.png", pairImage:"../images/joycon-lite/pokemon-pair.png", accent:"#7a4dff" },
-      { key:"mario", label:"Pipe Rider", category:"pattern", image:"../images/joycon-lite/mario-right.png", pairImage:"../images/joycon-lite/mario-pair.png", accent:"#c1121f" }
-    ];
+  const rightSwatches = [
+    { key:"red",         label:"Red",          category:"solid", image:"../images/joycon-lite/red-right.png",         accent:"#ff4d5f" },
+    { key:"blue",        label:"Blue",         category:"solid", image:"../images/joycon-lite/blue-right.png",        accent:"#00dbff" },
+    { key:"orange",      label:"Orange",       category:"solid", image:"../images/joycon-lite/orange-right.png",      accent:"#ff9a3d" },
+    { key:"yellow",      label:"Yellow",       category:"solid", image:"../images/joycon-lite/yellow-right.png",      accent:"#ffe45c" },
+    { key:"gray",        label:"Gray",         category:"solid", image:"../images/joycon-lite/gray-right.png",        accent:"#9aa0ab" },
+    { key:"white",       label:"White",        category:"solid", image:"../images/joycon-lite/white-right.png",       accent:"#f7f7f7" },
+    { key:"light-green", label:"Light Green",  category:"solid", image:"../images/joycon-lite/light-green-right.png", accent:"#a8f58c" },
+    { key:"green",       label:"Green",        category:"solid", image:"../images/joycon-lite/green-right.png",       accent:"#59e28b" },
+    { key:"light-yellow",label:"Light Yellow", category:"solid", image:"../images/joycon-lite/light-yellow-right.png",accent:"#fff2a6" },
+    { key:"light-blue",  label:"Light Blue",   category:"solid", image:"../images/joycon-lite/light-blue-right.png",  accent:"#8ddcff" },
+    { key:"ochre",       label:"Ochre",        category:"solid", image:"../images/joycon-lite/ochre-right.png",       accent:"#c9972b" },
+    { key:"pink",        label:"Pink",         category:"solid", image:"../images/joycon-lite/pink-right.png",        accent:"#ff9cc7" },
 
-    const leftHeroImage = document.getElementById("leftHeroImage");
-    const rightHeroImage = document.getElementById("rightHeroImage");
-    const fullHeroImage = document.getElementById("fullHeroImage");
-    const heroPair = document.getElementById("heroPair");
-    const heroFullWrap = document.getElementById("heroFullWrap");
-    const galleryBadge = document.getElementById("galleryBadge");
-    const selectedPairName = document.getElementById("selectedPairName");
-    const selectedPairQty = document.getElementById("selectedPairQty");
-    const productPrice = document.getElementById("productPrice");
-    const addToCartBtn = document.getElementById("addToCartBtn");
-    const customizeBtn = document.getElementById("customizeBtn");
-    const leftSelectionText = document.getElementById("leftSelectionText");
-    const rightSelectionText = document.getElementById("rightSelectionText");
-    const leftCurrentText = document.getElementById("leftCurrentText");
-    const rightCurrentText = document.getElementById("rightCurrentText");
+    { key:"splatoon-2",    label:"Drip Crew—Urban", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png",    pairImage:"../images/joycon-lite/splatoon-2-pair.png",    accent:"#7f57ff" },
+    { key:"monster-hunter",label:"Obsidian Core",   category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png",pairImage:"../images/joycon-lite/monster-hunter-pair.png",accent:"#7a7a7a" },
+    { key:"zelda-totk",    label:"Elder Vale",       category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png",    pairImage:"../images/joycon-lite/zelda-totk-pair.png",    accent:"#30df84" },
+    { key:"zelda-skyward", label:"Breeze Chaser",    category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
+    { key:"pokemon",       label:"Pocket Tales",     category:"pattern", image:"../images/joycon-lite/pokemon-right.png",       pairImage:"../images/joycon-lite/pokemon-pair.png",       accent:"#7a4dff" },
+    { key:"mario",         label:"Pipe Rider",       category:"pattern", image:"../images/joycon-lite/mario-right.png",         pairImage:"../images/joycon-lite/mario-pair.png",         accent:"#c1121f" }
+  ];
 
-    const leftSolidGrid = document.getElementById("leftSolidGrid");
-    const rightSolidGrid = document.getElementById("rightSolidGrid");
-    const patternPairGrid = document.getElementById("patternPairGrid");
+  const leftHeroImage    = document.getElementById("leftHeroImage");
+  const rightHeroImage   = document.getElementById("rightHeroImage");
+  const fullHeroImage    = document.getElementById("fullHeroImage");
+  const heroPair         = document.getElementById("heroPair");
+  const heroFullWrap     = document.getElementById("heroFullWrap");
+  const galleryBadge     = document.getElementById("galleryBadge");
+  const selectedPairName = document.getElementById("selectedPairName");
+  const productPrice     = document.getElementById("productPrice");
+  const addToCartBtn     = document.getElementById("addToCartBtn");
+  const customizeBtn     = document.getElementById("customizeBtn");
+  const leftSelectionText  = document.getElementById("leftSelectionText");
+  const rightSelectionText = document.getElementById("rightSelectionText");
+  const leftCurrentText    = document.getElementById("leftCurrentText");
+  const rightCurrentText   = document.getElementById("rightCurrentText");
+  const leftSolidGrid    = document.getElementById("leftSolidGrid");
+  const rightSolidGrid   = document.getElementById("rightSolidGrid");
+  const patternPairGrid  = document.getElementById("patternPairGrid");
 
-    const defaultSolidPair = {
-      left: "blue",
-      right: "red"
+  let currentPair = { left: "red", right: "orange" };
+
+  function getSwatchList(side){
+    return side === "left" ? leftSwatches : rightSwatches;
+  }
+
+  function findSwatch(side, key){
+    return getSwatchList(side).find(v => v.key === key);
+  }
+
+  function isPatternPair(left, right){
+    return left && right && left.category === "pattern" && right.category === "pattern" && left.key === right.key;
+  }
+
+  function getPatternBackgrounds(){
+    return {
+      "splatoon-2":    "linear-gradient(135deg, #2fe06d 0%, #7f57ff 100%)",
+      "monster-hunter":"linear-gradient(135deg, #111111 0%, #7a7a7a 100%)",
+      "zelda-totk":    "linear-gradient(135deg, #d4af37 0%, #30df84 100%)",
+      "zelda-skyward": "linear-gradient(135deg, #5f8eff 0%, #c9972b 100%)",
+      "pokemon":       "linear-gradient(135deg, #ff4d4d 0%, #7a4dff 100%)",
+      "mario":         "linear-gradient(135deg, #ff3b30 0%, #c1121f 100%)"
     };
+  }
 
-    let currentPair = {
-      left: "blue",
-      right: "red"
-    };
-
-    function getSwatchList(side){
-      return side === "left" ? leftSwatches : rightSwatches;
+  function getSwatchStyle(variant){
+    const patternBackgrounds = getPatternBackgrounds();
+    if (variant.category === "pattern" && patternBackgrounds[variant.key]) {
+      return `background:${patternBackgrounds[variant.key]};`;
     }
+    return `background:${variant.accent};`;
+  }
 
-    function findSwatch(side, key){
-      return getSwatchList(side).find(v => v.key === key);
-    }
+  function renderSwatchGrid(side, category, targetEl){
+    const list = getSwatchList(side).filter(v => v.category === category);
+    targetEl.innerHTML = list.map(v => {
+      const isActive = currentPair[side] === v.key;
+      return `
+        <button
+          type="button"
+          class="swatch-btn ${isActive ? "active" : ""}"
+          data-side="${side}"
+          data-key="${v.key}"
+          title="${v.label}"
+        >
+          <span class="swatch-dot" style="${getSwatchStyle(v)}"></span>
+          <span class="swatch-name">${v.label}</span>
+        </button>
+      `;
+    }).join("");
+  }
 
-    function isPatternPair(left, right){
-      return left && right && left.category === "pattern" && right.category === "pattern" && left.key === right.key;
-    }
+  function getAllPatternPairs(){
+    return leftSwatches.filter(v => v.category === "pattern");
+  }
 
-    function getPatternBackgrounds(){
-      return {
-        "splatoon-2": "linear-gradient(135deg, #2fe06d 0%, #7f57ff 100%)",
-        "monster-hunter": "linear-gradient(135deg, #111111 0%, #7a7a7a 100%)",
-        "zelda-totk": "linear-gradient(135deg, #d4af37 0%, #30df84 100%)",
-        "zelda-skyward": "linear-gradient(135deg, #5f8eff 0%, #c9972b 100%)",
-        "pokemon": "linear-gradient(135deg, #ff4d4d 0%, #7a4dff 100%)",
-        "mario": "linear-gradient(135deg, #ff3b30 0%, #c1121f 100%)"
-      };
-    }
+  function renderPatternPairs(){
+    if (!patternPairGrid) return;
+    const patterns = getAllPatternPairs();
+    const currentLeft  = findSwatch("left",  currentPair.left);
+    const currentRight = findSwatch("right", currentPair.right);
 
-    function getSwatchStyle(variant){
-      const patternBackgrounds = getPatternBackgrounds();
+    patternPairGrid.innerHTML = patterns.map(pattern => {
+      const isActive =
+        isPatternPair(currentLeft, currentRight) &&
+        currentLeft.key === pattern.key;
 
-      if (variant.category === "pattern" && patternBackgrounds[variant.key]) {
-        return `background:${patternBackgrounds[variant.key]};`;
-      }
+      return `
+        <button
+          type="button"
+          class="pattern-card ${isActive ? "active" : ""}"
+          data-pattern="${pattern.key}"
+          title="${pattern.label}"
+        >
+          <span class="pattern-preview" style="${getSwatchStyle(pattern)}"></span>
+          <span class="pattern-meta">
+            <span class="pattern-name">${pattern.label}</span>
+            <span class="pattern-type">Full Pair</span>
+          </span>
+        </button>
+      `;
+    }).join("");
 
-      return `background:${variant.accent};`;
-    }
-
-    function renderSwatchGrid(side, category, targetEl){
-      const list = getSwatchList(side).filter(v => v.category === category);
-
-      targetEl.innerHTML = list.map(v => {
-        const isActive = currentPair[side] === v.key;
-
-        return `
-          <button class="swatch-btn ${isActive ? "active" : ""}" data-side="${side}" data-key="${v.key}">
-            <span class="swatch-dot" style="${getSwatchStyle(v)}"></span>
-            <span class="swatch-name">${v.label}</span>
-          </button>
-        `;
-      }).join("");
-    }
-
-    function getAllPatternPairs(){
-      return leftSwatches.filter(v => v.category === "pattern");
-    }
-
-    function renderPatternPairs(){
-      if (!patternPairGrid) return;
-
-      const patterns = getAllPatternPairs();
-      const currentLeft = findSwatch("left", currentPair.left);
-      const currentRight = findSwatch("right", currentPair.right);
-
-      patternPairGrid.innerHTML = patterns.map(pattern => {
-        const isActive = isPatternPair(currentLeft, currentRight) && currentLeft.key === pattern.key;
-
-        return `
-          <button class="pattern-card ${isActive ? "active" : ""}" data-pattern="${pattern.key}">
-            <span class="pattern-preview" style="${getSwatchStyle(pattern)}"></span>
-            <span class="pattern-meta">
-              <span class="pattern-name">${pattern.label}</span>
-              <span class="pattern-type">Full Pair</span>
-            </span>
-          </button>
-        `;
-      }).join("");
-
-      document.querySelectorAll(".pattern-card").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const key = btn.dataset.pattern;
-          currentPair.left = key;
-          currentPair.right = key;
-          updateSelectedUI();
-          renderAllSwatches();
-        });
+    document.querySelectorAll(".pattern-card").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.pattern;
+        currentPair.left  = key;
+        currentPair.right = key;
+        updateSelectedUI();
+        renderAllSwatches();
       });
-    }
+    });
+  }
 
-    function attachSwatchEvents(){
-      document.querySelectorAll(".swatch-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const side = btn.dataset.side;
-          const key = btn.dataset.key;
-          const selected = findSwatch(side, key);
+  function attachSwatchEvents(){
+    document.querySelectorAll(".swatch-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const side     = btn.dataset.side;
+        const key      = btn.dataset.key;
+        const selected = findSwatch(side, key);
+        if (!selected) return;
 
-          if (!selected) return;
+        currentPair[side] = key;
 
-          currentPair[side] = key;
-
-          const oppositeSide = side === "left" ? "right" : "left";
-          const oppositeSelected = findSwatch(oppositeSide, currentPair[oppositeSide]);
-
-          if (oppositeSelected && oppositeSelected.category === "pattern") {
-            currentPair[oppositeSide] = defaultSolidPair[oppositeSide];
-          }
-
-          updateSelectedUI();
-          renderAllSwatches();
-        });
-      });
-    }
-
-    function renderAllSwatches(){
-      renderSwatchGrid("left", "solid", leftSolidGrid);
-      renderSwatchGrid("right", "solid", rightSolidGrid);
-      attachSwatchEvents();
-      renderPatternPairs();
-    }
-
-    function updateHeroVisual(left, right){
-      if (isPatternPair(left, right)) {
-        heroPair.classList.add("is-hidden");
-        heroFullWrap.classList.remove("is-hidden");
-        fullHeroImage.src = left.pairImage;
-        fullHeroImage.alt = `${left.label} full pair Joy-Con`;
-      } else {
-        heroFullWrap.classList.add("is-hidden");
-        heroPair.classList.remove("is-hidden");
-
-        leftHeroImage.src = left.image;
-        leftHeroImage.alt = `${left.label} left Joy-Con`;
-
-        rightHeroImage.src = right.image;
-        rightHeroImage.alt = `${right.label} right Joy-Con`;
-      }
-    }
-
-    function updateSelectedUI(){
-      const left = findSwatch("left", currentPair.left);
-      const right = findSwatch("right", currentPair.right);
-
-      if (!left || !right) return;
-
-      leftSelectionText.textContent = left.label;
-      rightSelectionText.textContent = right.label;
-      leftCurrentText.textContent = left.label;
-      rightCurrentText.textContent = right.label;
-
-      selectedPairName.textContent = `${left.label} / ${right.label}`;
-      selectedPairQty.textContent = "Ready";
-
-      if (isPatternPair(left, right)) {
-        galleryBadge.innerHTML = `Pair:<br>${left.label}`;
-      } else {
-        galleryBadge.innerHTML = `L: ${left.label}<br>R: ${right.label}`;
-      }
-
-      productPrice.textContent = "€19.99";
-      updateHeroVisual(left, right);
-
-      addToCartBtn.disabled = false;
-      addToCartBtn.textContent = "Add To Cart";
-    }
-
-    function addCurrentToCart(){
-      const left = findSwatch("left", currentPair.left);
-      const right = findSwatch("right", currentPair.right);
-
-      if (!left || !right) return;
-
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const patternMode = isPatternPair(left, right);
-
-      cart.push({
-        key: `lite-${currentPair.left}-${currentPair.right}`,
-        name: "DriftZero Core Rail - " + (patternMode ? left.label : `${left.label} / ${right.label}`),
-        price: 19.99,
-        image: patternMode ? left.pairImage : left.image,
-        leftImage: left.image,
-        rightImage: right.image,
-        pairImage: patternMode ? left.pairImage : "",
-        color: `${left.label} / ${right.label}`,
-        leftColor: left.label,
-        rightColor: right.label,
-        isPatternPair: patternMode
-      });
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      addToCartBtn.textContent = "Added To Cart";
-      addToCartBtn.disabled = true;
-    }
-
-    if (customizeBtn) {
-      customizeBtn.addEventListener("click", () => {
-        const target = document.getElementById("leftSolidGrid");
-        if (target) {
-          target.scrollIntoView({ block: "start" });
+        // Se il lato opposto era un pattern, resettalo al primo solid disponibile
+        const oppositeSide     = side === "left" ? "right" : "left";
+        const oppositeSelected = findSwatch(oppositeSide, currentPair[oppositeSide]);
+        if (oppositeSelected && oppositeSelected.category === "pattern") {
+          const fallback = getSwatchList(oppositeSide).find(v => v.category === "solid");
+          if (fallback) currentPair[oppositeSide] = fallback.key;
         }
+
+        updateSelectedUI();
+        renderAllSwatches();
       });
+    });
+  }
+
+  function renderAllSwatches(){
+    renderSwatchGrid("left",  "solid", leftSolidGrid);
+    renderSwatchGrid("right", "solid", rightSolidGrid);
+    attachSwatchEvents();
+    renderPatternPairs();
+  }
+
+  function updateHeroVisual(left, right){
+    if (isPatternPair(left, right)) {
+      heroPair.classList.add("is-hidden");
+      heroFullWrap.classList.remove("is-hidden");
+      fullHeroImage.src = left.pairImage;
+      fullHeroImage.alt = `${left.label} full pair Joy-Con`;
+    } else {
+      heroFullWrap.classList.add("is-hidden");
+      heroPair.classList.remove("is-hidden");
+      leftHeroImage.src  = left.image;
+      leftHeroImage.alt  = `${left.label} left Joy-Con`;
+      rightHeroImage.src = right.image;
+      rightHeroImage.alt = `${right.label} right Joy-Con`;
+    }
+  }
+
+  function updateSelectedUI(){
+    const left  = findSwatch("left",  currentPair.left);
+    const right = findSwatch("right", currentPair.right);
+    if (!left || !right) return;
+
+    leftSelectionText.textContent  = left.label;
+    rightSelectionText.textContent = right.label;
+    leftCurrentText.textContent    = left.label;
+    rightCurrentText.textContent   = right.label;
+
+    selectedPairName.textContent = `${left.label} / ${right.label}`;
+
+    if (isPatternPair(left, right)) {
+      galleryBadge.innerHTML = `Pair:<br>${left.label}`;
+    } else {
+      galleryBadge.innerHTML = `L: ${left.label}<br>R: ${right.label}`;
     }
 
-    if (addToCartBtn) {
-      addToCartBtn.addEventListener("click", addCurrentToCart);
-    }
+    productPrice.textContent = "€19.99";
+    updateHeroVisual(left, right);
+  }
 
-    updateSelectedUI();
-    renderAllSwatches();
-  </script>
+  function addCurrentToCart(){
+    const left  = findSwatch("left",  currentPair.left);
+    const right = findSwatch("right", currentPair.right);
+    if (!left || !right) return;
+
+    const cart        = JSON.parse(localStorage.getItem("cart")) || [];
+    const patternMode = isPatternPair(left, right);
+
+    cart.push({
+      key:          `lite-${currentPair.left}-${currentPair.right}`,
+      name:         "DriftZero Core Rail - " + (patternMode ? left.label : `${left.label} / ${right.label}`),
+      price:        19.99,
+      image:        patternMode ? left.pairImage : left.image,
+      leftImage:    left.image,
+      rightImage:   right.image,
+      pairImage:    patternMode ? left.pairImage : "",
+      color:        `${left.label} / ${right.label}`,
+      leftColor:    left.label,
+      rightColor:   right.label,
+      isPatternPair: patternMode
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  if (customizeBtn) {
+    customizeBtn.addEventListener("click", () => {
+      const target = document.getElementById("leftSolidGrid");
+      if (target) target.scrollIntoView({ block: "start" });
+    });
+  }
+
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener("click", addCurrentToCart);
+  }
+
+  updateSelectedUI();
+  renderAllSwatches();
+</script>
 </body>
 </html>

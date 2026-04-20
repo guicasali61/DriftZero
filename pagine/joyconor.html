@@ -148,31 +148,28 @@
       top:110px;
     }
 
- .main-image{
-  position:relative;
-  min-height:560px;
-  height:560px;
-  padding:34px;
+    .main-image{
+      position:relative;
+      min-height:560px;
+      height:560px;
+      padding:34px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), transparent 55%),
+        radial-gradient(circle at 50% 80%, rgba(0,0,0,0.35), transparent 70%),
+        linear-gradient(180deg, #111114 0%, #0a0a0d 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
 
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,0.06);
-
-  background:
-    radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), transparent 55%),
-    radial-gradient(circle at 50% 80%, rgba(0,0,0,0.35), transparent 70%),
-    linear-gradient(180deg, #111114 0%, #0a0a0d 100%);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-   .main-image img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
+    .main-image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
 
     .thumbs{
       margin-top:18px;
@@ -605,226 +602,222 @@
   </style>
 </head>
 <body>
+<header class="header">
+  <a href="../index.html" class="logo">DriftZero</a>
 
-  <header class="header">
-    <a href="../index.html" class="logo">DriftZero</a>
+  <nav class="nav">
+    <a href="joycon.html">DriftZero Core Rail</a>
+    <a href="joycon2.html">DriftZero Pulse Flux</a>
+    <a href="procon.html">DriftZero Apex Pro</a>
+    <a href="joyconor.html" class="active">DriftZero Classic Rail</a>
+  </nav>
 
-    <nav class="nav">
-      <a href="joycon.html">DriftZero Core Rail</a>
-      <a href="joycon2.html">DriftZero Pulse Flux</a>
-      <a href="procon.html">DriftZero Apex Pro</a>
-      <a href="joyconor.html" class="active">DriftZero Classic Rail</a>
-    </nav>
+  <a href="cart.html" class="cart">Cart</a>
+</header>
 
-    <a href="cart.html" class="cart">Cart</a>
-  </header>
-
-  <main>
-    <section class="product-shell">
-      <div class="product-gallery">
-        <div class="main-image">
-          <img id="mainProductImage" src="../images/classic-white.png" alt="DriftZero Classic Rail">
-        </div>
-
-        <div class="thumbs">
-          <button class="thumb active" type="button" data-image="../images/classic-white.png">
-            <img src="../images/classic-white.png" alt="Classic Rail white view">
-          </button>
-
-          <button class="thumb" type="button" data-image="../images/classic-red.png">
-            <img src="../images/classic-red.png" alt="Classic Rail red view">
-          </button>
-
-           <button class="thumb" type="button" data-image="../images/classic-pink.png">
-    <img src="../images/classic-pink.png" alt="Classic Rail pink view">
-  </button>
-        </div>
+<main>
+  <section class="product-shell">
+    <div class="product-gallery">
+      <div class="main-image">
+        <img id="mainProductImage" src="../images/classic-white.png" alt="DriftZero Classic Rail">
       </div>
 
-      <div class="product-info">
-        <div class="title-wrap">
-          <span class="eyebrow">DriftZero Classic Line</span>
-          <h1>Classic Rail</h1>
-          <p class="subtitle">Same Feel.<br> Better Price.</p>
-        </div>
+      <div class="thumbs">
+        <button class="thumb active" type="button" data-image="../images/classic-white.png">
+          <img src="../images/classic-white.png" alt="Classic Rail white view">
+        </button>
 
-        <div class="price-row">
-          <div class="price">€34.99</div>
-          <div class="price-note">VAT included</div>
-        </div>
+        <button class="thumb" type="button" data-image="../images/classic-red.png">
+          <img src="../images/classic-red.png" alt="Classic Rail red view">
+        </button>
 
-        <p class="short-desc">
-          A cleaner take on the familiar split controller format. Built for everyday play with a balanced feel and a more refined finish.
-        </p>
-
-        <div class="bullet-list">
-          <div class="bullet">Familiar split layout</div>
-          <div class="bullet">HD Rumble</div>
-          <div class="bullet">Comes with box </div>
-          <div class="bullet">Wrist Strap Included</div>
-        </div>
-
-        <div>
-          <div class="section-label">Choose Color</div>
-          <div class="color-options">
-            <button class="color-btn" type="button" data-color="Ivory Signal" data-image="../images/classic-white.png">
-              <span class="swatch" style="background:#e9e1cf;"></span>
-              <span>Ivory Signal</span>
-            </button>
-
-            <button class="color-btn" type="button" data-color="Crimson Rail" data-image="../images/classic-red.png">
-              <span class="swatch" style="background:#bb3b3b;"></span>
-              <span>Crimson Rail</span>
-            </button>
-
-            <button class="color-btn" type="button" data-color="Rose Static" data-image="../images/classic-pink.png">
-              <span class="swatch" style="background:#d493a7;"></span>
-              <span>Rose Static</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="buy-box">
-          <div class="stock">In stock</div>
-
-          <div class="qty-row">
-            <label for="qty">Quantity</label>
-            <select id="qty" class="qty-select">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
-
-          <div class="actions">
-            <button class="btn-primary" id="addToCartBtn" type="button">Add To Cart</button>
-            <a href="cart.html" class="btn-secondary" style="display:flex;align-items:center;justify-content:center;">Go To Cart</a>
-          </div>
-
-          <p class="mini-note" id="selectedColorText">Selected color: Ivory Signal</p>
-        </div>
+        <button class="thumb" type="button" data-image="../images/classic-pink.png">
+          <img src="../images/classic-pink.png" alt="Classic Rail pink view">
+        </button>
       </div>
-    </section>
+    </div>
 
-    <section class="simple-section">
-      <h2>Product Description</h2>
-      <p>
-      Classic Rail is the most straightforward option in the DriftZero lineup.
-Built to deliver the familiar split-controller feel without the inflated price, it focuses on what actually matters: balance, comfort, and everyday reliability.
+    <div class="product-info">
+      <div class="title-wrap">
+        <span class="eyebrow">DriftZero Classic Line</span>
+        <h1>Classic Rail</h1>
+        <p class="subtitle">Familiar feel.<br>Smarter price.</p>
+      </div>
 
-No unnecessary extras. No distractions.
-Just a clean, responsive controller you can pick up and use instantly.
+      <div class="price-row">
+        <div class="price">€34.99</div>
+        <div class="price-note">VAT included</div>
+      </div>
 
-Each unit comes as a complete set, including wrist straps and retail-style packaging — ready straight out of the box.
+      <p class="short-desc">
+        The most familiar setup in the DriftZero lineup. Built for everyday play with a balanced grip, a complete feature set, and a cleaner price point.
       </p>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a href="../index.html" class="footer-logo">DriftZero</a>
-        <p class="footer-desc">
-          Built to look sharper.<br>
-          Priced to make sense.
-        </p>
+      <div class="bullet-list">
+        <div class="bullet">Classic split layout</div>
+        <div class="bullet">HD Rumble support</div>
+        <div class="bullet">Retail-style box included</div>
+        <div class="bullet">Wrist straps included</div>
       </div>
 
-      <div class="footer-nav">
-        <div class="footer-col">
-          <h4>Products</h4>
-          <a href="joycon.html">DriftZero Core Rail</a>
-          <a href="joycon2.html">DriftZero Pulse Flux</a>
-          <a href="procon.html">DriftZero Apex Pro</a>
-          <a href="joyconor.html">DriftZero Classic Rail</a>
-        </div>
+      <div>
+        <div class="section-label">Choose Color</div>
+        <div class="color-options">
+          <button class="color-btn active" type="button" data-color="Ivory Signal" data-image="../images/classic-white.png">
+            <span class="swatch" style="background:#e9e1cf;"></span>
+            <span>Ivory Signal</span>
+          </button>
 
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a href="cart.html">Cart</a>
-          <a href="#">Contact</a>
-          <a href="#">Shipping</a>
-        </div>
+          <button class="color-btn" type="button" data-color="Crimson Rail" data-image="../images/classic-red.png">
+            <span class="swatch" style="background:#bb3b3b;"></span>
+            <span>Crimson Rail</span>
+          </button>
 
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="#">Privacy</a>
-          <a href="easter-egg/easter-egg.html" class="footer-easter-link">Baroque Works™</a>
+          <button class="color-btn" type="button" data-color="Rose Static" data-image="../images/classic-pink.png">
+            <span class="swatch" style="background:#d493a7;"></span>
+            <span>Rose Static</span>
+          </button>
         </div>
       </div>
+
+      <div class="buy-box">
+        <div class="stock">In stock</div>
+
+        <div class="qty-row">
+          <label for="qty">Quantity</label>
+          <select id="qty" class="qty-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" id="addToCartBtn" type="button">Add To Cart</button>
+          <a href="cart.html" class="btn-secondary" style="display:flex;align-items:center;justify-content:center;">Go To Cart</a>
+        </div>
+
+        <p class="mini-note" id="selectedColorText">Selected color: Ivory Signal</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="simple-section">
+    <h2>Product Description</h2>
+    <p>
+      Classic Rail is the most complete all-round option in the DriftZero lineup.
+      It keeps the familiar split-controller feel while offering a more accessible price and a cleaner overall package.
+      Built for everyday use, it focuses on comfort, balance, and responsive play without overcomplicating the experience.
+      Each set includes wrist straps and retail-style packaging, so it arrives ready to use straight out of the box.
+    </p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">DriftZero</a>
+      <p class="footer-desc">
+        Sharper look.<br>
+        Smarter price.
+      </p>
     </div>
 
-    <div class="footer-bottom">
-      <p>© 2026 DriftZero</p>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="joycon.html">DriftZero Core Rail</a>
+        <a href="joycon2.html">DriftZero Pulse Flux</a>
+        <a href="procon.html">DriftZero Apex Pro</a>
+        <a href="joyconor.html">DriftZero Classic Rail</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="cart.html">Cart</a>
+        <a href="#">Contact</a>
+        <a href="#">Shipping</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="easter-egg/easter-egg.html" class="footer-easter-link">Baroque Works™</a>
+      </div>
     </div>
-  </footer>
+  </div>
 
-  <script>
-    const mainProductImage = document.getElementById('mainProductImage');
-    const colorButtons = document.querySelectorAll('.color-btn');
-    const thumbButtons = document.querySelectorAll('.thumb');
-    const selectedColorText = document.getElementById('selectedColorText');
-    const addToCartBtn = document.getElementById('addToCartBtn');
-    const qtySelect = document.getElementById('qty');
+  <div class="footer-bottom">
+    <p>© 2026 DriftZero</p>
+  </div>
+</footer>
 
-    let selectedColor = 'Ivory Signal';
-    let selectedImage = '../images/classic-white.png';
+<script>
+  const mainProductImage  = document.getElementById('mainProductImage');
+  const colorButtons      = document.querySelectorAll('.color-btn');
+  const thumbButtons      = document.querySelectorAll('.thumb');
+  const selectedColorText = document.getElementById('selectedColorText');
+  const addToCartBtn      = document.getElementById('addToCartBtn');
+  const qtySelect         = document.getElementById('qty');
 
-    const productName = 'DriftZero Classic Rail';
-    const productPrice = 34.99;
+  let selectedColor = 'Ivory Signal';
+  let selectedImage = '../images/classic-white.png';
 
-    colorButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        colorButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+  const productName  = 'DriftZero Classic Rail';
+  const productPrice = 34.99;
 
-        selectedColor = button.dataset.color;
-        selectedImage = button.dataset.image;
-        mainProductImage.src = selectedImage;
-        selectedColorText.textContent = `Selected color: ${selectedColor}`;
+  colorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      colorButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
 
-        thumbButtons.forEach(thumb => {
-          thumb.classList.remove('active');
-          if (thumb.dataset.image === selectedImage) {
-            thumb.classList.add('active');
-          }
-        });
+      selectedColor = button.dataset.color;
+      selectedImage = button.dataset.image;
+      mainProductImage.src = selectedImage;
+      selectedColorText.textContent = `Selected color: ${selectedColor}`;
+
+      thumbButtons.forEach(thumb => {
+        thumb.classList.remove('active');
+        if (thumb.dataset.image === selectedImage) {
+          thumb.classList.add('active');
+        }
       });
     });
+  });
 
-    thumbButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        thumbButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        mainProductImage.src = button.dataset.image;
+  thumbButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      thumbButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      mainProductImage.src = button.dataset.image;
+    });
+  });
+
+  addToCartBtn.addEventListener('click', () => {
+    const qty  = parseInt(qtySelect.value, 10);
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    for (let i = 0; i < qty; i++) {
+      cart.push({
+        name:  productName,
+        price: productPrice,
+        image: selectedImage,
+        color: selectedColor
       });
-    });
+    }
 
-    addToCartBtn.addEventListener('click', () => {
-      const qty = parseInt(qtySelect.value, 10);
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    localStorage.setItem('cart', JSON.stringify(cart));
 
-      for (let i = 0; i < qty; i++) {
-        cart.push({
-          name: productName,
-          price: productPrice,
-          image: selectedImage,
-          color: selectedColor
-        });
-      }
+    const originalText = addToCartBtn.textContent;
+    addToCartBtn.textContent   = 'Added ✔';
+    addToCartBtn.style.boxShadow = '0 0 28px rgba(243,223,178,0.24)';
 
-      localStorage.setItem('cart', JSON.stringify(cart));
-
-      const originalText = addToCartBtn.textContent;
-      addToCartBtn.textContent = 'Added ✔';
-      addToCartBtn.style.boxShadow = '0 0 28px rgba(243,223,178,0.24)';
-
-      setTimeout(() => {
-        addToCartBtn.textContent = originalText;
-        addToCartBtn.style.boxShadow = '';
-      }, 1200);
-    });
-  </script>
+    setTimeout(() => {
+      addToCartBtn.textContent     = originalText;
+      addToCartBtn.style.boxShadow = '';
+    }, 1200);
+  });
+</script>
 </body>
 </html>

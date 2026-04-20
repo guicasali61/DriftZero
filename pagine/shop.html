@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 
- <style>
+<style>
   :root{
     --bg: #070709;
     --text: rgba(255,255,255,0.92);
@@ -20,7 +20,8 @@
     --accent2: #6a5cff;
     --accent-glow: rgba(0,229,255,0.16);
 
-    /* HERO DINAMICA */
+    --accent-soft: var(--accent-glow);
+
     --hero-glow-1: rgba(0,229,255,0.18);
     --hero-glow-2: rgba(106,92,255,0.10);
     --hero-beam-1: rgba(150,225,255,0.18);
@@ -149,7 +150,6 @@
     background:linear-gradient(180deg, #04060b 0%, #070b14 52%, #050811 100%);
   }
 
-  /* glow centrale più piccolo e concentrato */
   .shop-hero::before{
     content:"";
     position:absolute;
@@ -167,7 +167,6 @@
     opacity:0.82;
   }
 
-  /* pulviscolo basso più discreto */
   .shop-hero::after{
     content:"";
     position:absolute;
@@ -204,7 +203,6 @@
     mix-blend-mode:screen;
   }
 
-  /* corpo principale del fascio */
   .hero-beam::before{
     content:"";
     position:absolute;
@@ -223,7 +221,6 @@
     filter:blur(10px);
   }
 
-  /* core centrale più stretto e più luminoso */
   .hero-beam::after{
     content:"";
     position:absolute;
@@ -385,12 +382,6 @@
     text-transform:uppercase;
   }
 
-  .section-title h2{
-    font-size:clamp(30px, 4vw, 46px);
-    line-height:1.05;
-    margin-bottom:10px;
-  }
-
   .section-title p{
     font-size:19px;
     line-height:1.5;
@@ -403,7 +394,51 @@
     color:var(--text);
   }
 
- 
+  .title-light-wrap{
+    position:relative;
+    display:inline-block;
+    isolation:isolate;
+    margin-bottom:10px;
+  }
+
+  .title-light-wrap::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:128%;
+    height:145%;
+    transform:translate(-50%, -50%);
+    pointer-events:none;
+    z-index:0;
+    background:radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    filter:blur(26px);
+    opacity:0.95;
+    transition:
+      background 0.6s ease,
+      opacity 0.6s ease,
+      transform 0.6s ease,
+      filter 0.6s ease;
+  }
+
+  .title-light-wrap h2{
+    position:relative;
+    z-index:1;
+    margin:0;
+    font-size:clamp(30px, 4vw, 46px);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    background:linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 0 18px var(--accent-soft));
+    transition:
+      filter 0.6s ease,
+      transform 0.35s ease;
+  }
 
   .stack-controls{
     display:flex;
@@ -454,228 +489,250 @@
 
   .lineup-stack{
     position:relative;
-    height:620px;
+    height:700px;
     margin-top:10px;
     overflow:visible;
   }
 
- .stack-card{
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: min(420px, 88vw);
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: linear-gradient(180deg, rgba(18,18,22,0.96), rgba(10,10,14,0.94));
-  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-  transition:
-    transform 0.5s ease,
-    opacity 0.5s ease,
-    filter 0.5s ease,
-    box-shadow 0.5s ease,
-    border-color 0.5s ease,
-    background 0.5s ease;
-  transform-origin: center center;
-  opacity: 0;
-  pointer-events: none;
-}
+  .stack-card{
+    position:absolute;
+    top:0;
+    left:50%;
+    width:min(420px, 88vw);
+    height:620px;
+    display:grid;
+    grid-template-rows:260px 1fr;
+    border-radius:28px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.10);
+    background:linear-gradient(180deg, rgba(18,18,22,0.96), rgba(10,10,14,0.94));
+    box-shadow:0 18px 50px rgba(0,0,0,0.35);
+    transition:
+      transform 0.5s ease,
+      opacity 0.5s ease,
+      filter 0.5s ease,
+      box-shadow 0.5s ease,
+      border-color 0.5s ease,
+      background 0.5s ease;
+    transform-origin:center center;
+    opacity:0;
+    pointer-events:none;
+  }
 
-.stack-card.active{
-  transform: translateX(-50%) translateY(0) scale(1);
-  z-index: 5;
-  opacity: 1;
-  filter: none;
-  pointer-events: auto;
-  border-color: rgba(255,255,255,0.18);
-  background: linear-gradient(180deg, rgba(22,22,28,1), rgba(12,12,16,0.98));
-  box-shadow:
-    0 30px 70px rgba(0,0,0,0.48),
-    0 0 40px var(--accent-glow);
-}
+  .stack-card.active{
+    transform:translateX(-50%) translateY(0) scale(1);
+    z-index:5;
+    opacity:1;
+    filter:none;
+    pointer-events:auto;
+    border-color:rgba(255,255,255,0.18);
+    background:linear-gradient(180deg, rgba(22,22,28,1), rgba(12,12,16,0.98));
+    box-shadow:
+      0 30px 70px rgba(0,0,0,0.48),
+      0 0 40px var(--accent-glow);
+  }
 
-.stack-card.left{
-  transform: translateX(calc(-50% - 230px)) translateY(26px) scale(0.9);
-  z-index: 4;
-  opacity: 0.82;
-  filter: blur(0.3px);
-  pointer-events: auto;
-}
+  .stack-card.left{
+    transform:translateX(calc(-50% - 230px)) translateY(26px) scale(0.9);
+    z-index:4;
+    opacity:0.82;
+    filter:blur(0.3px);
+    pointer-events:auto;
+  }
 
-.stack-card.right{
-  transform: translateX(calc(-50% + 230px)) translateY(26px) scale(0.9);
-  z-index: 4;
-  opacity: 0.82;
-  filter: blur(0.3px);
-  pointer-events: auto;
-}
+  .stack-card.right{
+    transform:translateX(calc(-50% + 230px)) translateY(26px) scale(0.9);
+    z-index:4;
+    opacity:0.82;
+    filter:blur(0.3px);
+    pointer-events:auto;
+  }
 
-.stack-card.back{
-  transform: translateX(-50%) translateY(48px) scale(0.84);
-  z-index: 3;
-  opacity: 0.42;
-  filter: blur(1px);
-  pointer-events: none;
-}
+  .stack-card.back{
+    transform:translateX(-50%) translateY(48px) scale(0.84);
+    z-index:3;
+    opacity:0.42;
+    filter:blur(1px);
+    pointer-events:none;
+  }
 
-.line-top{
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 260px;
-  padding: 24px;
-  border-radius: 22px 22px 0 0;
-  overflow: hidden;
-  background-image: url("../images/bg-card-shop.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1;
-}
+  .line-top{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:260px;
+    padding:24px;
+    overflow:hidden;
+    background-image:url("../images/bg-card-shop.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    z-index:1;
+  }
 
-.line-top::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,0.18) 0%,
-    rgba(0,0,0,0.05) 35%,
-    rgba(0,0,0,0.22) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-.line-top::after{
-  content: "";
-  position: absolute;
-  width: 72%;
-  height: 72%;
-  left: 50%;
-  top: 55%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    var(--accent-glow) 0%,
-    transparent 72%
-  );
-  filter: blur(28px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.line-top img{
-  position: relative;
-  z-index: 2;
-  max-width: 100%;
-  max-height: 180px;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 30px rgba(0,0,0,0.45));
-}
-
-.line-badge{
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 13px;
-  border-radius: 999px;
-  background: rgba(10,10,14,0.68);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.9);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.stack-card.active .line-badge{
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  color: black;
-  border-color: transparent;
-}
-
-/* IMPORTANTE: qui NON sovrascriviamo più lo sfondo con background */
-/* aggiungiamo solo un leggero boost visivo quando la card è attiva */
-.stack-card.active .line-top::before{
-  background:
-    linear-gradient(
+  .line-top::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
       180deg,
-      rgba(0,0,0,0.10) 0%,
-      rgba(255,255,255,0.03) 40%,
-      rgba(0,0,0,0.20) 100%
+      rgba(0,0,0,0.18) 0%,
+      rgba(0,0,0,0.05) 35%,
+      rgba(0,0,0,0.22) 100%
     );
-}
+    z-index:1;
+    pointer-events:none;
+  }
 
-.line-body{
-  padding: 20px;
-}
+  .line-top::after{
+    content:"";
+    position:absolute;
+    width:72%;
+    height:72%;
+    left:50%;
+    top:55%;
+    transform:translate(-50%, -50%);
+    background:radial-gradient(
+      circle,
+      var(--accent-glow) 0%,
+      transparent 72%
+    );
+    filter:blur(28px);
+    z-index:1;
+    pointer-events:none;
+  }
 
-.stack-card.active .line-body{
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-}
+  .line-top img{
+    position:relative;
+    z-index:2;
+    width:auto;
+    max-width:78%;
+    height:auto;
+    max-height:172px;
+    object-fit:contain;
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,0.45));
+    flex-shrink:0;
+  }
 
-.line-body h3{
-  font-size: 28px;
-  line-height: 1.05;
-  margin-bottom: 12px;
-}
+  /* FIX SPECIFICO PULSE FLUX */
+  .line-top img[alt="DriftZero Pulse Flux"]{
+    max-width:70%;
+    max-height:158px;
+    transform:translateY(4px);
+  }
 
-.line-body p{
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.45;
-  margin-bottom: 18px;
-  min-height: 78px;
-}
+  .line-badge{
+    position:absolute;
+    top:16px;
+    left:16px;
+    z-index:3;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 13px;
+    border-radius:999px;
+    background:rgba(10,10,14,0.68);
+    border:1px solid rgba(255,255,255,0.12);
+    color:rgba(255,255,255,0.9);
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    line-height:1;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  }
 
-.line-price{
-  margin-bottom: 18px;
-}
+  .stack-card.active .line-badge{
+    background:linear-gradient(90deg, var(--accent1), var(--accent2));
+    color:black;
+    border-color:transparent;
+  }
 
-.line-price small{
-  display: block;
-  color: rgba(255,255,255,0.52);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
+  .stack-card.active .line-top::before{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0.10) 0%,
+        rgba(255,255,255,0.03) 40%,
+        rgba(0,0,0,0.20) 100%
+      );
+  }
 
-.line-price strong{
-  font-size: 34px;
-  line-height: 1;
-}
+  .line-body{
+    padding:20px;
+    display:grid;
+    grid-template-rows:64px 88px 64px 52px;
+    row-gap:14px;
+    min-height:0;
+  }
 
-.line-link{
-  display: inline-flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 18px;
-  border-radius: 14px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-  border: 1px solid rgba(255,255,255,0.12);
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  transition: 0.25s ease;
-}
+  .stack-card.active .line-body{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  }
 
-.stack-card.active .line-link,
-.line-link:hover{
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  color: black;
-  border-color: transparent;
-}
+  .line-body h3{
+    font-size:28px;
+    line-height:1.05;
+    margin:0;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+  }
+
+  .line-body p{
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.45;
+    margin:0;
+    overflow:hidden;
+  }
+
+  .line-price{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    min-height:0;
+  }
+
+  .line-price small{
+    display:block;
+    color:rgba(255,255,255,0.52);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:4px;
+  }
+
+  .line-price strong{
+    font-size:34px;
+    line-height:1;
+  }
+
+  .line-link{
+    align-self:stretch;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    min-height:52px;
+    height:52px;
+    padding:14px 18px;
+    border-radius:14px;
+    background:linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    border:1px solid rgba(255,255,255,0.12);
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    transition:0.25s ease;
+  }
+
+  .stack-card.active .line-link,
+  .line-link:hover{
+    background:linear-gradient(90deg, var(--accent1), var(--accent2));
+    color:black;
+    border-color:transparent;
+  }
 
   /* COMPARISON */
   .comparison-wrap{
@@ -780,6 +837,8 @@
     background:linear-gradient(90deg, var(--accent1), var(--accent2));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    background-clip:text;
+    color:transparent;
   }
 
   .footer-desc{
@@ -819,19 +878,20 @@
     color:rgba(255,255,255,0.95);
     transform:translateX(2px);
   }
-  .footer-easter-link{
-  background:linear-gradient(90deg, var(--accent1), var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  color:transparent;
-  text-decoration:none;
-  transition:opacity 0.2s ease;
-}
 
-.footer-easter-link:hover{
-  opacity:0.85;
-}
+  .footer-easter-link{
+    background:linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    color:transparent;
+    text-decoration:none;
+    transition:opacity 0.2s ease;
+  }
+
+  .footer-easter-link:hover{
+    opacity:0.85;
+  }
 
   .footer-bottom{
     margin-top:45px;
@@ -849,7 +909,11 @@
   /* RESPONSIVE */
   @media (max-width:1100px){
     .lineup-stack{
-      height:580px;
+      height:700px;
+    }
+
+    .stack-card{
+      height:620px;
     }
 
     .stack-card.left{
@@ -918,11 +982,53 @@
     }
 
     .lineup-stack{
-      height:560px;
+      height:640px;
     }
 
     .stack-card{
       width:min(360px, 92vw);
+      height:570px;
+      grid-template-rows:230px 1fr;
+    }
+
+    .line-top{
+      height:230px;
+      padding:20px;
+    }
+
+    .line-top img{
+      max-width:76%;
+      max-height:150px;
+    }
+
+    .line-top img[alt="DriftZero Pulse Flux"]{
+      max-width:66%;
+      max-height:142px;
+      transform:translateY(4px);
+    }
+
+    .line-body{
+      padding:18px;
+      grid-template-rows:56px 76px 58px 48px;
+      row-gap:12px;
+    }
+
+    .line-body h3{
+      font-size:24px;
+    }
+
+    .line-body p{
+      font-size:16px;
+    }
+
+    .line-price strong{
+      font-size:30px;
+    }
+
+    .line-link{
+      min-height:48px;
+      height:48px;
+      font-size:15px;
     }
 
     .stack-card.left{
@@ -956,7 +1062,7 @@
   }
 </style>
 <body>
-
+<head>
 <header class="header">
   <a href="../index.html" class="logo">DriftZero</a>
 
@@ -978,11 +1084,8 @@
     <div class="container">
       <div class="hero-copy">
         <div class="eyebrow">DRIFTZERO SHOP</div>
-        <h1>CHOOSE THE LINE THAT FITS YOU.</h1>
-        <p>
-          FOUR CONTROLLER FAMILIES.<br>
-          FOUR DIFFERENT ROLES.
-        </p>
+             <h1>You’re defined by what you use.</h1>
+<p>Run what fits you.</p>
 
         <div class="hero-actions">
           <a href="#lineup" class="btn-primary">Browse Lineup</a>
@@ -997,7 +1100,10 @@
       <div class="section-head">
         <div class="section-title">
           <span class="label">The Lineup</span>
-          <h2>Everything for Everyone.</h2>
+          <br>
+        <div class="title-light-wrap">
+    <h2>EACH ONE HITS DIFFERENT.</h2>
+  </div>
           <p>Pick the line that matches how you play.</p>
         </div>
       </div>
@@ -1038,8 +1144,8 @@ data-hero-floor2="rgba(255,255,255,0.08)"
           <div class="line-body">
             <h3>DriftZero Core Rail</h3>
             <p>
-              Pick one color for the left side and another for the right.
-              Build your own pair at a lower price.
+              The lowest price in the lineup.
+The most personal one too.
             </p>
 
             <div class="line-price">
@@ -1066,15 +1172,15 @@ data-hero-floor2="rgba(255,255,255,0.08)"
         >
           <div class="line-top">
             <span class="line-badge">Official</span>
-            <img src="../images/original.jpg" alt="DriftZero Classic Rail">
+            <img src="../images/Classic-gray.png" alt="DriftZero Classic Rail">
           </div>
 
           <div class="line-body">
             <h3>DriftZero Classic Rail</h3>
-            <p>
-              Official Nintendo hardware in the classic slide-rail format.
-              Clean, complete, and ready to play.
-            </p>
+          <p>
+Feels just like you expect.<br>
+Costs way less.
+</p>
 
             <div class="line-price">
               <small>From</small>
@@ -1099,7 +1205,7 @@ data-hero-floor2="rgba(255,255,255,0.08)"
   data-hero-floor1="rgba(0,229,255,0.16)"
   data-hero-floor2="rgba(255,255,255,0.08)"
 >
-        >
+        
           <div class="line-top">
             <span class="line-badge">Next Gen</span>
             <img src="../images/plus.jpg" alt="DriftZero Pulse Flux">
@@ -1107,10 +1213,10 @@ data-hero-floor2="rgba(255,255,255,0.08)"
 
           <div class="line-body">
             <h3>DriftZero Pulse Flux</h3>
-            <p>
-              Magnetic connection system with a sharper feel and a more modern split setup.
-            </p>
-
+           <p>
+Just the latest model.<br>
+Nothing to tweak. Just play.
+</p>
             <div class="line-price">
               <small>From</small>
               <strong>€49.99</strong>
@@ -1134,13 +1240,17 @@ data-hero-floor1="rgba(0,245,160,0.16)"
 data-hero-floor2="rgba(255,255,255,0.08)"
         >
           <div class="line-top">
-            <span class="line-badge">Premium</span>
+            <span class="line-badge">Limited</span>
             <img src="../images/pro.png" alt="DriftZero Apex Pro">
           </div>
 
           <div class="line-body">
             <h3>DriftZero Apex Pro</h3>
-            <p>Full-size control, stronger grip, and precision built for long sessions.</p>
+            
+<p>
+Hard to find. Harder to ignore.<br>
+Once it's gone, it’s gone.
+</p>
 
             <div class="line-price">
               <small>From</small>
@@ -1165,52 +1275,52 @@ data-hero-floor2="rgba(255,255,255,0.08)"
         </div>
       </div>
 
-      <div class="comparison-wrap">
-        <div class="comparison-head">
-          <div>Product</div>
-          <div>Official</div>
-          <div>Bluetooth</div>
-          <div>HD Rumble</div>
-          <div>Variants</div>
-          <div>Price</div>
-        </div>
+     <div class="comparison-wrap">
+  <div class="comparison-head">
+    <div>Line</div>
+    <div>Role</div>
+    <div>Feel</div>
+    <div>Customization</div>
+    <div>Availability</div>
+    <div>From</div>
+  </div>
 
-        <div class="comparison-row">
-          <strong>DriftZero Core Rail</strong>
-          <span class="cross">-</span>
-          <span class="check">✔</span>
-          <span class="check">✔</span>
-          <span class="neutral">200 plus</span>
-          <span>19.99€</span>
-        </div>
+  <div class="comparison-row">
+    <strong>DriftZero Core Rail</strong>
+    <span>Custom entry</span>
+    <span>Light and flexible</span>
+    <span class="check">Full</span>
+    <span>Always available</span>
+    <span>€19.99</span>
+  </div>
 
-        <div class="comparison-row">
-          <strong>DriftZero Classic Rail</strong>
-          <span class="check">✔</span>
-          <span class="check">✔</span>
-          <span class="cross">-</span>
-          <span class="neutral">3</span>
-          <span>34.99€</span>
-        </div>
+  <div class="comparison-row">
+    <strong>DriftZero Classic Rail</strong>
+    <span>Safe default</span>
+    <span>Familiar and reliable</span>
+    <span class="cross">None</span>
+    <span>Always available</span>
+    <span>€34.99</span>
+  </div>
 
-        <div class="comparison-row">
-          <strong>DriftZero Pulse Flux</strong>
-          <span class="cross">-</span>
-          <span class="check">✔</span>
-          <span class="cross">-</span>
-          <span class="neutral">2</span>
-          <span>49.99€</span>
-        </div>
+  <div class="comparison-row">
+    <strong>DriftZero Pulse Flux</strong>
+    <span>Latest standard</span>
+    <span>Clean and updated</span>
+    <span class="cross">None</span>
+    <span>Standard release</span>
+    <span>€49.99</span>
+  </div>
 
-        <div class="comparison-row">
-          <strong>DriftZero Apex Pro</strong>
-          <span class="check">✔</span>
-          <span class="check">✔</span>
-          <span class="check">✔</span>
-          <span class="neutral">4</span>
-          <span>59.99€</span>
-        </div>
-      </div>
+  <div class="comparison-row">
+    <strong>DriftZero Apex Pro</strong>
+    <span class="check">Rare drop</span>
+    <span class="check">Premium and solid</span>
+    <span>Exclusive variants</span>
+    <span class="check">Limited drops</span>
+    <span>€59.99</span>
+  </div>
+</div>
     </div>
   </section>
 </main>
@@ -1255,6 +1365,7 @@ data-hero-floor2="rgba(255,255,255,0.08)"
     <p>© 2026 DriftZero</p>
   </div>
 </footer>
+</head>
 
 <script>
 const root = document.documentElement;
