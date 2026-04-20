@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zero Joy-Con Lite | DriftZero</title>
+  <title>DriftZero Core Rail | DriftZero</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,23 +12,23 @@
   <style>
     :root{
       --bg:#070709;
-      --panel:rgba(16,16,20,0.82);
-      --panel-strong:rgba(20,20,26,0.92);
-      --text:rgba(255,255,255,0.94);
-      --muted:rgba(255,255,255,0.62);
+      --panel:rgba(20,22,26,0.82);
+      --panel-strong:rgba(28,31,36,0.92);
+      --text:rgba(242,243,245,0.94);
+      --muted:rgba(242,243,245,0.62);
       --stroke:rgba(255,255,255,0.10);
 
-      --accent1:#00dbff;
-      --accent2:#ff4d5f;
-      --accent-soft:rgba(0,219,255,0.16);
-      --accent-soft-2:rgba(255,77,95,0.14);
+      --accent1:#D9DDE3;
+      --accent2:#AEB6C2;
+      --accent-soft:rgba(217,221,227,0.08);
+      --accent-soft-2:rgba(174,182,194,0.06);
 
       --radius-xl:30px;
       --radius-lg:22px;
       --radius-md:16px;
 
       --shadow-soft:0 20px 60px rgba(0,0,0,0.35);
-      --shadow-glow:0 0 40px rgba(0,219,255,0.10);
+      --shadow-glow:none;
     }
 
     *{
@@ -39,14 +39,14 @@
     }
 
     html{
-      scroll-behavior:smooth;
+      scroll-behavior:auto;
     }
 
     body{
       background:
-        radial-gradient(circle at top left, rgba(0,219,255,0.08), transparent 28%),
-        radial-gradient(circle at top right, rgba(255,77,95,0.08), transparent 24%),
-        linear-gradient(180deg, #050507 0%, #09090c 45%, #070709 100%);
+        radial-gradient(circle at top left, rgba(217,221,227,0.05), transparent 28%),
+        radial-gradient(circle at top right, rgba(174,182,194,0.05), transparent 24%),
+        linear-gradient(180deg, #050507 0%, #0a0b0f 45%, #070709 100%);
       color:var(--text);
       min-height:100vh;
     }
@@ -70,13 +70,12 @@
       margin:0 auto;
     }
 
-    /* HEADER */
     .header{
       display:grid;
+      grid-template-columns:1fr auto 1fr;
       justify-content:space-between;
       align-items:center;
       padding:20px 40px;
-      grid-template-columns:1fr auto 1fr;
       background:#0a0a0a;
       border-bottom:0.5px solid rgba(255,255,255,0.1);
       position:sticky;
@@ -87,72 +86,43 @@
     .logo{
       font-size:28px;
       font-weight:700;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      background:linear-gradient(135deg, #F1F3F6 0%, #D9DDE3 45%, #AEB6C2 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
       color:transparent;
-      transition:0.2s ease;
-      text-decoration:none;
       justify-self:start;
-    }
-
-    .logo:hover{
-      transform:scale(1.1);
     }
 
     .nav{
       display:flex;
       gap:40px;
       justify-self:center;
+      flex-wrap:wrap;
     }
 
     .nav a{
-      text-decoration:none;
-      color:white;
+      color:#ffffff;
       font-weight:500;
-      transition:0.2s ease;
     }
 
-    .nav a:hover{
-      color:var(--accent2);
-      opacity:1;
+    .nav a:hover,
+    .nav a.active{
+      color:#D9DDE3;
     }
 
     .cart{
-      cursor:pointer;
-      transition:0.2s ease;
-      text-decoration:none;
-      color:#0a0a0a;
-      font-weight:700;
-      font-size:20px;
-      padding:10px 18px;
-      border-radius:10px;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      justify-self:end;
       display:inline-flex;
       align-items:center;
       gap:8px;
-      justify-self:end;
-    }
-
-    .cart:hover{
-      transform:scale(1.05);
-      opacity:0.95;
-    }
-
-    .cart-count{
-      min-width:22px;
-      height:22px;
-      display:grid;
-      place-items:center;
-      padding:0 6px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.55);
+      padding:10px 18px;
+      border-radius:10px;
+      background:linear-gradient(135deg, #E8EBEF 0%, #BCC4CF 52%, #959EAB 100%);
       color:#050507;
-      font-size:14px;
       font-weight:700;
-      line-height:1;
-      border:1px solid rgba(255,255,255,0.18);
+      font-size:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
     }
 
     .page{
@@ -207,8 +177,8 @@
       width:8px;
       height:8px;
       border-radius:50%;
-      background:linear-gradient(180deg, var(--accent1), var(--accent2));
-      box-shadow:0 0 16px var(--accent1);
+      background:linear-gradient(180deg, #E8EBEF, #AEB6C2);
+      box-shadow:0 0 10px rgba(217,221,227,0.35);
     }
 
     .gallery-badge{
@@ -252,11 +222,11 @@
       transform:translate(-50%, -50%);
       background:
         radial-gradient(circle,
-          rgba(255,255,255,0.20) 0%,
+          rgba(255,255,255,0.10) 0%,
           var(--accent-soft) 22%,
-          rgba(255,255,255,0.03) 50%,
+          rgba(255,255,255,0.02) 50%,
           transparent 74%);
-      filter:blur(34px);
+      filter:blur(26px);
       pointer-events:none;
     }
 
@@ -283,9 +253,33 @@
       width:min(92%, 620px);
     }
 
+    .hero-pair.is-hidden{
+      display:none;
+    }
+
     .hero-side-image{
       width:42%;
       max-width:250px;
+      max-height:520px;
+      object-fit:contain;
+      filter:drop-shadow(0 26px 48px rgba(0,0,0,0.38));
+    }
+
+    .hero-full-wrap{
+      position:relative;
+      z-index:2;
+      width:min(92%, 620px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .hero-full-wrap.is-hidden{
+      display:none;
+    }
+
+    .hero-full-image{
+      width:min(560px, 100%);
       max-height:520px;
       object-fit:contain;
       filter:drop-shadow(0 26px 48px rgba(0,0,0,0.38));
@@ -361,7 +355,6 @@
       border-radius:18px;
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(255,255,255,0.08);
-      backdrop-filter:blur(8px);
     }
 
     .selection-box strong{
@@ -415,19 +408,12 @@
       padding:18px 24px;
       border-radius:16px;
       color:#050507;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow:
-        0 10px 30px rgba(0,0,0,0.18),
-        0 0 28px var(--accent-soft);
+      background:linear-gradient(135deg, #E8EBEF 0%, #BCC4CF 52%, #959EAB 100%);
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
       font-size:18px;
       border:none;
       cursor:pointer;
-      transition:0.25s ease;
       font-weight:700;
-    }
-
-    .primary-btn:hover{
-      transform:translateY(-2px);
     }
 
     .primary-btn:disabled{
@@ -436,26 +422,18 @@
       background:rgba(255,255,255,0.12);
       color:rgba(255,255,255,0.55);
       box-shadow:none;
-      transform:none;
     }
 
     .ghost-btn{
-      padding:18px 24px;
+      padding:16px 22px;
       border-radius:16px;
-      color:#050507;
+      color:rgba(242,243,245,0.88);
       font-weight:700;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow:
-        0 10px 30px rgba(0,0,0,0.18),
-        0 0 28px var(--accent-soft);
-      font-size:23px;
-      border:none;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:none;
+      font-size:18px;
       cursor:pointer;
-      transition:0.25s ease;
-    }
-
-    .ghost-btn:hover{
-      transform:translateY(-2px);
     }
 
     .trust-line{
@@ -477,17 +455,16 @@
     .simple-config{
       margin-top:26px;
       display:grid;
-      gap:18px;
+      gap:16px;
     }
 
     .swatch-row{
-      padding:22px;
-      border-radius:28px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.028));
-      border:1px solid rgba(255,255,255,0.07);
-      backdrop-filter:blur(10px);
+      padding:18px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.025);
+      border:1px solid rgba(255,255,255,0.06);
       display:grid;
-      gap:18px;
+      gap:16px;
     }
 
     .swatch-head{
@@ -498,82 +475,170 @@
     }
 
     .swatch-title{
-      font-size:clamp(24px, 3vw, 34px);
+      font-size:clamp(22px, 3vw, 30px);
       line-height:0.95;
       text-transform:uppercase;
     }
 
     .swatch-current{
-      font-size:17px;
+      font-size:15px;
       color:var(--muted);
     }
 
     .swatch-groups{
       display:grid;
-      gap:16px;
+      gap:14px;
     }
 
     .swatch-group{
       display:grid;
-      gap:12px;
+      gap:10px;
     }
 
     .swatch-group-label{
-      font-size:14px;
+      font-size:13px;
       letter-spacing:1.2px;
       text-transform:uppercase;
-      color:rgba(255,255,255,0.62);
+      color:rgba(255,255,255,0.56);
     }
 
     .swatch-grid{
       display:grid;
-      grid-template-columns:repeat(6, 1fr);
-      gap:12px;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:10px;
     }
 
     .swatch-btn{
       display:flex;
-      flex-direction:column;
       align-items:center;
-      justify-content:center;
+      justify-content:flex-start;
       gap:10px;
-      padding:14px 10px;
-      min-height:92px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-      color:rgba(255,255,255,0.84);
-      text-align:center;
+      padding:12px 14px;
+      min-height:50px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.025);
+      border:1px solid rgba(255,255,255,0.06);
+      color:rgba(242,243,245,0.78);
+      text-align:left;
       cursor:pointer;
-      transition:0.25s ease;
-      font-weight:700;
+      font-weight:600;
     }
 
     .swatch-btn:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,255,255,0.16);
-      background:rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.04);
+      border-color:rgba(255,255,255,0.10);
     }
 
     .swatch-btn.active{
-      background:linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
-      border-color:rgba(255,255,255,0.22);
-      box-shadow:0 0 24px var(--accent-soft);
+      background:rgba(255,255,255,0.07);
+      border-color:rgba(217,221,227,0.34);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04);
     }
 
     .swatch-dot{
-      width:22px;
-      height:22px;
+      width:14px;
+      height:14px;
+      min-width:14px;
       border-radius:50%;
-      border:1px solid rgba(255,255,255,0.22);
-      box-shadow:0 0 12px rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:none;
       flex-shrink:0;
     }
 
     .swatch-name{
-      font-size:15px;
-      line-height:1.05;
-      color:var(--text);
+      font-size:13px;
+      line-height:1;
+      color:rgba(242,243,245,0.84);
+    }
+
+    .pattern-section{
+      margin-top:22px;
+      padding:22px;
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.07);
+      display:grid;
+      gap:18px;
+    }
+
+    .pattern-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:14px;
+    }
+
+    .pattern-title{
+      font-size:clamp(24px, 3vw, 34px);
+      line-height:0.95;
+      text-transform:uppercase;
+    }
+
+    .pattern-sub{
+      margin-top:8px;
+      font-size:16px;
+      color:var(--muted);
+      max-width:520px;
+      line-height:1.2;
+    }
+
+    .pattern-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:12px;
+    }
+
+    .pattern-card{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      min-height:60px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.07);
+      cursor:pointer;
+      text-align:left;
+    }
+
+    .pattern-card:hover{
+      background:rgba(255,255,255,0.045);
+      border-color:rgba(255,255,255,0.10);
+    }
+
+    .pattern-card.active{
+      background:rgba(255,255,255,0.08);
+      border-color:rgba(217,221,227,0.34);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .pattern-preview{
+      width:18px;
+      height:18px;
+      min-width:18px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,0.18);
+      flex-shrink:0;
+    }
+
+    .pattern-meta{
+      display:grid;
+      gap:2px;
+    }
+
+    .pattern-name{
+      font-size:14px;
+      line-height:1;
+      color:rgba(242,243,245,0.88);
+      font-weight:700;
+    }
+
+    .pattern-type{
+      font-size:12px;
+      line-height:1;
+      color:rgba(242,243,245,0.54);
+      text-transform:uppercase;
+      letter-spacing:1px;
     }
 
     .details-section{
@@ -586,7 +651,6 @@
       background:linear-gradient(180deg, rgba(18,18,24,0.88), rgba(10,10,14,0.94));
       border:1px solid rgba(255,255,255,0.08);
       box-shadow:var(--shadow-soft);
-      backdrop-filter:blur(12px);
     }
 
     .details-head{
@@ -657,194 +721,6 @@
       letter-spacing:0.2px;
     }
 
-    /* EASTER EGG OVERLAY */
-    .game-overlay{
-      position:fixed;
-      inset:0;
-      z-index:2000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      background:rgba(4,4,8,0.72);
-      backdrop-filter:blur(12px);
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transition:0.25s ease;
-    }
-
-    .game-overlay.active{
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-    }
-
-    .game-modal{
-      width:min(980px, 100%);
-      border-radius:30px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,0.1);
-      background:
-        radial-gradient(circle at 18% 20%, var(--accent-soft), transparent 24%),
-        radial-gradient(circle at 82% 24%, var(--accent-soft-2), transparent 24%),
-        linear-gradient(180deg, rgba(20,20,28,0.95), rgba(9,9,14,0.98));
-      box-shadow:0 30px 80px rgba(0,0,0,0.45);
-    }
-
-    .game-modal-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:20px;
-      padding:26px 28px 18px;
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .game-modal-head{
-      display:grid;
-      gap:10px;
-    }
-
-    .game-kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      width:max-content;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.08);
-      color:rgba(255,255,255,0.7);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:1.2px;
-    }
-
-    .game-title{
-      font-size:clamp(32px, 5vw, 54px);
-      line-height:0.92;
-      text-transform:uppercase;
-    }
-
-    .game-sub{
-      color:rgba(255,255,255,0.68);
-      font-size:18px;
-      line-height:1.2;
-      max-width:560px;
-    }
-
-    .close-game{
-      width:52px;
-      height:52px;
-      border:none;
-      border-radius:16px;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.1);
-      color:#fff;
-      font-size:28px;
-      line-height:1;
-      cursor:pointer;
-      transition:0.2s ease;
-      flex-shrink:0;
-    }
-
-    .close-game:hover{
-      transform:scale(1.04);
-      background:rgba(255,255,255,0.1);
-    }
-
-    .game-modal-body{
-      padding:28px;
-      display:grid;
-      gap:22px;
-    }
-
-    .game-preview{
-      min-height:380px;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,0.08);
-      background:
-        radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      display:grid;
-      place-items:center;
-      text-align:center;
-      padding:30px;
-      overflow:hidden;
-      position:relative;
-    }
-
-    .game-preview::before{
-      content:"";
-      position:absolute;
-      width:320px;
-      height:320px;
-      border-radius:50%;
-      background:radial-gradient(circle, var(--accent-soft), transparent 68%);
-      filter:blur(14px);
-      opacity:0.95;
-    }
-
-    .game-preview-inner{
-      position:relative;
-      z-index:2;
-      display:grid;
-      gap:14px;
-      max-width:560px;
-    }
-
-    .game-preview-title{
-      font-size:clamp(34px, 4.6vw, 58px);
-      line-height:0.94;
-      text-transform:uppercase;
-    }
-
-    .game-preview-copy{
-      color:rgba(255,255,255,0.75);
-      font-size:19px;
-      line-height:1.25;
-    }
-
-    .game-mode-pill{
-      justify-self:center;
-      padding:10px 16px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.1);
-      font-size:14px;
-      text-transform:uppercase;
-      letter-spacing:1.2px;
-      color:rgba(255,255,255,0.82);
-    }
-
-    .game-info-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
-    }
-
-    .game-info-card{
-      padding:18px;
-      border-radius:20px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-      display:grid;
-      gap:8px;
-    }
-
-    .game-info-card strong{
-      font-size:18px;
-      color:#fff;
-    }
-
-    .game-info-card span{
-      color:rgba(255,255,255,0.66);
-      font-size:15px;
-      line-height:1.25;
-    }
-
-    /* FOOTER */
     .footer{
       position:relative;
       margin-top:20px;
@@ -884,7 +760,7 @@
       font-size:28px;
       font-weight:700;
       margin-bottom:14px;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      background:linear-gradient(135deg, #F1F3F6 0%, #D9DDE3 45%, #AEB6C2 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
@@ -921,54 +797,19 @@
     .footer-col a{
       font-size:0.92rem;
       color:rgba(255,255,255,0.55);
-      transition:color 0.2s ease, transform 0.2s ease;
     }
 
     .footer-col a:hover{
       color:rgba(255,255,255,0.95);
-      transform:translateX(2px);
-    }
-
-    .footer-easter{
-      position:relative;
-      z-index:1;
-      margin-top:40px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .footer-easter-btn{
-      padding:14px 20px;
-      border-radius:14px;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      color:rgba(255,255,255,0.7);
-      font-size:14px;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      cursor:pointer;
-      transition:0.25s ease;
-      min-width:240px;
-    }
-
-    .footer-easter-btn:hover{
-      background:rgba(255,255,255,0.08);
-      color:#fff;
-      transform:translateY(-2px);
     }
 
     .footer-easter-link{
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      background:linear-gradient(135deg, #F1F3F6 0%, #D9DDE3 45%, #AEB6C2 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
       color:transparent;
       text-decoration:none;
-      transition:opacity 0.2s ease;
-    }
-
-    .footer-easter-link:hover{
-      opacity:0.85;
     }
 
     .footer-bottom{
@@ -998,15 +839,15 @@
       }
 
       .swatch-grid{
-        grid-template-columns:repeat(4, 1fr);
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+      }
+
+      .pattern-grid{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
       }
 
       .spec-grid{
         grid-template-columns:repeat(2, 1fr);
-      }
-
-      .game-info-grid{
-        grid-template-columns:1fr;
       }
 
       .header{
@@ -1035,6 +876,7 @@
 
       .product-hero,
       .swatch-row,
+      .pattern-section,
       .details-panel{
         padding:20px;
       }
@@ -1053,7 +895,11 @@
       }
 
       .swatch-grid{
-        grid-template-columns:repeat(3, 1fr);
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
+      .pattern-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
       }
 
       .spec-grid{
@@ -1063,7 +909,7 @@
       .swatch-head,
       .details-head,
       .hero-topbar,
-      .game-modal-top{
+      .pattern-head{
         flex-direction:column;
         align-items:flex-start;
       }
@@ -1082,34 +928,35 @@
         max-width:180px;
       }
 
+      .hero-full-image{
+        width:min(420px, 96%);
+      }
+
       .buy-title{
         font-size:42px;
       }
 
       .ghost-btn{
-        font-size:18px;
-      }
-
-      .game-modal-body{
-        padding:20px;
-      }
-
-      .game-modal-top{
-        padding:20px 20px 16px;
+        font-size:16px;
       }
     }
 
     @media (max-width: 520px){
       .swatch-grid{
-        grid-template-columns:repeat(2, 1fr);
+        grid-template-columns:1fr;
+      }
+
+      .pattern-grid{
+        grid-template-columns:1fr;
       }
 
       .swatch-btn{
-        min-height:84px;
+        min-height:46px;
+        padding:11px 12px;
       }
 
       .swatch-name{
-        font-size:14px;
+        font-size:12px;
       }
 
       .nav{
@@ -1123,18 +970,6 @@
       .cart{
         font-size:16px;
       }
-
-      .game-preview{
-        min-height:300px;
-      }
-
-      .game-preview-title{
-        font-size:34px;
-      }
-
-      .footer-easter-btn{
-        min-width:100%;
-      }
     }
   </style>
 </head>
@@ -1144,16 +979,13 @@
     <a href="../index.html" class="logo">DriftZero</a>
 
     <nav class="nav">
-      <a href="joycon.html">DriftZero Core Rail</a>
+      <a href="joycon.html" class="active">DriftZero Core Rail</a>
       <a href="joycon2.html">DriftZero Pulse Flux</a>
       <a href="procon.html">DriftZero Apex Pro</a>
       <a href="joyconor.html">DriftZero Classic Rail</a>
     </nav>
 
-    <a href="cart.html" class="cart">
-      Cart
-      <span class="cart-count" id="cartCount">0</span>
-    </a>
+    <a href="cart.html" class="cart">Cart</a>
   </header>
 
   <main class="page">
@@ -1187,12 +1019,21 @@
                 alt="Red right Joy-Con"
               >
             </div>
+
+            <div class="hero-full-wrap is-hidden" id="heroFullWrap">
+              <img
+                id="fullHeroImage"
+                class="hero-full-image"
+                src="../images/joycon-lite/splatoon-2-pair.png"
+                alt="Full pair Joy-Con pattern"
+              >
+            </div>
           </div>
 
           <div class="hero-copy">
             <div class="buy-top">
               <h1 class="buy-title">DriftZero Core Rail</h1>
-              <p class="buy-sub">Build your own left / right pair for less.</p>
+              <p class="buy-sub">Custom left. Custom right. No overpriced bundle.</p>
             </div>
 
             <div class="price-line">
@@ -1200,7 +1041,7 @@
                 <span class="price-label">Price</span>
                 <span class="price" id="productPrice">€19.99</span>
               </div>
-              <div class="price-note">Custom pair</div>
+              <div class="price-note">VAT Included</div>
             </div>
 
             <div class="selection-summary">
@@ -1223,7 +1064,7 @@
 
               <div class="micro-item">
                 <div class="micro-mark">✓</div>
-                <span>Solid colors mix freely. Patterns apply as full pairs.</span>
+                <span>Solid colors mix freely. Patterned editions are prebuilt full pairs.</span>
               </div>
 
               <div class="micro-item">
@@ -1237,7 +1078,7 @@
                 Add To Cart
               </button>
 
-              <button class="ghost-btn" onclick="document.getElementById('leftSolidGrid').scrollIntoView({behavior:'smooth'})">
+              <button class="ghost-btn" id="customizeBtn">
                 Customize Pair
               </button>
             </div>
@@ -1268,11 +1109,6 @@
                 <div class="swatch-group-label">Solid Colors</div>
                 <div class="swatch-grid" id="leftSolidGrid"></div>
               </div>
-
-              <div class="swatch-group">
-                <div class="swatch-group-label">Full Pair Patterns</div>
-                <div class="swatch-grid" id="leftPatternGrid"></div>
-              </div>
             </div>
           </div>
 
@@ -1289,13 +1125,19 @@
                 <div class="swatch-group-label">Solid Colors</div>
                 <div class="swatch-grid" id="rightSolidGrid"></div>
               </div>
-
-              <div class="swatch-group">
-                <div class="swatch-group-label">Full Pair Patterns</div>
-                <div class="swatch-grid" id="rightPatternGrid"></div>
-              </div>
             </div>
           </div>
+        </div>
+
+        <div class="pattern-section">
+          <div class="pattern-head">
+            <div>
+              <h2 class="pattern-title">Signature Pattern Pairs</h2>
+              <p class="pattern-sub">Prebuilt full-pair editions with a stronger identity.</p>
+            </div>
+          </div>
+
+          <div class="pattern-grid" id="patternPairGrid"></div>
         </div>
       </section>
 
@@ -1320,8 +1162,8 @@
 
             <div class="spec-card">
               <div class="spec-num">02</div>
-              <strong>All Colors Kept</strong>
-              <span>Full solid and pattern lineup stays available.</span>
+              <strong>Pattern Editions</strong>
+              <span>Special variants are available as prebuilt full pairs.</span>
             </div>
 
             <div class="spec-card">
@@ -1341,51 +1183,6 @@
 
     </div>
   </main>
-
-  <div class="game-overlay" id="gameOverlay">
-    <div class="game-modal">
-      <div class="game-modal-top">
-        <div class="game-modal-head">
-          <div class="game-kicker">Hidden Variant Mode</div>
-          <h2 class="game-title" id="gameTitle">Swamp Clash</h2>
-          <p class="game-sub" id="gameSub">
-            Pattern pair detected. This variant unlocks a hidden mode preview.
-          </p>
-        </div>
-
-        <button class="close-game" id="closeGameBtn" aria-label="Close game overlay">×</button>
-      </div>
-
-      <div class="game-modal-body">
-        <div class="game-preview">
-          <div class="game-preview-inner">
-            <div class="game-mode-pill" id="gameModePill">Pattern Pair Active</div>
-            <h3 class="game-preview-title" id="gamePreviewTitle">Swamp Clash</h3>
-            <p class="game-preview-copy" id="gamePreviewCopy">
-              Ink spread mode. This slot is ready for the actual Swamp Clash micro-game.
-            </p>
-          </div>
-        </div>
-
-        <div class="game-info-grid">
-          <div class="game-info-card">
-            <strong>Trigger</strong>
-            <span>Unlocked when both sides are set to the same pattern variant.</span>
-          </div>
-
-          <div class="game-info-card">
-            <strong>State</strong>
-            <span>The hidden mode updates automatically from the currently selected pattern pair.</span>
-          </div>
-
-          <div class="game-info-card">
-            <strong>Next Step</strong>
-            <span>The actual mini-game logic can be mounted inside this fullscreen modal.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <footer class="footer">
     <div class="footer-main">
@@ -1416,13 +1213,9 @@
         <div class="footer-col">
           <h4>Legal</h4>
           <a href="#">Privacy</a>
-          <a href="easter-egg.html" class="footer-easter-link">Baroque Works™</a>
+          <a href="easter-egg/easter-egg.html" class="footer-easter-link">Baroque Works™</a>
         </div>
       </div>
-    </div>
-
-    <div class="footer-easter">
-      <button class="footer-easter-btn" id="openGameBtn">Unlock Hidden Mode</button>
     </div>
 
     <div class="footer-bottom">
@@ -1435,7 +1228,7 @@
       { key:"blue", label:"Blue", category:"solid", image:"../images/joycon-lite/blue-left.png", accent:"#00dbff" },
       { key:"red", label:"Red", category:"solid", image:"../images/joycon-lite/red-left.png", accent:"#ff4d5f" },
       { key:"purple", label:"Purple", category:"solid", image:"../images/joycon-lite/purple-left.png", accent:"#8e6cff" },
-       { key:"Dark Blue", label:"Dark Blue", category:"solid", image:"../images/joycon-lite/dark-blue-left.png", accent:"#1e3a8a" },
+      { key:"dark-blue", label:"Dark Blue", category:"solid", image:"../images/joycon-lite/dark-blue-left.png", accent:"#1e3a8a" },
       { key:"yellow", label:"Yellow", category:"solid", image:"../images/joycon-lite/yellow-left.png", accent:"#ffe45c" },
       { key:"gray", label:"Gray", category:"solid", image:"../images/joycon-lite/gray-left.png", accent:"#9aa0ab" },
       { key:"white", label:"White", category:"solid", image:"../images/joycon-lite/white-left.png", accent:"#f7f7f7" },
@@ -1445,12 +1238,12 @@
       { key:"green", label:"Green", category:"solid", image:"../images/joycon-lite/green-left.png", accent:"#59e28b" },
       { key:"brown", label:"Brown", category:"solid", image:"../images/joycon-lite/brown-left.png", accent:"#b07a45" },
 
-      { key:"splatoon-2", label:"Swamp Clash", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png", accent:"#7f57ff" },
-      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", accent:"#7a7a7a" },
-      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png", accent:"#30df84" },
-      { key:"zelda-skyward", label:"Blue Horizons", category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", accent:"#5f8eff" },
-      { key:"pokemon", label:"Costa League", category:"pattern", image:"../images/joycon-lite/pokemon-left.png", accent:"#7a4dff" },
-      { key:"mario", label:"Little Kingdom", category:"pattern", image:"../images/joycon-lite/mario-left.png", accent:"#c1121f" }
+      { key:"splatoon-2", label:"Swamp Clash", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png", pairImage:"../images/joycon-lite/splatoon-2-pair.png", accent:"#7f57ff" },
+      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
+      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png", pairImage:"../images/joycon-lite/zelda-totk-pair.png", accent:"#30df84" },
+      { key:"zelda-skyward", label:"Blue Horizons", category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
+      { key:"pokemon", label:"Costa League", category:"pattern", image:"../images/joycon-lite/pokemon-left.png", pairImage:"../images/joycon-lite/pokemon-pair.png", accent:"#7a4dff" },
+      { key:"mario", label:"Little Kingdom", category:"pattern", image:"../images/joycon-lite/mario-left.png", pairImage:"../images/joycon-lite/mario-pair.png", accent:"#c1121f" }
     ];
 
     const rightSwatches = [
@@ -1467,42 +1260,33 @@
       { key:"ochre", label:"Ochre", category:"solid", image:"../images/joycon-lite/ochre-right.png", accent:"#c9972b" },
       { key:"pink", label:"Pink", category:"solid", image:"../images/joycon-lite/pink-right.png", accent:"#ff9cc7" },
 
-      { key:"splatoon-2", label:"Swamp Clash", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png", accent:"#7f57ff" },
-      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", accent:"#7a7a7a" },
-      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png", accent:"#30df84" },
-      { key:"zelda-skyward", label:"Blue Horizons", category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", accent:"#5f8eff" },
-      { key:"pokemon", label:"Costa League", category:"pattern", image:"../images/joycon-lite/pokemon-right.png", accent:"#7a4dff" },
-      { key:"mario", label:"Little Kingdom", category:"pattern", image:"../images/joycon-lite/mario-right.png", accent:"#c1121f" }
+      { key:"splatoon-2", label:"Swamp Clash", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png", pairImage:"../images/joycon-lite/splatoon-2-pair.png", accent:"#7f57ff" },
+      { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
+      { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png", pairImage:"../images/joycon-lite/zelda-totk-pair.png", accent:"#30df84" },
+      { key:"zelda-skyward", label:"Blue Horizons", category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
+      { key:"pokemon", label:"Costa League", category:"pattern", image:"../images/joycon-lite/pokemon-right.png", pairImage:"../images/joycon-lite/pokemon-pair.png", accent:"#7a4dff" },
+      { key:"mario", label:"Little Kingdom", category:"pattern", image:"../images/joycon-lite/mario-right.png", pairImage:"../images/joycon-lite/mario-pair.png", accent:"#c1121f" }
     ];
 
-  
-    const root = document.documentElement;
     const leftHeroImage = document.getElementById("leftHeroImage");
     const rightHeroImage = document.getElementById("rightHeroImage");
+    const fullHeroImage = document.getElementById("fullHeroImage");
+    const heroPair = document.getElementById("heroPair");
+    const heroFullWrap = document.getElementById("heroFullWrap");
     const galleryBadge = document.getElementById("galleryBadge");
     const selectedPairName = document.getElementById("selectedPairName");
     const selectedPairQty = document.getElementById("selectedPairQty");
     const productPrice = document.getElementById("productPrice");
-    const cartCount = document.getElementById("cartCount");
     const addToCartBtn = document.getElementById("addToCartBtn");
+    const customizeBtn = document.getElementById("customizeBtn");
     const leftSelectionText = document.getElementById("leftSelectionText");
     const rightSelectionText = document.getElementById("rightSelectionText");
     const leftCurrentText = document.getElementById("leftCurrentText");
     const rightCurrentText = document.getElementById("rightCurrentText");
 
     const leftSolidGrid = document.getElementById("leftSolidGrid");
-    const leftPatternGrid = document.getElementById("leftPatternGrid");
     const rightSolidGrid = document.getElementById("rightSolidGrid");
-    const rightPatternGrid = document.getElementById("rightPatternGrid");
-
-    const openGameBtn = document.getElementById("openGameBtn");
-    const gameOverlay = document.getElementById("gameOverlay");
-    const closeGameBtn = document.getElementById("closeGameBtn");
-    const gameTitle = document.getElementById("gameTitle");
-    const gameSub = document.getElementById("gameSub");
-    const gamePreviewTitle = document.getElementById("gamePreviewTitle");
-    const gamePreviewCopy = document.getElementById("gamePreviewCopy");
-    const gameModePill = document.getElementById("gameModePill");
+    const patternPairGrid = document.getElementById("patternPairGrid");
 
     const defaultSolidPair = {
       left: "blue",
@@ -1556,10 +1340,46 @@
         return `
           <button class="swatch-btn ${isActive ? "active" : ""}" data-side="${side}" data-key="${v.key}">
             <span class="swatch-dot" style="${getSwatchStyle(v)}"></span>
-            <span class="swatch-name">${v.category === "pattern" ? `${v.label} Pair` : v.label}</span>
+            <span class="swatch-name">${v.label}</span>
           </button>
         `;
       }).join("");
+    }
+
+    function getAllPatternPairs(){
+      return leftSwatches.filter(v => v.category === "pattern");
+    }
+
+    function renderPatternPairs(){
+      if (!patternPairGrid) return;
+
+      const patterns = getAllPatternPairs();
+      const currentLeft = findSwatch("left", currentPair.left);
+      const currentRight = findSwatch("right", currentPair.right);
+
+      patternPairGrid.innerHTML = patterns.map(pattern => {
+        const isActive = isPatternPair(currentLeft, currentRight) && currentLeft.key === pattern.key;
+
+        return `
+          <button class="pattern-card ${isActive ? "active" : ""}" data-pattern="${pattern.key}">
+            <span class="pattern-preview" style="${getSwatchStyle(pattern)}"></span>
+            <span class="pattern-meta">
+              <span class="pattern-name">${pattern.label}</span>
+              <span class="pattern-type">Full Pair</span>
+            </span>
+          </button>
+        `;
+      }).join("");
+
+      document.querySelectorAll(".pattern-card").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.pattern;
+          currentPair.left = key;
+          currentPair.right = key;
+          updateSelectedUI();
+          renderAllSwatches();
+        });
+      });
     }
 
     function attachSwatchEvents(){
@@ -1571,19 +1391,13 @@
 
           if (!selected) return;
 
+          currentPair[side] = key;
+
           const oppositeSide = side === "left" ? "right" : "left";
+          const oppositeSelected = findSwatch(oppositeSide, currentPair[oppositeSide]);
 
-          if (selected.category === "pattern") {
-            currentPair.left = key;
-            currentPair.right = key;
-          } else {
-            currentPair[side] = key;
-
-            const oppositeSelected = findSwatch(oppositeSide, currentPair[oppositeSide]);
-
-            if (oppositeSelected && oppositeSelected.category === "pattern") {
-              currentPair[oppositeSide] = defaultSolidPair[oppositeSide];
-            }
+          if (oppositeSelected && oppositeSelected.category === "pattern") {
+            currentPair[oppositeSide] = defaultSolidPair[oppositeSide];
           }
 
           updateSelectedUI();
@@ -1594,37 +1408,27 @@
 
     function renderAllSwatches(){
       renderSwatchGrid("left", "solid", leftSolidGrid);
-      renderSwatchGrid("left", "pattern", leftPatternGrid);
       renderSwatchGrid("right", "solid", rightSolidGrid);
-      renderSwatchGrid("right", "pattern", rightPatternGrid);
       attachSwatchEvents();
+      renderPatternPairs();
     }
 
-    function updateFooterButton(left, right){
-      if (!openGameBtn) return;
-
+    function updateHeroVisual(left, right){
       if (isPatternPair(left, right)) {
-        openGameBtn.textContent = `Enter ${left.label}`;
+        heroPair.classList.add("is-hidden");
+        heroFullWrap.classList.remove("is-hidden");
+        fullHeroImage.src = left.pairImage;
+        fullHeroImage.alt = `${left.label} full pair Joy-Con`;
       } else {
-        openGameBtn.textContent = "Unlock Hidden Mode";
+        heroFullWrap.classList.add("is-hidden");
+        heroPair.classList.remove("is-hidden");
+
+        leftHeroImage.src = left.image;
+        leftHeroImage.alt = `${left.label} left Joy-Con`;
+
+        rightHeroImage.src = right.image;
+        rightHeroImage.alt = `${right.label} right Joy-Con`;
       }
-    }
-
-    function updateGameContent(left, right){
-      if (!isPatternPair(left, right)) return;
-
-      const game = gameData[left.key] || {
-        title: left.label,
-        subtitle: "Pattern pair detected. Hidden mode unlocked.",
-        preview: "This pattern is ready for its micro-game.",
-        pill: "Pattern Mode"
-      };
-
-      gameTitle.textContent = game.title;
-      gameSub.textContent = game.subtitle;
-      gamePreviewTitle.textContent = game.title;
-      gamePreviewCopy.textContent = game.preview;
-      gameModePill.textContent = game.pill;
     }
 
     function updateSelectedUI(){
@@ -1641,34 +1445,17 @@
       selectedPairName.textContent = `${left.label} / ${right.label}`;
       selectedPairQty.textContent = "Ready";
 
-      galleryBadge.innerHTML = `L: ${left.label}<br>R: ${right.label}`;
+      if (isPatternPair(left, right)) {
+        galleryBadge.innerHTML = `Pair:<br>${left.label}`;
+      } else {
+        galleryBadge.innerHTML = `L: ${left.label}<br>R: ${right.label}`;
+      }
+
       productPrice.textContent = "€19.99";
-
-      leftHeroImage.src = left.image;
-      leftHeroImage.alt = `${left.label} left Joy-Con`;
-
-      rightHeroImage.src = right.image;
-      rightHeroImage.alt = `${right.label} right Joy-Con`;
-
-      applyTheme(left.accent, right.accent);
-      updateFooterButton(left, right);
-      updateGameContent(left, right);
+      updateHeroVisual(left, right);
 
       addToCartBtn.disabled = false;
       addToCartBtn.textContent = "Add To Cart";
-    }
-
-    function applyTheme(accent1, accent2){
-      root.style.setProperty("--accent1", accent1);
-      root.style.setProperty("--accent2", accent2);
-      root.style.setProperty("--accent-soft", hexToRgba(accent1, 0.16));
-      root.style.setProperty("--accent-soft-2", hexToRgba(accent2, 0.14));
-      root.style.setProperty("--shadow-glow", `0 0 40px ${hexToRgba(accent1, 0.18)}`);
-    }
-
-    function updateCartCount(){
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      if (cartCount) cartCount.textContent = cart.length;
     }
 
     function addCurrentToCart(){
@@ -1678,88 +1465,41 @@
       if (!left || !right) return;
 
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const patternMode = isPatternPair(left, right);
 
       cart.push({
         key: `lite-${currentPair.left}-${currentPair.right}`,
-        name: "Zero Joy-Con Lite",
+        name: "DriftZero Core Rail - " + (patternMode ? left.label : `${left.label} / ${right.label}`),
         price: 19.99,
-        image: left.image,
+        image: patternMode ? left.pairImage : left.image,
         leftImage: left.image,
         rightImage: right.image,
+        pairImage: patternMode ? left.pairImage : "",
         color: `${left.label} / ${right.label}`,
         leftColor: left.label,
-        rightColor: right.label
+        rightColor: right.label,
+        isPatternPair: patternMode
       });
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      updateCartCount();
 
-      addToCartBtn.textContent = "Added ✓";
+      addToCartBtn.textContent = "Added To Cart";
       addToCartBtn.disabled = true;
-
-      setTimeout(() => {
-        addToCartBtn.textContent = "Add To Cart";
-        addToCartBtn.disabled = false;
-      }, 1200);
     }
 
-    function openGameOverlay(){
-      const left = findSwatch("left", currentPair.left);
-      const right = findSwatch("right", currentPair.right);
-
-      if (!isPatternPair(left, right)) {
-        alert("Select a full pattern pair to unlock this mode.");
-        return;
-      }
-
-      gameOverlay.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeGameOverlay(){
-      gameOverlay.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-
-    function hexToRgba(hex, alpha){
-      let cleanHex = hex.replace("#", "");
-
-      if (cleanHex.length === 3) {
-        cleanHex = cleanHex.split("").map(char => char + char).join("");
-      }
-
-      const bigint = parseInt(cleanHex, 16);
-
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
-
-      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    if (customizeBtn) {
+      customizeBtn.addEventListener("click", () => {
+        const target = document.getElementById("leftSolidGrid");
+        if (target) {
+          target.scrollIntoView({ block: "start" });
+        }
+      });
     }
 
     if (addToCartBtn) {
       addToCartBtn.addEventListener("click", addCurrentToCart);
     }
 
-    if (openGameBtn) {
-      openGameBtn.addEventListener("click", openGameOverlay);
-    }
-
-    if (closeGameBtn) {
-      closeGameBtn.addEventListener("click", closeGameOverlay);
-    }
-
-    if (gameOverlay) {
-      gameOverlay.addEventListener("click", (e) => {
-        if (e.target === gameOverlay) closeGameOverlay();
-      });
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeGameOverlay();
-    });
-
-    updateCartCount();
     updateSelectedUI();
     renderAllSwatches();
   </script>

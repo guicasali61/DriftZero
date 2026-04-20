@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriftZero Classic Rail</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070709;
+      --text:rgba(255,255,255,0.95);
+      --muted:rgba(255,255,255,0.62);
+
+      --accent1:#f3dfb2;
+      --accent2:#c9a96b;
+      --accent-soft:rgba(201,169,107,0.18);
+
+      --success:#9bd38d;
+
+      --shadow-soft:0 18px 50px rgba(0,0,0,0.35);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Rajdhani', sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at top left, rgba(243,223,178,0.06), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(201,169,107,0.07), transparent 24%),
+        linear-gradient(180deg, #060608 0%, #0a0a0d 55%, #060608 100%);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    .header{
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 40px;
+      background:#0a0a0a;
+      border-bottom:0.5px solid rgba(255,255,255,0.1);
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+      transition:transform 0.2s ease;
+      justify-self:start;
+    }
+
+    .logo:hover{
+      transform:scale(1.1);
+    }
+
+    .nav{
+      display:flex;
+      gap:40px;
+      justify-self:center;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      color:#ffffff;
+      font-weight:500;
+      transition:color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      color:var(--accent2);
+    }
+
+    .cart{
+      justify-self:end;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 18px;
+      border-radius:10px;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      color:#0a0a0a;
+      font-weight:700;
+      font-size:20px;
+      transition:transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cart:hover{
+      transform:scale(1.05);
+      opacity:0.95;
+    }
+
+    main{
+      width:min(1380px, calc(100% - 40px));
+      margin:28px auto 0;
+      padding-bottom:60px;
+    }
+
+    .product-shell{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .product-gallery,
+    .product-info{
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      box-shadow:var(--shadow-soft);
+    }
+
+    .product-gallery{
+      padding:24px;
+      position:sticky;
+      top:110px;
+    }
+
+ .main-image{
+  position:relative;
+  min-height:560px;
+  height:560px;
+  padding:34px;
+
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,0.06);
+
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(0,0,0,0.35), transparent 70%),
+    linear-gradient(180deg, #111114 0%, #0a0a0d 100%);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+   .main-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+    .thumbs{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+
+    .thumb{
+      min-height:120px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      background:
+        radial-gradient(circle at center, rgba(243,223,178,0.08), transparent 36%),
+        linear-gradient(180deg, rgba(18,18,22,0.94), rgba(10,10,13,0.98));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .thumb img{
+      width:100%;
+      max-height:85px;
+      object-fit:contain;
+      filter:drop-shadow(0 10px 18px rgba(0,0,0,0.32));
+    }
+
+    .thumb:hover,
+    .thumb.active{
+      transform:translateY(-2px);
+      border-color:rgba(243,223,178,0.34);
+      box-shadow:0 0 0 1px rgba(243,223,178,0.10);
+    }
+
+    .product-info{
+      padding:30px;
+      display:grid;
+      gap:22px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      width:max-content;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.05);
+      color:rgba(255,255,255,0.75);
+      font-size:12px;
+      letter-spacing:0.16em;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+
+    .title-wrap h1{
+      margin-top:12px;
+      font-size:clamp(42px, 5vw, 64px);
+      line-height:0.95;
+      text-transform:uppercase;
+    }
+
+    .subtitle{
+      margin-top:12px;
+      max-width:18ch;
+      color:var(--muted);
+      font-size:22px;
+      line-height:1.4;
+    }
+
+    .price-row{
+      display:flex;
+      align-items:flex-end;
+      gap:14px;
+      padding:18px 0;
+      border-top:1px solid rgba(255,255,255,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .price{
+      font-size:52px;
+      line-height:1;
+      font-weight:700;
+      color:var(--accent1);
+    }
+
+    .price-note{
+      padding-bottom:6px;
+      color:var(--muted);
+      font-size:18px;
+    }
+
+    .short-desc{
+      color:rgba(255,255,255,0.82);
+      font-size:21px;
+      line-height:1.45;
+    }
+
+    .bullet-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .bullet{
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.035);
+      font-size:18px;
+      color:rgba(255,255,255,0.86);
+    }
+
+    .section-label{
+      margin-bottom:12px;
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:0.16em;
+      color:rgba(255,255,255,0.58);
+      text-transform:uppercase;
+    }
+
+    .color-options{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .color-btn{
+      min-width:140px;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      cursor:pointer;
+      transition:transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .color-btn:hover,
+    .color-btn.active{
+      transform:translateY(-2px);
+      border-color:rgba(243,223,178,0.35);
+      background:rgba(255,255,255,0.06);
+    }
+
+    .swatch{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,0.22);
+      flex:0 0 auto;
+    }
+
+    .buy-box{
+      display:grid;
+      gap:14px;
+      padding:20px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .stock{
+      color:var(--success);
+      font-size:20px;
+      font-weight:600;
+    }
+
+    .qty-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .qty-row label{
+      font-size:18px;
+      color:rgba(255,255,255,0.8);
+    }
+
+    .qty-select{
+      width:90px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:#101015;
+      color:var(--text);
+      font-size:18px;
+      outline:none;
+    }
+
+    .actions{
+      display:grid;
+      gap:12px;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+      width:100%;
+      padding:16px 20px;
+      border-radius:16px;
+      font-size:19px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary{
+      border:none;
+      color:#070709;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow:0 0 24px var(--accent-soft);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.10);
+      color:var(--text);
+      background:rgba(255,255,255,0.05);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+    }
+
+    .mini-note{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.4;
+    }
+
+    .simple-section{
+      margin-top:24px;
+      padding:28px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      box-shadow:var(--shadow-soft);
+    }
+
+    .simple-section h2{
+      margin-bottom:14px;
+      font-size:32px;
+      text-transform:uppercase;
+    }
+
+    .simple-section p{
+      max-width:900px;
+      color:var(--muted);
+      font-size:19px;
+      line-height:1.5;
+    }
+
+    .footer{
+      position:relative;
+      margin-top:20px;
+      padding:60px 6% 30px;
+      background:#0a0a0a;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:-70px;
+      height:90px;
+      pointer-events:none;
+      z-index:0;
+      background:linear-gradient(to bottom, rgba(10,10,10,0), rgba(10,10,10,1));
+    }
+
+    .footer-main{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:80px;
+      flex-wrap:wrap;
+    }
+
+    .footer-brand{
+      max-width:300px;
+    }
+
+    .footer-logo{
+      display:inline-block;
+      margin-bottom:14px;
+      font-size:28px;
+      font-weight:700;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .footer-desc{
+      color:rgba(255,255,255,0.6);
+      line-height:1.6;
+      font-size:0.95rem;
+    }
+
+    .footer-nav{
+      display:flex;
+      gap:70px;
+      flex-wrap:wrap;
+    }
+
+    .footer-col{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-col h4{
+      margin:0 0 10px;
+      font-size:0.8rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.85);
+    }
+
+    .footer-col a{
+      font-size:0.92rem;
+      color:rgba(255,255,255,0.55);
+      transition:color 0.2s ease, transform 0.2s ease;
+    }
+
+    .footer-col a:hover{
+      color:rgba(255,255,255,0.95);
+      transform:translateX(2px);
+    }
+
+    .footer-easter-link{
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+      transition:opacity 0.2s ease;
+    }
+
+    .footer-easter-link:hover{
+      opacity:0.85;
+    }
+
+    .footer-bottom{
+      margin-top:45px;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,0.06);
+      text-align:center;
+    }
+
+    .footer-bottom p{
+      font-size:0.85rem;
+      color:rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 1180px){
+      .header{
+        grid-template-columns:1fr;
+        justify-items:center;
+      }
+
+      .product-shell{
+        grid-template-columns:1fr;
+      }
+
+      .product-gallery{
+        position:static;
+      }
+    }
+
+    @media (max-width: 768px){
+      .header,
+      main,
+      .footer{
+        width:min(100% - 24px, 1380px);
+      }
+
+      .header{
+        margin-top:12px;
+        padding:16px 18px;
+      }
+
+      .nav{
+        gap:16px 20px;
+      }
+
+      .nav a{
+        font-size:15px;
+      }
+
+      .product-gallery,
+      .product-info,
+      .simple-section{
+        padding:20px;
+        border-radius:22px;
+      }
+
+      .main-image{
+        min-height:360px;
+        padding:22px;
+      }
+
+      .thumbs{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .title-wrap h1{
+        font-size:40px;
+      }
+
+      .subtitle,
+      .short-desc{
+        font-size:18px;
+      }
+
+      .price{
+        font-size:42px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="../index.html" class="logo">DriftZero</a>
+
+    <nav class="nav">
+      <a href="joycon.html">DriftZero Core Rail</a>
+      <a href="joycon2.html">DriftZero Pulse Flux</a>
+      <a href="procon.html">DriftZero Apex Pro</a>
+      <a href="joyconor.html" class="active">DriftZero Classic Rail</a>
+    </nav>
+
+    <a href="cart.html" class="cart">Cart</a>
+  </header>
+
+  <main>
+    <section class="product-shell">
+      <div class="product-gallery">
+        <div class="main-image">
+          <img id="mainProductImage" src="../images/classic-white.png" alt="DriftZero Classic Rail">
+        </div>
+
+        <div class="thumbs">
+          <button class="thumb active" type="button" data-image="../images/classic-white.png">
+            <img src="../images/classic-white.png" alt="Classic Rail white view">
+          </button>
+
+          <button class="thumb" type="button" data-image="../images/classic-red.png">
+            <img src="../images/classic-red.png" alt="Classic Rail red view">
+          </button>
+
+           <button class="thumb" type="button" data-image="../images/classic-pink.png">
+    <img src="../images/classic-pink.png" alt="Classic Rail pink view">
+  </button>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <div class="title-wrap">
+          <span class="eyebrow">DriftZero Classic Line</span>
+          <h1>Classic Rail</h1>
+          <p class="subtitle">Same Feel.<br> Better Price.</p>
+        </div>
+
+        <div class="price-row">
+          <div class="price">€34.99</div>
+          <div class="price-note">VAT included</div>
+        </div>
+
+        <p class="short-desc">
+          A cleaner take on the familiar split controller format. Built for everyday play with a balanced feel and a more refined finish.
+        </p>
+
+        <div class="bullet-list">
+          <div class="bullet">Familiar split layout</div>
+          <div class="bullet">HD Rumble</div>
+          <div class="bullet">Comes with box </div>
+          <div class="bullet">Wrist Strap Included</div>
+        </div>
+
+        <div>
+          <div class="section-label">Choose Color</div>
+          <div class="color-options">
+            <button class="color-btn" type="button" data-color="Ivory Signal" data-image="../images/classic-white.png">
+              <span class="swatch" style="background:#e9e1cf;"></span>
+              <span>Ivory Signal</span>
+            </button>
+
+            <button class="color-btn" type="button" data-color="Crimson Rail" data-image="../images/classic-red.png">
+              <span class="swatch" style="background:#bb3b3b;"></span>
+              <span>Crimson Rail</span>
+            </button>
+
+            <button class="color-btn" type="button" data-color="Rose Static" data-image="../images/classic-pink.png">
+              <span class="swatch" style="background:#d493a7;"></span>
+              <span>Rose Static</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="buy-box">
+          <div class="stock">In stock</div>
+
+          <div class="qty-row">
+            <label for="qty">Quantity</label>
+            <select id="qty" class="qty-select">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button class="btn-primary" id="addToCartBtn" type="button">Add To Cart</button>
+            <a href="cart.html" class="btn-secondary" style="display:flex;align-items:center;justify-content:center;">Go To Cart</a>
+          </div>
+
+          <p class="mini-note" id="selectedColorText">Selected color: Ivory Signal</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="simple-section">
+      <h2>Product Description</h2>
+      <p>
+      Classic Rail is the most straightforward option in the DriftZero lineup.
+Built to deliver the familiar split-controller feel without the inflated price, it focuses on what actually matters: balance, comfort, and everyday reliability.
+
+No unnecessary extras. No distractions.
+Just a clean, responsive controller you can pick up and use instantly.
+
+Each unit comes as a complete set, including wrist straps and retail-style packaging — ready straight out of the box.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">DriftZero</a>
+        <p class="footer-desc">
+          Built to look sharper.<br>
+          Priced to make sense.
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <div class="footer-col">
+          <h4>Products</h4>
+          <a href="joycon.html">DriftZero Core Rail</a>
+          <a href="joycon2.html">DriftZero Pulse Flux</a>
+          <a href="procon.html">DriftZero Apex Pro</a>
+          <a href="joyconor.html">DriftZero Classic Rail</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="cart.html">Cart</a>
+          <a href="#">Contact</a>
+          <a href="#">Shipping</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy</a>
+          <a href="easter-egg/easter-egg.html" class="footer-easter-link">Baroque Works™</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 DriftZero</p>
+    </div>
+  </footer>
+
+  <script>
+    const mainProductImage = document.getElementById('mainProductImage');
+    const colorButtons = document.querySelectorAll('.color-btn');
+    const thumbButtons = document.querySelectorAll('.thumb');
+    const selectedColorText = document.getElementById('selectedColorText');
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    const qtySelect = document.getElementById('qty');
+
+    let selectedColor = 'Ivory Signal';
+    let selectedImage = '../images/classic-white.png';
+
+    const productName = 'DriftZero Classic Rail';
+    const productPrice = 34.99;
+
+    colorButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        colorButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        selectedColor = button.dataset.color;
+        selectedImage = button.dataset.image;
+        mainProductImage.src = selectedImage;
+        selectedColorText.textContent = `Selected color: ${selectedColor}`;
+
+        thumbButtons.forEach(thumb => {
+          thumb.classList.remove('active');
+          if (thumb.dataset.image === selectedImage) {
+            thumb.classList.add('active');
+          }
+        });
+      });
+    });
+
+    thumbButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        thumbButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        mainProductImage.src = button.dataset.image;
+      });
+    });
+
+    addToCartBtn.addEventListener('click', () => {
+      const qty = parseInt(qtySelect.value, 10);
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      for (let i = 0; i < qty; i++) {
+        cart.push({
+          name: productName,
+          price: productPrice,
+          image: selectedImage,
+          color: selectedColor
+        });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      const originalText = addToCartBtn.textContent;
+      addToCartBtn.textContent = 'Added ✔';
+      addToCartBtn.style.boxShadow = '0 0 28px rgba(243,223,178,0.24)';
+
+      setTimeout(() => {
+        addToCartBtn.textContent = originalText;
+        addToCartBtn.style.boxShadow = '';
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
