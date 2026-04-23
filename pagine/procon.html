@@ -117,24 +117,240 @@
       color:var(--accent2);
     }
 
-    .cart{
+    .cart-wrapper{
       justify-self:end;
+      position:relative;
+    }
+
+    .cart-toggle{
       display:inline-flex;
       align-items:center;
-      gap:8px;
+      gap:10px;
       padding:10px 18px;
       border-radius:12px;
       background:linear-gradient(90deg, var(--accent1), var(--accent2));
       color:#0a0a0a;
       font-weight:700;
       font-size:20px;
+      cursor:pointer;
       transition:transform 0.2s ease, opacity 0.2s ease, box-shadow 0.4s ease;
       box-shadow:0 10px 26px var(--accent-soft);
     }
 
-    .cart:hover{
+    .cart-toggle:hover{
       transform:scale(1.04);
       opacity:0.95;
+    }
+
+    .cart-badge{
+      min-width:24px;
+      height:24px;
+      padding:0 7px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:#0a0a0a;
+      color:#fff;
+      font-size:13px;
+      font-weight:700;
+      line-height:1;
+    }
+
+    .cart-dropdown{
+      position:absolute;
+      top:calc(100% + 14px);
+      right:0;
+      width:360px;
+      max-height:520px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:linear-gradient(180deg, rgba(16,16,20,0.96), rgba(10,10,14,0.98));
+      box-shadow:0 24px 60px rgba(0,0,0,0.42);
+      backdrop-filter:blur(14px);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+      overflow:hidden;
+      z-index:1200;
+    }
+
+    .cart-wrapper.open .cart-dropdown{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .cart-dropdown-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 18px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .cart-dropdown-title{
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+    }
+
+    .cart-dropdown-count{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .cart-items{
+      max-height:300px;
+      overflow:auto;
+      padding:10px 10px 0;
+    }
+
+    .cart-items::-webkit-scrollbar{
+      width:8px;
+    }
+
+    .cart-items::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,0.14);
+      border-radius:999px;
+    }
+
+    .cart-empty{
+      padding:24px 18px 10px;
+      color:var(--muted);
+      font-size:17px;
+      text-align:center;
+    }
+
+    .cart-item{
+      display:grid;
+      grid-template-columns:72px 1fr auto;
+      gap:12px;
+      align-items:center;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.03);
+      margin-bottom:10px;
+    }
+
+    .cart-item-image{
+      width:72px;
+      height:72px;
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(180deg, rgba(18,18,22,0.94), rgba(10,10,13,0.98));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .cart-item-image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:8px;
+    }
+
+    .cart-item-info{
+      min-width:0;
+    }
+
+    .cart-item-name{
+      font-size:16px;
+      font-weight:700;
+      line-height:1.15;
+      color:#fff;
+    }
+
+    .cart-item-meta{
+      margin-top:5px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.2;
+    }
+
+    .cart-item-price{
+      margin-top:6px;
+      font-size:16px;
+      font-weight:700;
+      color:var(--accent1);
+    }
+
+    .cart-item-remove{
+      align-self:start;
+      padding:6px 8px;
+      border-radius:10px;
+      color:rgba(255,255,255,0.62);
+      background:rgba(255,255,255,0.04);
+      cursor:pointer;
+      transition:background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .cart-item-remove:hover{
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      transform:translateY(-1px);
+    }
+
+    .cart-footer{
+      padding:14px 18px 18px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      display:grid;
+      gap:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+
+    .cart-subtotal{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:18px;
+      font-weight:700;
+    }
+
+    .cart-subtotal span:last-child{
+      color:var(--accent1);
+    }
+
+    .cart-actions{
+      display:grid;
+      gap:10px;
+    }
+
+    .cart-view-btn,
+    .cart-clear-btn{
+      width:100%;
+      padding:14px 16px;
+      border-radius:14px;
+      font-size:17px;
+      font-weight:700;
+      transition:transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      cursor:pointer;
+    }
+
+    .cart-view-btn{
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      color:#070709;
+      text-align:center;
+      box-shadow:0 0 22px var(--accent-soft);
+    }
+
+    .cart-clear-btn{
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.10);
+    }
+
+    .cart-view-btn:hover,
+    .cart-clear-btn:hover{
+      transform:translateY(-2px);
+      opacity:0.96;
     }
 
     main{
@@ -246,7 +462,7 @@
       align-items:center;
       justify-content:center;
       cursor:pointer;
-      transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+      transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .thumb img{
@@ -592,7 +808,7 @@
 
       .logo,
       .nav,
-      .cart{
+      .cart-wrapper{
         justify-self:center;
       }
 
@@ -617,6 +833,16 @@
 
       .nav a{
         font-size:15px;
+      }
+
+      .cart-dropdown{
+        width:min(92vw, 360px);
+        right:50%;
+        transform:translate(50%, 10px);
+      }
+
+      .cart-wrapper.open .cart-dropdown{
+        transform:translate(50%, 0);
       }
 
       main{
@@ -666,7 +892,33 @@
       <a href="joyconor.html">DriftZero Classic Rail</a>
     </nav>
 
-    <a href="cart.html" class="cart">Cart</a>
+    <div class="cart-wrapper" id="cartWrapper">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="cartDropdown">
+        Cart
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+
+      <div class="cart-dropdown" id="cartDropdown">
+        <div class="cart-dropdown-header">
+          <div class="cart-dropdown-title">Your Cart</div>
+          <div class="cart-dropdown-count" id="cartDropdownCount">0 items</div>
+        </div>
+
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="cart-footer">
+          <div class="cart-subtotal">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">€0.00</span>
+          </div>
+
+          <div class="cart-actions">
+            <a href="cart.html" class="cart-view-btn">Go Checkout</a>
+            <button class="cart-clear-btn" id="clearCartBtn" type="button">Clear Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -909,6 +1161,7 @@
     ];
 
     const root = document.documentElement;
+
     const mainProductImage = document.getElementById("mainProductImage");
     const productTitle = document.getElementById("productTitle");
     const productSubtitle = document.getElementById("productSubtitle");
@@ -923,15 +1176,41 @@
     const thumbButtons = Array.from(document.querySelectorAll(".thumb"));
     const variantButtons = Array.from(document.querySelectorAll(".color-btn"));
 
+    const cartWrapper = document.getElementById("cartWrapper");
+    const cartToggle = document.getElementById("cartToggle");
+    const cartDropdown = document.getElementById("cartDropdown");
+    const cartBadge = document.getElementById("cartBadge");
+    const cartDropdownCount = document.getElementById("cartDropdownCount");
+    const cartItems = document.getElementById("cartItems");
+    const cartSubtotal = document.getElementById("cartSubtotal");
+    const clearCartBtn = document.getElementById("clearCartBtn");
+
     let selectedIndex = 0;
 
     function getCart() {
       return JSON.parse(localStorage.getItem("cart")) || [];
     }
 
+    function saveCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function formatPrice(value) {
+      return `€${value.toFixed(2)}`;
+    }
+
+    function getCartQuantity(cart) {
+      return cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    }
+
+    function getCartSubtotal(cart) {
+      return cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
+    }
+
     function updateCartCount() {
       const cart = getCart();
-      cartCountText.textContent = `Cart items: ${cart.length}`;
+      const count = getCartQuantity(cart);
+      cartCountText.textContent = `Cart items: ${count}`;
     }
 
     function getStockLabel(stock) {
@@ -979,7 +1258,7 @@
 
       productTitle.textContent = variant.name;
       productSubtitle.innerHTML = variant.subtitle;
-      productPrice.textContent = `€${variant.price.toFixed(2)}`;
+      productPrice.textContent = formatPrice(variant.price);
       productDesc.textContent = variant.desc;
       productPoints.innerHTML = variant.points.map(point => `<li class="bullet">${point}</li>`).join("");
 
@@ -995,6 +1274,80 @@
     function goToVariant(index) {
       selectedIndex = index;
       renderProduct(index);
+    }
+
+    function renderCartDropdown() {
+      const cart = getCart();
+      const count = getCartQuantity(cart);
+      const subtotal = getCartSubtotal(cart);
+
+      cartBadge.textContent = count;
+      cartDropdownCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
+      cartSubtotal.textContent = formatPrice(subtotal);
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
+        return;
+      }
+
+      cartItems.innerHTML = cart.map((item, index) => {
+        const quantity = item.quantity || 1;
+        const itemTotal = item.price * quantity;
+
+        return `
+          <div class="cart-item">
+            <div class="cart-item-image">
+              <img src="${item.image}" alt="${item.name}">
+            </div>
+
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-meta">Qty: ${quantity}</div>
+              <div class="cart-item-price">${formatPrice(itemTotal)}</div>
+            </div>
+
+            <button class="cart-item-remove" type="button" data-remove-index="${index}">×</button>
+          </div>
+        `;
+      }).join("");
+
+      cartItems.querySelectorAll("[data-remove-index]").forEach(button => {
+        button.addEventListener("click", () => {
+          removeCartItem(Number(button.dataset.removeIndex));
+        });
+      });
+    }
+
+    function removeCartItem(index) {
+      const cart = getCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCartDropdown();
+      updateCartCount();
+    }
+
+    function clearCart() {
+      saveCart([]);
+      renderCartDropdown();
+      updateCartCount();
+    }
+
+    function openCart() {
+      cartWrapper.classList.add("open");
+      cartToggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeCart() {
+      cartWrapper.classList.remove("open");
+      cartToggle.setAttribute("aria-expanded", "false");
+    }
+
+    function toggleCart() {
+      cartWrapper.classList.toggle("open");
+      cartToggle.setAttribute(
+        "aria-expanded",
+        cartWrapper.classList.contains("open") ? "true" : "false"
+      );
     }
 
     thumbButtons.forEach(button => {
@@ -1014,15 +1367,24 @@
       if (variant.stock <= 0) return;
 
       const cart = getCart();
-      cart.push({
-        name: `DriftZero Apex Pro - ${variant.name}`,
-        price: variant.price,
-        image: variant.image,
-        color: variant.name
-      });
+      const existingItem = cart.find(item => item.name === `DriftZero Apex Pro - ${variant.name}`);
 
-      localStorage.setItem("cart", JSON.stringify(cart));
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+      } else {
+        cart.push({
+          name: `DriftZero Apex Pro - ${variant.name}`,
+          price: variant.price,
+          image: variant.image,
+          color: variant.name,
+          quantity: 1
+        });
+      }
+
+      saveCart(cart);
+      renderCartDropdown();
       updateCartCount();
+      openCart();
 
       addToCartBtn.textContent = "Added ✔";
       setTimeout(() => {
@@ -1030,7 +1392,24 @@
       }, 900);
     });
 
+    cartToggle.addEventListener("click", toggleCart);
+
+    clearCartBtn.addEventListener("click", clearCart);
+
+    document.addEventListener("click", event => {
+      if (!cartWrapper.contains(event.target)) {
+        closeCart();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeCart();
+      }
+    });
+
     updateCartCount();
+    renderCartDropdown();
     renderProduct(0);
   </script>
 </body>

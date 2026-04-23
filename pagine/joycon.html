@@ -63,6 +63,8 @@
 
     button{
       font:inherit;
+      border:none;
+      background:none;
     }
 
     .container{
@@ -111,11 +113,16 @@
       color:#D9DDE3;
     }
 
-    .cart{
+    .cart-wrapper{
+      justify-self:end;
+      position:relative;
+    }
+
+    .cart-toggle{
       justify-self:end;
       display:inline-flex;
       align-items:center;
-      gap:8px;
+      gap:10px;
       padding:10px 18px;
       border-radius:10px;
       background:linear-gradient(135deg, #E8EBEF 0%, #BCC4CF 52%, #959EAB 100%);
@@ -123,6 +130,224 @@
       font-weight:700;
       font-size:20px;
       box-shadow:0 10px 30px rgba(0,0,0,0.18);
+      cursor:pointer;
+      transition:transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cart-toggle:hover{
+      transform:scale(1.05);
+      opacity:0.95;
+    }
+
+    .cart-badge{
+      min-width:24px;
+      height:24px;
+      padding:0 7px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:#050507;
+      color:#fff;
+      font-size:13px;
+      font-weight:700;
+      line-height:1;
+    }
+
+    .cart-dropdown{
+      position:absolute;
+      top:calc(100% + 14px);
+      right:0;
+      width:360px;
+      max-height:520px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:linear-gradient(180deg, rgba(16,16,20,0.96), rgba(10,10,14,0.98));
+      box-shadow:0 24px 60px rgba(0,0,0,0.42);
+      backdrop-filter:blur(14px);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+      overflow:hidden;
+      z-index:1200;
+    }
+
+    .cart-wrapper.open .cart-dropdown{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .cart-dropdown-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 18px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .cart-dropdown-title{
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+    }
+
+    .cart-dropdown-count{
+      color:rgba(255,255,255,0.58);
+      font-size:14px;
+    }
+
+    .cart-items{
+      max-height:300px;
+      overflow:auto;
+      padding:10px 10px 0;
+    }
+
+    .cart-items::-webkit-scrollbar{
+      width:8px;
+    }
+
+    .cart-items::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,0.14);
+      border-radius:999px;
+    }
+
+    .cart-empty{
+      padding:24px 18px 10px;
+      color:rgba(255,255,255,0.58);
+      font-size:17px;
+      text-align:center;
+    }
+
+    .cart-item{
+      display:grid;
+      grid-template-columns:72px 1fr auto;
+      gap:12px;
+      align-items:center;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.03);
+      margin-bottom:10px;
+    }
+
+    .cart-item-image{
+      width:72px;
+      height:72px;
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(180deg, rgba(18,18,22,0.94), rgba(10,10,13,0.98));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .cart-item-image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:8px;
+    }
+
+    .cart-item-info{
+      min-width:0;
+    }
+
+    .cart-item-name{
+      font-size:16px;
+      font-weight:700;
+      line-height:1.15;
+      color:#fff;
+    }
+
+    .cart-item-meta{
+      margin-top:5px;
+      font-size:14px;
+      color:rgba(255,255,255,0.58);
+      line-height:1.2;
+    }
+
+    .cart-item-price{
+      margin-top:6px;
+      font-size:16px;
+      font-weight:700;
+      color:var(--accent1);
+    }
+
+    .cart-item-remove{
+      align-self:start;
+      padding:6px 8px;
+      border-radius:10px;
+      color:rgba(255,255,255,0.62);
+      background:rgba(255,255,255,0.04);
+      cursor:pointer;
+      transition:background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .cart-item-remove:hover{
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      transform:translateY(-1px);
+    }
+
+    .cart-footer{
+      padding:14px 18px 18px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      display:grid;
+      gap:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+
+    .cart-subtotal{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:18px;
+      font-weight:700;
+    }
+
+    .cart-subtotal span:last-child{
+      color:var(--accent1);
+    }
+
+    .cart-actions{
+      display:grid;
+      gap:10px;
+    }
+
+    .cart-view-btn,
+    .cart-clear-btn{
+      width:100%;
+      padding:14px 16px;
+      border-radius:14px;
+      font-size:17px;
+      font-weight:700;
+      transition:transform 0.2s ease, opacity 0.2s ease;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .cart-view-btn{
+      background:linear-gradient(135deg, #E8EBEF 0%, #BCC4CF 52%, #959EAB 100%);
+      color:#050507;
+      box-shadow:0 0 22px rgba(217,221,227,0.10);
+    }
+
+    .cart-clear-btn{
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.10);
+    }
+
+    .cart-view-btn:hover,
+    .cart-clear-btn:hover{
+      transform:translateY(-2px);
+      opacity:0.96;
     }
 
     .page{
@@ -268,37 +493,35 @@
       pointer-events:none;
     }
 
-.hero-pair{
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:0;
-  width:min(100%, 980px);
-}
+    .hero-pair{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0;
+      width:min(100%, 980px);
+    }
 
-.hero-side-image{
-  width:52%;
-  max-width:460px;
-  max-height:760px;
-  object-fit:contain;
-  filter:drop-shadow(0 26px 48px rgba(0,0,0,0.38));
-}
+    .hero-side-image{
+      width:52%;
+      max-width:460px;
+      max-height:760px;
+      object-fit:contain;
+      filter:drop-shadow(0 26px 48px rgba(0,0,0,0.38));
+    }
 
-.hero-side-image:first-child{
-  transform:translateX(70px) scale(1.14);
-}
+    .hero-side-image:first-child{
+      transform:translateX(70px) scale(1.14);
+    }
 
-.hero-side-image:last-child{
-  transform:translateX(-70px) scale(1.14);
-}
+    .hero-side-image:last-child{
+      transform:translateX(-70px) scale(1.14);
+    }
 
     .hero-pair.is-hidden{
       display:none;
     }
-
-    
 
     .hero-full-wrap{
       position:relative;
@@ -470,9 +693,7 @@
     }
 
     @keyframes addToCartPulse{
-      0%{
-        transform:scale(1);
-      }
+      0%{ transform:scale(1); }
       35%{
         transform:scale(1.035);
         box-shadow:0 0 0 0 rgba(232,235,239,0.45), 0 10px 30px rgba(0,0,0,0.18);
@@ -608,7 +829,6 @@
     .swatch-btn.out,
     .swatch-btn:disabled{
       opacity:0.99;
-     
       cursor:not-allowed;
       pointer-events:none;
       background:rgba(255,255,255,0.008);
@@ -637,7 +857,6 @@
 
     .swatch-btn.out .swatch-name,
     .swatch-btn:disabled .swatch-name{
-      
       color:rgba(242,243,245,0.32);
     }
 
@@ -724,7 +943,6 @@
     .pattern-card.out,
     .pattern-card:disabled{
       opacity:0.99;
-     
       cursor:not-allowed;
       pointer-events:none;
       background:rgba(255,255,255,0.008);
@@ -747,7 +965,6 @@
 
     .pattern-card.out .pattern-name,
     .pattern-card:disabled .pattern-name{
-
       color:rgba(242,243,245,0.32);
     }
 
@@ -1003,7 +1220,7 @@
 
       .logo,
       .nav,
-      .cart{
+      .cart-wrapper{
         justify-self:center;
       }
 
@@ -1017,6 +1234,16 @@
     @media (max-width: 768px){
       .container{
         width:min(100% - 22px, 1280px);
+      }
+
+      .cart-dropdown{
+        width:min(92vw, 360px);
+        right:50%;
+        transform:translate(50%, 10px);
+      }
+
+      .cart-wrapper.open .cart-dropdown{
+        transform:translate(50%, 0);
       }
 
       .product-hero,
@@ -1109,7 +1336,7 @@
         font-size:14px;
       }
 
-      .cart{
+      .cart-toggle{
         font-size:16px;
       }
     }
@@ -1126,7 +1353,33 @@
     <a href="joyconor.html">DriftZero Classic Rail</a>
   </nav>
 
-  <a href="cart.html" class="cart">Cart</a>
+  <div class="cart-wrapper" id="cartWrapper">
+    <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="cartDropdown">
+      Cart
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <div class="cart-dropdown" id="cartDropdown">
+      <div class="cart-dropdown-header">
+        <div class="cart-dropdown-title">Your Cart</div>
+        <div class="cart-dropdown-count" id="cartDropdownCount">0 items</div>
+      </div>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-footer">
+        <div class="cart-subtotal">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">€0.00</span>
+        </div>
+
+        <div class="cart-actions">
+          <a href="cart.html" class="cart-view-btn">Go To Cart</a>
+          <button class="cart-clear-btn" id="clearCartBtn" type="button">Clear Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <main class="page">
@@ -1368,34 +1621,34 @@
     { key:"green",        label:"Green",        category:"solid",   image:"../images/joycon-lite/green-left.png",        accent:"#59e28b" },
     { key:"brown",        label:"Brown",        category:"solid",   image:"../images/joycon-lite/brown-left.png",        accent:"#b07a45" },
 
-    { key:"splatoon-2",    label:"Drip Crew", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png",    pairImage:"../images/joycon-lite/splatoon-2-pair.png",    accent:"#7f57ff" },
-    { key:"monster-hunter",label:"Obsidian Core",   category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png",pairImage:"../images/joycon-lite/monster-hunter-pair.png",accent:"#7a7a7a" },
-    { key:"zelda-totk",    label:"Elder Vale",       category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png",    pairImage:"../images/joycon-lite/zelda-totk-pair.png",    accent:"#30df84" },
-    { key:"zelda-skyward", label:"Breeze Chaser",    category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
-    { key:"pokemon",       label:"Pocket Tales",     category:"pattern", image:"../images/joycon-lite/pokemon-left.png",       pairImage:"../images/joycon-lite/pokemon-pair.png",       accent:"#7a4dff" },
-    { key:"mario",         label:"Pipe Rider",       category:"pattern", image:"../images/joycon-lite/mario-left.png",         pairImage:"../images/joycon-lite/mario-pair.png",         accent:"#c1121f" }
+    { key:"splatoon-2",    label:"Drip Crew",         category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png",     pairImage:"../images/joycon-lite/splatoon-2-pair.png",     accent:"#7f57ff" },
+    { key:"monster-hunter",label:"Obsidian Core",     category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
+    { key:"zelda-totk",    label:"Elder Vale",        category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png",     pairImage:"../images/joycon-lite/zelda-totk-pair.png",     accent:"#30df84" },
+    { key:"zelda-skyward", label:"Breeze Chaser",     category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png",  pairImage:"../images/joycon-lite/zelda-skyward-pair.png",  accent:"#5f8eff" },
+    { key:"pokemon",       label:"Pocket Tales",      category:"pattern", image:"../images/joycon-lite/pokemon-left.png",        pairImage:"../images/joycon-lite/pokemon-pair.png",        accent:"#7a4dff" },
+    { key:"mario",         label:"Pipe Rider",        category:"pattern", image:"../images/joycon-lite/mario-left.png",          pairImage:"../images/joycon-lite/mario-pair.png",          accent:"#c1121f" }
   ];
 
   const rightSwatches = [
-    { key:"red",         label:"Red",          category:"solid", image:"../images/joycon-lite/red-right.png",         accent:"#ff4d5f" },
-    { key:"blue",        label:"Blue",         category:"solid", image:"../images/joycon-lite/blue-right.png",        accent:"#00dbff" },
-    { key:"orange",      label:"Orange",       category:"solid", image:"../images/joycon-lite/orange-right.png",      accent:"#ff9a3d" },
-    { key:"yellow",      label:"Yellow",       category:"solid", image:"../images/joycon-lite/yellow-right.png",      accent:"#ffe45c" },
-    { key:"gray",        label:"Gray",         category:"solid", image:"../images/joycon-lite/gray-right.png",        accent:"#9aa0ab" },
-    { key:"white",       label:"White",        category:"solid", image:"../images/joycon-lite/white-right.png",       accent:"#f7f7f7" },
-    { key:"light-green", label:"Light Green",  category:"solid", image:"../images/joycon-lite/light-green-right.png", accent:"#a8f58c" },
-    { key:"green",       label:"Green",        category:"solid", image:"../images/joycon-lite/green-right.png",       accent:"#59e28b" },
-    { key:"light-yellow",label:"Light Yellow", category:"solid", image:"../images/joycon-lite/light-yellow-right.png",accent:"#fff2a6" },
-    { key:"light-blue",  label:"Light Blue",   category:"solid", image:"../images/joycon-lite/light-blue-right.png",  accent:"#8ddcff" },
-    { key:"ochre",       label:"Ochre",        category:"solid", image:"../images/joycon-lite/ochre-right.png",       accent:"#c9972b" },
-    { key:"pink",        label:"Pink",         category:"solid", image:"../images/joycon-lite/pink-right.png",        accent:"#ff9cc7" },
+    { key:"red",          label:"Red",          category:"solid", image:"../images/joycon-lite/red-right.png",          accent:"#ff4d5f" },
+    { key:"blue",         label:"Blue",         category:"solid", image:"../images/joycon-lite/blue-right.png",         accent:"#00dbff" },
+    { key:"orange",       label:"Orange",       category:"solid", image:"../images/joycon-lite/orange-right.png",       accent:"#ff9a3d" },
+    { key:"yellow",       label:"Yellow",       category:"solid", image:"../images/joycon-lite/yellow-right.png",       accent:"#ffe45c" },
+    { key:"gray",         label:"Gray",         category:"solid", image:"../images/joycon-lite/gray-right.png",         accent:"#9aa0ab" },
+    { key:"white",        label:"White",        category:"solid", image:"../images/joycon-lite/white-right.png",        accent:"#f7f7f7" },
+    { key:"light-green",  label:"Light Green",  category:"solid", image:"../images/joycon-lite/light-green-right.png",  accent:"#a8f58c" },
+    { key:"green",        label:"Green",        category:"solid", image:"../images/joycon-lite/green-right.png",        accent:"#59e28b" },
+    { key:"light-yellow", label:"Light Yellow", category:"solid", image:"../images/joycon-lite/light-yellow-right.png", accent:"#fff2a6" },
+    { key:"light-blue",   label:"Light Blue",   category:"solid", image:"../images/joycon-lite/light-blue-right.png",   accent:"#8ddcff" },
+    { key:"ochre",        label:"Ochre",        category:"solid", image:"../images/joycon-lite/ochre-right.png",        accent:"#c9972b" },
+    { key:"pink",         label:"Pink",         category:"solid", image:"../images/joycon-lite/pink-right.png",         accent:"#ff9cc7" },
 
-    { key:"splatoon-2",    label:"Drip Crew", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png",    pairImage:"../images/joycon-lite/splatoon-2-pair.png",    accent:"#7f57ff" },
-    { key:"monster-hunter",label:"Obsidian Core",   category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png",pairImage:"../images/joycon-lite/monster-hunter-pair.png",accent:"#7a7a7a" },
-    { key:"zelda-totk",    label:"Elder Vale",       category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png",    pairImage:"../images/joycon-lite/zelda-totk-pair.png",    accent:"#30df84" },
-    { key:"zelda-skyward", label:"Breeze Chaser",    category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
-    { key:"pokemon",       label:"Pocket Tales",     category:"pattern", image:"../images/joycon-lite/pokemon-right.png",       pairImage:"../images/joycon-lite/pokemon-pair.png",       accent:"#7a4dff" },
-    { key:"mario",         label:"Pipe Rider",       category:"pattern", image:"../images/joycon-lite/mario-right.png",         pairImage:"../images/joycon-lite/mario-pair.png",         accent:"#c1121f" }
+    { key:"splatoon-2",    label:"Drip Crew",         category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png",     pairImage:"../images/joycon-lite/splatoon-2-pair.png",     accent:"#7f57ff" },
+    { key:"monster-hunter",label:"Obsidian Core",     category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
+    { key:"zelda-totk",    label:"Elder Vale",        category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png",     pairImage:"../images/joycon-lite/zelda-totk-pair.png",     accent:"#30df84" },
+    { key:"zelda-skyward", label:"Breeze Chaser",     category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png",  pairImage:"../images/joycon-lite/zelda-skyward-pair.png",  accent:"#5f8eff" },
+    { key:"pokemon",       label:"Pocket Tales",      category:"pattern", image:"../images/joycon-lite/pokemon-right.png",        pairImage:"../images/joycon-lite/pokemon-pair.png",        accent:"#7a4dff" },
+    { key:"mario",         label:"Pipe Rider",        category:"pattern", image:"../images/joycon-lite/mario-right.png",          pairImage:"../images/joycon-lite/mario-pair.png",          accent:"#c1121f" }
   ];
 
   const leftHeroImage      = document.getElementById("leftHeroImage");
@@ -1417,12 +1670,110 @@
   const patternPairGrid    = document.getElementById("patternPairGrid");
   const stockText          = document.getElementById("stockText");
 
+  const cartWrapper = document.getElementById("cartWrapper");
+  const cartToggle = document.getElementById("cartToggle");
+  const cartBadge = document.getElementById("cartBadge");
+  const cartDropdownCount = document.getElementById("cartDropdownCount");
+  const cartItems = document.getElementById("cartItems");
+  const cartSubtotal = document.getElementById("cartSubtotal");
+  const clearCartBtn = document.getElementById("clearCartBtn");
+
   const DEFAULT_ADD_TO_CART_TEXT = addToCartBtn ? addToCartBtn.textContent : "Add To Cart";
 
   let currentPair = { left: "red", right: "orange" };
 
   if (typeof initializeCoreRailStock === "function") {
     initializeCoreRailStock();
+  }
+
+  function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  function formatPrice(value) {
+    return `€${value.toFixed(2)}`;
+  }
+
+  function getCartQuantity(cart) {
+    return cart.reduce((total, item) => total + (item.quantity || 1), 0);
+  }
+
+  function getCartSubtotal(cart) {
+    return cart.reduce((total, item) => total + ((item.price || 0) * (item.quantity || 1)), 0);
+  }
+
+  function renderCartDropdown() {
+    const cart = getCart();
+    const count = getCartQuantity(cart);
+    const subtotal = getCartSubtotal(cart);
+
+    cartBadge.textContent = count;
+    cartDropdownCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
+    cartSubtotal.textContent = formatPrice(subtotal);
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
+      return;
+    }
+
+    cartItems.innerHTML = cart.map((item, index) => {
+      const quantity = item.quantity || 1;
+      const itemTotal = (item.price || 0) * quantity;
+      const meta = item.isPatternPair
+        ? `Qty: ${quantity} • Full pair`
+        : `Qty: ${quantity} • ${item.leftColor || ""}${item.rightColor ? ` / ${item.rightColor}` : ""}`;
+
+      return `
+        <div class="cart-item">
+          <div class="cart-item-image">
+            <img src="${item.pairImage || item.image}" alt="${item.name}">
+          </div>
+
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-meta">${meta}</div>
+            <div class="cart-item-price">${formatPrice(itemTotal)}</div>
+          </div>
+
+          <button class="cart-item-remove" type="button" data-remove-index="${index}">×</button>
+        </div>
+      `;
+    }).join("");
+
+    cartItems.querySelectorAll("[data-remove-index]").forEach(button => {
+      button.addEventListener("click", () => {
+        removeCartItem(Number(button.dataset.removeIndex));
+      });
+    });
+  }
+
+  function removeCartItem(index) {
+    const cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    renderCartDropdown();
+  }
+
+  function clearCart() {
+    saveCart([]);
+    renderCartDropdown();
+  }
+
+  function closeCart() {
+    cartWrapper.classList.remove("open");
+    cartToggle.setAttribute("aria-expanded", "false");
+  }
+
+  function toggleCart() {
+    cartWrapper.classList.toggle("open");
+    cartToggle.setAttribute(
+      "aria-expanded",
+      cartWrapper.classList.contains("open") ? "true" : "false"
+    );
   }
 
   function getSwatchList(side) {
@@ -1439,12 +1790,12 @@
 
   function getPatternBackgrounds() {
     return {
-      "splatoon-2":     "linear-gradient(135deg, #2fe06d 0%, #7f57ff 100%)",
-      "monster-hunter": "linear-gradient(135deg, #111111 0%, #7a7a7a 100%)",
-      "zelda-totk":     "linear-gradient(135deg, #d4af37 0%, #30df84 100%)",
-      "zelda-skyward":  "linear-gradient(135deg, #5f8eff 0%, #c9972b 100%)",
-      "pokemon":        "linear-gradient(135deg, #ff4d4d 0%, #7a4dff 100%)",
-      "mario":          "linear-gradient(135deg, #ff3b30 0%, #c1121f 100%)"
+      "splatoon-2":      "linear-gradient(135deg, #2fe06d 0%, #7f57ff 100%)",
+      "monster-hunter":  "linear-gradient(135deg, #111111 0%, #7a7a7a 100%)",
+      "zelda-totk":      "linear-gradient(135deg, #d4af37 0%, #30df84 100%)",
+      "zelda-skyward":   "linear-gradient(135deg, #5f8eff 0%, #c9972b 100%)",
+      "pokemon":         "linear-gradient(135deg, #ff4d4d 0%, #7a4dff 100%)",
+      "mario":           "linear-gradient(135deg, #ff3b30 0%, #c1121f 100%)"
     };
   }
 
@@ -1749,12 +2100,11 @@
     const availableQty = getCurrentAvailableQty();
 
     if (availableQty <= 0) {
-      alert("Out of stock");
       syncAddToCartState();
       return;
     }
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cart = getCart();
 
     if (selection.patternMode) {
       const existingItem = cart.find(item =>
@@ -1818,7 +2168,8 @@
       }
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    saveCart(cart);
+    renderCartDropdown();
     playAddToCartAnimation();
     renderAllSwatches();
   }
@@ -1834,8 +2185,30 @@
     addToCartBtn.addEventListener("click", addCurrentToCart);
   }
 
+  cartToggle.addEventListener("click", toggleCart);
+  clearCartBtn.addEventListener("click", clearCart);
+
+  document.addEventListener("click", event => {
+    if (!cartWrapper.contains(event.target)) {
+      closeCart();
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeCart();
+    }
+  });
+
+  window.addEventListener("storage", event => {
+    if (event.key === "cart") {
+      renderCartDropdown();
+    }
+  });
+
   updateSelectedUI();
   renderAllSwatches();
+  renderCartDropdown();
 </script>
 </body>
 </html>
