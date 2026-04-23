@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Unbounded:wght@500;600;700&family=Marcellus&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -15,61 +15,22 @@
       --text:rgba(255,255,255,0.94);
       --muted:rgba(255,255,255,0.64);
 
-      --accent1:#fff8ef;
-      --accent2:#8f959c;
-      --accent-soft:rgba(255,248,239,0.18);
-      --accent-soft-2:rgba(143,149,156,0.12);
+      --accent1:#00f5a0;
+      --accent2:#00c97a;
+      --accent-soft:rgba(0,245,160,0.18);
 
-      --hero-light-1:rgba(255,255,255,0.35);
-      --hero-light-2:rgba(255,248,239,0.22);
-      --hero-beam:rgba(255,255,255,0.08);
+      --hero-light-1:rgba(0,245,160,0.26);
+      --hero-light-2:rgba(0,201,122,0.18);
+      --hero-beam-1:rgba(0,245,160,0.14);
+      --hero-beam-2:rgba(255,255,255,0.08);
+      --hero-beam-3:rgba(0,201,122,0.10);
+      --hero-floor-1:rgba(0,245,160,0.16);
+      --hero-floor-2:rgba(255,255,255,0.08);
+
+      --success:#9bd38d;
+      --danger:rgba(255,255,255,0.42);
 
       --shadow-soft:0 18px 50px rgba(0,0,0,0.35);
-
-      --hero-font:'Cinzel';
-      --details-font:'Rajdhani';
-
-      --hero-bg-opacity:0.30;
-      --hero-bg-brightness:0.92;
-      --hero-bg-contrast:1.04;
-      --hero-bg-scale-active:1;
-      --hero-bg-scale-idle:1.02;
-
-      --stage-top:56%;
-      --stage-width:min(1180px, 92vw);
-      --stage-height:min(900px, 82vh);
-
-      --stage-glow-size-1:52%;
-      --stage-glow-size-2:72%;
-      --stage-glow-blur-1:24px;
-      --stage-glow-blur-2:30px;
-
-      --frame-width:112%;
-      --frame-height:112%;
-      --frame-opacity:0.56;
-      --frame-scale-idle:1.06;
-      --frame-scale-active:1.08;
-      --frame-brightness:1;
-      --frame-contrast:1;
-      --frame-drop-shadow:rgba(0,0,0,0.16);
-
-      --image-width:min(620px, 92%);
-      --image-height:min(500px, 72%);
-      --image-scale-idle:0.98;
-      --image-scale-active:1;
-      --image-shift-y:0px;
-      --image-shadow-opacity:0.16;
-      --image-glow-1:20px;
-      --image-glow-2:42px;
-
-      --title-size:clamp(28px, 2.6vw, 46px);
-      --title-letter-spacing:0.18em;
-      --title-color:#f7f3eb;
-      --title-transform:uppercase;
-
-      --details-title-size:clamp(34px, 4vw, 54px);
-      --details-title-spacing:0.02em;
-      --details-title-transform:uppercase;
     }
 
     *{
@@ -85,13 +46,12 @@
     body{
       font-family:'Rajdhani', sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 20%),
-        radial-gradient(circle at 85% 10%, rgba(255,255,255,0.02), transparent 20%),
+        radial-gradient(circle at top left, rgba(0,245,160,0.05), transparent 22%),
+        radial-gradient(circle at 85% 10%, rgba(0,201,122,0.05), transparent 20%),
         linear-gradient(180deg, #050507 0%, #090a0e 52%, #060608 100%);
       color:var(--text);
       min-height:100vh;
       overflow-x:hidden;
-      transition:background 0.8s ease;
     }
 
     a{
@@ -102,6 +62,12 @@
     img{
       display:block;
       max-width:100%;
+    }
+
+    button{
+      font:inherit;
+      border:none;
+      background:none;
     }
 
     .header{
@@ -120,7 +86,6 @@
     .logo{
       font-size:28px;
       font-weight:700;
-      font-family:'Rajdhani', sans-serif;
       background:linear-gradient(90deg, var(--accent1), var(--accent2));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
@@ -139,7 +104,6 @@
       gap:40px;
       justify-self:center;
       flex-wrap:wrap;
-      font-family:'Rajdhani', sans-serif;
     }
 
     .nav a{
@@ -164,7 +128,6 @@
       color:#0a0a0a;
       font-weight:700;
       font-size:20px;
-      font-family:'Rajdhani', sans-serif;
       transition:transform 0.2s ease, opacity 0.2s ease, box-shadow 0.4s ease;
       box-shadow:0 10px 26px var(--accent-soft);
     }
@@ -174,590 +137,342 @@
       opacity:0.95;
     }
 
-    .pro-main{
-      position:relative;
-      overflow:hidden;
+    main{
+      width:min(1380px, calc(100% - 40px));
+      margin:28px auto 0;
+      padding-bottom:60px;
     }
 
-    .art-hero{
-      position:relative;
-      min-height:calc(135vh - 81px);
-      display:block;
-      padding:0;
-      overflow:hidden;
-      isolation:isolate;
-    }
-
-    .hero-bg-layer{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center;
-      opacity:0;
-      transition:
-        opacity 0.95s cubic-bezier(.22,.61,.36,1),
-        transform 1.05s cubic-bezier(.22,.61,.36,1),
-        filter 0.95s cubic-bezier(.22,.61,.36,1);
-      transform:scale(var(--hero-bg-scale-idle));
-      z-index:0;
-      pointer-events:none;
-      filter:brightness(var(--hero-bg-brightness)) contrast(var(--hero-bg-contrast));
-    }
-
-    .hero-bg-layer.active{
-      opacity:var(--hero-bg-opacity);
-      transform:scale(var(--hero-bg-scale-active));
-    }
-
-    .art-hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:1;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 52%),
-        linear-gradient(180deg, rgba(5,5,7,0.08) 0%, rgba(5,5,7,0.22) 100%);
-      opacity:1;
-      transition:background 0.8s ease;
-    }
-
-    .art-hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      z-index:2;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(0,0,0,0.55) 0%,
-          transparent 18%,
-          transparent 82%,
-          rgba(0,0,0,0.65) 100%
-        );
-    }
-
-    .hero-beam{
-      position:absolute;
-      top:-180px;
-      width:460px;
-      height:1100px;
-      pointer-events:none;
-      z-index:3;
-      mix-blend-mode:screen;
-      opacity:0.62;
-      filter:blur(12px);
-      animation:beamFloat 8s ease-in-out infinite;
-    }
-
-    .hero-beam::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0) 0%,
-          var(--hero-beam) 10%,
-          rgba(255,255,255,0.03) 26%,
-          rgba(255,255,255,0.01) 44%,
-          transparent 72%
-        );
-      clip-path:polygon(48.8% 0%, 51.2% 0%, 100% 100%, 0% 100%);
-      transition:background 0.9s ease;
-    }
-
-    .hero-beam::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0) 0%,
-          rgba(255,255,255,0.10) 8%,
-          rgba(255,255,255,0.035) 20%,
-          rgba(255,255,255,0.01) 36%,
-          transparent 62%
-        );
-      clip-path:polygon(49.4% 0%, 50.6% 0%, 70% 100%, 30% 100%);
-      filter:blur(20px);
-      opacity:0.9;
-    }
-
-    .beam-left{
-      left:-12%;
-      transform:rotate(-32deg);
-      transform-origin:top center;
-      animation-delay:0s;
-    }
-
-    .beam-right{
-      right:-12%;
-      transform:rotate(32deg);
-      transform-origin:top center;
-      animation-delay:1.2s;
-    }
-
-    .art-title{
-      position:absolute;
-      top:54px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:5;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      width:min(90vw, 900px);
-      text-align:center;
-      font-family:var(--hero-font), serif;
-      font-size:var(--title-size);
-      line-height:0.9;
-      letter-spacing:var(--title-letter-spacing);
-      text-transform:var(--title-transform);
-      color:var(--title-color);
-      opacity:0.92;
-      pointer-events:none;
-      transition:
-        opacity 0.55s ease,
-        transform 0.55s ease,
-        color 0.8s ease,
-        font-family 0.4s ease,
-        letter-spacing 0.4s ease,
-        font-size 0.4s ease;
-    }
-
-    .art-title.is-changing{
-      opacity:0;
-      transform:translate(-50%, 8px);
-    }
-
-    .art-stage{
-      position:absolute;
-      left:50%;
-      top:var(--stage-top);
-      transform:translate(-50%, -50%);
-      width:var(--stage-width);
-      height:var(--stage-height);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:4;
-    }
-
-    .art-stage::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:var(--stage-glow-size-1);
-      height:var(--stage-glow-size-1);
-      transform:translate(-50%, -50%);
-      border-radius:50%;
-      background:
-        radial-gradient(
-          circle,
-          var(--hero-light-1) 0%,
-          var(--hero-light-2) 42%,
-          transparent 72%
-        );
-      filter:blur(var(--stage-glow-blur-1));
-      z-index:1;
-      pointer-events:none;
-      transition:background 0.8s ease, width 0.4s ease, height 0.4s ease, filter 0.4s ease;
-    }
-
-    .art-stage::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:var(--stage-glow-size-2);
-      height:var(--stage-glow-size-2);
-      transform:translate(-50%, -50%);
-      background:
-        radial-gradient(circle, var(--hero-light-1) 0%, transparent 55%),
-        radial-gradient(circle, rgba(0,0,0,0.25), transparent 80%);
-      filter:blur(var(--stage-glow-blur-2));
-      opacity:1;
-      z-index:1;
-      pointer-events:none;
-      transition:background 0.8s ease, width 0.4s ease, height 0.4s ease, filter 0.4s ease;
-    }
-
-    .hero-frame-layer{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:var(--frame-width);
-      height:var(--frame-height);
-      object-fit:contain;
-      object-position:center;
-      opacity:0;
-      transition:
-        opacity 0.95s cubic-bezier(.22,.61,.36,1),
-        transform 1.05s cubic-bezier(.22,.61,.36,1),
-        filter 0.6s ease;
-      transform:translate(-50%, -50%) scale(var(--frame-scale-idle));
-      transform-origin:center;
-      z-index:2;
-      pointer-events:none;
-      filter:
-        drop-shadow(0 14px 24px var(--frame-drop-shadow))
-        brightness(var(--frame-brightness))
-        contrast(var(--frame-contrast));
-    }
-
-    .hero-frame-layer.active{
-      opacity:var(--frame-opacity);
-      transform:translate(-50%, -50%) scale(var(--frame-scale-active));
-    }
-
-    .hero-image-layer{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:var(--image-width);
-      height:var(--image-height);
-      object-fit:contain;
-      transform:translate(-50%, calc(-50% + var(--image-shift-y))) scale(var(--image-scale-idle));
-      filter:
-        drop-shadow(0 10px 22px rgba(0,0,0,var(--image-shadow-opacity)))
-        drop-shadow(0 0 var(--image-glow-1) var(--hero-light-2))
-        drop-shadow(0 0 var(--image-glow-2) var(--hero-light-1));
-      transition:
-        opacity 0.95s cubic-bezier(.22,.61,.36,1),
-        transform 1.05s cubic-bezier(.22,.61,.36,1),
-        filter 0.8s ease,
-        width 0.4s ease,
-        height 0.4s ease;
-      opacity:0;
-      z-index:3;
-    }
-
-    .hero-image-layer.active{
-      opacity:1;
-      transform:translate(-50%, calc(-50% + var(--image-shift-y))) scale(var(--image-scale-active));
-    }
-
-    .details-section{
-      width:min(1200px, 100%);
-      margin:0 auto;
-      padding:20px 20px 70px;
+    .product-shell{
       display:grid;
-      grid-template-columns:320px 1fr;
-      gap:28px;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:24px;
       align-items:start;
     }
 
-    .details-side{
-      display:grid;
-      gap:14px;
-      align-content:start;
-    }
-
-    .pro-gallery-thumbs{
-      display:grid;
-      gap:10px;
-      padding:8px;
-      border-radius:18px;
-      background:rgba(0,0,0,0.25);
-      backdrop-filter:blur(12px);
-      width:max-content;
-    }
-
-    .pro-thumb{
-      width:78px;
-      height:78px;
-      border-radius:18px;
+    .product-gallery,
+    .product-info{
       border:1px solid rgba(255,255,255,0.08);
-      background:#000;
-      overflow:hidden;
-      cursor:pointer;
-      transition:
-        transform 0.22s ease,
-        border-color 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      box-shadow:var(--shadow-soft);
     }
 
-    .pro-thumb img{
+    .product-gallery{
+      padding:24px;
+      position:sticky;
+      top:110px;
+    }
+
+    .main-image{
+      position:relative;
+      min-height:560px;
+      height:560px;
+      padding:34px;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(180deg, rgba(14,15,18,0.88), rgba(8,9,12,0.94));
+      box-shadow:0 30px 80px rgba(0,0,0,0.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .main-image::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background:
+        linear-gradient(180deg, rgba(10,10,14,0.22), rgba(6,6,8,0.30)),
+        url("../images/black-wood.jpg");
+      background-size:cover;
+      background-position:center center;
+      transform:scale(1.08);
+      filter:grayscale(100%) brightness(0.22) contrast(1.08) blur(1px);
+      pointer-events:none;
+    }
+
+    .main-image::after{
+      content:"";
+      position:absolute;
+      width:74%;
+      height:74%;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%);
+      z-index:1;
+      background:
+        radial-gradient(circle,
+          var(--hero-floor-2) 0%,
+          var(--hero-floor-1) 24%,
+          rgba(255,255,255,0.015) 54%,
+          transparent 76%);
+      filter:blur(28px);
+      pointer-events:none;
+    }
+
+    .main-image img{
+      position:relative;
+      z-index:2;
       width:100%;
       height:100%;
       object-fit:contain;
-      padding:8px;
+      filter:
+        drop-shadow(0 26px 48px rgba(0,0,0,0.38))
+        drop-shadow(0 0 22px var(--hero-light-2))
+        drop-shadow(0 0 44px var(--hero-light-1));
     }
 
-    .pro-thumb.active{
-      border-color:transparent;
-      background:linear-gradient(145deg, var(--accent1), var(--accent2));
-      transform:scale(1.08) translateY(-2px);
-      box-shadow:
-        0 10px 25px rgba(0,0,0,0.4),
-        0 10px 28px var(--accent-soft),
-        0 0 0 1px rgba(255,255,255,0.12) inset;
-    }
-
-    .pro-thumb:hover{
-      transform:translateY(-2px);
-    }
-
-    .variant-dots{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      padding-left:6px;
-    }
-
-    .pro-dot{
-      width:14px;
-      height:14px;
-      border:none;
-      border-radius:50%;
-      background:rgba(255,255,255,0.24);
-      cursor:pointer;
-      transition:
-        transform 0.22s ease,
-        background 0.8s ease,
-        box-shadow 0.8s ease;
-    }
-
-    .pro-dot.active{
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      transform:scale(1.18);
-      box-shadow:0 0 18px var(--accent-soft);
-    }
-
-    .pro-dot:hover{
-      transform:scale(1.08);
-    }
-
-    .details-panel{
+    .thumbs{
+      margin-top:18px;
       display:grid;
-      gap:22px;
-      align-content:start;
+      grid-template-columns:repeat(4, 1fr);
+      gap:14px;
     }
 
-    .pro-top-row{
+    .thumb{
+      min-height:120px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      background:
+        radial-gradient(circle at center, rgba(0,245,160,0.08), transparent 36%),
+        linear-gradient(180deg, rgba(18,18,22,0.94), rgba(10,10,13,0.98));
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
     }
 
-    .pro-eyebrow{
+    .thumb img{
+      width:100%;
+      max-height:85px;
+      object-fit:contain;
+      filter:drop-shadow(0 10px 18px rgba(0,0,0,0.32));
+    }
+
+    .thumb:hover,
+    .thumb.active{
+      transform:translateY(-2px);
+      border-color:rgba(0,245,160,0.34);
+      box-shadow:0 0 0 1px rgba(0,245,160,0.10);
+    }
+
+    .product-info{
+      padding:30px;
+      display:grid;
+      gap:22px;
+    }
+
+    .eyebrow{
       display:inline-flex;
       width:max-content;
       padding:8px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.04);
-      color:rgba(255,255,255,0.72);
+      background:rgba(255,255,255,0.05);
+      color:rgba(255,255,255,0.75);
       font-size:12px;
       letter-spacing:0.16em;
       font-weight:700;
       text-transform:uppercase;
     }
 
-    .hero-cart-badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:44px;
-      height:44px;
-      padding:0 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.045);
-      color:#fff;
-      font-size:15px;
-      font-weight:700;
-      box-shadow:0 10px 24px rgba(0,0,0,0.18);
-    }
-
-    .copy-fade{
-      transition:
-        opacity 0.55s ease,
-        transform 0.55s ease,
-        color 0.8s ease;
-    }
-
-    .copy-fade.is-changing{
-      opacity:0;
-      transform:translateY(8px);
-    }
-
-    .details-title{
-      font-family:var(--details-font), sans-serif;
-      font-size:var(--details-title-size);
+    .title-wrap h1{
+      margin-top:12px;
+      font-size:clamp(42px, 5vw, 64px);
       line-height:0.95;
-      text-transform:var(--details-title-transform);
-      letter-spacing:var(--details-title-spacing);
-      transition:
-        font-family 0.4s ease,
-        font-size 0.4s ease,
-        letter-spacing 0.4s ease;
+      text-transform:uppercase;
     }
 
-    .pro-subtitle{
-      max-width:700px;
+    .subtitle{
+      margin-top:12px;
+      max-width:18ch;
       color:var(--muted);
-      font-size:21px;
-      line-height:1.42;
+      font-size:22px;
+      line-height:1.4;
     }
 
-    .pro-meta{
+    .price-row{
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+      align-items:flex-end;
+      gap:14px;
+      padding:18px 0;
+      border-top:1px solid rgba(255,255,255,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.08);
     }
 
-    .meta-pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.08);
-      background:rgba(255,255,255,0.035);
+    .price{
+      font-size:52px;
+      line-height:1;
+      font-weight:700;
+      color:var(--accent1);
+    }
+
+    .price-note{
+      padding-bottom:6px;
+      color:var(--muted);
+      font-size:18px;
+    }
+
+    .short-desc{
       color:rgba(255,255,255,0.82);
-      font-size:14px;
-      font-weight:600;
-      letter-spacing:0.02em;
+      font-size:21px;
+      line-height:1.45;
     }
 
-    .pro-points{
-      list-style:none;
+    .bullet-list{
       display:grid;
       gap:12px;
-      padding:0;
-      margin:0;
+      list-style:none;
     }
 
-    .pro-points li{
+    .bullet{
       padding:14px 16px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,0.08);
       background:rgba(255,255,255,0.035);
-      color:rgba(255,255,255,0.84);
-      font-size:17px;
-      line-height:1.3;
-      transition:
-        background 0.6s ease,
-        border-color 0.6s ease,
-        opacity 0.5s ease,
-        transform 0.5s ease;
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .pro-bottom{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:end;
-      justify-content:space-between;
-      gap:18px;
-      padding-top:6px;
-    }
-
-    .pro-price-wrap{
-      display:grid;
-      gap:4px;
-    }
-
-    .pro-price-label{
-      font-size:14px;
-      letter-spacing:0.14em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,0.52);
-      font-weight:700;
-    }
-
-    .pro-price{
-      font-size:48px;
-      line-height:0.95;
-      color:var(--accent1);
-      font-weight:700;
-      transition:color 0.8s ease;
-    }
-
-    .pro-buy-wrap{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .pro-buy-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:190px;
-      padding:16px 24px;
-      border:none;
-      border-radius:16px;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      color:#0a0a0a;
       font-size:18px;
+      color:rgba(255,255,255,0.86);
+    }
+
+    .section-label{
+      margin-bottom:12px;
+      font-size:14px;
       font-weight:700;
-      cursor:pointer;
-      box-shadow:0 10px 28px var(--accent-soft);
-      transition:
-        transform 0.22s ease,
-        opacity 0.22s ease,
-        box-shadow 0.7s ease,
-        background 0.8s ease;
+      letter-spacing:0.16em;
+      color:rgba(255,255,255,0.58);
+      text-transform:uppercase;
     }
 
-    .pro-buy-btn:hover{
-      transform:translateY(-2px);
-      opacity:0.96;
+    .color-options{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
     }
 
-    .pro-buy-btn:disabled{
-      opacity:0.72;
-      cursor:not-allowed;
-      transform:none;
-    }
-
-    .pro-secondary-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:150px;
-      padding:16px 20px;
+    .color-btn{
+      position:relative;
+      min-width:170px;
+      padding:14px 16px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,0.10);
       background:rgba(255,255,255,0.04);
-      color:#fff;
-      font-size:17px;
-      font-weight:700;
-      transition:transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      cursor:pointer;
+      transition:transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
     }
 
-    .pro-secondary-btn:hover{
+    .color-btn:hover,
+    .color-btn.active{
       transform:translateY(-2px);
-      border-color:rgba(255,255,255,0.22);
-      background:rgba(255,255,255,0.065);
+      border-color:rgba(0,245,160,0.35);
+      background:rgba(255,255,255,0.06);
+      box-shadow:0 0 0 1px rgba(0,245,160,0.08);
     }
 
-    .sr-only{
+    .color-btn.out{
+      border-color:rgba(255,255,255,0.06);
+      opacity:0.82;
+    }
+
+    .color-btn.out::after{
+      content:"OUT";
       position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
+      top:6px;
+      right:8px;
+      font-size:10px;
+      letter-spacing:1px;
+      color:rgba(255,255,255,0.42);
+      font-weight:700;
+    }
+
+    .swatch{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,0.22);
+      flex:0 0 auto;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow:0 0 14px var(--accent-soft);
+    }
+
+    .buy-box{
+      display:grid;
+      gap:14px;
+      padding:20px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .stock{
+      color:var(--success);
+      font-size:20px;
+      font-weight:600;
+    }
+
+    .stock.out{
+      color:var(--danger);
+    }
+
+    .actions{
+      display:grid;
+      gap:12px;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+      width:100%;
+      padding:16px 20px;
+      border-radius:16px;
+      font-size:19px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-primary{
+      color:#070709;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow:0 0 24px var(--accent-soft);
+    }
+
+    .btn-primary:hover:not(:disabled),
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary:disabled{
+      cursor:not-allowed;
+      opacity:0.45;
+      background:rgba(255,255,255,0.12);
+      color:rgba(255,255,255,0.55);
+      box-shadow:none;
+      transform:none;
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.10);
+      color:var(--text);
+      background:rgba(255,255,255,0.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .mini-note{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.4;
     }
 
     .footer{
@@ -868,21 +583,6 @@
       color:rgba(255,255,255,0.4);
     }
 
-    @keyframes beamFloat{
-      0%{
-        translate:0 0;
-        opacity:0.72;
-      }
-      50%{
-        translate:0 18px;
-        opacity:0.95;
-      }
-      100%{
-        translate:0 0;
-        opacity:0.72;
-      }
-    }
-
     @media (max-width:1180px){
       .header{
         grid-template-columns:1fr;
@@ -896,33 +596,12 @@
         justify-self:center;
       }
 
-      .art-title{
-        top:72px;
-        font-size:clamp(24px, 2.8vw, 36px);
-        letter-spacing:0.14em;
-      }
-
-      .art-stage{
-        top:58%;
-        width:min(980px, 94vw);
-        height:min(760px, 72vh);
-      }
-
-      .hero-frame-layer{
-        width:110%;
-        height:110%;
-      }
-
-      .details-section{
+      .product-shell{
         grid-template-columns:1fr;
       }
 
-      .details-side{
-        order:2;
-      }
-
-      .details-panel{
-        order:1;
+      .product-gallery{
+        position:static;
       }
     }
 
@@ -940,95 +619,37 @@
         font-size:15px;
       }
 
-      .art-hero{
-        min-height:760px;
-        padding:0;
+      main{
+        width:min(100% - 24px, 1380px);
       }
 
-      .art-title{
-        top:58px;
-        width:min(92vw, 720px);
-        font-size:clamp(20px, 5vw, 30px);
-        letter-spacing:0.12em;
+      .product-gallery,
+      .product-info{
+        padding:20px;
+        border-radius:22px;
       }
 
-      .beam-left{
-        left:-36%;
-        transform:rotate(-18deg);
+      .main-image{
+        min-height:360px;
+        height:360px;
+        padding:22px;
       }
 
-      .beam-right{
-        right:-36%;
-        transform:rotate(18deg);
+      .thumbs{
+        grid-template-columns:1fr 1fr;
       }
 
-      .hero-beam{
-        width:300px;
-        height:820px;
-        top:-120px;
+      .title-wrap h1{
+        font-size:40px;
       }
 
-      .art-stage{
-        top:60%;
-        width:100%;
-        height:470px;
-      }
-
-      .hero-bg-layer.active{
-        opacity:calc(var(--hero-bg-opacity) - 0.06);
-      }
-
-      .hero-frame-layer{
-        width:114%;
-        height:114%;
-      }
-
-      .hero-frame-layer.active{
-        opacity:calc(var(--frame-opacity) - 0.02);
-      }
-
-      .hero-image-layer{
-        width:min(360px, 88%);
-        height:280px;
-      }
-
-      .pro-gallery-thumbs{
-        grid-template-columns:repeat(4, 1fr);
-        width:100%;
-      }
-
-      .pro-thumb{
-        width:100%;
-        height:64px;
-      }
-
-      .details-section{
-        padding:10px 12px 56px;
-      }
-
-      .details-title{
-        font-size:38px;
-      }
-
-      .pro-subtitle{
+      .subtitle,
+      .short-desc{
         font-size:18px;
       }
 
-      .pro-points li{
-        font-size:15px;
-      }
-
-      .pro-price{
-        font-size:38px;
-      }
-
-      .pro-buy-wrap{
-        width:100%;
-      }
-
-      .pro-buy-btn,
-      .pro-secondary-btn{
-        width:100%;
+      .price{
+        font-size:42px;
       }
     }
   </style>
@@ -1048,87 +669,146 @@
     <a href="cart.html" class="cart">Cart</a>
   </header>
 
-  <main class="pro-main">
-    <section class="art-hero">
-      <img id="heroBgA" class="hero-bg-layer active" src="../images/pro-bg-1.png" alt="">
-      <img id="heroBgB" class="hero-bg-layer" src="../images/pro-bg-2.png" alt="">
+  <main>
+    <section class="product-shell">
+      <div class="product-gallery">
+        <div class="main-image">
+          <img id="mainProductImage" src="../images/pro1.png" alt="DriftZero Apex Pro Hit Parade">
+        </div>
 
-      <div class="hero-beam beam-left"></div>
-      <div class="hero-beam beam-right"></div>
-
-      <h1 class="art-title" id="artHeroTitle">HIT PARADE</h1>
-
-      <div class="art-stage">
-        <img id="heroFrameA" class="hero-frame-layer active" src="../images/frames/hitparade-frame.png" alt="">
-        <img id="heroFrameB" class="hero-frame-layer" src="../images/frames/dripcrew-frame.png" alt="">
-
-        <img id="heroImageA" class="hero-image-layer active" src="../images/pro1.png" alt="DriftZero Apex Pro Hit Parade controller">
-        <img id="heroImageB" class="hero-image-layer" src="../images/pro2.png" alt="">
-      </div>
-    </section>
-
-    <section class="details-section">
-      <aside class="details-side">
-        <div class="pro-gallery-thumbs" id="proGalleryThumbs">
-          <button class="pro-thumb active" type="button" data-index="0" aria-label="Show Hit Parade">
+        <div class="thumbs">
+          <button class="thumb active" type="button" data-index="0">
             <img src="../images/pro1.png" alt="Hit Parade thumbnail">
           </button>
-          <button class="pro-thumb" type="button" data-index="1" aria-label="Show Drip Crew">
+
+          <button class="thumb" type="button" data-index="1">
             <img src="../images/pro2.png" alt="Drip Crew thumbnail">
           </button>
-          <button class="pro-thumb" type="button" data-index="2" aria-label="Show Elder Vale">
+
+          <button class="thumb" type="button" data-index="2">
             <img src="../images/pro3.png" alt="Elder Vale thumbnail">
           </button>
-          <button class="pro-thumb" type="button" data-index="3" aria-label="Show Obsidian Core">
+
+          <button class="thumb" type="button" data-index="3">
             <img src="../images/pro4.png" alt="Obsidian Core thumbnail">
           </button>
         </div>
+      </div>
 
-        <div class="variant-dots" id="proHeroDots">
-          <button class="pro-dot active" type="button" data-index="0" aria-label="Hit Parade" aria-pressed="true"></button>
-          <button class="pro-dot" type="button" data-index="1" aria-label="Drip Crew" aria-pressed="false"></button>
-          <button class="pro-dot" type="button" data-index="2" aria-label="Elder Vale" aria-pressed="false"></button>
-          <button class="pro-dot" type="button" data-index="3" aria-label="Obsidian Core" aria-pressed="false"></button>
-        </div>
-      </aside>
-
-      <div class="details-panel">
-        <div class="pro-top-row">
-          <span class="pro-eyebrow">DriftZero Apex Pro</span>
-          <div class="hero-cart-badge" id="heroCartBadge" aria-label="Items in cart">0 items</div>
+      <div class="product-info">
+        <div class="title-wrap">
+          <span class="eyebrow">DriftZero Apex Line</span>
+          <h1 id="productTitle">Hit Parade</h1>
+          <p class="subtitle" id="productSubtitle">Spotlight energy.<br>Collector impact.</p>
         </div>
 
-        <h2 class="details-title copy-fade" id="proHeroTitle">Hit Parade</h2>
+        <div class="price-row">
+          <div class="price" id="productPrice">€59.99</div>
+          <div class="price-note">VAT included</div>
+        </div>
 
-        <p class="pro-subtitle copy-fade" id="proHeroDesc">
-          Full-size control, stronger grip, and precision built for long sessions and serious play.
+        <p class="short-desc" id="productDesc">
+          A spotlight-built variant with cleaner luxury tones and a more celebratory stage presence for setups that want to stand out without looking cheap.
         </p>
 
-        <div class="pro-meta">
-          <span class="meta-pill" id="stockBadge">In stock</span>
-          <span class="meta-pill">24-month warranty</span>
-          <span class="meta-pill">Fast shipping</span>
-        </div>
-
-        <ul class="pro-points" id="proHeroPoints">
-          <li>Compatible with all Nintendo consoles</li>
-          <li>HD rumble support</li>
-          <li>Ergonomic premium design</li>
+        <ul class="bullet-list" id="productPoints">
+          <li class="bullet">HD rumble support</li>
+          <li class="bullet">6-axis gyroscope</li>
+          <li class="bullet">High-quality full-size build</li>
         </ul>
 
-        <div class="pro-bottom">
-          <div class="pro-price-wrap">
-            <span class="pro-price-label">From</span>
-            <strong class="pro-price copy-fade" id="proHeroPrice">€60.99</strong>
-          </div>
+        <div>
+          <div class="section-label">Choose Variant</div>
+          <div class="color-options" id="variantOptions">
+            <button
+              class="color-btn active"
+              type="button"
+              data-index="0"
+              data-accent1="#00f5a0"
+              data-accent2="#00c97a"
+              data-glow="rgba(0,245,160,0.18)"
+              data-hero-glow1="rgba(0,245,160,0.26)"
+              data-hero-glow2="rgba(0,201,122,0.18)"
+              data-hero-beam1="rgba(0,245,160,0.14)"
+              data-hero-beam2="rgba(255,255,255,0.08)"
+              data-hero-beam3="rgba(0,201,122,0.10)"
+              data-hero-floor1="rgba(0,245,160,0.16)"
+              data-hero-floor2="rgba(255,255,255,0.08)"
+            >
+              <span class="swatch"></span>
+              <span>Hit Parade</span>
+            </button>
 
-          <div class="pro-buy-wrap">
-            <button class="pro-buy-btn" id="proHeroBtn" type="button">Add to cart</button>
-            <a href="cart.html" class="pro-secondary-btn">View cart</a>
+            <button
+              class="color-btn"
+              type="button"
+              data-index="1"
+              data-accent1="#00f5a0"
+              data-accent2="#00c97a"
+              data-glow="rgba(0,245,160,0.18)"
+              data-hero-glow1="rgba(0,245,160,0.26)"
+              data-hero-glow2="rgba(0,201,122,0.18)"
+              data-hero-beam1="rgba(0,245,160,0.14)"
+              data-hero-beam2="rgba(255,255,255,0.08)"
+              data-hero-beam3="rgba(0,201,122,0.10)"
+              data-hero-floor1="rgba(0,245,160,0.16)"
+              data-hero-floor2="rgba(255,255,255,0.08)"
+            >
+              <span class="swatch"></span>
+              <span>Drip Crew</span>
+            </button>
+
+            <button
+              class="color-btn"
+              type="button"
+              data-index="2"
+              data-accent1="#00f5a0"
+              data-accent2="#00c97a"
+              data-glow="rgba(0,245,160,0.18)"
+              data-hero-glow1="rgba(0,245,160,0.26)"
+              data-hero-glow2="rgba(0,201,122,0.18)"
+              data-hero-beam1="rgba(0,245,160,0.14)"
+              data-hero-beam2="rgba(255,255,255,0.08)"
+              data-hero-beam3="rgba(0,201,122,0.10)"
+              data-hero-floor1="rgba(0,245,160,0.16)"
+              data-hero-floor2="rgba(255,255,255,0.08)"
+            >
+              <span class="swatch"></span>
+              <span>Elder Vale</span>
+            </button>
+
+            <button
+              class="color-btn"
+              type="button"
+              data-index="3"
+              data-accent1="#00f5a0"
+              data-accent2="#00c97a"
+              data-glow="rgba(0,245,160,0.18)"
+              data-hero-glow1="rgba(0,245,160,0.26)"
+              data-hero-glow2="rgba(0,201,122,0.18)"
+              data-hero-beam1="rgba(0,245,160,0.14)"
+              data-hero-beam2="rgba(255,255,255,0.08)"
+              data-hero-beam3="rgba(0,201,122,0.10)"
+              data-hero-floor1="rgba(0,245,160,0.16)"
+              data-hero-floor2="rgba(255,255,255,0.08)"
+            >
+              <span class="swatch"></span>
+              <span>Obsidian Core</span>
+            </button>
           </div>
         </div>
 
-        <div class="sr-only" id="cartLiveRegion" aria-live="polite"></div>
+        <div class="buy-box">
+          <div class="stock" id="stockText">Low stock</div>
+
+          <div class="actions">
+            <button class="btn-primary" id="addToCartBtn" type="button">Add To Cart</button>
+            <a href="cart.html" class="btn-secondary">Go To Cart</a>
+          </div>
+
+          <p class="mini-note" id="selectedVariantText">Selected variant: Hit Parade</p>
+          <p class="mini-note" id="cartCountText">Cart items: 0</p>
+        </div>
       </div>
     </section>
   </main>
@@ -1174,592 +854,166 @@
 
   <script>
     const proVariants = [
-     {
-  name: "Hit Parade",
-  artTitle: "HIT PARADE",
-  image: "../images/pro1.png",
-  frame: "../images/frames/hitparade-frame.png",
-  bg: "../images/pro-bg-1.png",
-  price: 60.99,
-  stock: "In stock",
-  desc: "Full-size control, stronger grip, and precision built for long sessions and serious play.",
-  points: [
-    "Compatible with all Nintendo consoles",
-    "HD rumble support",
-    "Ergonomic premium design"
-  ],
-  accent1: "#f3ece1",
-  accent2: "#a6a09a",
-  accentSoft: "rgba(243,236,225,0.14)",
-  accentSoft2: "rgba(166,160,154,0.10)",
-  heroLight1: "rgba(255,255,255,0.30)",
-  heroLight2: "rgba(243,236,225,0.18)",
-  heroBeam: "rgba(255,255,255,0.045)",
-  heroFont: "'Cormorant Garamond'",
-  detailsFont: "'Rajdhani'",
-  titleSize: "clamp(36px, 3vw, 58px)",
-  titleLetterSpacing: "0.16em",
-  titleColor: "#f6f1e8",
-  detailsTitleSize: "clamp(34px, 4vw, 54px)",
-  detailsTitleSpacing: "0.03em",
-  detailsTitleTransform: "uppercase",
-  heroBgOpacity: "0.14",
-  heroBgBrightness: "0.54",
-  heroBgContrast: "0.96",
-  heroBgScaleActive: "1",
-  heroBgScaleIdle: "1.01",
-  stageTop: "55.8%",
-  stageWidth: "min(1160px, 92vw)",
-  stageHeight: "min(880px, 80vh)",
-  stageGlowSize1: "46%",
-  stageGlowSize2: "62%",
-  stageGlowBlur1: "22px",
-  stageGlowBlur2: "28px",
-  frameWidth: "112%",
-  frameHeight: "112%",
-  frameOpacity: "0.70",
-  frameScaleIdle: "1.015",
-  frameScaleActive: "1.045",
-  frameBrightness: "0.96",
-  frameContrast: "1.00",
-  frameDropShadow: "rgba(0,0,0,0.18)",
-  imageWidth: "min(560px, 88%)",
-  imageHeight: "min(450px, 68%)",
-  imageScaleIdle: "0.995",
-  imageScaleActive: "1.035",
-  imageShiftY: "4px",
-  imageShadowOpacity: "0.24",
-  imageGlow1: "22px",
-  imageGlow2: "44px"
-},
-
- {
-  name: "Drip Crew",
-  artTitle: "DRIP CREW",
-  image: "../images/pro2.png",
-  frame: "../images/frames/dripcrew-frame.png",
-  bg: "../images/pro-bg-2.png",
-  price: 62.99,
-  stock: "In stock",
-  desc: "High-voltage ink styling with a sharper pink-violet identity built for louder setups and collector-driven taste.",
-  points: [
-    "Collector-driven street styling",
-    "Neon Tokyo energy",
-    "Comfort-first full-size shell"
-  ],
-
-  accent1: "#ff4cae",
-  accent2: "#6d35ff",
-  accentSoft: "rgba(255,76,174,0.13)",
-  accentSoft2: "rgba(109,53,255,0.10)",
-
-  heroLight1: "rgba(255,76,174,0.20)",
-  heroLight2: "rgba(91,232,255,0.10)",
-  heroBeam: "rgba(255,76,174,0.055)",
-
-  heroFont: "'Unbounded'",
-  detailsFont: "'Rajdhani'",
-
-  titleSize: "clamp(24px, 2.3vw, 40px)",
-  titleLetterSpacing: "0.07em",
-  titleColor: "#ffe3f2",
-
-  detailsTitleSize: "clamp(34px, 4vw, 54px)",
-  detailsTitleSpacing: "0.02em",
-  detailsTitleTransform: "uppercase",
-
-  heroBgOpacity: "0.18",
-  heroBgBrightness: "0.62",
-  heroBgContrast: "0.98",
-  heroBgScaleActive: "1",
-  heroBgScaleIdle: "1.01",
-
-  stageTop: "56%",
-  stageWidth: "min(1140px, 92vw)",
-  stageHeight: "min(860px, 78vh)",
-
-  stageGlowSize1: "40%",
-  stageGlowSize2: "56%",
-  stageGlowBlur1: "16px",
-  stageGlowBlur2: "20px",
-
-  frameWidth: "104%",
-  frameHeight: "104%",
-  frameOpacity: "0.66",
-  frameScaleIdle: "1.01",
-  frameScaleActive: "1.035",
-  frameBrightness: "0.84",
-  frameContrast: "0.96",
-  frameDropShadow: "rgba(0,0,0,0.28)",
-
-  imageWidth: "min(520px, 84%)",
-  imageHeight: "min(420px, 63%)",
-  imageScaleIdle: "1.01",
-  imageScaleActive: "1.05",
-  imageShiftY: "6px",
-
-  imageShadowOpacity: "0.30",
-  imageGlow1: "16px",
-  imageGlow2: "32px"
-},
-     {
-  name: "Elder Vale",
-  artTitle: "ELDER VALE",
-  image: "../images/pro3.png",
-  frame: "../images/frames/eldervale-frame.png",
-  bg: "../images/pro-bg-3.png",
-  price: 63.99,
-  stock: "Low stock",
-  desc: "A sacred, elevated variant with cleaner symbolism and a more mythic atmosphere built for players who want elegance over noise.",
-  points: [
-    "Collector-grade sacred framing",
-    "Mythic gold and stone atmosphere",
-    "Stable precision for long sessions"
-  ],
-
-  accent1: "#f3e3c8",
-  accent2: "#b38a57",
-  accentSoft: "rgba(243,227,200,0.15)",
-  accentSoft2: "rgba(179,138,87,0.10)",
-
-  heroLight1: "rgba(255,236,208,0.28)",
-  heroLight2: "rgba(210,177,120,0.14)",
-  heroBeam: "rgba(255,236,208,0.06)",
-
-  heroFont: "'Marcellus'",
-  detailsFont: "'Rajdhani'",
-
-  titleSize: "clamp(30px, 2.5vw, 46px)",
-  titleLetterSpacing: "0.17em",
-  titleColor: "#f7ecd9",
-
-  detailsTitleSize: "clamp(34px, 4vw, 54px)",
-  detailsTitleSpacing: "0.02em",
-  detailsTitleTransform: "uppercase",
-
-  heroBgOpacity: "0.18",
-  heroBgBrightness: "0.60",
-  heroBgContrast: "0.98",
-  heroBgScaleActive: "1",
-  heroBgScaleIdle: "1.01",
-
-  stageTop: "56%",
-  stageWidth: "min(1160px, 92vw)",
-  stageHeight: "min(880px, 80vh)",
-
-  stageGlowSize1: "50%",
-  stageGlowSize2: "68%",
-  stageGlowBlur1: "22px",
-  stageGlowBlur2: "30px",
-
-  frameWidth: "110%",
-  frameHeight: "110%",
-  frameOpacity: "0.74",
-  frameScaleIdle: "1.03",
-  frameScaleActive: "1.06",
-  frameBrightness: "0.94",
-  frameContrast: "1.00",
-  frameDropShadow: "rgba(0,0,0,0.18)",
-
-  imageWidth: "min(510px, 84%)",
-  imageHeight: "min(418px, 63%)",
-  imageScaleIdle: "0.99",
-  imageScaleActive: "1.03",
-  imageShiftY: "4px",
-
-  imageShadowOpacity: "0.24",
-  imageGlow1: "24px",
-  imageGlow2: "46px"
-},
       {
-       
-  name: "Obsidian Core",
-  artTitle: "OBSIDIAN CORE",
-  image: "../images/pro4.png",
-  frame: "../images/frames/obsidian-frame.png",
-  bg: "../images/pro-bg-4.png",
-  price: 64.99,
-  stock: "In stock",
-  desc: "Forged in darkness, refined in metal. A heavier, more controlled presence built for players who prefer precision over noise.",
-  points: [
-    "Obsidian-black collector shell",
-    "Brushed gold / bronze detailing",
-    "Stable precision for long sessions"
-  ],
-
-  // 🔥 COLORI — leggermente più profondi (meno “piatti”)
-  accent1: "#e2c98a",
-  accent2: "#7a4d24",
-  accentSoft: "rgba(226,201,138,0.14)",
-  accentSoft2: "rgba(122,77,36,0.10)",
-
-  // 🔥 LUCI HERO — più direzionali, meno diffuse
-  heroLight1: "rgba(226,201,138,0.22)",
-  heroLight2: "rgba(122,77,36,0.16)",
-  heroBeam: "rgba(226,201,138,0.05)",
-
-  heroFont: "'Orbitron'",
-  detailsFont: "'Rajdhani'",
-
-  titleSize: "clamp(28px, 2.4vw, 42px)",
-  titleLetterSpacing: "0.14em",
-  titleColor: "#e8d3a0",
-
-  detailsTitleSize: "clamp(34px, 4vw, 54px)",
-  detailsTitleSpacing: "0.03em",
-  detailsTitleTransform: "uppercase",
-
-  // 🔥 BACKGROUND — più sottomesso (CRITICO)
-  heroBgOpacity: "0.18",
-  heroBgBrightness: "0.62",
-  heroBgContrast: "0.98",
-
-  heroBgScaleActive: "1",
-  heroBgScaleIdle: "1.01",
-
-  stageTop: "56.5%",
-  stageWidth: "min(1160px, 92vw)",
-  stageHeight: "min(880px, 80vh)",
-
-  // 🔥 GLOW STAGE — ridotto, più controllato
-  stageGlowSize1: "42%",
-  stageGlowSize2: "58%",
-  stageGlowBlur1: "16px",
-  stageGlowBlur2: "20px",
-
-  // 🔥 FRAME — meno dominante (QUESTO ERA IL PROBLEMA GROSSO)
-  frameWidth: "104%",
-  frameHeight: "104%",
-  frameOpacity: "0.58",
-  frameScaleIdle: "1.01",
-  frameScaleActive: "1.03",
-  frameBrightness: "0.74",
-  frameContrast: "0.92",
-  frameDropShadow: "rgba(0,0,0,0.28)",
-
-  // 🔥 CONTROLLER — ora diventa protagonista
-  imageWidth: "min(520px, 84%)",
-  imageHeight: "min(420px, 64%)",
-  imageScaleIdle: "1.01",
-  imageScaleActive: "1.05",
-  imageShiftY: "4px",
-
-  // 🔥 SHADOW + GLOW — più “reliquia”, meno neon
-  imageShadowOpacity: "0.28",
-  imageGlow1: "18px",
-  imageGlow2: "34px"
-}
+        name: "Hit Parade",
+        subtitle: "Spotlight energy.<br>Collector impact.",
+        image: "../images/pro1.png",
+        price: 59.99,
+        stock: 1,
+        desc: "A spotlight-built variant with cleaner luxury tones and a more celebratory stage presence for setups that want to stand out without looking cheap.",
+        points: [
+          "HD rumble support",
+          "6-axis gyroscope",
+          "High-quality full-size build"
+        ]
+      },
+      {
+        name: "Drip Crew",
+        subtitle: "Neon pressure.<br>Street signal.",
+        image: "../images/pro2.png",
+        price: 59.99,
+        stock: 2,
+        desc: "A louder collector variant shaped by neon streets, ink energy and late-night arcade chaos for players who want their setup to hit hard on sight.",
+        points: [
+          "HD rumble support",
+          "6-axis gyroscope",
+          "High-quality full-size build"
+        ]
+      },
+      {
+        name: "Elder Vale",
+        subtitle: "Sacred tone.<br>Quiet authority.",
+        image: "../images/pro3.png",
+        price: 59.99,
+        stock: 0,
+        desc: "A sacred collector piece with calmer gold symbolism and a more elevated presence built for players who prefer ritual, elegance and quieter power.",
+        points: [
+          "HD rumble support",
+          "6-axis gyroscope",
+          "High-quality full-size build"
+        ]
+      },
+      {
+        name: "Obsidian Core",
+        subtitle: "Forged weight.<br>Cold control.",
+        image: "../images/pro4.png",
+        price: 59.99,
+        stock: 1,
+        desc: "A darker forged variant with heavier visual control and a relic-like finish made for players who want authority, restraint and a colder presence on desk.",
+        points: [
+          "HD rumble support",
+          "6-axis gyroscope",
+          "High-quality full-size build"
+        ]
+      }
     ];
 
     const root = document.documentElement;
-    const heroBgA = document.getElementById("heroBgA");
-    const heroBgB = document.getElementById("heroBgB");
-    const heroFrameA = document.getElementById("heroFrameA");
-    const heroFrameB = document.getElementById("heroFrameB");
-    const heroImageA = document.getElementById("heroImageA");
-    const heroImageB = document.getElementById("heroImageB");
-    const artHeroTitle = document.getElementById("artHeroTitle");
+    const mainProductImage = document.getElementById("mainProductImage");
+    const productTitle = document.getElementById("productTitle");
+    const productSubtitle = document.getElementById("productSubtitle");
+    const productPrice = document.getElementById("productPrice");
+    const productDesc = document.getElementById("productDesc");
+    const productPoints = document.getElementById("productPoints");
+    const stockText = document.getElementById("stockText");
+    const addToCartBtn = document.getElementById("addToCartBtn");
+    const selectedVariantText = document.getElementById("selectedVariantText");
+    const cartCountText = document.getElementById("cartCountText");
 
-    const heroTitle = document.getElementById("proHeroTitle");
-    const heroDesc = document.getElementById("proHeroDesc");
-    const heroPrice = document.getElementById("proHeroPrice");
-    const heroPoints = document.getElementById("proHeroPoints");
-    const heroBtn = document.getElementById("proHeroBtn");
-    const stockBadge = document.getElementById("stockBadge");
-    const heroCartBadge = document.getElementById("heroCartBadge");
-    const cartLiveRegion = document.getElementById("cartLiveRegion");
+    const thumbButtons = Array.from(document.querySelectorAll(".thumb"));
+    const variantButtons = Array.from(document.querySelectorAll(".color-btn"));
 
-    const dots = Array.from(document.querySelectorAll(".pro-dot"));
-    const thumbs = Array.from(document.querySelectorAll(".pro-thumb"));
-
-    let heroIndex = 0;
     let selectedIndex = 0;
-    let autoRotate;
-    let activeLayer = "A";
-    let isAnimating = false;
-
-    function preloadImages() {
-      proVariants.forEach(variant => {
-        const img = new Image();
-        img.src = variant.image;
-
-        const frameImg = new Image();
-        frameImg.src = variant.frame;
-
-        const bgImg = new Image();
-        bgImg.src = variant.bg;
-      });
-    }
 
     function getCart() {
       return JSON.parse(localStorage.getItem("cart")) || [];
     }
 
-    function updateCartBadge() {
+    function updateCartCount() {
       const cart = getCart();
-      const count = cart.length;
-      heroCartBadge.textContent = `${count} item${count === 1 ? "" : "s"}`;
-      heroCartBadge.setAttribute("aria-label", `${count} items in cart`);
+      cartCountText.textContent = `Cart items: ${cart.length}`;
     }
 
-    function setVar(name, value) {
-      if (value !== undefined && value !== null) {
-        root.style.setProperty(name, value);
-      }
+    function getStockLabel(stock) {
+      if (stock <= 0) return "Out of stock";
+      if (stock === 1) return "Low stock";
+      return `In stock — ${stock} available`;
     }
 
-    function applyTheme(variant) {
-      setVar("--accent1", variant.accent1);
-      setVar("--accent2", variant.accent2);
-      setVar("--accent-soft", variant.accentSoft);
-      setVar("--accent-soft-2", variant.accentSoft2);
-      setVar("--hero-light-1", variant.heroLight1);
-      setVar("--hero-light-2", variant.heroLight2);
-      setVar("--hero-beam", variant.heroBeam);
-
-      setVar("--hero-font", variant.heroFont || "'Cinzel'");
-      setVar("--details-font", variant.detailsFont || "'Rajdhani'");
-
-      setVar("--title-size", variant.titleSize || "clamp(28px, 2.6vw, 46px)");
-      setVar("--title-letter-spacing", variant.titleLetterSpacing || "0.18em");
-      setVar("--title-color", variant.titleColor || "#f7f3eb");
-      setVar("--title-transform", variant.titleTransform || "uppercase");
-
-      setVar("--details-title-size", variant.detailsTitleSize || "clamp(34px, 4vw, 54px)");
-      setVar("--details-title-spacing", variant.detailsTitleSpacing || "0.02em");
-      setVar("--details-title-transform", variant.detailsTitleTransform || "uppercase");
-
-      setVar("--hero-bg-opacity", variant.heroBgOpacity || "0.30");
-      setVar("--hero-bg-brightness", variant.heroBgBrightness || "0.92");
-      setVar("--hero-bg-contrast", variant.heroBgContrast || "1.04");
-      setVar("--hero-bg-scale-active", variant.heroBgScaleActive || "1");
-      setVar("--hero-bg-scale-idle", variant.heroBgScaleIdle || "1.02");
-
-      setVar("--stage-top", variant.stageTop || "56%");
-      setVar("--stage-width", variant.stageWidth || "min(1180px, 92vw)");
-      setVar("--stage-height", variant.stageHeight || "min(900px, 82vh)");
-      setVar("--stage-glow-size-1", variant.stageGlowSize1 || "52%");
-      setVar("--stage-glow-size-2", variant.stageGlowSize2 || "72%");
-      setVar("--stage-glow-blur-1", variant.stageGlowBlur1 || "24px");
-      setVar("--stage-glow-blur-2", variant.stageGlowBlur2 || "30px");
-
-      setVar("--frame-width", variant.frameWidth || "112%");
-      setVar("--frame-height", variant.frameHeight || "112%");
-      setVar("--frame-opacity", variant.frameOpacity || "0.56");
-      setVar("--frame-scale-idle", variant.frameScaleIdle || "1.06");
-      setVar("--frame-scale-active", variant.frameScaleActive || "1.08");
-      setVar("--frame-brightness", variant.frameBrightness || "1");
-      setVar("--frame-contrast", variant.frameContrast || "1");
-      setVar("--frame-drop-shadow", variant.frameDropShadow || "rgba(0,0,0,0.16)");
-
-      setVar("--image-width", variant.imageWidth || "min(620px, 92%)");
-      setVar("--image-height", variant.imageHeight || "min(500px, 72%)");
-      setVar("--image-scale-idle", variant.imageScaleIdle || "0.98");
-      setVar("--image-scale-active", variant.imageScaleActive || "1");
-      setVar("--image-shift-y", variant.imageShiftY || "0px");
-      setVar("--image-shadow-opacity", variant.imageShadowOpacity || "0.16");
-      setVar("--image-glow-1", variant.imageGlow1 || "20px");
-      setVar("--image-glow-2", variant.imageGlow2 || "42px");
-    }
-
-    function fadeProductCopyOut() {
-      [heroTitle, heroDesc, heroPrice].forEach(el => el.classList.add("is-changing"));
-
-      Array.from(heroPoints.children).forEach((li, index) => {
-        li.style.opacity = "0";
-        li.style.transform = "translateY(8px)";
-        li.style.transitionDelay = `${index * 40}ms`;
-      });
-    }
-
-    function fadeProductCopyIn() {
-      [heroTitle, heroDesc, heroPrice].forEach(el => el.classList.remove("is-changing"));
-
-      Array.from(heroPoints.children).forEach((li, index) => {
-        li.style.opacity = "1";
-        li.style.transform = "translateY(0)";
-        li.style.transitionDelay = `${index * 40}ms`;
-      });
-    }
-
-    function switchBackground(newSrc) {
-      const incoming = activeLayer === "A" ? heroBgB : heroBgA;
-      const outgoing = activeLayer === "A" ? heroBgA : heroBgB;
-
-      incoming.src = newSrc;
-
-      requestAnimationFrame(() => {
-        incoming.classList.add("active");
-        outgoing.classList.remove("active");
-      });
-    }
-
-    function switchFrame(newSrc) {
-      const incoming = activeLayer === "A" ? heroFrameB : heroFrameA;
-      const outgoing = activeLayer === "A" ? heroFrameA : heroFrameB;
-
-      incoming.src = newSrc;
-
-      requestAnimationFrame(() => {
-        incoming.classList.add("active");
-        outgoing.classList.remove("active");
-      });
-    }
-
-    function switchImage(newSrc, newAlt) {
-      const incoming = activeLayer === "A" ? heroImageB : heroImageA;
-      const outgoing = activeLayer === "A" ? heroImageA : heroImageB;
-
-      incoming.src = newSrc;
-      incoming.alt = newAlt;
-
-      requestAnimationFrame(() => {
-        incoming.classList.add("active");
-        outgoing.classList.remove("active");
-      });
-
-      activeLayer = activeLayer === "A" ? "B" : "A";
+    function applyPaletteFromButton(button) {
+      root.style.setProperty("--accent1", button.dataset.accent1);
+      root.style.setProperty("--accent2", button.dataset.accent2);
+      root.style.setProperty("--accent-soft", button.dataset.glow);
+      root.style.setProperty("--hero-light-1", button.dataset.heroGlow1);
+      root.style.setProperty("--hero-light-2", button.dataset.heroGlow2);
+      root.style.setProperty("--hero-beam-1", button.dataset.heroBeam1);
+      root.style.setProperty("--hero-beam-2", button.dataset.heroBeam2);
+      root.style.setProperty("--hero-beam-3", button.dataset.heroBeam3);
+      root.style.setProperty("--hero-floor-1", button.dataset.heroFloor1);
+      root.style.setProperty("--hero-floor-2", button.dataset.heroFloor2);
     }
 
     function updateSelectors(index) {
-      dots.forEach((dot, dotIndex) => {
-        const isActive = dotIndex === index;
-        dot.classList.toggle("active", isActive);
-        dot.setAttribute("aria-pressed", isActive ? "true" : "false");
+      thumbButtons.forEach((button, i) => {
+        button.classList.toggle("active", i === index);
       });
 
-      thumbs.forEach((thumb, thumbIndex) => {
-        thumb.classList.toggle("active", thumbIndex === index);
+      variantButtons.forEach((button, i) => {
+        button.classList.toggle("active", i === index);
+        button.classList.toggle("out", proVariants[i].stock <= 0);
       });
     }
 
-    function renderHero(index, immediate = false) {
-      const variant = proVariants[index];
-      if (!variant) return;
-      if (isAnimating && !immediate) return;
-
-      if (immediate) {
-        applyTheme(variant);
-        artHeroTitle.textContent = variant.artTitle;
-
-        heroBgA.src = variant.bg;
-        heroBgA.classList.add("active");
-        heroBgB.classList.remove("active");
-
-        heroFrameA.src = variant.frame;
-        heroFrameA.classList.add("active");
-        heroFrameB.classList.remove("active");
-
-        heroImageA.src = variant.image;
-        heroImageA.alt = `${variant.name} controller`;
-        heroImageA.classList.add("active");
-        heroImageB.classList.remove("active");
-
-        activeLayer = "A";
-        artHeroTitle.classList.remove("is-changing");
-        return;
-      }
-
-      isAnimating = true;
-      artHeroTitle.classList.add("is-changing");
-
-      setTimeout(() => {
-        applyTheme(variant);
-        switchBackground(variant.bg);
-        switchFrame(variant.frame);
-        switchImage(variant.image, `${variant.name} controller`);
-        artHeroTitle.textContent = variant.artTitle;
-
-        requestAnimationFrame(() => {
-          artHeroTitle.classList.remove("is-changing");
-        });
-
-        setTimeout(() => {
-          isAnimating = false;
-        }, 950);
-      }, 180);
+    function updateBuyButton(variant) {
+      const isOut = variant.stock <= 0;
+      addToCartBtn.disabled = isOut;
+      addToCartBtn.textContent = isOut ? "Out Of Stock" : "Add To Cart";
     }
 
-    function renderProductDetails(index, immediate = false) {
+    function renderProduct(index) {
       const variant = proVariants[index];
-      if (!variant) return;
+      const activeButton = variantButtons[index];
 
-      if (immediate) {
-        heroTitle.textContent = variant.name;
-        heroDesc.textContent = variant.desc;
-        heroPrice.textContent = `€${variant.price.toFixed(2)}`;
-        heroPoints.innerHTML = variant.points.map(point => `<li>${point}</li>`).join("");
-        stockBadge.textContent = variant.stock;
-        updateSelectors(index);
-        fadeProductCopyIn();
-        return;
-      }
+      mainProductImage.src = variant.image;
+      mainProductImage.alt = `DriftZero Apex Pro ${variant.name}`;
 
-      fadeProductCopyOut();
+      productTitle.textContent = variant.name;
+      productSubtitle.innerHTML = variant.subtitle;
+      productPrice.textContent = `€${variant.price.toFixed(2)}`;
+      productDesc.textContent = variant.desc;
+      productPoints.innerHTML = variant.points.map(point => `<li class="bullet">${point}</li>`).join("");
 
-      setTimeout(() => {
-        heroTitle.textContent = variant.name;
-        heroDesc.textContent = variant.desc;
-        heroPrice.textContent = `€${variant.price.toFixed(2)}`;
-        heroPoints.innerHTML = variant.points.map(point => `<li>${point}</li>`).join("");
-        stockBadge.textContent = variant.stock;
-        updateSelectors(index);
+      stockText.textContent = getStockLabel(variant.stock);
+      stockText.classList.toggle("out", variant.stock <= 0);
+      selectedVariantText.textContent = `Selected variant: ${variant.name}`;
 
-        requestAnimationFrame(() => {
-          fadeProductCopyIn();
-        });
-      }, 180);
+      updateBuyButton(variant);
+      updateSelectors(index);
+      applyPaletteFromButton(activeButton);
     }
 
     function goToVariant(index) {
-      if (index === selectedIndex || isAnimating) return;
-
       selectedIndex = index;
-      heroIndex = index;
-
-      renderHero(heroIndex);
-      renderProductDetails(selectedIndex);
-      resetAutoRotate();
+      renderProduct(index);
     }
 
-    function nextVariant() {
-      if (isAnimating) return;
-      heroIndex = (heroIndex + 1) % proVariants.length;
-      renderHero(heroIndex);
-    }
-
-    function startAutoRotate() {
-      clearInterval(autoRotate);
-      autoRotate = setInterval(nextVariant, 5200);
-    }
-
-    function resetAutoRotate() {
-      clearInterval(autoRotate);
-      startAutoRotate();
-    }
-
-    dots.forEach(dot => {
-      dot.addEventListener("click", () => {
-        const index = Number(dot.dataset.index);
-        goToVariant(index);
+    thumbButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        goToVariant(Number(button.dataset.index));
       });
     });
 
-    thumbs.forEach(thumb => {
-      thumb.addEventListener("click", () => {
-        const index = Number(thumb.dataset.index);
-        goToVariant(index);
+    variantButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        goToVariant(Number(button.dataset.index));
       });
     });
 
-    heroBtn.addEventListener("click", () => {
-      if (heroBtn.disabled) return;
-
+    addToCartBtn.addEventListener("click", () => {
       const variant = proVariants[selectedIndex];
+      if (variant.stock <= 0) return;
+
       const cart = getCart();
-
-      heroBtn.disabled = true;
-
       cart.push({
         name: `DriftZero Apex Pro - ${variant.name}`,
         price: variant.price,
@@ -1768,23 +1022,16 @@
       });
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      updateCartBadge();
+      updateCartCount();
 
-      const originalText = heroBtn.textContent;
-      heroBtn.textContent = "Added ✔";
-      cartLiveRegion.textContent = `${variant.name} added to cart`;
-
+      addToCartBtn.textContent = "Added ✔";
       setTimeout(() => {
-        heroBtn.textContent = originalText;
-        heroBtn.disabled = false;
+        updateBuyButton(variant);
       }, 900);
     });
 
-    preloadImages();
-    updateCartBadge();
-    renderHero(0, true);
-    renderProductDetails(0, true);
-    startAutoRotate();
+    updateCartCount();
+    renderProduct(0);
   </script>
 </body>
 </html>
