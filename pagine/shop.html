@@ -1615,214 +1615,92 @@
   </div>
 </footer>
 
+<script src="../codici-js/cart.js"></script>
+
 <script>
-  const root = document.documentElement;
-  const cards = Array.from(document.querySelectorAll('.stack-card'));
-  const dots = Array.from(document.querySelectorAll('.stack-dot'));
-  const prevBtn = document.querySelector('.stack-arrow.prev');
-  const nextBtn = document.querySelector('.stack-arrow.next');
+const root = document.documentElement;
+const cards = Array.from(document.querySelectorAll(".stack-card"));
+const dots = Array.from(document.querySelectorAll(".stack-dot"));
+const prevBtn = document.querySelector(".stack-arrow.prev");
+const nextBtn = document.querySelector(".stack-arrow.next");
 
-  const cartWrapper = document.getElementById("cartWrapper");
-  const cartToggle = document.getElementById("cartToggle");
-  const cartBadge = document.getElementById("cartBadge");
-  const cartDropdownCount = document.getElementById("cartDropdownCount");
-  const cartItems = document.getElementById("cartItems");
-  const cartSubtotal = document.getElementById("cartSubtotal");
-  const clearCartBtn = document.getElementById("clearCartBtn");
+let current = 0;
 
-  let current = 0;
+function applyTheme(card) {
+  if (!card) return;
 
-  function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-  }
+  root.style.setProperty("--accent1", card.dataset.accent1 || "#00e5ff");
+  root.style.setProperty("--accent2", card.dataset.accent2 || "#6a5cff");
+  root.style.setProperty("--accent-glow", card.dataset.glow || "rgba(0,229,255,0.16)");
+  root.style.setProperty("--accent-soft", card.dataset.glow || "rgba(0,229,255,0.16)");
 
-  function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+  root.style.setProperty("--hero-glow-1", card.dataset.heroGlow1 || "rgba(0,229,255,0.26)");
+  root.style.setProperty("--hero-glow-2", card.dataset.heroGlow2 || "rgba(106,92,255,0.18)");
+  root.style.setProperty("--hero-beam-1", card.dataset.heroBeam1 || "rgba(0,229,255,0.12)");
+  root.style.setProperty("--hero-beam-2", card.dataset.heroBeam2 || "rgba(255,255,255,0.08)");
+  root.style.setProperty("--hero-beam-3", card.dataset.heroBeam3 || "rgba(106,92,255,0.10)");
+  root.style.setProperty("--hero-floor-1", card.dataset.heroFloor1 || "rgba(180,210,255,0.18)");
+  root.style.setProperty("--hero-floor-2", card.dataset.heroFloor2 || "rgba(255,255,255,0.10)");
+}
 
-  function formatPrice(value) {
-    return `€${value.toFixed(2)}`;
-  }
+function updateStack() {
+  const total = cards.length;
+  if (total === 0) return;
 
-  function getCartQuantity(cart) {
-    return cart.reduce((total, item) => total + (item.quantity || 1), 0);
-  }
-
-  function getCartSubtotal(cart) {
-    return cart.reduce((total, item) => total + ((item.price || 0) * (item.quantity || 1)), 0);
-  }
-
-  function renderCartDropdown() {
-    const cart = getCart();
-    const count = getCartQuantity(cart);
-    const subtotal = getCartSubtotal(cart);
-
-    cartBadge.textContent = count;
-    cartDropdownCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
-    cartSubtotal.textContent = formatPrice(subtotal);
-
-    if (cart.length === 0) {
-      cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
-      return;
-    }
-
-    cartItems.innerHTML = cart.map((item, index) => {
-      const quantity = item.quantity || 1;
-      const itemTotal = (item.price || 0) * quantity;
-
-      let meta = `Qty: ${quantity}`;
-      if (item.leftColor && item.rightColor) {
-        meta += ` • ${item.leftColor} / ${item.rightColor}`;
-      } else if (item.color) {
-        meta += ` • ${item.color}`;
-      }
-
-      return `
-        <div class="cart-item">
-          <div class="cart-item-image">
-            <img src="${item.pairImage || item.image || ''}" alt="${item.name}">
-          </div>
-
-          <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-meta">${meta}</div>
-            <div class="cart-item-price">${formatPrice(itemTotal)}</div>
-          </div>
-
-          <button class="cart-item-remove" type="button" data-remove-index="${index}">×</button>
-        </div>
-      `;
-    }).join("");
-
-    cartItems.querySelectorAll("[data-remove-index]").forEach(button => {
-      button.addEventListener("click", () => {
-        removeCartItem(Number(button.dataset.removeIndex));
-      });
-    });
-  }
-
-  function removeCartItem(index) {
-    const cart = getCart();
-    cart.splice(index, 1);
-    saveCart(cart);
-    renderCartDropdown();
-  }
-
-  function clearCart() {
-    saveCart([]);
-    renderCartDropdown();
-  }
-
-  function closeCart() {
-    cartWrapper.classList.remove("open");
-    cartToggle.setAttribute("aria-expanded", "false");
-  }
-
-  function toggleCart() {
-    cartWrapper.classList.toggle("open");
-    cartToggle.setAttribute(
-      "aria-expanded",
-      cartWrapper.classList.contains("open") ? "true" : "false"
-    );
-  }
-
-  function applyTheme(card){
-    if(!card) return;
-
-    root.style.setProperty('--accent1', card.dataset.accent1 || '#00e5ff');
-    root.style.setProperty('--accent2', card.dataset.accent2 || '#6a5cff');
-    root.style.setProperty('--accent-glow', card.dataset.glow || 'rgba(0,229,255,0.16)');
-    root.style.setProperty('--accent-soft', card.dataset.glow || 'rgba(0,229,255,0.16)');
-
-    root.style.setProperty('--hero-glow-1', card.dataset.heroGlow1 || 'rgba(0,229,255,0.26)');
-    root.style.setProperty('--hero-glow-2', card.dataset.heroGlow2 || 'rgba(106,92,255,0.18)');
-    root.style.setProperty('--hero-beam-1', card.dataset.heroBeam1 || 'rgba(0,229,255,0.12)');
-    root.style.setProperty('--hero-beam-2', card.dataset.heroBeam2 || 'rgba(255,255,255,0.08)');
-    root.style.setProperty('--hero-beam-3', card.dataset.heroBeam3 || 'rgba(106,92,255,0.10)');
-    root.style.setProperty('--hero-floor-1', card.dataset.heroFloor1 || 'rgba(180,210,255,0.18)');
-    root.style.setProperty('--hero-floor-2', card.dataset.heroFloor2 || 'rgba(255,255,255,0.10)');
-  }
-
-  function updateStack(){
-    const total = cards.length;
-    if(total === 0) return;
-
-    const activeIndex = current;
-    const leftIndex = (current - 1 + total) % total;
-    const rightIndex = (current + 1) % total;
-
-    cards.forEach((card, index) => {
-      card.classList.remove('active', 'left', 'right', 'back');
-
-      if(index === activeIndex){
-        card.classList.add('active');
-      }else if(index === leftIndex){
-        card.classList.add('left');
-      }else if(index === rightIndex){
-        card.classList.add('right');
-      }else{
-        card.classList.add('back');
-      }
-    });
-
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === current);
-    });
-
-    applyTheme(cards[current]);
-  }
-
-  if(nextBtn){
-    nextBtn.addEventListener('click', () => {
-      current = (current + 1) % cards.length;
-      updateStack();
-    });
-  }
-
-  if(prevBtn){
-    prevBtn.addEventListener('click', () => {
-      current = (current - 1 + cards.length) % cards.length;
-      updateStack();
-    });
-  }
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      current = index;
-      updateStack();
-    });
-  });
+  const activeIndex = current;
+  const leftIndex = (current - 1 + total) % total;
+  const rightIndex = (current + 1) % total;
 
   cards.forEach((card, index) => {
-    card.addEventListener('click', () => {
-      current = index;
-      updateStack();
-    });
-  });
+    card.classList.remove("active", "left", "right", "back");
 
-  cartToggle.addEventListener("click", toggleCart);
-  clearCartBtn.addEventListener("click", clearCart);
-
-  document.addEventListener("click", event => {
-    if (!cartWrapper.contains(event.target)) {
-      closeCart();
+    if (index === activeIndex) {
+      card.classList.add("active");
+    } else if (index === leftIndex) {
+      card.classList.add("left");
+    } else if (index === rightIndex) {
+      card.classList.add("right");
+    } else {
+      card.classList.add("back");
     }
   });
 
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      closeCart();
-    }
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === current);
   });
 
-  window.addEventListener("storage", event => {
-    if (event.key === "cart") {
-      renderCartDropdown();
-    }
-  });
+  applyTheme(cards[current]);
+}
 
-  updateStack();
-  renderCartDropdown();
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => {
+    current = (current + 1) % cards.length;
+    updateStack();
+  });
+}
+
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => {
+    current = (current - 1 + cards.length) % cards.length;
+    updateStack();
+  });
+}
+
+dots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    current = index;
+    updateStack();
+  });
+});
+
+cards.forEach((card, index) => {
+  card.addEventListener("click", () => {
+    current = index;
+    updateStack();
+  });
+});
+
+updateStack();
 </script>
 
 </body>

@@ -1104,313 +1104,241 @@
     </div>
   </footer>
 
-  <script>
-    const proVariants = [
-      {
-        name: "Hit Parade",
-        subtitle: "Spotlight energy.<br>Collector impact.",
-        image: "../images/pro1.png",
-        price: 59.99,
-        stock: 1,
-        desc: "A spotlight-built variant with cleaner luxury tones and a more celebratory stage presence for setups that want to stand out without looking cheap.",
-        points: [
-          "HD rumble support",
-          "6-axis gyroscope",
-          "High-quality full-size build"
-        ]
-      },
-      {
-        name: "Drip Crew",
-        subtitle: "Neon pressure.<br>Street signal.",
-        image: "../images/pro2.png",
-        price: 59.99,
-        stock: 2,
-        desc: "A louder collector variant shaped by neon streets, ink energy and late-night arcade chaos for players who want their setup to hit hard on sight.",
-        points: [
-          "HD rumble support",
-          "6-axis gyroscope",
-          "High-quality full-size build"
-        ]
-      },
-      {
-        name: "Elder Vale",
-        subtitle: "Sacred tone.<br>Quiet authority.",
-        image: "../images/pro3.png",
-        price: 59.99,
-        stock: 0,
-        desc: "A sacred collector piece with calmer gold symbolism and a more elevated presence built for players who prefer ritual, elegance and quieter power.",
-        points: [
-          "HD rumble support",
-          "6-axis gyroscope",
-          "High-quality full-size build"
-        ]
-      },
-      {
-        name: "Obsidian Core",
-        subtitle: "Forged weight.<br>Cold control.",
-        image: "../images/pro4.png",
-        price: 59.99,
-        stock: 1,
-        desc: "A darker forged variant with heavier visual control and a relic-like finish made for players who want authority, restraint and a colder presence on desk.",
-        points: [
-          "HD rumble support",
-          "6-axis gyroscope",
-          "High-quality full-size build"
-        ]
-      }
-    ];
+  <script src="../codici-js/cart.js"></script>
 
-    const root = document.documentElement;
+<script>
+const proVariants = [
+  {
+    name: "Hit Parade",
+    subtitle: "Spotlight energy.<br>Collector impact.",
+    image: "../images/pro1.png",
+    price: 59.99,
+    stock: 1,
+    desc: "A spotlight-built variant with cleaner luxury tones and a more celebratory stage presence for setups that want to stand out without looking cheap.",
+    points: [
+      "HD rumble support",
+      "6-axis gyroscope",
+      "High-quality full-size build"
+    ]
+  },
+  {
+    name: "Drip Crew",
+    subtitle: "Neon pressure.<br>Street signal.",
+    image: "../images/pro2.png",
+    price: 59.99,
+    stock: 2,
+    desc: "A louder collector variant shaped by neon streets, ink energy and late-night arcade chaos for players who want their setup to hit hard on sight.",
+    points: [
+      "HD rumble support",
+      "6-axis gyroscope",
+      "High-quality full-size build"
+    ]
+  },
+  {
+    name: "Elder Vale",
+    subtitle: "Sacred tone.<br>Quiet authority.",
+    image: "../images/pro3.png",
+    price: 59.99,
+    stock: 0,
+    desc: "A sacred collector piece with calmer gold symbolism and a more elevated presence built for players who prefer ritual, elegance and quieter power.",
+    points: [
+      "HD rumble support",
+      "6-axis gyroscope",
+      "High-quality full-size build"
+    ]
+  },
+  {
+    name: "Obsidian Core",
+    subtitle: "Forged weight.<br>Cold control.",
+    image: "../images/pro4.png",
+    price: 59.99,
+    stock: 1,
+    desc: "A darker forged variant with heavier visual control and a relic-like finish made for players who want authority, restraint and a colder presence on desk.",
+    points: [
+      "HD rumble support",
+      "6-axis gyroscope",
+      "High-quality full-size build"
+    ]
+  }
+];
 
-    const mainProductImage = document.getElementById("mainProductImage");
-    const productTitle = document.getElementById("productTitle");
-    const productSubtitle = document.getElementById("productSubtitle");
-    const productPrice = document.getElementById("productPrice");
-    const productDesc = document.getElementById("productDesc");
-    const productPoints = document.getElementById("productPoints");
-    const stockText = document.getElementById("stockText");
-    const addToCartBtn = document.getElementById("addToCartBtn");
-    const selectedVariantText = document.getElementById("selectedVariantText");
-    const cartCountText = document.getElementById("cartCountText");
+const root = document.documentElement;
 
-    const thumbButtons = Array.from(document.querySelectorAll(".thumb"));
-    const variantButtons = Array.from(document.querySelectorAll(".color-btn"));
+const mainProductImage = document.getElementById("mainProductImage");
+const productTitle = document.getElementById("productTitle");
+const productSubtitle = document.getElementById("productSubtitle");
+const productPrice = document.getElementById("productPrice");
+const productDesc = document.getElementById("productDesc");
+const productPoints = document.getElementById("productPoints");
+const stockText = document.getElementById("stockText");
+const addToCartBtn = document.getElementById("addToCartBtn");
+const selectedVariantText = document.getElementById("selectedVariantText");
+const cartCountText = document.getElementById("cartCountText");
 
-    const cartWrapper = document.getElementById("cartWrapper");
-    const cartToggle = document.getElementById("cartToggle");
-    const cartDropdown = document.getElementById("cartDropdown");
-    const cartBadge = document.getElementById("cartBadge");
-    const cartDropdownCount = document.getElementById("cartDropdownCount");
-    const cartItems = document.getElementById("cartItems");
-    const cartSubtotal = document.getElementById("cartSubtotal");
-    const clearCartBtn = document.getElementById("clearCartBtn");
+const thumbButtons = Array.from(document.querySelectorAll(".thumb"));
+const variantButtons = Array.from(document.querySelectorAll(".color-btn"));
 
-    let selectedIndex = 0;
+let selectedIndex = 0;
 
-    function getCart() {
-      return JSON.parse(localStorage.getItem("cart")) || [];
-    }
+function formatPrice(value) {
+  return `€${value.toFixed(2)}`;
+}
 
-    function saveCart(cart) {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
+function getCartCount() {
+  if (typeof Cart === "undefined") return 0;
 
-    function formatPrice(value) {
-      return `€${value.toFixed(2)}`;
-    }
+  const cart = Cart.getItems();
 
-    function getCartQuantity(cart) {
-      return cart.reduce((total, item) => total + (item.quantity || 1), 0);
-    }
+  return cart.reduce((total, item) => {
+    return total + (item.quantity || 1);
+  }, 0);
+}
 
-    function getCartSubtotal(cart) {
-      return cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
-    }
+function updateCartCountText() {
+  if (!cartCountText) return;
 
-    function updateCartCount() {
-      const cart = getCart();
-      const count = getCartQuantity(cart);
-      cartCountText.textContent = `Cart items: ${count}`;
-    }
+  cartCountText.textContent = `Cart items: ${getCartCount()}`;
+}
 
-    function getStockLabel(stock) {
-      if (stock <= 0) return "Out of stock";
-      if (stock === 1) return "Low stock";
-      return `In stock — ${stock} available`;
-    }
+function getStockLabel(stock) {
+  if (stock <= 0) return "Out of stock";
+  if (stock === 1) return "Low stock";
+  return `In stock — ${stock} available`;
+}
 
-    function applyPaletteFromButton(button) {
-      root.style.setProperty("--accent1", button.dataset.accent1);
-      root.style.setProperty("--accent2", button.dataset.accent2);
-      root.style.setProperty("--accent-soft", button.dataset.glow);
-      root.style.setProperty("--hero-light-1", button.dataset.heroGlow1);
-      root.style.setProperty("--hero-light-2", button.dataset.heroGlow2);
-      root.style.setProperty("--hero-beam-1", button.dataset.heroBeam1);
-      root.style.setProperty("--hero-beam-2", button.dataset.heroBeam2);
-      root.style.setProperty("--hero-beam-3", button.dataset.heroBeam3);
-      root.style.setProperty("--hero-floor-1", button.dataset.heroFloor1);
-      root.style.setProperty("--hero-floor-2", button.dataset.heroFloor2);
-    }
+function applyPaletteFromButton(button) {
+  if (!button) return;
 
-    function updateSelectors(index) {
-      thumbButtons.forEach((button, i) => {
-        button.classList.toggle("active", i === index);
-      });
+  root.style.setProperty("--accent1", button.dataset.accent1);
+  root.style.setProperty("--accent2", button.dataset.accent2);
+  root.style.setProperty("--accent-soft", button.dataset.glow);
+  root.style.setProperty("--hero-light-1", button.dataset.heroGlow1);
+  root.style.setProperty("--hero-light-2", button.dataset.heroGlow2);
+  root.style.setProperty("--hero-beam-1", button.dataset.heroBeam1);
+  root.style.setProperty("--hero-beam-2", button.dataset.heroBeam2);
+  root.style.setProperty("--hero-beam-3", button.dataset.heroBeam3);
+  root.style.setProperty("--hero-floor-1", button.dataset.heroFloor1);
+  root.style.setProperty("--hero-floor-2", button.dataset.heroFloor2);
+}
 
-      variantButtons.forEach((button, i) => {
-        button.classList.toggle("active", i === index);
-        button.classList.toggle("out", proVariants[i].stock <= 0);
-      });
-    }
+function updateSelectors(index) {
+  thumbButtons.forEach((button, i) => {
+    button.classList.toggle("active", i === index);
+  });
 
-    function updateBuyButton(variant) {
-      const isOut = variant.stock <= 0;
-      addToCartBtn.disabled = isOut;
-      addToCartBtn.textContent = isOut ? "Out Of Stock" : "Add To Cart";
-    }
+  variantButtons.forEach((button, i) => {
+    const isOut = proVariants[i].stock <= 0;
 
-    function renderProduct(index) {
-      const variant = proVariants[index];
-      const activeButton = variantButtons[index];
+    button.classList.toggle("active", i === index);
+    button.classList.toggle("out", isOut);
+  });
+}
 
-      mainProductImage.src = variant.image;
-      mainProductImage.alt = `DriftZero Apex Pro ${variant.name}`;
+function updateBuyButton(variant) {
+  if (!addToCartBtn) return;
 
-      productTitle.textContent = variant.name;
-      productSubtitle.innerHTML = variant.subtitle;
-      productPrice.textContent = formatPrice(variant.price);
-      productDesc.textContent = variant.desc;
-      productPoints.innerHTML = variant.points.map(point => `<li class="bullet">${point}</li>`).join("");
+  const isOut = variant.stock <= 0;
 
-      stockText.textContent = getStockLabel(variant.stock);
-      stockText.classList.toggle("out", variant.stock <= 0);
-      selectedVariantText.textContent = `Selected variant: ${variant.name}`;
+  addToCartBtn.disabled = isOut;
+  addToCartBtn.textContent = isOut ? "Out Of Stock" : "Add To Cart";
+}
 
-      updateBuyButton(variant);
-      updateSelectors(index);
-      applyPaletteFromButton(activeButton);
-    }
+function renderProduct(index) {
+  const variant = proVariants[index];
+  const activeButton = variantButtons[index];
 
-    function goToVariant(index) {
-      selectedIndex = index;
-      renderProduct(index);
-    }
+  if (!variant) return;
 
-    function renderCartDropdown() {
-      const cart = getCart();
-      const count = getCartQuantity(cart);
-      const subtotal = getCartSubtotal(cart);
+  if (mainProductImage) {
+    mainProductImage.src = variant.image;
+    mainProductImage.alt = `DriftZero Apex Pro ${variant.name}`;
+  }
 
-      cartBadge.textContent = count;
-      cartDropdownCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
-      cartSubtotal.textContent = formatPrice(subtotal);
+  if (productTitle) productTitle.textContent = variant.name;
+  if (productSubtitle) productSubtitle.innerHTML = variant.subtitle;
+  if (productPrice) productPrice.textContent = formatPrice(variant.price);
+  if (productDesc) productDesc.textContent = variant.desc;
 
-      if (cart.length === 0) {
-        cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
-        return;
-      }
+  if (productPoints) {
+    productPoints.innerHTML = variant.points.map(point => {
+      return `<li class="bullet">${point}</li>`;
+    }).join("");
+  }
 
-      cartItems.innerHTML = cart.map((item, index) => {
-        const quantity = item.quantity || 1;
-        const itemTotal = item.price * quantity;
+  if (stockText) {
+    stockText.textContent = getStockLabel(variant.stock);
+    stockText.classList.toggle("out", variant.stock <= 0);
+  }
 
-        return `
-          <div class="cart-item">
-            <div class="cart-item-image">
-              <img src="${item.image}" alt="${item.name}">
-            </div>
+  if (selectedVariantText) {
+    selectedVariantText.textContent = `Selected variant: ${variant.name}`;
+  }
 
-            <div class="cart-item-info">
-              <div class="cart-item-name">${item.name}</div>
-              <div class="cart-item-meta">Qty: ${quantity}</div>
-              <div class="cart-item-price">${formatPrice(itemTotal)}</div>
-            </div>
+  updateBuyButton(variant);
+  updateSelectors(index);
+  applyPaletteFromButton(activeButton);
+  updateCartCountText();
+}
 
-            <button class="cart-item-remove" type="button" data-remove-index="${index}">×</button>
-          </div>
-        `;
-      }).join("");
+function goToVariant(index) {
+  selectedIndex = index;
+  renderProduct(index);
+}
 
-      cartItems.querySelectorAll("[data-remove-index]").forEach(button => {
-        button.addEventListener("click", () => {
-          removeCartItem(Number(button.dataset.removeIndex));
-        });
-      });
-    }
+function playAddToCartFeedback() {
+  if (!addToCartBtn) return;
 
-    function removeCartItem(index) {
-      const cart = getCart();
-      cart.splice(index, 1);
-      saveCart(cart);
-      renderCartDropdown();
-      updateCartCount();
-    }
+  const variant = proVariants[selectedIndex];
 
-    function clearCart() {
-      saveCart([]);
-      renderCartDropdown();
-      updateCartCount();
-    }
+  addToCartBtn.textContent = "Added ✔";
 
-    function openCart() {
-      cartWrapper.classList.add("open");
-      cartToggle.setAttribute("aria-expanded", "true");
-    }
+  setTimeout(() => {
+    updateBuyButton(variant);
+  }, 900);
+}
 
-    function closeCart() {
-      cartWrapper.classList.remove("open");
-      cartToggle.setAttribute("aria-expanded", "false");
-    }
+thumbButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    goToVariant(Number(button.dataset.index));
+  });
+});
 
-    function toggleCart() {
-      cartWrapper.classList.toggle("open");
-      cartToggle.setAttribute(
-        "aria-expanded",
-        cartWrapper.classList.contains("open") ? "true" : "false"
-      );
-    }
+variantButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    goToVariant(Number(button.dataset.index));
+  });
+});
 
-    thumbButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        goToVariant(Number(button.dataset.index));
-      });
+if (addToCartBtn) {
+  addToCartBtn.addEventListener("click", () => {
+    const variant = proVariants[selectedIndex];
+
+    if (!variant || variant.stock <= 0) return;
+
+    Cart.add({
+      id: `apex-pro-${variant.name.toLowerCase().replaceAll(" ", "-")}`,
+      key: `apex-pro-${variant.name.toLowerCase().replaceAll(" ", "-")}`,
+      product: "apex-pro",
+      name: `DriftZero Apex Pro - ${variant.name}`,
+      price: variant.price,
+      image: variant.image,
+      color: variant.name,
+      quantity: 1
     });
 
-    variantButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        goToVariant(Number(button.dataset.index));
-      });
-    });
+    updateCartCountText();
+    playAddToCartFeedback();
+  });
+}
 
-    addToCartBtn.addEventListener("click", () => {
-      const variant = proVariants[selectedIndex];
-      if (variant.stock <= 0) return;
+window.addEventListener("storage", event => {
+  if (event.key === "cart") {
+    updateCartCountText();
+  }
+});
 
-      const cart = getCart();
-      const existingItem = cart.find(item => item.name === `DriftZero Apex Pro - ${variant.name}`);
-
-      if (existingItem) {
-        existingItem.quantity = (existingItem.quantity || 1) + 1;
-      } else {
-        cart.push({
-          name: `DriftZero Apex Pro - ${variant.name}`,
-          price: variant.price,
-          image: variant.image,
-          color: variant.name,
-          quantity: 1
-        });
-      }
-
-      saveCart(cart);
-      renderCartDropdown();
-      updateCartCount();
-      openCart();
-
-      addToCartBtn.textContent = "Added ✔";
-      setTimeout(() => {
-        updateBuyButton(variant);
-      }, 900);
-    });
-
-    cartToggle.addEventListener("click", toggleCart);
-
-    clearCartBtn.addEventListener("click", clearCart);
-
-    document.addEventListener("click", event => {
-      if (!cartWrapper.contains(event.target)) {
-        closeCart();
-      }
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        closeCart();
-      }
-    });
-
-    updateCartCount();
-    renderCartDropdown();
-    renderProduct(0);
-  </script>
+renderProduct(0);
+updateCartCountText();
+</script>
 </body>
 </html>

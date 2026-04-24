@@ -1169,361 +1169,269 @@
     </div>
   </footer>
 
-  <script>
-    const pulseFluxVariants = {
-      rb: {
-        key: "rb",
-        color: "Blue Blaze",
-        image: "../images/joycon2rb.jpg",
-        price: 49.99,
-        stock: 1,
-        shortDesc: "Pulse Flux in its sharper mainstream form. A cleaner blue-red split built for players who want high contrast without going fully chaotic.",
-        bullets: [
-          "HD Rumble support",
-          "6-axis gyroscope",
-          "High-quality full-size build",
-          "Balanced blue-red split finish"
-        ],
-        description: "Blue Blaze is the more familiar Pulse Flux direction. It keeps the aggressive split look, but stays cleaner and more accessible through a classic blue-red pairing. It is the easier entry point into the Pulse Flux line, giving you a stronger color identity without pushing too far into experimental territory."
-      },
-      pg: {
-        key: "pg",
-        color: "Neon Clash",
-        image: "../images/joycon2pg.jpg",
-        price: 49.99,
-        stock: 4,
-        shortDesc: "The louder Pulse Flux variant. Purple and green collide in a more synthetic, more arcade-like setup built to stand out immediately.",
-        bullets: [
-          "HD Rumble support",
-          "6-axis gyroscope",
-          "High-quality full-size build",
-          "Collector-driven neon pairing"
-        ],
-        description: "Neon Clash is the more extreme side of Pulse Flux. It leans harder into color tension, synthetic energy, and late-night arcade attitude. This is the variant for players who do not want subtlety on desk and would rather have the setup hit visually the second it appears."
-      }
-    };
+  <script src="../codici-js/cart.js"></script>
 
-    const STOCK_STORAGE_KEY = "pulseFluxStock";
+<script>
+const pulseFluxVariants = {
+  rb: {
+    key: "rb",
+    color: "Blue Blaze",
+    image: "../images/joycon2rb.jpg",
+    price: 49.99,
+    stock: 1,
+    shortDesc: "Pulse Flux in its sharper mainstream form. A cleaner blue-red split built for players who want high contrast without going fully chaotic.",
+    bullets: [
+      "HD Rumble support",
+      "6-axis gyroscope",
+      "High-quality full-size build",
+      "Balanced blue-red split finish"
+    ],
+    description: "Blue Blaze is the more familiar Pulse Flux direction. It keeps the aggressive split look, but stays cleaner and more accessible through a classic blue-red pairing. It is the easier entry point into the Pulse Flux line, giving you a stronger color identity without pushing too far into experimental territory."
+  },
+  pg: {
+    key: "pg",
+    color: "Neon Clash",
+    image: "../images/joycon2pg.jpg",
+    price: 49.99,
+    stock: 4,
+    shortDesc: "The louder Pulse Flux variant. Purple and green collide in a more synthetic, more arcade-like setup built to stand out immediately.",
+    bullets: [
+      "HD Rumble support",
+      "6-axis gyroscope",
+      "High-quality full-size build",
+      "Collector-driven neon pairing"
+    ],
+    description: "Neon Clash is the more extreme side of Pulse Flux. It leans harder into color tension, synthetic energy, and late-night arcade attitude. This is the variant for players who do not want subtlety on desk and would rather have the setup hit visually the second it appears."
+  }
+};
 
-    const mainProductImage   = document.getElementById('mainProductImage');
-    const colorButtons       = document.querySelectorAll('.color-btn');
-    const thumbButtons       = document.querySelectorAll('.thumb');
-    const selectedColorText  = document.getElementById('selectedColorText');
-    const addToCartBtn       = document.getElementById('addToCartBtn');
-    const qtySelect          = document.getElementById('qty');
-    const stockText          = document.getElementById('stockText');
-    const priceText          = document.getElementById('priceText');
-    const shortDesc          = document.getElementById('shortDesc');
-    const bulletList         = document.getElementById('bulletList');
-    const productDescription = document.getElementById('productDescription');
+const STOCK_STORAGE_KEY = "pulseFluxStock";
 
-    const cartWrapper = document.getElementById("cartWrapper");
-    const cartToggle = document.getElementById("cartToggle");
-    const cartBadge = document.getElementById("cartBadge");
-    const cartDropdownCount = document.getElementById("cartDropdownCount");
-    const cartItems = document.getElementById("cartItems");
-    const cartSubtotal = document.getElementById("cartSubtotal");
-    const clearCartBtn = document.getElementById("clearCartBtn");
+const mainProductImage   = document.getElementById("mainProductImage");
+const colorButtons       = document.querySelectorAll(".color-btn");
+const thumbButtons       = document.querySelectorAll(".thumb");
+const selectedColorText  = document.getElementById("selectedColorText");
+const addToCartBtn       = document.getElementById("addToCartBtn");
+const qtySelect          = document.getElementById("qty");
+const stockText          = document.getElementById("stockText");
+const priceText          = document.getElementById("priceText");
+const shortDesc          = document.getElementById("shortDesc");
+const bulletList         = document.getElementById("bulletList");
+const productDescription = document.getElementById("productDescription");
 
-    let selectedKey = 'rb';
-    const productName = 'DriftZero Pulse Flux';
-    const defaultBtnText = addToCartBtn.textContent;
+let selectedKey = "rb";
 
-    function initializePulseFluxStock() {
-      const existing = JSON.parse(localStorage.getItem(STOCK_STORAGE_KEY));
-      if (existing) return;
+const productName = "DriftZero Pulse Flux";
+const defaultBtnText = addToCartBtn ? addToCartBtn.textContent : "Add To Cart";
 
-      const defaultStock = {
-        rb: pulseFluxVariants.rb.stock,
-        pg: pulseFluxVariants.pg.stock
-      };
+function initializePulseFluxStock() {
+  const existing = JSON.parse(localStorage.getItem(STOCK_STORAGE_KEY));
 
-      localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(defaultStock));
+  if (existing) return;
+
+  const defaultStock = {
+    rb: pulseFluxVariants.rb.stock,
+    pg: pulseFluxVariants.pg.stock
+  };
+
+  localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(defaultStock));
+}
+
+function getPulseFluxStock() {
+  return JSON.parse(localStorage.getItem(STOCK_STORAGE_KEY)) || {
+    rb: 0,
+    pg: 0
+  };
+}
+
+function getColorAvailableQty(colorKey) {
+  const stock = getPulseFluxStock();
+  return stock[colorKey] ?? 0;
+}
+
+function getFirstAvailableColorButton() {
+  return Array.from(colorButtons).find(btn => {
+    return getColorAvailableQty(btn.dataset.key) > 0;
+  }) || null;
+}
+
+function ensureValidSelectedColor() {
+  const currentAvailable = getColorAvailableQty(selectedKey);
+
+  if (currentAvailable > 0) return;
+
+  const fallback = getFirstAvailableColorButton();
+
+  if (fallback) {
+    selectedKey = fallback.dataset.key;
+  }
+}
+
+function renderQtyOptions(stockQty) {
+  if (!qtySelect) return;
+
+  qtySelect.innerHTML = "";
+
+  if (stockQty <= 0) {
+    qtySelect.innerHTML = `<option value="0">0</option>`;
+    qtySelect.disabled = true;
+    return;
+  }
+
+  const maxQty = Math.min(stockQty, 10);
+
+  for (let i = 1; i <= maxQty; i++) {
+    const option = document.createElement("option");
+    option.value = String(i);
+    option.textContent = String(i);
+    qtySelect.appendChild(option);
+  }
+
+  qtySelect.disabled = false;
+}
+
+function renderBullets(items) {
+  if (!bulletList) return;
+
+  bulletList.innerHTML = items.map(item => {
+    return `<div class="bullet">${item}</div>`;
+  }).join("");
+}
+
+function syncPulseFluxUI() {
+  ensureValidSelectedColor();
+
+  const currentVariant = pulseFluxVariants[selectedKey];
+  const currentStock = getColorAvailableQty(selectedKey);
+
+  if (!currentVariant) return;
+
+  colorButtons.forEach(button => {
+    const key = button.dataset.key;
+    const isActive = key === selectedKey;
+    const isOut = getColorAvailableQty(key) <= 0;
+
+    button.classList.toggle("active", isActive);
+    button.classList.toggle("out", isOut);
+    button.disabled = isOut;
+    button.setAttribute("aria-disabled", isOut ? "true" : "false");
+    button.title = isOut ? `${button.dataset.color} - Out of stock` : button.dataset.color;
+  });
+
+  thumbButtons.forEach(button => {
+    const key = button.dataset.key;
+    const isActive = key === selectedKey;
+    const isOut = getColorAvailableQty(key) <= 0;
+
+    button.classList.toggle("active", isActive);
+    button.classList.toggle("out", isOut);
+    button.disabled = isOut;
+    button.setAttribute("aria-disabled", isOut ? "true" : "false");
+  });
+
+  if (mainProductImage) mainProductImage.src = currentVariant.image;
+  if (priceText) priceText.textContent = `€${currentVariant.price.toFixed(2)}`;
+  if (shortDesc) shortDesc.textContent = currentVariant.shortDesc;
+  if (productDescription) productDescription.textContent = currentVariant.description;
+  if (selectedColorText) selectedColorText.textContent = `Selected color: ${currentVariant.color}`;
+
+  renderBullets(currentVariant.bullets);
+
+  if (currentStock > 0) {
+    if (stockText) {
+      stockText.textContent = `In stock — ${currentStock} available`;
+      stockText.classList.remove("out");
     }
 
-    function getPulseFluxStock() {
-      return JSON.parse(localStorage.getItem(STOCK_STORAGE_KEY)) || { rb: 0, pg: 0 };
+    if (addToCartBtn) {
+      addToCartBtn.disabled = false;
+      addToCartBtn.textContent = defaultBtnText;
+    }
+  } else {
+    if (stockText) {
+      stockText.textContent = "Out of stock";
+      stockText.classList.add("out");
     }
 
-    function getColorAvailableQty(colorKey) {
-      const stock = getPulseFluxStock();
-      return stock[colorKey] ?? 0;
+    if (addToCartBtn) {
+      addToCartBtn.disabled = true;
+      addToCartBtn.textContent = "Out of stock";
     }
+  }
 
-    function getFirstAvailableColorButton() {
-      return Array.from(colorButtons).find(btn => getColorAvailableQty(btn.dataset.key) > 0) || null;
-    }
+  renderQtyOptions(currentStock);
+}
 
-    function ensureValidSelectedColor() {
-      const currentAvailable = getColorAvailableQty(selectedKey);
+function playAddToCartAnimation() {
+  if (!addToCartBtn) return;
 
-      if (currentAvailable > 0) return;
+  addToCartBtn.classList.remove("added");
+  void addToCartBtn.offsetWidth;
+  addToCartBtn.classList.add("added");
 
-      const fallback = getFirstAvailableColorButton();
-      if (!fallback) return;
+  addToCartBtn.textContent = "Added ✔";
 
-      selectedKey = fallback.dataset.key;
-    }
-
-    function renderQtyOptions(stockQty) {
-      qtySelect.innerHTML = '';
-
-      if (stockQty <= 0) {
-        qtySelect.innerHTML = '<option value="0">0</option>';
-        qtySelect.disabled = true;
-        return;
-      }
-
-      const maxQty = Math.min(stockQty, 10);
-
-      for (let i = 1; i <= maxQty; i++) {
-        const option = document.createElement('option');
-        option.value = String(i);
-        option.textContent = String(i);
-        qtySelect.appendChild(option);
-      }
-
-      qtySelect.disabled = false;
-    }
-
-    function renderBullets(items) {
-      bulletList.innerHTML = items.map(item => `<div class="bullet">${item}</div>`).join('');
-    }
-
-    function syncPulseFluxUI() {
-      ensureValidSelectedColor();
-
-      const currentVariant = pulseFluxVariants[selectedKey];
-      const currentStock = getColorAvailableQty(selectedKey);
-
-      colorButtons.forEach(button => {
-        const key = button.dataset.key;
-        const isActive = key === selectedKey;
-        const isOut = getColorAvailableQty(key) <= 0;
-
-        button.classList.toggle('active', isActive);
-        button.classList.toggle('out', isOut);
-        button.disabled = isOut;
-        button.setAttribute('aria-disabled', isOut ? 'true' : 'false');
-        button.title = isOut ? `${button.dataset.color} - Out of stock` : button.dataset.color;
-      });
-
-      thumbButtons.forEach(button => {
-        const key = button.dataset.key;
-        const isActive = key === selectedKey;
-        const isOut = getColorAvailableQty(key) <= 0;
-
-        button.classList.toggle('active', isActive);
-        button.classList.toggle('out', isOut);
-        button.disabled = isOut;
-        button.setAttribute('aria-disabled', isOut ? 'true' : 'false');
-      });
-
-      mainProductImage.src = currentVariant.image;
-      priceText.textContent = `€${currentVariant.price.toFixed(2)}`;
-      shortDesc.textContent = currentVariant.shortDesc;
-      renderBullets(currentVariant.bullets);
-      productDescription.textContent = currentVariant.description;
-      selectedColorText.textContent = `Selected color: ${currentVariant.color}`;
-
-      if (currentStock > 0) {
-        stockText.textContent = `In stock — ${currentStock} available`;
-        stockText.classList.remove('out');
-        addToCartBtn.disabled = false;
-        addToCartBtn.textContent = defaultBtnText;
-      } else {
-        stockText.textContent = 'Out of stock';
-        stockText.classList.add('out');
-        addToCartBtn.disabled = true;
-        addToCartBtn.textContent = 'Out of stock';
-      }
-
-      renderQtyOptions(currentStock);
-    }
-
-    colorButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (button.disabled) return;
-        selectedKey = button.dataset.key;
-        syncPulseFluxUI();
-      });
-    });
-
-    thumbButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (button.disabled) return;
-        selectedKey = button.dataset.key;
-        syncPulseFluxUI();
-      });
-    });
-
-    function playAddToCartAnimation() {
-      addToCartBtn.classList.remove('added');
-      void addToCartBtn.offsetWidth;
-      addToCartBtn.classList.add('added');
-      addToCartBtn.textContent = 'Added ✔';
-
-      setTimeout(() => {
-        addToCartBtn.classList.remove('added');
-        syncPulseFluxUI();
-      }, 900);
-    }
-
-    function getCart() {
-      return JSON.parse(localStorage.getItem('cart')) || [];
-    }
-
-    function saveCart(cart) {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    function formatPrice(value) {
-      return `€${value.toFixed(2)}`;
-    }
-
-    function getCartQuantity(cart) {
-      return cart.reduce((total, item) => total + (item.quantity || 1), 0);
-    }
-
-    function getCartSubtotal(cart) {
-      return cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
-    }
-
-    function renderCartDropdown() {
-      const cart = getCart();
-      const count = getCartQuantity(cart);
-      const subtotal = getCartSubtotal(cart);
-
-      cartBadge.textContent = count;
-      cartDropdownCount.textContent = `${count} item${count === 1 ? '' : 's'}`;
-      cartSubtotal.textContent = formatPrice(subtotal);
-
-      if (cart.length === 0) {
-        cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
-        return;
-      }
-
-      cartItems.innerHTML = cart.map((item, index) => {
-        const quantity = item.quantity || 1;
-        const itemTotal = item.price * quantity;
-
-        return `
-          <div class="cart-item">
-            <div class="cart-item-image">
-              <img src="${item.image}" alt="${item.name}">
-            </div>
-            <div class="cart-item-info">
-              <div class="cart-item-name">${item.name}</div>
-              <div class="cart-item-meta">Qty: ${quantity}</div>
-              <div class="cart-item-price">${formatPrice(itemTotal)}</div>
-            </div>
-            <button class="cart-item-remove" type="button" data-remove-index="${index}">×</button>
-          </div>
-        `;
-      }).join('');
-
-      cartItems.querySelectorAll('[data-remove-index]').forEach(button => {
-        button.addEventListener('click', () => {
-          removeCartItem(Number(button.dataset.removeIndex));
-        });
-      });
-    }
-
-    function removeCartItem(index) {
-      const cart = getCart();
-      cart.splice(index, 1);
-      saveCart(cart);
-      renderCartDropdown();
-    }
-
-    function clearCart() {
-      saveCart([]);
-      renderCartDropdown();
-    }
-
-    function openCart() {
-      cartWrapper.classList.add('open');
-      cartToggle.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeCart() {
-      cartWrapper.classList.remove('open');
-      cartToggle.setAttribute('aria-expanded', 'false');
-    }
-
-    function toggleCart() {
-      cartWrapper.classList.toggle('open');
-      cartToggle.setAttribute(
-        'aria-expanded',
-        cartWrapper.classList.contains('open') ? 'true' : 'false'
-      );
-    }
-
-    addToCartBtn.addEventListener('click', () => {
-      const currentVariant = pulseFluxVariants[selectedKey];
-      const stockQty = getColorAvailableQty(selectedKey);
-      const qty = parseInt(qtySelect.value, 10) || 0;
-
-      if (stockQty <= 0 || qty <= 0) {
-        syncPulseFluxUI();
-        return;
-      }
-
-      const cart = getCart();
-
-      const existingItem = cart.find(item =>
-        item.product === 'pulse-flux' &&
-        item.colorKey === selectedKey
-      );
-
-      if (existingItem) {
-        existingItem.quantity += qty;
-      } else {
-        cart.push({
-          id: `pulse-flux-${selectedKey}`,
-          key: `pulse-flux-${selectedKey}`,
-          product: 'pulse-flux',
-          productName,
-          name: `${productName} - ${currentVariant.color}`,
-          price: currentVariant.price,
-          image: currentVariant.image,
-          color: currentVariant.color,
-          colorKey: selectedKey,
-          quantity: qty
-        });
-      }
-
-      saveCart(cart);
-      renderCartDropdown();
-      openCart();
-      playAddToCartAnimation();
-    });
-
-    cartToggle.addEventListener('click', toggleCart);
-    clearCartBtn.addEventListener('click', clearCart);
-
-    document.addEventListener('click', event => {
-      if (!cartWrapper.contains(event.target)) {
-        closeCart();
-      }
-    });
-
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') {
-        closeCart();
-      }
-    });
-
-    window.addEventListener('storage', event => {
-      if (event.key === 'cart' || event.key === STOCK_STORAGE_KEY) {
-        renderCartDropdown();
-        syncPulseFluxUI();
-      }
-    });
-
-    initializePulseFluxStock();
+  setTimeout(() => {
+    addToCartBtn.classList.remove("added");
     syncPulseFluxUI();
-    renderCartDropdown();
-  </script>
+  }, 900);
+}
+
+colorButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    if (button.disabled) return;
+
+    selectedKey = button.dataset.key;
+    syncPulseFluxUI();
+  });
+});
+
+thumbButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    if (button.disabled) return;
+
+    selectedKey = button.dataset.key;
+    syncPulseFluxUI();
+  });
+});
+
+if (addToCartBtn) {
+  addToCartBtn.addEventListener("click", () => {
+    const currentVariant = pulseFluxVariants[selectedKey];
+    const stockQty = getColorAvailableQty(selectedKey);
+    const qty = parseInt(qtySelect.value, 10) || 0;
+
+    if (!currentVariant || stockQty <= 0 || qty <= 0) {
+      syncPulseFluxUI();
+      return;
+    }
+
+    Cart.add({
+      id: `pulse-flux-${selectedKey}`,
+      key: `pulse-flux-${selectedKey}`,
+      product: "pulse-flux",
+      productName,
+      name: `${productName} - ${currentVariant.color}`,
+      price: currentVariant.price,
+      image: currentVariant.image,
+      color: currentVariant.color,
+      colorKey: selectedKey,
+      quantity: qty
+    });
+
+    playAddToCartAnimation();
+    syncPulseFluxUI();
+  });
+}
+
+window.addEventListener("storage", event => {
+  if (event.key === STOCK_STORAGE_KEY) {
+    syncPulseFluxUI();
+  }
+});
+
+initializePulseFluxStock();
+syncPulseFluxUI();
+</script>
 </body>
 </html>

@@ -1605,610 +1605,484 @@
   </div>
 </footer>
 
-<script src="../codici js/stock.js"></script>
+<script src="../codici-js/stock.js"></script>
+<script src="../codici-js/cart.js"></script>
+
 <script>
-  const leftSwatches = [
-    { key:"blue",         label:"Blue",         category:"solid",   image:"../images/joycon-lite/blue-left.png",         accent:"#00dbff" },
-    { key:"red",          label:"Red",          category:"solid",   image:"../images/joycon-lite/red-left.png",          accent:"#ff4d5f" },
-    { key:"purple",       label:"Purple",       category:"solid",   image:"../images/joycon-lite/purple-left.png",       accent:"#8e6cff" },
-    { key:"dark-blue",    label:"Dark Blue",    category:"solid",   image:"../images/joycon-lite/dark-blue-left.png",    accent:"#1e3a8a" },
-    { key:"yellow",       label:"Yellow",       category:"solid",   image:"../images/joycon-lite/yellow-left.png",       accent:"#ffe45c" },
-    { key:"gray",         label:"Gray",         category:"solid",   image:"../images/joycon-lite/gray-left.png",         accent:"#9aa0ab" },
-    { key:"white",        label:"White",        category:"solid",   image:"../images/joycon-lite/white-left.png",        accent:"#f7f7f7" },
-    { key:"light-purple", label:"Light Purple", category:"solid",   image:"../images/joycon-lite/light-purple-left.png", accent:"#c6a7ff" },
-    { key:"fuchsia",      label:"Fuchsia",      category:"solid",   image:"../images/joycon-lite/fuchsia-left.png",      accent:"#ff4fb3" },
-    { key:"pink",         label:"Pink",         category:"solid",   image:"../images/joycon-lite/pink-left.png",         accent:"#ff9cc7" },
-    { key:"green",        label:"Green",        category:"solid",   image:"../images/joycon-lite/green-left.png",        accent:"#59e28b" },
-    { key:"brown",        label:"Brown",        category:"solid",   image:"../images/joycon-lite/brown-left.png",        accent:"#b07a45" },
+const leftSwatches = [
+  { key:"blue", label:"Blue", category:"solid", image:"../images/joycon-lite/blue-left.png", accent:"#00dbff" },
+  { key:"red", label:"Red", category:"solid", image:"../images/joycon-lite/red-left.png", accent:"#ff4d5f" },
+  { key:"purple", label:"Purple", category:"solid", image:"../images/joycon-lite/purple-left.png", accent:"#8e6cff" },
+  { key:"dark-blue", label:"Dark Blue", category:"solid", image:"../images/joycon-lite/dark-blue-left.png", accent:"#1e3a8a" },
+  { key:"yellow", label:"Yellow", category:"solid", image:"../images/joycon-lite/yellow-left.png", accent:"#ffe45c" },
+  { key:"gray", label:"Gray", category:"solid", image:"../images/joycon-lite/gray-left.png", accent:"#9aa0ab" },
+  { key:"white", label:"White", category:"solid", image:"../images/joycon-lite/white-left.png", accent:"#f7f7f7" },
+  { key:"light-purple", label:"Light Purple", category:"solid", image:"../images/joycon-lite/light-purple-left.png", accent:"#c6a7ff" },
+  { key:"fuchsia", label:"Fuchsia", category:"solid", image:"../images/joycon-lite/fuchsia-left.png", accent:"#ff4fb3" },
+  { key:"pink", label:"Pink", category:"solid", image:"../images/joycon-lite/pink-left.png", accent:"#ff9cc7" },
+  { key:"green", label:"Green", category:"solid", image:"../images/joycon-lite/green-left.png", accent:"#59e28b" },
+  { key:"brown", label:"Brown", category:"solid", image:"../images/joycon-lite/brown-left.png", accent:"#b07a45" },
 
-    { key:"splatoon-2",    label:"Drip Crew",         category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png",     pairImage:"../images/joycon-lite/splatoon-2-pair.png",     accent:"#7f57ff" },
-    { key:"monster-hunter",label:"Obsidian Core",     category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
-    { key:"zelda-totk",    label:"Elder Vale",        category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png",     pairImage:"../images/joycon-lite/zelda-totk-pair.png",     accent:"#30df84" },
-    { key:"zelda-skyward", label:"Breeze Chaser",     category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png",  pairImage:"../images/joycon-lite/zelda-skyward-pair.png",  accent:"#5f8eff" },
-    { key:"pokemon",       label:"Pocket Tales",      category:"pattern", image:"../images/joycon-lite/pokemon-left.png",        pairImage:"../images/joycon-lite/pokemon-pair.png",        accent:"#7a4dff" },
-    { key:"mario",         label:"Pipe Rider",        category:"pattern", image:"../images/joycon-lite/mario-left.png",          pairImage:"../images/joycon-lite/mario-pair.png",          accent:"#c1121f" }
-  ];
+  { key:"splatoon-2", label:"Drip Crew", category:"pattern", image:"../images/joycon-lite/splatoon-2-left.png", pairImage:"../images/joycon-lite/splatoon-2-pair.png", accent:"#7f57ff" },
+  { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-left.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
+  { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-left.png", pairImage:"../images/joycon-lite/zelda-totk-pair.png", accent:"#30df84" },
+  { key:"zelda-skyward", label:"Breeze Chaser", category:"pattern", image:"../images/joycon-lite/zelda-skyward-left.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
+  { key:"pokemon", label:"Pocket Tales", category:"pattern", image:"../images/joycon-lite/pokemon-left.png", pairImage:"../images/joycon-lite/pokemon-pair.png", accent:"#7a4dff" },
+  { key:"mario", label:"Pipe Rider", category:"pattern", image:"../images/joycon-lite/mario-left.png", pairImage:"../images/joycon-lite/mario-pair.png", accent:"#c1121f" }
+];
 
-  const rightSwatches = [
-    { key:"red",          label:"Red",          category:"solid", image:"../images/joycon-lite/red-right.png",          accent:"#ff4d5f" },
-    { key:"blue",         label:"Blue",         category:"solid", image:"../images/joycon-lite/blue-right.png",         accent:"#00dbff" },
-    { key:"orange",       label:"Orange",       category:"solid", image:"../images/joycon-lite/orange-right.png",       accent:"#ff9a3d" },
-    { key:"yellow",       label:"Yellow",       category:"solid", image:"../images/joycon-lite/yellow-right.png",       accent:"#ffe45c" },
-    { key:"gray",         label:"Gray",         category:"solid", image:"../images/joycon-lite/gray-right.png",         accent:"#9aa0ab" },
-    { key:"white",        label:"White",        category:"solid", image:"../images/joycon-lite/white-right.png",        accent:"#f7f7f7" },
-    { key:"light-green",  label:"Light Green",  category:"solid", image:"../images/joycon-lite/light-green-right.png",  accent:"#a8f58c" },
-    { key:"green",        label:"Green",        category:"solid", image:"../images/joycon-lite/green-right.png",        accent:"#59e28b" },
-    { key:"light-yellow", label:"Light Yellow", category:"solid", image:"../images/joycon-lite/light-yellow-right.png", accent:"#fff2a6" },
-    { key:"light-blue",   label:"Light Blue",   category:"solid", image:"../images/joycon-lite/light-blue-right.png",   accent:"#8ddcff" },
-    { key:"ochre",        label:"Ochre",        category:"solid", image:"../images/joycon-lite/ochre-right.png",        accent:"#c9972b" },
-    { key:"pink",         label:"Pink",         category:"solid", image:"../images/joycon-lite/pink-right.png",         accent:"#ff9cc7" },
+const rightSwatches = [
+  { key:"red", label:"Red", category:"solid", image:"../images/joycon-lite/red-right.png", accent:"#ff4d5f" },
+  { key:"blue", label:"Blue", category:"solid", image:"../images/joycon-lite/blue-right.png", accent:"#00dbff" },
+  { key:"orange", label:"Orange", category:"solid", image:"../images/joycon-lite/orange-right.png", accent:"#ff9a3d" },
+  { key:"yellow", label:"Yellow", category:"solid", image:"../images/joycon-lite/yellow-right.png", accent:"#ffe45c" },
+  { key:"gray", label:"Gray", category:"solid", image:"../images/joycon-lite/gray-right.png", accent:"#9aa0ab" },
+  { key:"white", label:"White", category:"solid", image:"../images/joycon-lite/white-right.png", accent:"#f7f7f7" },
+  { key:"light-green", label:"Light Green", category:"solid", image:"../images/joycon-lite/light-green-right.png", accent:"#a8f58c" },
+  { key:"green", label:"Green", category:"solid", image:"../images/joycon-lite/green-right.png", accent:"#59e28b" },
+  { key:"light-yellow", label:"Light Yellow", category:"solid", image:"../images/joycon-lite/light-yellow-right.png", accent:"#fff2a6" },
+  { key:"light-blue", label:"Light Blue", category:"solid", image:"../images/joycon-lite/light-blue-right.png", accent:"#8ddcff" },
+  { key:"ochre", label:"Ochre", category:"solid", image:"../images/joycon-lite/ochre-right.png", accent:"#c9972b" },
+  { key:"pink", label:"Pink", category:"solid", image:"../images/joycon-lite/pink-right.png", accent:"#ff9cc7" },
 
-    { key:"splatoon-2",    label:"Drip Crew",         category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png",     pairImage:"../images/joycon-lite/splatoon-2-pair.png",     accent:"#7f57ff" },
-    { key:"monster-hunter",label:"Obsidian Core",     category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
-    { key:"zelda-totk",    label:"Elder Vale",        category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png",     pairImage:"../images/joycon-lite/zelda-totk-pair.png",     accent:"#30df84" },
-    { key:"zelda-skyward", label:"Breeze Chaser",     category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png",  pairImage:"../images/joycon-lite/zelda-skyward-pair.png",  accent:"#5f8eff" },
-    { key:"pokemon",       label:"Pocket Tales",      category:"pattern", image:"../images/joycon-lite/pokemon-right.png",        pairImage:"../images/joycon-lite/pokemon-pair.png",        accent:"#7a4dff" },
-    { key:"mario",         label:"Pipe Rider",        category:"pattern", image:"../images/joycon-lite/mario-right.png",          pairImage:"../images/joycon-lite/mario-pair.png",          accent:"#c1121f" }
-  ];
+  { key:"splatoon-2", label:"Drip Crew", category:"pattern", image:"../images/joycon-lite/splatoon-2-right.png", pairImage:"../images/joycon-lite/splatoon-2-pair.png", accent:"#7f57ff" },
+  { key:"monster-hunter", label:"Obsidian Core", category:"pattern", image:"../images/joycon-lite/monster-hunter-right.png", pairImage:"../images/joycon-lite/monster-hunter-pair.png", accent:"#7a7a7a" },
+  { key:"zelda-totk", label:"Elder Vale", category:"pattern", image:"../images/joycon-lite/zelda-totk-right.png", pairImage:"../images/joycon-lite/zelda-totk-pair.png", accent:"#30df84" },
+  { key:"zelda-skyward", label:"Breeze Chaser", category:"pattern", image:"../images/joycon-lite/zelda-skyward-right.png", pairImage:"../images/joycon-lite/zelda-skyward-pair.png", accent:"#5f8eff" },
+  { key:"pokemon", label:"Pocket Tales", category:"pattern", image:"../images/joycon-lite/pokemon-right.png", pairImage:"../images/joycon-lite/pokemon-pair.png", accent:"#7a4dff" },
+  { key:"mario", label:"Pipe Rider", category:"pattern", image:"../images/joycon-lite/mario-right.png", pairImage:"../images/joycon-lite/mario-pair.png", accent:"#c1121f" }
+];
 
-  const leftHeroImage      = document.getElementById("leftHeroImage");
-  const rightHeroImage     = document.getElementById("rightHeroImage");
-  const fullHeroImage      = document.getElementById("fullHeroImage");
-  const heroPair           = document.getElementById("heroPair");
-  const heroFullWrap       = document.getElementById("heroFullWrap");
-  const galleryBadge       = document.getElementById("galleryBadge");
-  const selectedPairName   = document.getElementById("selectedPairName");
-  const productPrice       = document.getElementById("productPrice");
-  const addToCartBtn       = document.getElementById("addToCartBtn");
-  const customizeBtn       = document.getElementById("customizeBtn");
-  const leftSelectionText  = document.getElementById("leftSelectionText");
-  const rightSelectionText = document.getElementById("rightSelectionText");
-  const leftCurrentText    = document.getElementById("leftCurrentText");
-  const rightCurrentText   = document.getElementById("rightCurrentText");
-  const leftSolidGrid      = document.getElementById("leftSolidGrid");
-  const rightSolidGrid     = document.getElementById("rightSolidGrid");
-  const patternPairGrid    = document.getElementById("patternPairGrid");
-  const stockText          = document.getElementById("stockText");
+const leftHeroImage = document.getElementById("leftHeroImage");
+const rightHeroImage = document.getElementById("rightHeroImage");
+const fullHeroImage = document.getElementById("fullHeroImage");
+const heroPair = document.getElementById("heroPair");
+const heroFullWrap = document.getElementById("heroFullWrap");
+const galleryBadge = document.getElementById("galleryBadge");
+const selectedPairName = document.getElementById("selectedPairName");
+const productPrice = document.getElementById("productPrice");
+const addToCartBtn = document.getElementById("addToCartBtn");
+const customizeBtn = document.getElementById("customizeBtn");
+const leftSelectionText = document.getElementById("leftSelectionText");
+const rightSelectionText = document.getElementById("rightSelectionText");
+const leftCurrentText = document.getElementById("leftCurrentText");
+const rightCurrentText = document.getElementById("rightCurrentText");
+const leftSolidGrid = document.getElementById("leftSolidGrid");
+const rightSolidGrid = document.getElementById("rightSolidGrid");
+const patternPairGrid = document.getElementById("patternPairGrid");
+const stockText = document.getElementById("stockText");
 
-  const cartWrapper = document.getElementById("cartWrapper");
-  const cartToggle = document.getElementById("cartToggle");
-  const cartBadge = document.getElementById("cartBadge");
-  const cartDropdownCount = document.getElementById("cartDropdownCount");
-  const cartItems = document.getElementById("cartItems");
-  const cartSubtotal = document.getElementById("cartSubtotal");
-  const clearCartBtn = document.getElementById("clearCartBtn");
+const DEFAULT_ADD_TO_CART_TEXT = addToCartBtn ? addToCartBtn.textContent : "Add To Cart";
 
-  const DEFAULT_ADD_TO_CART_TEXT = addToCartBtn ? addToCartBtn.textContent : "Add To Cart";
+let currentPair = { left: "red", right: "orange" };
 
-  let currentPair = { left: "red", right: "orange" };
+if (typeof initializeCoreRailStock === "function") {
+  initializeCoreRailStock();
+}
 
-  if (typeof initializeCoreRailStock === "function") {
-    initializeCoreRailStock();
+function getSwatchList(side) {
+  return side === "left" ? leftSwatches : rightSwatches;
+}
+
+function findSwatch(side, key) {
+  return getSwatchList(side).find(v => v.key === key);
+}
+
+function isPatternPair(left, right) {
+  return left &&
+    right &&
+    left.category === "pattern" &&
+    right.category === "pattern" &&
+    left.key === right.key;
+}
+
+function getPatternBackgrounds() {
+  return {
+    "splatoon-2": "linear-gradient(135deg, #2fe06d 0%, #7f57ff 100%)",
+    "monster-hunter": "linear-gradient(135deg, #111111 0%, #7a7a7a 100%)",
+    "zelda-totk": "linear-gradient(135deg, #d4af37 0%, #30df84 100%)",
+    "zelda-skyward": "linear-gradient(135deg, #5f8eff 0%, #c9972b 100%)",
+    "pokemon": "linear-gradient(135deg, #ff4d4d 0%, #7a4dff 100%)",
+    "mario": "linear-gradient(135deg, #ff3b30 0%, #c1121f 100%)"
+  };
+}
+
+function getSwatchStyle(variant) {
+  const patternBackgrounds = getPatternBackgrounds();
+
+  if (variant.category === "pattern" && patternBackgrounds[variant.key]) {
+    return `background:${patternBackgrounds[variant.key]};`;
   }
 
-  function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
+  return `background:${variant.accent};`;
+}
+
+function buildCurrentSelection() {
+  const left = findSwatch("left", currentPair.left);
+  const right = findSwatch("right", currentPair.right);
+
+  if (!left || !right) return null;
+
+  const patternMode = isPatternPair(left, right);
+
+  return {
+    left,
+    right,
+    patternMode,
+    type: patternMode ? "pattern" : "solid",
+    patternKey: patternMode ? left.key : null,
+    leftKey: left.key,
+    rightKey: right.key
+  };
+}
+
+function getCurrentAvailableQty() {
+  const selection = buildCurrentSelection();
+
+  if (!selection) return 0;
+  if (typeof getCoreRailAvailableQty !== "function") return 0;
+
+  return getCoreRailAvailableQty(selection);
+}
+
+function getSolidOptionAvailableQty(side, key) {
+  if (typeof getCoreRailStock !== "function") return 0;
+
+  const stock = getCoreRailStock();
+
+  if (!stock || !stock.solid || !stock.solid[side]) return 0;
+
+  return stock.solid[side][key] ?? 0;
+}
+
+function getPatternOptionAvailableQty(patternKey) {
+  if (typeof getCoreRailStock !== "function") return 0;
+
+  const stock = getCoreRailStock();
+
+  if (!stock || !stock.pattern) return 0;
+
+  return stock.pattern[patternKey] ?? 0;
+}
+
+function getFirstAvailableSolid(side) {
+  return getSwatchList(side).find(v => {
+    return v.category === "solid" && getSolidOptionAvailableQty(side, v.key) > 0;
+  }) || null;
+}
+
+function ensureValidCurrentPair() {
+  const left = findSwatch("left", currentPair.left);
+  const right = findSwatch("right", currentPair.right);
+
+  if (!left || !right) {
+    const fallbackLeft = getFirstAvailableSolid("left");
+    const fallbackRight = getFirstAvailableSolid("right");
+
+    if (fallbackLeft) currentPair.left = fallbackLeft.key;
+    if (fallbackRight) currentPair.right = fallbackRight.key;
+    return;
   }
 
-  function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+  if (left.category === "pattern" || right.category === "pattern") {
+    const isValidPattern =
+      left.category === "pattern" &&
+      right.category === "pattern" &&
+      left.key === right.key &&
+      getPatternOptionAvailableQty(left.key) > 0;
 
-  function formatPrice(value) {
-    return `€${value.toFixed(2)}`;
-  }
-
-  function getCartQuantity(cart) {
-    return cart.reduce((total, item) => total + (item.quantity || 1), 0);
-  }
-
-  function getCartSubtotal(cart) {
-    return cart.reduce((total, item) => total + ((item.price || 0) * (item.quantity || 1)), 0);
-  }
-
-  function renderCartDropdown() {
-    const cart = getCart();
-    const count = getCartQuantity(cart);
-    const subtotal = getCartSubtotal(cart);
-
-    cartBadge.textContent = count;
-    cartDropdownCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
-    cartSubtotal.textContent = formatPrice(subtotal);
-
-    if (cart.length === 0) {
-      cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
-      return;
-    }
-
-    cartItems.innerHTML = cart.map((item, index) => {
-      const quantity = item.quantity || 1;
-      const itemTotal = (item.price || 0) * quantity;
-      const meta = item.isPatternPair
-        ? `Qty: ${quantity} • Full pair`
-        : `Qty: ${quantity} • ${item.leftColor || ""}${item.rightColor ? ` / ${item.rightColor}` : ""}`;
-
-      return `
-        <div class="cart-item">
-          <div class="cart-item-image">
-            <img src="${item.pairImage || item.image}" alt="${item.name}">
-          </div>
-
-          <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-meta">${meta}</div>
-            <div class="cart-item-price">${formatPrice(itemTotal)}</div>
-          </div>
-
-          <button class="cart-item-remove" type="button" data-remove-index="${index}">×</button>
-        </div>
-      `;
-    }).join("");
-
-    cartItems.querySelectorAll("[data-remove-index]").forEach(button => {
-      button.addEventListener("click", () => {
-        removeCartItem(Number(button.dataset.removeIndex));
-      });
-    });
-  }
-
-  function removeCartItem(index) {
-    const cart = getCart();
-    cart.splice(index, 1);
-    saveCart(cart);
-    renderCartDropdown();
-  }
-
-  function clearCart() {
-    saveCart([]);
-    renderCartDropdown();
-  }
-
-  function closeCart() {
-    cartWrapper.classList.remove("open");
-    cartToggle.setAttribute("aria-expanded", "false");
-  }
-
-  function toggleCart() {
-    cartWrapper.classList.toggle("open");
-    cartToggle.setAttribute(
-      "aria-expanded",
-      cartWrapper.classList.contains("open") ? "true" : "false"
-    );
-  }
-
-  function getSwatchList(side) {
-    return side === "left" ? leftSwatches : rightSwatches;
-  }
-
-  function findSwatch(side, key) {
-    return getSwatchList(side).find(v => v.key === key);
-  }
-
-  function isPatternPair(left, right) {
-    return left && right && left.category === "pattern" && right.category === "pattern" && left.key === right.key;
-  }
-
-  function getPatternBackgrounds() {
-    return {
-      "splatoon-2":      "linear-gradient(135deg, #2fe06d 0%, #7f57ff 100%)",
-      "monster-hunter":  "linear-gradient(135deg, #111111 0%, #7a7a7a 100%)",
-      "zelda-totk":      "linear-gradient(135deg, #d4af37 0%, #30df84 100%)",
-      "zelda-skyward":   "linear-gradient(135deg, #5f8eff 0%, #c9972b 100%)",
-      "pokemon":         "linear-gradient(135deg, #ff4d4d 0%, #7a4dff 100%)",
-      "mario":           "linear-gradient(135deg, #ff3b30 0%, #c1121f 100%)"
-    };
-  }
-
-  function getSwatchStyle(variant) {
-    const patternBackgrounds = getPatternBackgrounds();
-    if (variant.category === "pattern" && patternBackgrounds[variant.key]) {
-      return `background:${patternBackgrounds[variant.key]};`;
-    }
-    return `background:${variant.accent};`;
-  }
-
-  function buildCurrentSelection() {
-    const left = findSwatch("left", currentPair.left);
-    const right = findSwatch("right", currentPair.right);
-
-    if (!left || !right) return null;
-
-    const patternMode = isPatternPair(left, right);
-
-    return {
-      left,
-      right,
-      patternMode,
-      type: patternMode ? "pattern" : "solid",
-      patternKey: patternMode ? left.key : null,
-      leftKey: left.key,
-      rightKey: right.key
-    };
-  }
-
-  function getCurrentAvailableQty() {
-    const selection = buildCurrentSelection();
-    if (!selection) return 0;
-    if (typeof getCoreRailAvailableQty !== "function") return 0;
-    return getCoreRailAvailableQty(selection);
-  }
-
-  function getSolidOptionAvailableQty(side, key) {
-    if (typeof getCoreRailStock !== "function") return 0;
-
-    const stock = getCoreRailStock();
-
-    if (!stock || !stock.solid || !stock.solid[side]) return 0;
-
-    return stock.solid[side][key] ?? 0;
-  }
-
-  function getPatternOptionAvailableQty(patternKey) {
-    if (typeof getCoreRailStock !== "function") return 0;
-
-    const stock = getCoreRailStock();
-
-    if (!stock || !stock.pattern) return 0;
-
-    return stock.pattern[patternKey] ?? 0;
-  }
-
-  function getFirstAvailableSolid(side) {
-    return getSwatchList(side).find(v => v.category === "solid" && getSolidOptionAvailableQty(side, v.key) > 0) || null;
-  }
-
-  function ensureValidCurrentPair() {
-    const left = findSwatch("left", currentPair.left);
-    const right = findSwatch("right", currentPair.right);
-
-    if (!left || !right) {
+    if (!isValidPattern) {
       const fallbackLeft = getFirstAvailableSolid("left");
       const fallbackRight = getFirstAvailableSolid("right");
 
       if (fallbackLeft) currentPair.left = fallbackLeft.key;
       if (fallbackRight) currentPair.right = fallbackRight.key;
-      return;
     }
 
-    if (left.category === "pattern" || right.category === "pattern") {
-      const isValidPattern =
-        left.category === "pattern" &&
-        right.category === "pattern" &&
-        left.key === right.key &&
-        getPatternOptionAvailableQty(left.key) > 0;
-
-      if (!isValidPattern) {
-        const fallbackLeft = getFirstAvailableSolid("left");
-        const fallbackRight = getFirstAvailableSolid("right");
-
-        if (fallbackLeft) currentPair.left = fallbackLeft.key;
-        if (fallbackRight) currentPair.right = fallbackRight.key;
-      }
-
-      return;
-    }
-
-    const leftAvailable = getSolidOptionAvailableQty("left", currentPair.left) > 0;
-    const rightAvailable = getSolidOptionAvailableQty("right", currentPair.right) > 0;
-
-    if (!leftAvailable) {
-      const fallbackLeft = getFirstAvailableSolid("left");
-      if (fallbackLeft) currentPair.left = fallbackLeft.key;
-    }
-
-    if (!rightAvailable) {
-      const fallbackRight = getFirstAvailableSolid("right");
-      if (fallbackRight) currentPair.right = fallbackRight.key;
-    }
+    return;
   }
 
-  function syncAddToCartState() {
-    if (!addToCartBtn) return;
-
-    const availableQty = getCurrentAvailableQty();
-
-    if (availableQty > 0) {
-      addToCartBtn.disabled = false;
-      addToCartBtn.textContent = DEFAULT_ADD_TO_CART_TEXT;
-    } else {
-      addToCartBtn.disabled = true;
-      addToCartBtn.textContent = "Out of stock";
-    }
-
-    if (stockText) {
-      stockText.textContent = availableQty > 0 ? `Stock: ${availableQty}` : "Out of stock";
-    }
+  if (getSolidOptionAvailableQty("left", currentPair.left) <= 0) {
+    const fallbackLeft = getFirstAvailableSolid("left");
+    if (fallbackLeft) currentPair.left = fallbackLeft.key;
   }
 
-  function renderSwatchGrid(side, category, targetEl) {
-    if (!targetEl) return;
+  if (getSolidOptionAvailableQty("right", currentPair.right) <= 0) {
+    const fallbackRight = getFirstAvailableSolid("right");
+    if (fallbackRight) currentPair.right = fallbackRight.key;
+  }
+}
 
-    const list = getSwatchList(side).filter(v => v.category === category);
+function syncAddToCartState() {
+  if (!addToCartBtn) return;
 
-    targetEl.innerHTML = list.map(v => {
-      const isActive = currentPair[side] === v.key;
-      const isOut = getSolidOptionAvailableQty(side, v.key) <= 0;
+  const availableQty = getCurrentAvailableQty();
 
-      return `
-        <button
-          type="button"
-          class="swatch-btn ${isActive ? "active" : ""} ${isOut ? "out" : ""}"
-          data-side="${side}"
-          data-key="${v.key}"
-          title="${v.label}${isOut ? " - Out of stock" : ""}"
-          ${isOut ? "disabled aria-disabled='true'" : ""}
-        >
-          <span class="swatch-dot" style="${getSwatchStyle(v)}"></span>
-          <span class="swatch-name">${v.label}</span>
-        </button>
-      `;
-    }).join("");
+  if (availableQty > 0) {
+    addToCartBtn.disabled = false;
+    addToCartBtn.textContent = DEFAULT_ADD_TO_CART_TEXT;
+  } else {
+    addToCartBtn.disabled = true;
+    addToCartBtn.textContent = "Out of stock";
   }
 
-  function getAllPatternPairs() {
-    return leftSwatches.filter(v => v.category === "pattern");
+  if (stockText) {
+    stockText.textContent = availableQty > 0 ? `Stock: ${availableQty}` : "Out of stock";
   }
+}
 
-  function renderPatternPairs() {
-    if (!patternPairGrid) return;
+function renderSwatchGrid(side, category, targetEl) {
+  if (!targetEl) return;
 
-    const patterns = getAllPatternPairs();
-    const currentLeft = findSwatch("left", currentPair.left);
-    const currentRight = findSwatch("right", currentPair.right);
+  const list = getSwatchList(side).filter(v => v.category === category);
 
-    patternPairGrid.innerHTML = patterns.map(pattern => {
-      const isActive =
-        isPatternPair(currentLeft, currentRight) &&
-        currentLeft.key === pattern.key;
+  targetEl.innerHTML = list.map(v => {
+    const isActive = currentPair[side] === v.key;
+    const isOut = getSolidOptionAvailableQty(side, v.key) <= 0;
 
-      const isOut = getPatternOptionAvailableQty(pattern.key) <= 0;
+    return `
+      <button
+        type="button"
+        class="swatch-btn ${isActive ? "active" : ""} ${isOut ? "out" : ""}"
+        data-side="${side}"
+        data-key="${v.key}"
+        title="${v.label}${isOut ? " - Out of stock" : ""}"
+        ${isOut ? "disabled aria-disabled='true'" : ""}
+      >
+        <span class="swatch-dot" style="${getSwatchStyle(v)}"></span>
+        <span class="swatch-name">${v.label}</span>
+      </button>
+    `;
+  }).join("");
+}
 
-      return `
-        <button
-          type="button"
-          class="pattern-card ${isActive ? "active" : ""} ${isOut ? "out" : ""}"
-          data-pattern="${pattern.key}"
-          title="${pattern.label}${isOut ? " - Out of stock" : ""}"
-          ${isOut ? "disabled aria-disabled='true'" : ""}
-        >
-          <span class="pattern-preview" style="${getSwatchStyle(pattern)}"></span>
-          <span class="pattern-meta">
-            <span class="pattern-name">${pattern.label}</span>
-            <span class="pattern-type">${isOut ? "Out of stock" : "Full Pair"}</span>
-          </span>
-        </button>
-      `;
-    }).join("");
+function getAllPatternPairs() {
+  return leftSwatches.filter(v => v.category === "pattern");
+}
 
-    document.querySelectorAll(".pattern-card:not([disabled])").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const key = btn.dataset.pattern;
-        currentPair.left = key;
-        currentPair.right = key;
-        updateSelectedUI();
-        renderAllSwatches();
-      });
+function renderPatternPairs() {
+  if (!patternPairGrid) return;
+
+  const patterns = getAllPatternPairs();
+  const currentLeft = findSwatch("left", currentPair.left);
+  const currentRight = findSwatch("right", currentPair.right);
+
+  patternPairGrid.innerHTML = patterns.map(pattern => {
+    const isActive =
+      isPatternPair(currentLeft, currentRight) &&
+      currentLeft.key === pattern.key;
+
+    const isOut = getPatternOptionAvailableQty(pattern.key) <= 0;
+
+    return `
+      <button
+        type="button"
+        class="pattern-card ${isActive ? "active" : ""} ${isOut ? "out" : ""}"
+        data-pattern="${pattern.key}"
+        title="${pattern.label}${isOut ? " - Out of stock" : ""}"
+        ${isOut ? "disabled aria-disabled='true'" : ""}
+      >
+        <span class="pattern-preview" style="${getSwatchStyle(pattern)}"></span>
+        <span class="pattern-meta">
+          <span class="pattern-name">${pattern.label}</span>
+          <span class="pattern-type">${isOut ? "Out of stock" : "Full Pair"}</span>
+        </span>
+      </button>
+    `;
+  }).join("");
+
+  document.querySelectorAll(".pattern-card:not([disabled])").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.pattern;
+
+      currentPair.left = key;
+      currentPair.right = key;
+
+      updateSelectedUI();
+      renderAllSwatches();
     });
-  }
+  });
+}
 
-  function attachSwatchEvents() {
-    document.querySelectorAll(".swatch-btn:not([disabled])").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const side = btn.dataset.side;
-        const key = btn.dataset.key;
-        const selected = findSwatch(side, key);
+function attachSwatchEvents() {
+  document.querySelectorAll(".swatch-btn:not([disabled])").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const side = btn.dataset.side;
+      const key = btn.dataset.key;
+      const selected = findSwatch(side, key);
 
-        if (!selected) return;
+      if (!selected) return;
 
-        currentPair[side] = key;
+      currentPair[side] = key;
 
-        const oppositeSide = side === "left" ? "right" : "left";
-        const oppositeSelected = findSwatch(oppositeSide, currentPair[oppositeSide]);
+      const oppositeSide = side === "left" ? "right" : "left";
+      const oppositeSelected = findSwatch(oppositeSide, currentPair[oppositeSide]);
 
-        if (oppositeSelected && oppositeSelected.category === "pattern") {
-          const fallback = getFirstAvailableSolid(oppositeSide);
-          if (fallback) currentPair[oppositeSide] = fallback.key;
+      if (oppositeSelected && oppositeSelected.category === "pattern") {
+        const fallback = getFirstAvailableSolid(oppositeSide);
+
+        if (fallback) {
+          currentPair[oppositeSide] = fallback.key;
         }
+      }
 
-        updateSelectedUI();
-        renderAllSwatches();
-      });
+      updateSelectedUI();
+      renderAllSwatches();
     });
+  });
+}
+
+function renderAllSwatches() {
+  ensureValidCurrentPair();
+  renderSwatchGrid("left", "solid", leftSolidGrid);
+  renderSwatchGrid("right", "solid", rightSolidGrid);
+  attachSwatchEvents();
+  renderPatternPairs();
+  syncAddToCartState();
+}
+
+function updateHeroVisual(left, right) {
+  if (!left || !right) return;
+
+  if (isPatternPair(left, right)) {
+    if (heroPair) heroPair.classList.add("is-hidden");
+    if (heroFullWrap) heroFullWrap.classList.remove("is-hidden");
+
+    if (fullHeroImage) {
+      fullHeroImage.src = left.pairImage;
+      fullHeroImage.alt = `${left.label} full pair Joy-Con`;
+    }
+  } else {
+    if (heroFullWrap) heroFullWrap.classList.add("is-hidden");
+    if (heroPair) heroPair.classList.remove("is-hidden");
+
+    if (leftHeroImage) {
+      leftHeroImage.src = left.image;
+      leftHeroImage.alt = `${left.label} left Joy-Con`;
+    }
+
+    if (rightHeroImage) {
+      rightHeroImage.src = right.image;
+      rightHeroImage.alt = `${right.label} right Joy-Con`;
+    }
   }
+}
 
-  function renderAllSwatches() {
-    ensureValidCurrentPair();
-    renderSwatchGrid("left", "solid", leftSolidGrid);
-    renderSwatchGrid("right", "solid", rightSolidGrid);
-    attachSwatchEvents();
-    renderPatternPairs();
-    syncAddToCartState();
-  }
+function updateSelectedUI() {
+  ensureValidCurrentPair();
 
-  function updateHeroVisual(left, right) {
-    if (!left || !right) return;
+  const left = findSwatch("left", currentPair.left);
+  const right = findSwatch("right", currentPair.right);
 
+  if (!left || !right) return;
+
+  if (leftSelectionText) leftSelectionText.textContent = left.label;
+  if (rightSelectionText) rightSelectionText.textContent = right.label;
+  if (leftCurrentText) leftCurrentText.textContent = left.label;
+  if (rightCurrentText) rightCurrentText.textContent = right.label;
+  if (selectedPairName) selectedPairName.textContent = `${left.label} / ${right.label}`;
+  if (productPrice) productPrice.textContent = "€19.99";
+
+  if (galleryBadge) {
     if (isPatternPair(left, right)) {
-      if (heroPair) heroPair.classList.add("is-hidden");
-      if (heroFullWrap) heroFullWrap.classList.remove("is-hidden");
-      if (fullHeroImage) {
-        fullHeroImage.src = left.pairImage;
-        fullHeroImage.alt = `${left.label} full pair Joy-Con`;
-      }
+      galleryBadge.innerHTML = `Pair:<br>${left.label}`;
     } else {
-      if (heroFullWrap) heroFullWrap.classList.add("is-hidden");
-      if (heroPair) heroPair.classList.remove("is-hidden");
-
-      if (leftHeroImage) {
-        leftHeroImage.src = left.image;
-        leftHeroImage.alt = `${left.label} left Joy-Con`;
-      }
-
-      if (rightHeroImage) {
-        rightHeroImage.src = right.image;
-        rightHeroImage.alt = `${right.label} right Joy-Con`;
-      }
+      galleryBadge.innerHTML = `L: ${left.label}<br>R: ${right.label}`;
     }
   }
 
-  function updateSelectedUI() {
-    ensureValidCurrentPair();
+  updateHeroVisual(left, right);
+  syncAddToCartState();
+}
 
-    const left = findSwatch("left", currentPair.left);
-    const right = findSwatch("right", currentPair.right);
+function playAddToCartAnimation() {
+  if (!addToCartBtn) return;
 
-    if (!left || !right) return;
+  addToCartBtn.classList.remove("added");
+  void addToCartBtn.offsetWidth;
+  addToCartBtn.classList.add("added");
 
-    if (leftSelectionText)  leftSelectionText.textContent = left.label;
-    if (rightSelectionText) rightSelectionText.textContent = right.label;
-    if (leftCurrentText)    leftCurrentText.textContent = left.label;
-    if (rightCurrentText)   rightCurrentText.textContent = right.label;
-    if (selectedPairName)   selectedPairName.textContent = `${left.label} / ${right.label}`;
-    if (productPrice)       productPrice.textContent = "€19.99";
+  addToCartBtn.textContent = "Added ✔";
 
-    if (galleryBadge) {
-      if (isPatternPair(left, right)) {
-        galleryBadge.innerHTML = `Pair:<br>${left.label}`;
-      } else {
-        galleryBadge.innerHTML = `L: ${left.label}<br>R: ${right.label}`;
-      }
-    }
-
-    updateHeroVisual(left, right);
-    syncAddToCartState();
-  }
-
-  function playAddToCartAnimation() {
-    if (!addToCartBtn) return;
-
+  setTimeout(() => {
     addToCartBtn.classList.remove("added");
-    void addToCartBtn.offsetWidth;
-    addToCartBtn.classList.add("added");
+    syncAddToCartState();
+  }, 850);
+}
 
-    addToCartBtn.textContent = "Added ✔";
+function addCurrentToCart() {
+  const selection = buildCurrentSelection();
 
-    setTimeout(() => {
-      addToCartBtn.classList.remove("added");
-      syncAddToCartState();
-    }, 850);
+  if (!selection) return;
+
+  const availableQty = getCurrentAvailableQty();
+
+  if (availableQty <= 0) {
+    syncAddToCartState();
+    return;
   }
 
-  function addCurrentToCart() {
-    const selection = buildCurrentSelection();
-    if (!selection) return;
-
-    const availableQty = getCurrentAvailableQty();
-
-    if (availableQty <= 0) {
-      syncAddToCartState();
-      return;
-    }
-
-    const cart = getCart();
-
-    if (selection.patternMode) {
-      const existingItem = cart.find(item =>
-        item.product === "core-rail" &&
-        item.type === "pattern" &&
-        item.patternKey === selection.patternKey
-      );
-
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({
-          id: `core-rail-pattern-${selection.patternKey}`,
-          key: `lite-${selection.patternKey}-${selection.patternKey}`,
-          product: "core-rail",
-          type: "pattern",
-          patternKey: selection.patternKey,
-          name: `DriftZero Core Rail - ${selection.left.label}`,
-          price: 19.99,
-          image: selection.left.pairImage,
-          pairImage: selection.left.pairImage,
-          leftImage: selection.left.image,
-          rightImage: selection.right.image,
-          color: selection.left.label,
-          leftColor: selection.left.label,
-          rightColor: selection.right.label,
-          isPatternPair: true,
-          quantity: 1
-        });
-      }
-    } else {
-      const existingItem = cart.find(item =>
-        item.product === "core-rail" &&
-        item.type === "solid" &&
-        item.leftKey === selection.leftKey &&
-        item.rightKey === selection.rightKey
-      );
-
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({
-          id: `core-rail-solid-${selection.leftKey}-${selection.rightKey}`,
-          key: `lite-${selection.leftKey}-${selection.rightKey}`,
-          product: "core-rail",
-          type: "solid",
-          leftKey: selection.leftKey,
-          rightKey: selection.rightKey,
-          name: `DriftZero Core Rail - ${selection.left.label} / ${selection.right.label}`,
-          price: 19.99,
-          image: selection.left.image,
-          leftImage: selection.left.image,
-          rightImage: selection.right.image,
-          pairImage: "",
-          color: `${selection.left.label} / ${selection.right.label}`,
-          leftColor: selection.left.label,
-          rightColor: selection.right.label,
-          isPatternPair: false,
-          quantity: 1
-        });
-      }
-    }
-
-    saveCart(cart);
-    renderCartDropdown();
-    playAddToCartAnimation();
-    renderAllSwatches();
-  }
-
-  if (customizeBtn) {
-    customizeBtn.addEventListener("click", () => {
-      const target = document.getElementById("leftSolidGrid");
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (selection.patternMode) {
+    Cart.add({
+      id: `core-rail-pattern-${selection.patternKey}`,
+      key: `lite-${selection.patternKey}-${selection.patternKey}`,
+      product: "core-rail",
+      type: "pattern",
+      patternKey: selection.patternKey,
+      name: `DriftZero Core Rail - ${selection.left.label}`,
+      price: 19.99,
+      image: selection.left.pairImage,
+      pairImage: selection.left.pairImage,
+      leftImage: selection.left.image,
+      rightImage: selection.right.image,
+      color: selection.left.label,
+      leftColor: selection.left.label,
+      rightColor: selection.right.label,
+      isPatternPair: true,
+      quantity: 1
+    });
+  } else {
+    Cart.add({
+      id: `core-rail-solid-${selection.leftKey}-${selection.rightKey}`,
+      key: `lite-${selection.leftKey}-${selection.rightKey}`,
+      product: "core-rail",
+      type: "solid",
+      leftKey: selection.leftKey,
+      rightKey: selection.rightKey,
+      name: `DriftZero Core Rail - ${selection.left.label} / ${selection.right.label}`,
+      price: 19.99,
+      image: selection.left.image,
+      leftImage: selection.left.image,
+      rightImage: selection.right.image,
+      pairImage: "",
+      color: `${selection.left.label} / ${selection.right.label}`,
+      leftColor: selection.left.label,
+      rightColor: selection.right.label,
+      isPatternPair: false,
+      quantity: 1
     });
   }
 
-  if (addToCartBtn) {
-    addToCartBtn.addEventListener("click", addCurrentToCart);
-  }
-
-  cartToggle.addEventListener("click", toggleCart);
-  clearCartBtn.addEventListener("click", clearCart);
-
-  document.addEventListener("click", event => {
-    if (!cartWrapper.contains(event.target)) {
-      closeCart();
-    }
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      closeCart();
-    }
-  });
-
-  window.addEventListener("storage", event => {
-    if (event.key === "cart") {
-      renderCartDropdown();
-    }
-  });
-
-  updateSelectedUI();
+  playAddToCartAnimation();
   renderAllSwatches();
-  renderCartDropdown();
+}
+
+if (customizeBtn) {
+  customizeBtn.addEventListener("click", () => {
+    const target = document.getElementById("leftSolidGrid");
+
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+}
+
+if (addToCartBtn) {
+  addToCartBtn.addEventListener("click", addCurrentToCart);
+}
+
+updateSelectedUI();
+renderAllSwatches();
 </script>
 </body>
 </html>

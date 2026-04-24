@@ -1683,18 +1683,14 @@ button{
   </div>
 </footer>
 
+
+
+<script src="codici-js/cart.js"></script>
+
 <script>
 const root = document.documentElement;
 const heroTrack = document.getElementById("heroTrack");
 const heroDots = Array.from(document.querySelectorAll(".hero-dot"));
-
-const cartWrapper = document.getElementById("cartWrapper");
-const cartToggle = document.getElementById("cartToggle");
-const cartBadge = document.getElementById("cartBadge");
-const cartDropdownCount = document.getElementById("cartDropdownCount");
-const cartItems = document.getElementById("cartItems");
-const cartSubtotal = document.getElementById("cartSubtotal");
-const clearCartBtn = document.getElementById("clearCartBtn");
 
 const heroVariants = [
   {
@@ -1735,15 +1731,11 @@ const heroVariants = [
   }
 ];
 
-/* HERO SLIDER */
 const originalSlides = Array.from(heroTrack.querySelectorAll(".hero-slide"));
 const totalSlides = originalSlides.length;
 
 const firstClone = originalSlides[0].cloneNode(true);
 const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
-
-firstClone.setAttribute("data-clone", "first");
-lastClone.setAttribute("data-clone", "last");
 
 heroTrack.appendChild(firstClone);
 heroTrack.insertBefore(lastClone, heroTrack.firstChild);
@@ -1753,55 +1745,48 @@ let heroAutoRotate = null;
 let isTransitioning = false;
 
 function applyGlobalPalette(realIndex) {
-  const variant = heroVariants[realIndex];
-  if (!variant) return;
+  const v = heroVariants[realIndex];
+  if (!v) return;
 
-  root.style.setProperty("--accent1", variant.accent1);
-  root.style.setProperty("--accent2", variant.accent2);
-  root.style.setProperty("--accent-soft", variant.accentSoft);
-  root.style.setProperty("--hero-light-1", variant.heroLight1);
-  root.style.setProperty("--hero-light-2", variant.heroLight2);
-  root.style.setProperty("--hero-beam", variant.heroBeam);
-  root.style.setProperty("--hero-title-color", variant.titleColor);
+  root.style.setProperty("--accent1", v.accent1);
+  root.style.setProperty("--accent2", v.accent2);
+  root.style.setProperty("--accent-soft", v.accentSoft);
+  root.style.setProperty("--hero-light-1", v.heroLight1);
+  root.style.setProperty("--hero-light-2", v.heroLight2);
+  root.style.setProperty("--hero-beam", v.heroBeam);
+  root.style.setProperty("--hero-title-color", v.titleColor);
 }
 
-function getRealIndex(trackIndex) {
-  if (trackIndex === 0) return totalSlides - 1;
-  if (trackIndex === totalSlides + 1) return 0;
-  return trackIndex - 1;
+function getRealIndex(i) {
+  if (i === 0) return totalSlides - 1;
+  if (i === totalSlides + 1) return 0;
+  return i - 1;
 }
 
-function updateDots(realIndex) {
-  heroDots.forEach((dot, i) => {
-    dot.classList.toggle("active", i === realIndex);
-  });
+function updateDots(i) {
+  heroDots.forEach((d, idx) => d.classList.toggle("active", idx === i));
 }
 
-function setTrackPosition(index, withTransition = true) {
-  heroTrack.style.transition = withTransition
-    ? "transform 0.8s cubic-bezier(.22,.61,.36,1)"
-    : "none";
-
-  heroTrack.style.transform = `translateX(-${index * 100}%)`;
+function setTrackPosition(i, t = true) {
+  heroTrack.style.transition = t ? "transform 0.8s ease" : "none";
+  heroTrack.style.transform = `translateX(-${i * 100}%)`;
 }
 
-function updateHero(index, withTransition = true) {
-  if (isTransitioning && withTransition) return;
+function updateHero(i, t = true) {
+  if (isTransitioning && t) return;
 
-  currentHeroIndex = index;
-  const realIndex = getRealIndex(currentHeroIndex);
+  currentHeroIndex = i;
+  const real = getRealIndex(i);
 
-  if (withTransition) {
-    isTransitioning = true;
-  }
+  if (t) isTransitioning = true;
 
-  setTrackPosition(currentHeroIndex, withTransition);
-  updateDots(realIndex);
-  applyGlobalPalette(realIndex);
+  setTrackPosition(i, t);
+  updateDots(real);
+  applyGlobalPalette(real);
 }
 
 function nextHeroTheme() {
-  updateHero(currentHeroIndex + 1, true);
+  updateHero(currentHeroIndex + 1);
 }
 
 function startHeroAutoRotate() {
@@ -1812,12 +1797,12 @@ function startHeroAutoRotate() {
 heroTrack.addEventListener("transitionend", () => {
   if (currentHeroIndex === totalSlides + 1) {
     currentHeroIndex = 1;
-    setTrackPosition(currentHeroIndex, false);
+    setTrackPosition(1, false);
   }
 
   if (currentHeroIndex === 0) {
     currentHeroIndex = totalSlides;
-    setTrackPosition(currentHeroIndex, false);
+    setTrackPosition(totalSlides, false);
   }
 
   isTransitioning = false;
@@ -1825,130 +1810,14 @@ heroTrack.addEventListener("transitionend", () => {
 
 heroDots.forEach(dot => {
   dot.addEventListener("click", () => {
-    const realIndex = Number(dot.dataset.index);
-    updateHero(realIndex + 1, true);
+    updateHero(Number(dot.dataset.index) + 1);
     startHeroAutoRotate();
   });
-});
-
-/* CART */
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-function saveCart(cart) {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-function formatPrice(value) {
-  return `€${value.toFixed(2)}`;
-}
-
-function getCartQuantity(cart) {
-  return cart.reduce((total, item) => total + (item.quantity || 1), 0);
-}
-
-function getCartSubtotal(cart) {
-  return cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
-}
-
-function renderCartDropdown() {
-  const cart = getCart();
-  const count = getCartQuantity(cart);
-  const subtotal = getCartSubtotal(cart);
-
-  cartBadge.textContent = count;
-  cartDropdownCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
-  cartSubtotal.textContent = formatPrice(subtotal);
-
-  if (cart.length === 0) {
-    cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
-    return;
-  }
-
-  cartItems.innerHTML = cart.map((item, index) => {
-    const quantity = item.quantity || 1;
-    const itemTotal = item.price * quantity;
-
-    return `
-      <div class="cart-item">
-        <div class="cart-item-image">
-          <img src="${item.image}" alt="${item.name}">
-        </div>
-
-        <div class="cart-item-info">
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-meta">Qty: ${quantity}</div>
-          <div class="cart-item-price">${formatPrice(itemTotal)}</div>
-        </div>
-
-        <button class="cart-item-remove" type="button" data-remove-index="${index}">×</button>
-      </div>
-    `;
-  }).join("");
-
-  cartItems.querySelectorAll("[data-remove-index]").forEach(button => {
-    button.addEventListener("click", () => {
-      removeCartItem(Number(button.dataset.removeIndex));
-    });
-  });
-}
-
-function removeCartItem(index) {
-  const cart = getCart();
-  cart.splice(index, 1);
-  saveCart(cart);
-  renderCartDropdown();
-}
-
-function clearCart() {
-  saveCart([]);
-  renderCartDropdown();
-}
-
-function openCart() {
-  cartWrapper.classList.add("open");
-  cartToggle.setAttribute("aria-expanded", "true");
-}
-
-function closeCart() {
-  cartWrapper.classList.remove("open");
-  cartToggle.setAttribute("aria-expanded", "false");
-}
-
-function toggleCart() {
-  cartWrapper.classList.toggle("open");
-  cartToggle.setAttribute(
-    "aria-expanded",
-    cartWrapper.classList.contains("open") ? "true" : "false"
-  );
-}
-
-cartToggle.addEventListener("click", toggleCart);
-clearCartBtn.addEventListener("click", clearCart);
-
-document.addEventListener("click", event => {
-  if (!cartWrapper.contains(event.target)) {
-    closeCart();
-  }
-});
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closeCart();
-  }
-});
-
-window.addEventListener("storage", event => {
-  if (event.key === "cart") {
-    renderCartDropdown();
-  }
 });
 
 window.addEventListener("load", () => {
   updateHero(1, false);
   startHeroAutoRotate();
-  renderCartDropdown();
 });
 </script>
 
