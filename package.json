@@ -1,0 +1,25 @@
+{
+  "name": "driftzero",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guicasali61/DriftZero.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/guicasali61/DriftZero/issues"
+  },
+  "homepage": "https://github.com/guicasali61/DriftZero#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "stripe": "^22.1.0"
+  }
+}
