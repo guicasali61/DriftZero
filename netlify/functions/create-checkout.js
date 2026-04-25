@@ -51,50 +51,108 @@ const PRODUCT_CATALOG = {
   "classic-rail-pink": {
     name: "DriftZero Classic Rail - Pink",
     price: 34.99
+  },
+
+  "core-rail-left": {
+    name: "DriftZero Core Rail - Left Unit",
+    price: 19.99
+  },
+
+  "core-rail-right": {
+    name: "DriftZero Core Rail - Right Unit",
+    price: 19.99
+  },
+
+  "core-rail-pair": {
+    name: "DriftZero Core Rail - Pair",
+    price: 39.99
   }
 };
 
+function createResponse(statusCode, data) {
+  return {
+    statusCode,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  };
+}
+
+function parseRequestBody(event) {
+  try {
+    return JSON.parse(event.body || "{}");
+  } catch {
+    throw new Error("Invalid JSON body");
+  }
+}
+
 function getBackendProduct(item) {
-  if (PRODUCT_CATALOG[item.key]) {
-    return PRODUCT_CATALOG[item.key];
+  if (!item || typeof item !== "object") {
+    throw new Error("Invalid cart item");
   }
 
-  if (item.product === "core-rail") {
-    return {
-      name: item.name || "DriftZero Core Rail",
-      price: 19.99
-    };
+  if (!item.key || typeof item.key !== "string") {
+    throw new Error("Missing product key");
   }
 
-  throw new Error(`Unknown product: ${item.key || "missing-key"}`);
+  const product = PRODUCT_CATALOG[item.key];
+
+  if (!product) {
+    throw new Error(`Unknown product key: ${item.key}`);
+  }
+
+  return product;
+}
+
+function getValidQuantity(item) {
+  const quantity = Number(item.quantity);
+
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
+    throw new Error("Invalid quantity");
+  }
+
+  return quantity;
+}
+
+function cleanMetadataValue(value) {
+  if (typeof value !== "string") return "";
+  return value.slice(0, 120);
 }
 
 exports.handler = async function (event) {
   try {
-    if (event.httpMethod !== "POST") {
-      return {
-        statusCode: 405,
-        body: JSON.stringify({ error: "Method not allowed" })
-      };
+    if (!process.env.STRIPE_SECRET_KEY) {
+      console.error("Missing STRIPE_SECRET_KEY");
+      return createResponse(500, {
+        error: "Server configuration error"
+      });
     }
 
-    const body = JSON.parse(event.body || "{}");
-    const items = body.items || body;
+    if (event.httpMethod !== "POST") {
+      return createResponse(405, {
+        error: "Method not allowed"
+      });
+    }
+
+    const body = parseRequestBody(event);
+    const items = Array.isArray(body.items) ? body.items : body;
 
     if (!Array.isArray(items) || items.length === 0) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Cart is empty" })
-      };
+      return createResponse(400, {
+        error: "Cart is empty"
+      });
     }
 
-    const lineItems = items.map(item => {
-      const backendProduct = getBackendProduct(item);
-      const quantity = Number(item.quantity) || 1;
+    if (items.length > 20) {
+      return createResponse(400, {
+        error: "Too many cart items"
+      });
+    }
 
-      if (quantity <= 0) {
-        throw new Error("Invalid quantity");
-      }
+    const lineItems = items.map((item) => {
+      const backendProduct = getBackendProduct(item);
+      const quantity = getValidQuantity(item);
 
       return {
         quantity,
@@ -104,16 +162,16 @@ exports.handler = async function (event) {
           product_data: {
             name: backendProduct.name,
             metadata: {
-              key: item.key || "",
-              product: item.product || "",
-              type: item.type || "",
-              color: item.color || "",
-              colorKey: item.colorKey || "",
-              leftColor: item.leftColor || "",
-              rightColor: item.rightColor || "",
-              leftKey: item.leftKey || "",
-              rightKey: item.rightKey || "",
-              patternKey: item.patternKey || ""
+              key: cleanMetadataValue(item.key),
+              product: cleanMetadataValue(item.product),
+              type: cleanMetadataValue(item.type),
+              color: cleanMetadataValue(item.color),
+              colorKey: cleanMetadataValue(item.colorKey),
+              leftColor: cleanMetadataValue(item.leftColor),
+              rightColor: cleanMetadataValue(item.rightColor),
+              leftKey: cleanMetadataValue(item.leftKey),
+              rightKey: cleanMetadataValue(item.rightKey),
+              patternKey: cleanMetadataValue(item.patternKey)
             }
           }
         }
@@ -161,17 +219,15 @@ exports.handler = async function (event) {
       cancel_url: `${siteUrl}/pagine/cart.html?canceled=true`
     });
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ url: session.url })
-    };
+    return createResponse(200, {
+      url: session.url
+    });
 
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        error: error.message
-      })
-    };
+    console.error("Checkout error:", error);
+
+    return createResponse(500, {
+      error: "Unable to create checkout session"
+    });
   }
 };
