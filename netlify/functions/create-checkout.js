@@ -99,6 +99,34 @@ exports.handler = async function (event) {
       mode: "payment",
       payment_method_types: ["card"],
       line_items: lineItems,
+
+      shipping_address_collection: {
+        allowed_countries: ["IT"]
+      },
+
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: {
+              amount: 499,
+              currency: "eur"
+            },
+            display_name: "Standard Shipping",
+            delivery_estimate: {
+              minimum: {
+                unit: "business_day",
+                value: 3
+              },
+              maximum: {
+                unit: "business_day",
+                value: 7
+              }
+            }
+          }
+        }
+      ],
+
       success_url: `${siteUrl}/pagine/cart.html?success=true`,
       cancel_url: `${siteUrl}/pagine/cart.html?canceled=true`
     });
