@@ -132,12 +132,12 @@ const Cart = {
   },
 
   resolveCheckoutKey(item) {
-    if (item.key) return item.key;
-
     if (item.product === "core-rail") {
-      if (item.type === "left") return "core-rail-left";
-      if (item.type === "right") return "core-rail-right";
-      return "core-rail-pair";
+      return "core-rail-custom-pair";
+    }
+
+    if (item.key) {
+      return item.key;
     }
 
     throw new Error(`Missing checkout key for item: ${item.name || "unknown item"}`);

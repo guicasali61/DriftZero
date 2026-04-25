@@ -48,24 +48,24 @@ const PRODUCT_CATALOG = {
     price: 34.99
   },
 
-  "classic-rail-pink": {
-    name: "DriftZero Classic Rail - Pink",
+  "classic-rail-crimson-rail": {
+    name: "DriftZero Classic Rail - Crimson Rail",
     price: 34.99
   },
 
-  "core-rail-left": {
-    name: "DriftZero Core Rail - Left Unit",
-    price: 19.99
+  "classic-rail-pink": {
+    name: "DriftZero Classic Rail - Rose Static",
+    price: 34.99
   },
 
-  "core-rail-right": {
-    name: "DriftZero Core Rail - Right Unit",
-    price: 19.99
+  "classic-rail-rose-static": {
+    name: "DriftZero Classic Rail - Rose Static",
+    price: 34.99
   },
 
-  "core-rail-pair": {
-    name: "DriftZero Core Rail - Pair",
-    price: 39.99
+  "core-rail-custom-pair": {
+    name: "DriftZero Core Rail - Custom Pair",
+    price: 19.99
   }
 };
 
@@ -124,6 +124,7 @@ exports.handler = async function (event) {
   try {
     if (!process.env.STRIPE_SECRET_KEY) {
       console.error("Missing STRIPE_SECRET_KEY");
+
       return createResponse(500, {
         error: "Server configuration error"
       });
@@ -137,6 +138,8 @@ exports.handler = async function (event) {
 
     const body = parseRequestBody(event);
     const items = Array.isArray(body.items) ? body.items : body;
+
+    console.log("ITEM KEYS:", Array.isArray(items) ? items.map(item => item.key) : "Invalid items");
 
     if (!Array.isArray(items) || items.length === 0) {
       return createResponse(400, {
