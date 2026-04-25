@@ -8,6 +8,21 @@ const PRODUCT_CATALOG = {
     price: 59.99
   },
 
+  "apex-pro-drip-crew": {
+    name: "DriftZero Apex Pro - Drip Crew",
+    price: 59.99
+  },
+
+  "apex-pro-elder-vale": {
+    name: "DriftZero Apex Pro - Elder Vale",
+    price: 59.99
+  },
+
+  "apex-pro-obsidian-core": {
+    name: "DriftZero Apex Pro - Obsidian Core",
+    price: 59.99
+  },
+
   "pulse-flux-rb": {
     name: "DriftZero Pulse Flux - Blue Blaze",
     price: 49.99
@@ -18,6 +33,11 @@ const PRODUCT_CATALOG = {
     price: 49.99
   },
 
+  "classic-rail-white": {
+    name: "DriftZero Classic Rail - Ivory Signal",
+    price: 34.99
+  },
+
   "classic-rail-ivory-signal": {
     name: "DriftZero Classic Rail - Ivory Signal",
     price: 34.99
@@ -25,6 +45,11 @@ const PRODUCT_CATALOG = {
 
   "classic-rail-red": {
     name: "DriftZero Classic Rail - Crimson Rail",
+    price: 34.99
+  },
+
+  "classic-rail-pink": {
+    name: "DriftZero Classic Rail - Pink",
     price: 34.99
   }
 };
