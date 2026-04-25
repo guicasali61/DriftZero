@@ -21,6 +21,11 @@ const PRODUCT_CATALOG = {
   "classic-rail-ivory-signal": {
     name: "DriftZero Classic Rail - Ivory Signal",
     price: 34.99
+  },
+
+  "classic-rail-red": {
+    name: "DriftZero Classic Rail - Crimson Rail",
+    price: 34.99
   }
 };
 
