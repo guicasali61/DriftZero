@@ -2,6 +2,43 @@ require("dotenv").config();
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+const PRODUCT_CATALOG = {
+  "apex-pro-hit-parade": {
+    name: "DriftZero Apex Pro - Hit Parade",
+    price: 59.99
+  },
+
+  "pulse-flux-rb": {
+    name: "DriftZero Pulse Flux - Blue Blaze",
+    price: 49.99
+  },
+
+  "pulse-flux-pg": {
+    name: "DriftZero Pulse Flux - Neon Clash",
+    price: 49.99
+  },
+
+  "classic-rail-ivory-signal": {
+    name: "DriftZero Classic Rail - Ivory Signal",
+    price: 34.99
+  }
+};
+
+function getBackendProduct(item) {
+  if (PRODUCT_CATALOG[item.key]) {
+    return PRODUCT_CATALOG[item.key];
+  }
+
+  if (item.product === "core-rail") {
+    return {
+      name: item.name || "DriftZero Core Rail",
+      price: 19.99
+    };
+  }
+
+  throw new Error(`Unknown product: ${item.key || "missing-key"}`);
+}
+
 exports.handler = async function (event) {
   try {
     if (event.httpMethod !== "POST") {
@@ -22,26 +59,28 @@ exports.handler = async function (event) {
     }
 
     const lineItems = items.map(item => {
-      const price = Number(item.price);
+      const backendProduct = getBackendProduct(item);
       const quantity = Number(item.quantity) || 1;
 
-      if (!item.name || !price || price <= 0) {
-        throw new Error("Invalid cart item");
+      if (quantity <= 0) {
+        throw new Error("Invalid quantity");
       }
 
       return {
         quantity,
         price_data: {
           currency: "eur",
-          unit_amount: Math.round(price * 100),
+          unit_amount: Math.round(backendProduct.price * 100),
           product_data: {
-            name: item.name,
+            name: backendProduct.name,
             metadata: {
               key: item.key || "",
               product: item.product || "",
               type: item.type || "",
               color: item.color || "",
               colorKey: item.colorKey || "",
+              leftColor: item.leftColor || "",
+              rightColor: item.rightColor || "",
               leftKey: item.leftKey || "",
               rightKey: item.rightKey || "",
               patternKey: item.patternKey || ""
