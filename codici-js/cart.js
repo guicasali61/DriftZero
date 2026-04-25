@@ -131,34 +131,53 @@ const Cart = {
     return `€${Number(value).toFixed(2)}`;
   },
 
+  resolveCheckoutKey(item) {
+    if (item.key) return item.key;
+
+    if (item.product === "core-rail") {
+      if (item.type === "left") return "core-rail-left";
+      if (item.type === "right") return "core-rail-right";
+      return "core-rail-pair";
+    }
+
+    throw new Error(`Missing checkout key for item: ${item.name || "unknown item"}`);
+  },
+
   getCheckoutItems() {
     return this.getItems().map(item => ({
-      id: item.id,
-      key: item.key,
-      product: item.product || null,
-      productName: item.productName || null,
-      type: item.type || null,
-      name: item.name,
-      price: Number(item.price),
+      key: this.resolveCheckoutKey(item),
+      product: item.product || "",
+      productName: item.productName || "",
+      type: item.type || "",
       quantity: Number(item.quantity) || 1,
-      color: item.color || null,
-      colorKey: item.colorKey || null,
-      leftColor: item.leftColor || null,
-      rightColor: item.rightColor || null,
-      leftKey: item.leftKey || null,
-      rightKey: item.rightKey || null,
-      patternKey: item.patternKey || null,
-      isPatternPair: item.isPatternPair || false
+
+      color: item.color || "",
+      colorKey: item.colorKey || "",
+      leftColor: item.leftColor || "",
+      rightColor: item.rightColor || "",
+      leftKey: item.leftKey || "",
+      rightKey: item.rightKey || "",
+      patternKey: item.patternKey || ""
     }));
   },
 
   async checkout() {
-    const items = this.getCheckoutItems();
+    let items;
+
+    try {
+      items = this.getCheckoutItems();
+    } catch (error) {
+      console.error("Cart data error:", error);
+      alert("Cart contains an invalid product. Remove it and add it again.");
+      return;
+    }
 
     if (items.length === 0) {
       alert("Your cart is empty.");
       return;
     }
+
+    console.log("Checkout items sent to backend:", items);
 
     try {
       const response = await fetch("/.netlify/functions/create-checkout", {
