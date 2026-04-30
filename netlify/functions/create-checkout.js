@@ -67,6 +67,8 @@ const PRODUCT_CATALOG = {
     name: "DriftZero Core Rail - Custom Pair",
     price: 19.99
   }
+
+ 
 };
 
 function createResponse(statusCode, data) {
